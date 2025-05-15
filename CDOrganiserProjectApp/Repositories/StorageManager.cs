@@ -20,6 +20,11 @@ namespace CDOrganiserProjectApp.Repositories
                 Console.WriteLine("Connection failed.\n");
                 Console.WriteLine(e.Message);
             }
+            catch (Exception ex)
+            {
+                Console.WriteLine("An error occured.");
+                Console.WriteLine(ex.Message);
+            }
 
         }
     }
