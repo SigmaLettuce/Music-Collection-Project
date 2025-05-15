@@ -28,6 +28,7 @@ namespace CDOrganiserProjectApp
             }
         }
 
+        /*
         public List<Bands> GetAllBands()
         {
             List<Bands> bands = new List<Bands>();
@@ -36,7 +37,9 @@ namespace CDOrganiserProjectApp
             {
 
             }
-        }
+        */
+
+        
 
     }
 }
