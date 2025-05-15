@@ -15,10 +15,10 @@ namespace CDOrganiserProjectApp.Repositories
                 conn.Open();
                 Console.WriteLine("Connection successful.");
             }
-            catch (Exception ex)
+            catch (SqlException e)
             {
                 Console.WriteLine("Connection failed.\n");
-                Console.WriteLine(ex.Message);
+                Console.WriteLine(e.Message);
             }
 
         }
