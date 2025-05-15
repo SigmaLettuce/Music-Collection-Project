@@ -1,6 +1,7 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using CDOrganiserProjectApp.Model;
+using Microsoft.Data.SqlClient;
 
-namespace CDOrganiserProjectApp.Repositories
+namespace CDOrganiserProjectApp
 {
     // Manages connection to database, passes queries etc.
     public class StorageManager
@@ -25,7 +26,17 @@ namespace CDOrganiserProjectApp.Repositories
                 Console.WriteLine("An error occured.");
                 Console.WriteLine(ex.Message);
             }
-
         }
+
+        public List<Bands> GetAllBands()
+        {
+            List<Bands> bands = new List<Bands>();
+            string sqlStr = "SELECT * FROM Contents.tblBands";
+            using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
+            {
+
+            }
+        }
+
     }
 }

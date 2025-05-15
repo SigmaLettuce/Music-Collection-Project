@@ -1,4 +1,4 @@
-﻿
+﻿        
 namespace CDOrganiserProjectApp.Model
 {
     internal class Bands

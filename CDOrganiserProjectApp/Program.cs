@@ -1,4 +1,4 @@
-﻿using CDOrganiserProjectApp.Repositories;
+﻿using CDOrganiserProjectApp;
 
 namespace CDOrganiserProjectApp
 {
