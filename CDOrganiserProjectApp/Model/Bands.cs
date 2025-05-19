@@ -1,13 +1,13 @@
 ﻿        
 namespace CDOrganiserProjectApp.Model
 {
-    internal class Bands
+    public class Bands
     {
 
         public string bandName {  get; set; }   
-        public string bandId { get; set; }  
+        private int bandId { get; set; }  
          
-        public Bands(string bn, string bid)
+        public Bands(string bn, int bid)
         {
             bandName = bn;
             bandId = bid;

@@ -1,5 +1,6 @@
 ﻿using CDOrganiserProjectApp.Model;
 using Microsoft.Data.SqlClient;
+using Microsoft.Identity.Client;
 
 namespace CDOrganiserProjectApp
 {
@@ -28,16 +29,26 @@ namespace CDOrganiserProjectApp
             }
         }
 
-        /*
+        
         public List<Bands> GetAllBands()
         {
             List<Bands> bands = new List<Bands>();
             string sqlStr = "SELECT * FROM Contents.tblBands";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
-
+                using (SqlDataReader reader = cmd.ExecuteReader()) 
+                {
+                    while (reader.Read())
+                    {
+                        int bandId = Convert.ToInt32(reader["bandID"]);
+                        string bandName = reader["bandName"].ToString();
+                        bands.Add(new Bands(bandName, bandId));
+                    }
+                }
             }
-        */
+            return bands;
+        }
+        
 
         
 
