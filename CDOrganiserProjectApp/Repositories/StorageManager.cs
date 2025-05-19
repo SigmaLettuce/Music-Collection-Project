@@ -29,28 +29,47 @@ namespace CDOrganiserProjectApp
             }
         }
 
-        
+
         public List<Bands> GetAllBands()
         {
             List<Bands> bands = new List<Bands>();
             string sqlStr = "SELECT * FROM Contents.tblBands";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
-                using (SqlDataReader reader = cmd.ExecuteReader()) 
+                using (SqlDataReader reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())
                     {
                         int bandId = Convert.ToInt32(reader["bandID"]);
                         string bandName = reader["bandName"].ToString();
-                        bands.Add(new Bands(bandName, bandId));
+                        bands.Add(new Bands(bandId, bandName));
                     }
                 }
             }
             return bands;
         }
-        
 
-        
+        public List<Artists> GetAllArtists()
+        {
+            List<Artists> artists = new List<Artists>();
+            string sqlStr = "SELECT * FROM Contents.tblArtists";
+            using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
+            {
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        int artistId = Convert.ToInt32(reader["artistID"]);
+                        string artistName = reader["artistName"].ToString();
+                        artists.Add(new Artists(artistId, artistName));
+                    }
+                }
+            }
+            return artists;
+        }
+
+
+
 
     }
 }

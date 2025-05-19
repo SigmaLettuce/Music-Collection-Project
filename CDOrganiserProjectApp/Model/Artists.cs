@@ -1,16 +1,17 @@
 ﻿
 namespace CDOrganiserProjectApp.Model
 {
-    internal class Artists
+    public class Artists
     {
-
+        public int artistId { get; set; }
         public string artistName {  get; set; }
-        public string artistId { get; set; }
 
-        public Artists(string an, string aid)
+
+        public Artists(int aid, string an)
         {
-            artistName = an;
             artistId = aid;
+            artistName = an;
+
         }
 
     }

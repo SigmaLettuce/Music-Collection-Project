@@ -3,14 +3,15 @@ namespace CDOrganiserProjectApp.Model
 {
     public class Bands
     {
-
-        public string bandName {  get; set; }   
         private int bandId { get; set; }  
+        public string bandName {  get; set; }   
+
          
-        public Bands(string bn, int bid)
+        public Bands(int bid, string bn)
         {
-            bandName = bn;
             bandId = bid;
+            bandName = bn;
+
         }
         
     }
