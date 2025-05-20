@@ -1,5 +1,6 @@
 ﻿using CDOrganiserProjectApp;
 using CDOrganiserProjectApp.Model;
+using CDOrganiserProjectApp.View;
 
 namespace CDOrganiserProjectApp
 {
@@ -13,11 +14,21 @@ namespace CDOrganiserProjectApp
             string connectionString = "Data Source=(localdb)\\ProjectModels;Initial Catalog=HomeMusicDatabase;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False";
 
             storageManager = new StorageManager(connectionString);
+            ConsoleView view = new ConsoleView();
+            view.DisplayMenu();
+            string choice = view.GetInput();
 
-            List<Bands> bands = storageManager.GetAllBands();
-            foreach (Bands band in bands)
+            if (choice.Equals("1"))
             {
-                Console.WriteLine($"{band.bandId}, {band.bandName}");
+                view.DisplayBands(storageManager.GetAllBands());
+
+
+            }
+            else if (choice.Equals("2"))
+            { 
+                view.DisplayArtists(storageManager.GetAllArtists());
+
+
             }
         }
     }
