@@ -1,4 +1,5 @@
 ﻿using CDOrganiserProjectApp;
+using CDOrganiserProjectApp.Model;
 
 namespace CDOrganiserProjectApp
 {
@@ -13,6 +14,11 @@ namespace CDOrganiserProjectApp
 
             storageManager = new StorageManager(connectionString);
 
+            List<Bands> bands = storageManager.GetAllBands();
+            foreach (Bands band in bands)
+            {
+                Console.WriteLine($"{band.bandId}, {band.bandName}");
+            }
         }
     }
 }

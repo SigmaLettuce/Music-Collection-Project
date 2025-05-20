@@ -36,13 +36,13 @@ namespace CDOrganiserProjectApp
             string sqlStr = "SELECT * FROM Contents.tblBands";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
-                using (SqlDataReader reader = cmd.ExecuteReader())
+                using (SqlDataReader reader = cmd.ExecuteReader()) 
                 {
                     while (reader.Read())
                     {
                         int bandId = Convert.ToInt32(reader["bandID"]);
                         string bandName = reader["bandName"].ToString();
-                        bands.Add(new Bands(bandId, bandName));
+                        bands.Add(new Bands(bandId, bandName)); 
                     }
                 }
             }
