@@ -15,9 +15,9 @@ namespace CDOrganiserProjectApp
 
             storageManager = new StorageManager(connectionString);
             ConsoleView view = new ConsoleView();
-            view.DisplayMenu();
-            string choice = view.GetInput();
+            string choice = view.DisplayMenu();
 
+            /*
             if (choice.Equals("1"))
             {
                 view.DisplayBands(storageManager.GetAllBands());
@@ -25,11 +25,15 @@ namespace CDOrganiserProjectApp
 
             }
             else if (choice.Equals("2"))
-            { 
+            {
                 view.DisplayArtists(storageManager.GetAllArtists());
 
 
             }
+
+            -- If statment variant.
+            */
+
         }
     }
 }

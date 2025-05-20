@@ -10,12 +10,14 @@ namespace CDOrganiserProjectApp.View
 {
     public class ConsoleView
     {
-        public void DisplayMenu()
+        public string DisplayMenu()
         {
             Console.WriteLine("\nWelcome to your CD Warehousing! ");
             Console.WriteLine("Menu: ");
             Console.WriteLine("1. Display all records for bands?");
             Console.WriteLine("2. Display all records for artists?");
+
+            return Console.ReadLine();
         }
 
         public void DisplayBands(List<Bands> bands)
@@ -35,12 +37,6 @@ namespace CDOrganiserProjectApp.View
                 Console.WriteLine($"{artist.artistId}, {artist.artistName}");
             }
 
-        }
-
-        public string GetInput()
-        {
-
-            return Console.ReadLine();
         }
 
     }
