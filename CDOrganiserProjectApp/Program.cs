@@ -33,8 +33,8 @@ namespace CDOrganiserProjectApp
 
             -- If statment variant.
             */
-            do
-            {
+
+
                 switch (choice)
                 {
                     case "1":
@@ -53,7 +53,6 @@ namespace CDOrganiserProjectApp
 
                     break;
                 }
-            } while (string.IsNullOrEmpty(choice));
             
               
         }
