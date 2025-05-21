@@ -18,32 +18,54 @@ namespace CDOrganiserProjectApp
             string choice = view.DisplayMenu();
 
             /*
-            if (choice.Equals("1"))
-            {
-                view.DisplayBands(storageManager.GetAllBands());
+                if (choice.Equals("1"))
+                {
+                    view.DisplayBands(storageManager.GetAllBands());
 
 
-            }
-            else if (choice.Equals("2"))
-            {
-                view.DisplayArtists(storageManager.GetAllArtists());
+                }
+
+                else if (choice.Equals("2"))
+                {
+                    view.DisplayArtists(storageManager.GetAllArtists());
 
 
-            }
+                }
+
+                else
+                {
+                    Console.WriteLine("I'm sorry, this isn't a valid selection. Can you try again? :)");
+                    view.DisplayMenu();
+                }
+
+
 
             -- If statment variant.
+
             */
 
 
                 switch (choice)
                 {
                     case "1":
-                        view.DisplayBands(storageManager.GetAllBands());
+                        List<Bands> bands = storageManager.GetAllBands();
+                        view.DisplayBands(bands);
 
                     break;
 
                     case "2":
-                        view.DisplayArtists(storageManager.GetAllArtists());
+                        UpdateBandName();
+
+
+                    break;
+
+                    case "3":
+                        InsertNewBand();
+
+                    break;
+
+                    case "4":
+                        DeleteBandByName();
 
                     break;
 
@@ -51,10 +73,12 @@ namespace CDOrganiserProjectApp
                         Console.WriteLine("I'm sorry, this isn't a valid selection. Can you try again? :)");
                         view.DisplayMenu();
 
+
                     break;
+
                 }
-            
-              
+
+
         }
     }
 }
