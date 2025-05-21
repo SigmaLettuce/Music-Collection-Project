@@ -9,6 +9,7 @@ namespace CDOrganiserProjectApp
     {
         private static StorageManager storageManager;
         private static ConsoleView view;
+
         static void Main(string[] args)
         {
             Console.WriteLine("Hello, World!");
@@ -45,51 +46,50 @@ namespace CDOrganiserProjectApp
 
             */
 
-                private static void UpdateBandName()
-                {
-                    view.DisplayMessage("Enter the identification number... ");
-                    int bandId = view.GetIntInput();
-                    view.DisplayMessage("Rename the record... ");
-                    string bandName = view.GetInput();
-                    int rowsAffected = storageManager.UpdateBandName(bandId, bandName);
-                    view.DisplayMessage($"Updated {rowsAffected} records.");        
+            switch (choice)
+            {
+                case "view":
+                    List<Bands> bands = storageManager.GetAllBands();
+                    view.DisplayBands(bands);
 
-                }
+                break;
 
-                switch (choice)
-                {
-                    case "view":
-                        List<Bands> bands = storageManager.GetAllBands();
-                        view.DisplayBands(bands);
-
-                    break;
-
-                    case "up":
-                        UpdateBandName();
+                case "up":
+                    UpdateBandName();
 
 
-                    break;
+                break;
 
-                    case "ins":
-                        // InsertNewBand();
+                case "ins":
+                    // InsertNewBand();
 
-                    break;
+                break;
 
-                    case "del":
-                        // DeleteBandByName();
+                case "del":
+                    // DeleteBandByName();
 
-                    break;
+                break;
 
-                    default:
-                        Console.WriteLine("I'm sorry, this isn't a valid selection. Can you try again? :)");
+                default:
+                    Console.WriteLine("I'm sorry, this isn't a valid selection. Can you try again? :)");
 
-                    break;
+                break;
 
-                }
+            }
+        }
 
-                
-
+        private static void UpdateBandName()
+        {
+            view.DisplayMessage("Enter the identification number... ");
+            int bandId = view.GetIntInput();
+            view.DisplayMessage("Rename the record... ");
+            string bandName = view.GetInput();
+            int rowsAffected = storageManager.UpdateBandName(bandId, bandName);
+            view.DisplayMessage($"Updated {rowsAffected} records.");
 
         }
+
     }
+        
+    
 }
