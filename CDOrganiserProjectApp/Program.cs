@@ -1,6 +1,7 @@
 ﻿using CDOrganiserProjectApp;
 using CDOrganiserProjectApp.Model;
 using CDOrganiserProjectApp.View;
+using Microsoft.IdentityModel.Tokens;
 
 namespace CDOrganiserProjectApp
 {
@@ -44,6 +45,12 @@ namespace CDOrganiserProjectApp
 
             */
 
+                private static void UpdateBandName()
+                {
+                    view.DisplayMessage("Enter the identification number... ");
+                    int bandId = view.GetIntInput();
+                    View.
+                }
 
                 switch (choice)
                 {
@@ -75,6 +82,8 @@ namespace CDOrganiserProjectApp
                     break;
 
                 }
+
+                
 
 
         }

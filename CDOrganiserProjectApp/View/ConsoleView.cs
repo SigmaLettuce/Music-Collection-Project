@@ -31,8 +31,21 @@ namespace CDOrganiserProjectApp.View
 
 
         }
+        
+        public void DisplayMessage(string msg)
+        {
+            Console.WriteLine(msg);
+        }
 
+        public string GetInput()
+        {
+            return Console.ReadLine();
+        }
 
+        public int GetIntInput()
+        {
+            return int.Parse(Console.ReadLine());
+        }
 
         public void DisplayArtists(List<Artists> artists)
         {
