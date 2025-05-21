@@ -33,7 +33,29 @@ namespace CDOrganiserProjectApp
 
             -- If statment variant.
             */
+            do
+            {
+                switch (choice)
+                {
+                    case "1":
+                        view.DisplayBands(storageManager.GetAllBands());
 
+                    break;
+
+                    case "2":
+                        view.DisplayArtists(storageManager.GetAllArtists());
+
+                    break;
+
+                    default:
+                        Console.WriteLine("I'm sorry, this isn't a valid selection. Can you try again? :)");
+                        view.DisplayMenu();
+
+                    break;
+                }
+            } while (string.IsNullOrEmpty(choice));
+            
+              
         }
     }
 }
