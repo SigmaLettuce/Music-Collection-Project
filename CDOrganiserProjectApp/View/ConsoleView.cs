@@ -15,7 +15,9 @@ namespace CDOrganiserProjectApp.View
             Console.WriteLine("\nWelcome to your CD Warehousing! ");
             Console.WriteLine("Menu: ");
             Console.WriteLine("1. Display all records for bands?");
-            Console.WriteLine("2. Display all records for artists?");
+            Console.WriteLine("2. Update a bands name via. identification number?");
+            Console.WriteLine("3. Insert a new band?");
+            Console.WriteLine("4. Delete a record by name?");
 
             return Console.ReadLine();
         }
