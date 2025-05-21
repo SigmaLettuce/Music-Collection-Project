@@ -14,10 +14,10 @@ namespace CDOrganiserProjectApp.View
         {
             Console.WriteLine("\nWelcome to your CD Warehousing! ");
             Console.WriteLine("Menu: ");
-            Console.WriteLine("1. Display all records for bands?");
-            Console.WriteLine("2. Update a bands name via. identification number?");
-            Console.WriteLine("3. Insert a new band?");
-            Console.WriteLine("4. Delete a record by name?");
+            Console.WriteLine("'view' ~ Display all records for bands?");
+            Console.WriteLine("'up' ~ Update a bands name via. identification number?");
+            Console.WriteLine("'ins' ~ Insert a new band?");
+            Console.WriteLine("'del' ~ Delete a record by name?");
 
             return Console.ReadLine();
         }

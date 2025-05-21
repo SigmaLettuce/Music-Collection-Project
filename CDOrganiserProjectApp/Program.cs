@@ -47,24 +47,24 @@ namespace CDOrganiserProjectApp
 
                 switch (choice)
                 {
-                    case "1":
+                    case "view":
                         List<Bands> bands = storageManager.GetAllBands();
                         view.DisplayBands(bands);
 
                     break;
 
-                    case "2":
+                    case "up":
                         UpdateBandName();
 
 
                     break;
 
-                    case "3":
+                    case "ins":
                         InsertNewBand();
 
                     break;
 
-                    case "4":
+                    case "del":
                         DeleteBandByName();
 
                     break;
