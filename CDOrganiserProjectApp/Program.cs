@@ -8,14 +8,14 @@ namespace CDOrganiserProjectApp
     public class Program
     {
         private static StorageManager storageManager;
-
+        private static ConsoleView view;
         static void Main(string[] args)
         {
             Console.WriteLine("Hello, World!");
             string connectionString = "Data Source=(localdb)\\ProjectModels;Initial Catalog=HomeMusicDatabase;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False";
 
             storageManager = new StorageManager(connectionString);
-            ConsoleView view = new ConsoleView();
+            view = new ConsoleView();
             string choice = view.DisplayMenu();
 
             /*
@@ -49,7 +49,11 @@ namespace CDOrganiserProjectApp
                 {
                     view.DisplayMessage("Enter the identification number... ");
                     int bandId = view.GetIntInput();
-                    View.
+                    view.DisplayMessage("Rename the record... ");
+                    string bandName = view.GetInput();
+                    int rowsAffected = storageManager.UpdateBandName(bandId, bandName);
+                    view.DisplayMessage($"Updated {rowsAffected} records.");        
+
                 }
 
                 switch (choice)
@@ -67,12 +71,12 @@ namespace CDOrganiserProjectApp
                     break;
 
                     case "ins":
-                        InsertNewBand();
+                        // InsertNewBand();
 
                     break;
 
                     case "del":
-                        DeleteBandByName();
+                        // DeleteBandByName();
 
                     break;
 

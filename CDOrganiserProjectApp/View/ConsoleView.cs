@@ -32,6 +32,7 @@ namespace CDOrganiserProjectApp.View
 
         }
         
+
         public void DisplayMessage(string msg)
         {
             Console.WriteLine(msg);
