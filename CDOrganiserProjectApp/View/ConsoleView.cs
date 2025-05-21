@@ -32,6 +32,8 @@ namespace CDOrganiserProjectApp.View
 
         }
 
+
+
         public void DisplayArtists(List<Artists> artists)
         {
             foreach (Artists artist in artists)

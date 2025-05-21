@@ -49,6 +49,16 @@ namespace CDOrganiserProjectApp
             return bands;
         }
 
+        public int UpdateBandName(int bandId, string bandName)
+        {
+            using (SqlCommand cmd = new SqlCommand($"UPDATE Contents.tblBands SET bandName = @bandName WHERE bandID = @bandId", conn))
+            {
+                cmd.Parameters.AddWithValue("@bandName", bandName);
+                cmd.Parameters.AddWithValue("@bandId", bandId);
+                return cmd.ExecuteNonQuery();
+            }
+        }
+
         public List<Artists> GetAllArtists()
         {
             List<Artists> artists = new List<Artists>();
