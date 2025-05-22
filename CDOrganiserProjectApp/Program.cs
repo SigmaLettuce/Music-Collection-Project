@@ -65,7 +65,7 @@ namespace CDOrganiserProjectApp
                     break;
 
                     case "ins":
-                        // InsertNewBand();
+                        InsertNewBand();
                         invalid = false;
 
                     break;
