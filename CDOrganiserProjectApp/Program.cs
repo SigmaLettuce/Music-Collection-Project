@@ -113,7 +113,7 @@ namespace CDOrganiserProjectApp
 
             Bands newBand = new Bands(bandId, bandName);
 
-            int generatedId = storageManager.InsertBand(bandName);
+            int generatedId = storageManager.InsertBand(newBand);
             view.DisplayMessage($"The new bands identification number is: {generatedId}");
 
         }
