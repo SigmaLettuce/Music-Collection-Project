@@ -60,11 +60,13 @@ namespace CDOrganiserProjectApp
             }
         }
 
+        /*
         public string DeleteBandByName(string bandName)
         {
-
+            
 
         }
+        */
 
         public List<Artists> GetAllArtists()
         {
