@@ -80,14 +80,15 @@ namespace CDOrganiserProjectApp
 
         private static void UpdateBandName()
         {
-            view.DisplayMessage("Enter the identification number... ");
+            view.DisplayMessage("\nEnter the identification number... ");
             int bandId = view.GetIntInput();
-            view.DisplayMessage("Rename the record... ");
+            view.DisplayMessage("\nRename the record... ");
             string bandName = view.GetInput();
             int rowsAffected = storageManager.UpdateBandName(bandId, bandName);
             view.DisplayMessage($"Updated {rowsAffected} records.");
 
         }
+        
 
 
     }
