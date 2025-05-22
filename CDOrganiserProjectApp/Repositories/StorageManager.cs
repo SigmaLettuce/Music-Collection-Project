@@ -49,6 +49,15 @@ namespace CDOrganiserProjectApp
             return bands;
         }
 
+        public int InsertBand(string bandName)
+        {
+            using (SqlCommand cmd = new SqlCommand("INSERT INTO Contents.tblBands (bandName) VALUES (@bandName); SELECT SCOPE_IDENTITY();", conn))
+            {
+                cmd.Parameters.AddWithValue("@bandName", bandName);
+                return Convert.ToInt32(cmd.ExecuteScalar());
+            }
+        }
+
         public int UpdateBandName(int bandId, string bandName)
         {
             string sqlStr = $"UPDATE Contents.tblBands SET bandName = @bandName WHERE bandID = @bandId";
