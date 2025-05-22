@@ -18,6 +18,7 @@ namespace CDOrganiserProjectApp
             storageManager = new StorageManager(connectionString);
             view = new ConsoleView();
             string choice = view.DisplayMenu();
+            bool invalid = false;
 
             /*
                 if (choice.Equals("1"))
@@ -46,36 +47,44 @@ namespace CDOrganiserProjectApp
 
             */
 
-            switch (choice)
+            do
             {
-                case "view":
-                    List<Bands> bands = storageManager.GetAllBands();
-                    view.DisplayBands(bands);
+                switch (choice)
+                {
+                    case "view":
+                        List<Bands> bands = storageManager.GetAllBands();
+                        view.DisplayBands(bands);
+                        invalid = false;
 
-                break;
+                    break;
 
-                case "up":
-                    UpdateBandName();
-                    
+                    case "up":
+                        UpdateBandName();
+                        invalid = false;
 
-                break;
+                    break;
 
-                case "ins":
-                    // InsertNewBand();
-                     
-                break;
+                    case "ins":
+                        // InsertNewBand();
+                        invalid = false;
 
-                case "del":
-                    // DeleteBandByName();
+                    break;
 
-                break;
+                    case "del":
+                        // DeleteBandByName();
+                        invalid = false;
 
-                default:
-                    Console.WriteLine("I'm sorry, this isn't a valid selection. Can you try again? :)");
+                    break;
 
-                break;
+                    default:
+                        Console.WriteLine("I'm sorry, this isn't a valid selection. Can you try again? :)");
+                        view.DisplayMenu();
+                        invalid = true;
 
-            }
+                    break;
+                }
+            } while (invalid);
+            
         }
 
         private static void UpdateBandName()
