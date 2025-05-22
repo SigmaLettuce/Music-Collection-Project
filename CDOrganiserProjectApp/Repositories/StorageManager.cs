@@ -118,7 +118,7 @@ namespace CDOrganiserProjectApp
             if (conn != null && conn.State == System.Data.ConnectionState.Open)
             {
                 conn.Close();
-                Console.WriteLine("Connection terminated.");
+                Console.WriteLine("\nConnection terminated.");
             }
         }
     }

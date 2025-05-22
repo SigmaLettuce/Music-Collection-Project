@@ -22,6 +22,12 @@ namespace CDOrganiserProjectApp.View
             return Console.ReadLine().ToLower();
         }
 
+        /* 
+         Planning to deprecate the use of commands to specifically print for the 'Bands' table. Refer to pseudocodes and diagrams in booklet to plan.
+
+
+        */
+
         public void DisplayBands(List<Bands> bands)
         {
             foreach (Bands band in bands)
