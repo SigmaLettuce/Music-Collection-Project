@@ -13,11 +13,11 @@ namespace CDOrganiserProjectApp.View
         public string DisplayMenu()
         {
             Console.WriteLine("\nWelcome to your CD Warehousing! ");
-            Console.WriteLine("Menu: ");
-            Console.WriteLine("'view' ~ Display all records for bands?");
-            Console.WriteLine("'up' ~ Update a bands name via. identification number?");
-            Console.WriteLine("'ins' ~ Insert a new band?");
-            Console.WriteLine("'del' ~ Delete a record by name?");
+            Console.WriteLine("Menu: \n");
+            Console.WriteLine("\t'view' - Display all records for bands?");
+            Console.WriteLine("\t'up' - Update a bands name via. identification number?");
+            Console.WriteLine("\t'ins' - Insert a new band?");
+            Console.WriteLine("\t'del' - Delete a record by name?");
 
             return Console.ReadLine();
         }
