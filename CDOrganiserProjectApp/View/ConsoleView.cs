@@ -20,7 +20,7 @@ namespace CDOrganiserProjectApp.View
             Console.WriteLine("'del' - Delete a record by name?");
             Console.WriteLine("");
 
-            return Console.ReadLine();
+            return GetInput();
         }
 
         public void DisplayBands(List<Bands> bands)
