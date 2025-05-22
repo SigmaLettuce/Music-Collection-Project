@@ -78,6 +78,7 @@ namespace CDOrganiserProjectApp
 
                     default:
                         Console.WriteLine("I'm sorry, this isn't a valid selection. Can you try again? :)");
+                        Console.Clear();
                         view.DisplayMenu();
                         invalid = true;
 
