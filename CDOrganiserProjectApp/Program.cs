@@ -56,7 +56,7 @@ namespace CDOrganiserProjectApp
 
                 case "up":
                     UpdateBandName();
-
+                    
 
                 break;
 
@@ -88,6 +88,7 @@ namespace CDOrganiserProjectApp
             view.DisplayMessage($"Updated {rowsAffected} records.");
 
         }
+
 
     }
         

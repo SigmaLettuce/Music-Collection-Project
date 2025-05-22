@@ -17,8 +17,7 @@ namespace CDOrganiserProjectApp.View
             Console.WriteLine("'view' - Display all records for bands?");
             Console.WriteLine("'up' - Update a bands name via. identification number?");
             Console.WriteLine("'ins' - Insert a new band?");
-            Console.WriteLine("'del' - Delete a record by name?");
-            Console.WriteLine("");
+            Console.WriteLine("'del' - Delete a record by name?\n");
 
             return Console.ReadLine().ToLower();
         }
