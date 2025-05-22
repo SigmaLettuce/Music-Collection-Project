@@ -71,7 +71,7 @@ namespace CDOrganiserProjectApp
                     break;
 
                     case "del":
-                        // DeleteBandByName();
+                        DeleteBandByName();
                         invalid = false;
 
                     break;
