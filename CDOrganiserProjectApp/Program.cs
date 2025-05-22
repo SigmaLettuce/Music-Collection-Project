@@ -104,7 +104,16 @@ namespace CDOrganiserProjectApp
             view.DisplayMessage($"Updated {rowsAffected} records.");
 
         }
-        
+
+        private static void InsertNewBand()
+        {
+            view.DisplayMessage("\nEnter the new band... ");
+            string bandName = view.GetInput();
+            int generatedId = storageManager.InsertBand(bandName);
+            view.DisplayMessage($"The new bands identification number is: {generatedId}");
+
+        }
+
 
 
     }

@@ -63,10 +63,12 @@ namespace CDOrganiserProjectApp
         /*
         public string DeleteBandByName(string bandName)
         {
+            string sqlStr = SELECT * FROM Contents.tblBands...
             
 
         }
         */
+
 
         public List<Artists> GetAllArtists()
         {
@@ -89,7 +91,8 @@ namespace CDOrganiserProjectApp
 
         public int UpdateArtistName(int artistId, string artistName)
         {
-            using (SqlCommand cmd = new SqlCommand($"UPDATE Contents.tblArtists SET artistName = @artistName WHERE artistID = @artistId", conn))
+            string sqlStr = $"UPDATE Contents.tblArtists SET artistName = @artistName WHERE artistID = @artistId";
+            using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
                 cmd.Parameters.AddWithValue("@artistName", artistName);
                 cmd.Parameters.AddWithValue("@artistId", artistId);
