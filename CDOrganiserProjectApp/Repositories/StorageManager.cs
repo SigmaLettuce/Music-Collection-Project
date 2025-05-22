@@ -113,6 +113,13 @@ namespace CDOrganiserProjectApp
             }
         }
 
-
+        public void CloseConnection()
+        {
+            if (conn != null && conn.State == System.Data.ConnectionState.Open)
+            {
+                conn.Close();
+                Console.WriteLine("Connection terminated.");
+            }
+        }
     }
 }

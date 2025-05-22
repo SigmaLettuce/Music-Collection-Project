@@ -89,7 +89,9 @@ namespace CDOrganiserProjectApp
                     break;
                 }
             } while (invalid);
-            
+
+            storageManager.CloseConnection();
+
         }
 
         private static void UpdateBandName()
