@@ -31,8 +31,16 @@ namespace CDOrganiserProjectApp.View
             }
 
 
-        }
+        } 
         
+        public void DisplayArtists(List<Artists> artists)
+        {
+            foreach (Artists artist in artists)
+            {
+                Console.WriteLine($"{artist.artistId}, {artist.artistName}");
+            }
+
+        }
 
         public void DisplayMessage(string msg)
         {
@@ -49,14 +57,7 @@ namespace CDOrganiserProjectApp.View
             return int.Parse(Console.ReadLine());
         }
 
-        public void DisplayArtists(List<Artists> artists)
-        {
-            foreach (Artists artist in artists)
-            {
-                Console.WriteLine($"{artist.artistId}, {artist.artistName}");
-            }
 
-        }
 
     }
 }
