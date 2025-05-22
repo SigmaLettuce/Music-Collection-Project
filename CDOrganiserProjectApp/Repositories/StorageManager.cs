@@ -78,7 +78,15 @@ namespace CDOrganiserProjectApp
             return artists;
         }
 
-
+        public int UpdateArtistName(int artistId, string artistName)
+        {
+            using (SqlCommand cmd = new SqlCommand($"UPDATE Contents.tblArtists SET artistName = @artistName WHERE artistID = @artistId", conn))
+            {
+                cmd.Parameters.AddWithValue("@artistName", artistName);
+                cmd.Parameters.AddWithValue("@artistId", artistId);
+                return cmd.ExecuteNonQuery();
+            }
+        }
 
 
     }
