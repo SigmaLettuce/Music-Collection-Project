@@ -62,7 +62,7 @@ namespace CDOrganiserProjectApp
 
                 case "ins":
                     // InsertNewBand();
-
+                     
                 break;
 
                 case "del":
