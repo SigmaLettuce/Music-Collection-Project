@@ -78,8 +78,12 @@ namespace CDOrganiserProjectApp
 
                     default:
                         Console.WriteLine("I'm sorry, this isn't a valid selection. Can you try again? :)");
+                        Thread.Sleep(1000);
+
                         Console.Clear();
+
                         view.DisplayMenu();
+
                         invalid = true;
 
                     break;
@@ -92,8 +96,10 @@ namespace CDOrganiserProjectApp
         {
             view.DisplayMessage("\nEnter the identification number... ");
             int bandId = view.GetIntInput();
+
             view.DisplayMessage("\nRename the record... ");
             string bandName = view.GetInput();
+
             int rowsAffected = storageManager.UpdateBandName(bandId, bandName);
             view.DisplayMessage($"Updated {rowsAffected} records.");
 
