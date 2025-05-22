@@ -72,8 +72,12 @@ namespace CDOrganiserProjectApp
         
         public string DeleteBandByName(string bandName)
         {
-            string sqlStr = SELECT * FROM Contents.tblBands...
-            
+            string sqlStr = "DELETE FROM Contents.tblBands WHERE bandName = @bandName";
+            using (SqlCommand cmd = new SqlCommand(sqlStr, conn)
+            {
+                cmds.Paramaters.AddWithValue("@bandName", bandName);
+                return cmd.ExecuteNonQuery();
+            }
 
         }
         
