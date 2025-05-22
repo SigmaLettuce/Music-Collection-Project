@@ -118,6 +118,13 @@ namespace CDOrganiserProjectApp
 
         }
 
+        private static void DeleteBandByName()
+        {
+            view.DisplayMessage("Enter the band you wish to erase from your records... ");
+            string bandName = view.GetInput();
+            int rowsAffected = storageManager.DeleteBandByName(bandName);
+            view.DisplayMessage($" Deleted {rowsAffected} rows.");
+        }
 
 
     }

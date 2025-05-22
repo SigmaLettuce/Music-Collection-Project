@@ -69,14 +69,14 @@ namespace CDOrganiserProjectApp
             }
         }
 
-        /*
+        
         public string DeleteBandByName(string bandName)
         {
             string sqlStr = SELECT * FROM Contents.tblBands...
             
 
         }
-        */
+        
 
 
         public List<Artists> GetAllArtists()
