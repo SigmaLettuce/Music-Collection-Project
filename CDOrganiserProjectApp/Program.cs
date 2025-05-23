@@ -49,7 +49,7 @@ namespace CDOrganiserProjectApp
 
             do
             {
-                switch (choice)
+                switch (choice.ToLower())
                 {
                     case "view":
                         List<Bands> bands = storageManager.GetAllBands();
@@ -111,7 +111,7 @@ namespace CDOrganiserProjectApp
         {
             view.DisplayMessage("\nEnter the new band... ");
             string bandName = view.GetInput();
-            int bandId = 0;
+            int bandId = 0; // Fix this
 
             Bands newBand = new Bands(bandId, bandName);
 
@@ -126,7 +126,7 @@ namespace CDOrganiserProjectApp
             string bandName = view.GetInput();
 
             int rowsAffected = storageManager.DeleteBandByName(bandName);
-            view.DisplayMessage($" Deleted {rowsAffected} rows.");
+            view.DisplayMessage($"Deleted {rowsAffected} rows.");
         }
 
 
