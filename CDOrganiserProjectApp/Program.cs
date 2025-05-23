@@ -105,7 +105,7 @@ namespace CDOrganiserProjectApp
             int rowsAffected = storageManager.UpdateBandName(bandId, bandName);
             view.DisplayMessage($"Updated {rowsAffected} records.");
 
-        }
+        } 
 
         private static void InsertNewBand()
         {
