@@ -110,8 +110,6 @@ namespace CDOrganiserProjectApp
             } while (invalid);
 
 
-            
-
             storageManager.CloseConnection();
 
         }
