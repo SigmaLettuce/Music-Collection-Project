@@ -49,6 +49,8 @@ namespace CDOrganiserProjectApp
             return bands;
         }
 
+        
+
         public int InsertBand(Bands bn)
         {
             using (SqlCommand cmd = new SqlCommand("INSERT INTO Contents.tblBands (bandName) VALUES (@bandName); SELECT SCOPE_IDENTITY();", conn))
