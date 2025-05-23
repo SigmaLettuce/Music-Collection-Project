@@ -49,13 +49,11 @@ namespace CDOrganiserProjectApp
             return bands;
         }
 
-        
-
-        public int InsertBand(Bands bn)
+        public int InsertBand(Bands bands)
         {
-            using (SqlCommand cmd = new SqlCommand("INSERT INTO Contents.tblBands (bandName) VALUES (@bandName); SELECT SCOPE_IDENTITY();", conn))
+            using (SqlCommand cmd = new SqlCommand($"INSERT INTO Contents.tblBands (bandName) VALUES (@bandName); SELECT SCOPE_IDENTITY();", conn))
             {
-                cmd.Parameters.AddWithValue("@bandName", bn.bandName);
+                cmd.Parameters.AddWithValue("@bandName", bands.bandName);
                 return Convert.ToInt32(cmd.ExecuteScalar());
             }
         }

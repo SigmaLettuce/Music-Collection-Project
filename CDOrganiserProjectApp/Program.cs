@@ -18,35 +18,54 @@ namespace CDOrganiserProjectApp
             storageManager = new StorageManager(connectionString);
             view = new ConsoleView();
             string choice = view.DisplayMenu();
-            bool invalid = false;
+            bool invalid = true;
 
-            /*
-                if (choice.Equals("1"))
+           
+          /*  
+            do
+            {
+                if (choice.Equals("view"))
                 {
-                    view.DisplayBands(storageManager.GetAllBands());
+                    List<Bands> bands = storageManager.GetAllBands();
+                    view.DisplayBands(bands);
 
 
+                    invalid = false;
                 }
 
-                else if (choice.Equals("2"))
+                else if (choice.Equals("up"))
                 {
-                    view.DisplayArtists(storageManager.GetAllArtists());
+                    UpdateBandName();
 
+                    invalid = false;
+                }
 
+                else if (choice.Equals("ins"))
+                {
+                    InsertNewBand();
+
+                    invalid = false;
+                }
+
+                else if (choice.Equals("del"))
+
+                {
+                    DeleteBandByName();
+                    
+                    invalid = false;
                 }
 
                 else
                 {
-                    Console.WriteLine("I'm sorry, this isn't a valid selection. Can you try again? :)");
+                    Console.WriteLine("I'm sorry, this isn't a valid selection. Can you try again?");
                     view.DisplayMenu();
+
+                    invalid = true;
                 }
-
-
-
-            -- If statment variant.
-
-            */
-
+            } while (invalid);
+            
+        */                 
+     
             do
             {
                 switch (choice.ToLower())
@@ -54,6 +73,8 @@ namespace CDOrganiserProjectApp
                     case "view":
                         List<Bands> bands = storageManager.GetAllBands();
                         view.DisplayBands(bands);
+                        Console.WriteLine("Print");
+
                         invalid = false;
 
                     break;
@@ -77,18 +98,19 @@ namespace CDOrganiserProjectApp
                     break;
 
                     default:
-                        Console.WriteLine("I'm sorry, this isn't a valid selection. Can you try again? :)");
+                        Console.WriteLine("I'm sorry, this isn't a valid selection. Can you try again? ");
                         Thread.Sleep(1000);
-
                         Console.Clear();
 
-                        view.DisplayMenu();
-
+                        choice = view.DisplayMenu();
                         invalid = true;
 
                     break;
                 }
             } while (invalid);
+
+
+            
 
             storageManager.CloseConnection();
 
@@ -111,7 +133,7 @@ namespace CDOrganiserProjectApp
         {
             view.DisplayMessage("\nEnter the new band... ");
             string bandName = view.GetInput();
-            int bandId = storageManager.GetAllBands().Count + 1; // Fix this
+            int bandId = 0; // Fix this
 
             Bands newBand = new Bands(bandId, bandName);
 

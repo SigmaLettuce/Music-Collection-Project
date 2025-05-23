@@ -20,7 +20,7 @@ namespace CDOrganiserProjectApp.View
             Console.WriteLine("'ins' - Insert a new band?");
             Console.WriteLine("'del' - Delete a record by name?\n");
 
-            return GetInput();
+            return Console.ReadLine();
         }
 
         /* 
