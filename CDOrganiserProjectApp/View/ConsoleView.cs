@@ -35,7 +35,7 @@ namespace CDOrganiserProjectApp.View
             {
                 Console.WriteLine($"{band.bandId}, {band.bandName}");
             }
-
+                
 
         } 
         
