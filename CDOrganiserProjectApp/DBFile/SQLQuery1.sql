@@ -1,4 +1,4 @@
-﻿use CDOrganiserDB;
+﻿use HomeMusicCollectionDatabase;
 
 SET IDENTITY_INSERT Contents.tblArtists ON;
 
