@@ -9,7 +9,7 @@ namespace CDOrganiserProjectApp
     {
         private static StorageManager storageManager;
         private static ConsoleView view;
-
+         
         static void Main(string[] args)
         {
             // Console.WriteLine("Hello, World!");
