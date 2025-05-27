@@ -73,7 +73,6 @@ namespace CDOrganiserProjectApp
                     case "view":
                         List<Bands> bands = storageManager.GetAllBands();
                         view.DisplayBands(bands);
-                        Console.WriteLine("Print");
 
                         invalid = false;
 

@@ -1,0 +1,1 @@
+﻿DBCC CHECKIDENT('Contents.tblBands', reseed, 8);
