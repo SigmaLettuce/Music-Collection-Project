@@ -14,7 +14,7 @@ namespace CDOrganiserProjectApp
         {
             // Console.WriteLine("Hello, World!");
             string connectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=HomeMusicCollectionDatabase;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False";
-
+             
             storageManager = new StorageManager(connectionString);
             view = new ConsoleView();
             string choice = view.DisplayMenu();
