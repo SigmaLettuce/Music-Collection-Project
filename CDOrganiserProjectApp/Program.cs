@@ -130,7 +130,7 @@ namespace CDOrganiserProjectApp
         {
             view.DisplayMessage("\nEnter the new band... ");
             string bandName = view.GetInput();
-            int bandId = 0; // Fix this
+            int bandId = 0; 
 
             Bands newBand = new Bands(bandId, bandName);
 
