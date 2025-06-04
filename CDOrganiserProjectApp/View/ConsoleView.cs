@@ -29,7 +29,7 @@ namespace CDOrganiserProjectApp.View
             Console.WriteLine("\t'all' - All artists, including bands, who have published an album you own");
             Console.WriteLine("\t'rooms' - All available rooms");
             Console.WriteLine("\t'shelves' - All shelves; Identified by letters and paired with numbers to identify a specific row");
-            Console.WriteLine("\t[NAME] - Any name of a specified record");
+            Console.WriteLine("\t[name] - Any name of a specified record");
 
             return Console.ReadLine();
         }
