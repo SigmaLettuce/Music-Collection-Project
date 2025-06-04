@@ -2,7 +2,7 @@
 namespace CDOrganiserProjectApp.Model
 {
     public class Albums
-    {
+    { 
         public int albumId {  get; set; }
         public string albumName { get; set; }
         public string genreName { get; set; }
