@@ -59,6 +59,14 @@ namespace CDOrganiserProjectApp.View
 
         }
 
+        public void DisplayAlbums(List<Albums> albums)
+        {
+            foreach (Albums album in albums)
+            {
+                Console.WriteLine($"{album.albumId}, {album.albumName}, {album.genreName}, {album.dateOfRelease}");
+            }
+        }
+
         public void DisplayMessage(string msg)
         {
             Console.WriteLine(msg);
