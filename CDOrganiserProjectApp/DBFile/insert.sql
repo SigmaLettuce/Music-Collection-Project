@@ -35,6 +35,34 @@ VALUES
 SET IDENTITY_INSERT Contents.tblBands OFF;
 
 
+SET IDENTITY_INSERT Contents.tblRole ON;
+
+INSERT INTO Contents.tblRole(roleID, roleName)
+VALUES 
+(1, 'Visitor'),
+(2, 'Administrator');
+
+SET IDENTITY_INSERT Contents.tblRole OFF;
+
+SET IDENTITY_INSERT Contents.tblPerson ON;
+
+INSERT INTO Contents.tblPerson(personID, fName, sName, username, pw, roleID)
+VALUES 
+(1, 'John', 'Kramer', 'johnk', 'jigsaw123', 1),
+(2, 'Clarice', 'Starling', 'agstarling', 'securepass456', 1),
+(3, 'Alice', 'Johnson', 'alicej', 'alicepwd789', 1),
+(4, 'Hannibal', 'Lecter', 'hanlecter', 'hansecure321', 1),
+(5, 'Charlie', 'Brown', 'charlieb', 'charliepass654', 1),
+(6, 'Diana', 'Evans', 'dianae', 'dianapass987', 1),
+(7, 'Edward', 'Hall', 'edwardh', 'edwardpass234', 1),
+(8, 'Fiona', 'Clark', 'fionac', 'fionapass567', 1),
+(9, 'George', 'Lewis', 'georgel', 'georgepass890', 1),
+(10, 'Hannah', 'Walker', 'hannahw', 'hannahpass345', 1),
+(12, 'Jack', 'Robinson', 'jackr', 'jackpass901', 1),
+(11, 'Isaac', 'White', 'isaacw', 'isaacpass678', 2);
+
+SET IDENTITY_INSERT Contents.tblPerson OFF;
+
 SET IDENTITY_INSERT Properties.tblFormat ON;
 
 INSERT INTO Properties.tblFormat(formatID, formatName) 

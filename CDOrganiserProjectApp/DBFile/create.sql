@@ -1,4 +1,9 @@
-﻿CREATE TABLE Contents.tblPerson (
+﻿CREATE TABLE Contents.tblRole (
+	roleID INT IDENTITY(1,1) PRIMARY KEY,
+	roleName VARCHAR(30) NOT NULL
+);
+
+CREATE TABLE Contents.tblPerson (
 	personID INT IDENTITY(1,1) PRIMARY KEY,
 	fName VARCHAR(30) NOT NULL,
 	sName VARCHAR(30) NOT NULL,
@@ -8,7 +13,3 @@
 	FOREIGN KEY (roleID) REFERENCES Contents.tblRole (roleID) ON DELETE NO ACTION ON UPDATE CASCADE
 );
 
-CREATE TABLE Contents.tblRole (
-	roleID INT IDENTITY(1,1) PRIMARY KEY,
-	roleName VARCHAR(30) NOT NULL
-);
