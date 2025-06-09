@@ -27,7 +27,7 @@ namespace CDOrganiserProjectApp.View
             Console.WriteLine("\t'bands' - All bands who have published an album you own");
             Console.WriteLine("\t'all' - All artists, including bands, who have published an album you own");
             Console.WriteLine("\t'rooms' - All available rooms\n");
-
+             
             return Console.ReadLine();
         }
 
