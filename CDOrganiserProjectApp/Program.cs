@@ -17,10 +17,12 @@ namespace CDOrganiserProjectApp
              
             storageManager = new StorageManager(connectionString);
             view = new ConsoleView();
+
             string choice = view.DisplayMenu();
+
             bool invalid = true;
 
-           
+
           /*  
             do
             {
@@ -68,12 +70,18 @@ namespace CDOrganiserProjectApp
      
             do
             {
+
+                List<string> prefix = new List<string>();
+                prefix.Add("");
+
+                string[] suffix = { "view", "up", "ins", "del", "" };
+
                 switch (choice.ToLower())
                 {
                     case "view":
                         List<Bands> bands = storageManager.GetAllBands();
                         view.DisplayBands(bands);
-
+             
                         invalid = false;
 
                     break;

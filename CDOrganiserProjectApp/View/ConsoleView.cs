@@ -16,20 +16,20 @@ namespace CDOrganiserProjectApp.View
             Console.WriteLine("\n\tWelcome to your CD Warehousing! ");
             Console.WriteLine("\tList of commands... \n");
             Console.WriteLine("Suffixes · Commands to run on sets of data");
-            Console.WriteLine("\t'view' - Displays information");
+            Console.WriteLine("\n\t'view' - Displays information");
             Console.WriteLine("\t'up' - Updates information");
             Console.WriteLine("\t'ins' - Adds new information");
             Console.WriteLine("\t'del' - Delete unwanted information");
             Console.WriteLine("\t'lost' - Marks a specified 'disc' as lost");
             Console.WriteLine("\t'search' - Search for a specific record\n");
             Console.WriteLine("Prefixes · Data sets available to run commands on");
-            Console.WriteLine("\t'albums' - Albums of a compact disc; a CD");
+            Console.WriteLine("\n\t'albums' - Albums of a compact disc; a CD");
             Console.WriteLine("\t'artists' - All artists who have published an album you own");
             Console.WriteLine("\t'bands' - All bands who have published an album you own");
             Console.WriteLine("\t'all' - All artists, including bands, who have published an album you own");
             Console.WriteLine("\t'rooms' - All available rooms");
             Console.WriteLine("\t'shelves' - All shelves; Identified by letters and paired with numbers to identify a specific row");
-            Console.WriteLine("\t[name] - Any name of a specified record");
+            Console.WriteLine("\t'name' - Any name of a specified record\n");
 
             return Console.ReadLine();
         }

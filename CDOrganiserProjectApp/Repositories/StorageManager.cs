@@ -82,7 +82,6 @@ namespace CDOrganiserProjectApp
         }
         
 
-
         public List<Artists> GetAllArtists()
         {
             List<Artists> artists = new List<Artists>();
@@ -100,6 +99,15 @@ namespace CDOrganiserProjectApp
                 }
             }
             return artists;
+        }
+
+        public int InsertArtist(Artists artists)
+        {
+            using (SqlCommand cmd = new SqlCommand($"INSERT INTO Contents.tblArtists (artistName) VALUES (@artistName); SELECT SCOPE_IDENTITY();", conn))
+            {
+                cmd.Parameters.AddWithValue("@artistName", artists.artistName);
+                return Convert.ToInt32(cmd.ExecuteScalar());
+            }
         }
 
         public int UpdateArtistName(int artistId, string artistName)
