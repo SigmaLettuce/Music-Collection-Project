@@ -74,7 +74,8 @@ namespace CDOrganiserProjectApp
                 List<string> prefix = new List<string>();
                 prefix.Add("");
 
-                string[] suffix = { "view", "up", "ins", "del", "lost", };
+                string[] suffix = { "view", "up", "ins", "del", "lost" };
+                string[] prefix = { "bands", "artists", "", "" };
 
                 switch (choice.ToLower())
                 {
@@ -156,6 +157,18 @@ namespace CDOrganiserProjectApp
             view.DisplayMessage($"Deleted {rowsAffected} row.");
         }
 
+        private static void UpdateArtistName()
+        {
+            view.DisplayMessage("\nEnter the identification number... ");
+            int artistId = view.GetIntInput();
+
+            view.DisplayMessage("\nRename the record... ");
+            string artistName = view.GetInput();
+
+            int rowsAffected = storageManager.UpdateBandName(artistId, artistName);
+            view.DisplayMessage($"Updated {rowsAffected} records.");
+
+        }
 
     }
         
