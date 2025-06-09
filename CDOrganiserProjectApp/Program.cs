@@ -71,6 +71,7 @@ namespace CDOrganiserProjectApp
      
             do
             {
+                /*
                 string[] prefix = 
                 { 
                     "view", 
@@ -90,13 +91,12 @@ namespace CDOrganiserProjectApp
                     "rooms" 
 
                 };
-
-
+                */
 
 
                 switch (choice.ToLower())
                 {
-                    case prefix[0] + " " + suffix[2]:
+                    case "view" + " " + "bands":
                         List<Bands> bands = storageManager.GetAllBands();
                         view.DisplayBands(bands);
              
@@ -104,19 +104,19 @@ namespace CDOrganiserProjectApp
 
                     break;
 
-                    case "up":
+                    case "up" + " " + "bands":
                         UpdateBandName();
                         invalid = false;
 
                     break;
 
-                    case "ins":
+                    case "ins" + "" + "bands":
                         InsertNewBand();
                         invalid = false;
 
                     break;
 
-                    case "del":
+                    case "del" + "" + "bands":
                         DeleteBandByName();
                         invalid = false;
 
@@ -200,7 +200,17 @@ namespace CDOrganiserProjectApp
 
         }
 
+        private static void DeleteArtistByName()
+        {
+            view.DisplayMessage("Enter the artist you wish to erase from your records... ");
+            string artistName = view.GetInput();
+
+            int rowsAffected = storageManager.DeleteArtistByName(artistName);
+            view.DisplayMessage($"Deleted {rowsAffected} row.");
+        }
+
+
     }
-        
-    
+
+
 }
