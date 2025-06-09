@@ -74,7 +74,7 @@ namespace CDOrganiserProjectApp
                 List<string> prefix = new List<string>();
                 prefix.Add("");
 
-                string[] suffix = { "view", "up", "ins", "del", "" };
+                string[] suffix = { "view", "up", "ins", "del", "lost", };
 
                 switch (choice.ToLower())
                 {
