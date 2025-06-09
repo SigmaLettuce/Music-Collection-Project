@@ -72,11 +72,8 @@ namespace CDOrganiserProjectApp
             do
             {
 
-                List<string> prefix = new List<string>();
-                prefix.Add("");
-
                 string[] suffix = { "view", "up", "ins", "del", "lost" };
-                string[] prefix = { "bands", "artists", "", "" };
+                string[] prefix = { "albums", "artists", "bands", "all", "rooms" };
 
                 switch (choice.ToLower())
                 {
