@@ -103,7 +103,7 @@ namespace CDOrganiserProjectApp
                         invalid = false;
 
                     break;
-
+                    
                     case "up" + " " + "bands":
                         UpdateBandName();
                         invalid = false;
@@ -115,9 +115,35 @@ namespace CDOrganiserProjectApp
                         invalid = false;
 
                     break;
-
+                    
                     case "del" + "" + "bands":
                         DeleteBandByName();
+                        invalid = false;
+
+                    break;
+
+                    case "view" + " " + "artists":
+                        List<Artists> artists = storageManager.GetAllArtists();
+                        view.DisplayArtists(artists);
+
+                        invalid = false;
+
+                    break;
+
+                    case "up" + " " + "artists":
+                        UpdateArtistName();
+                        invalid = false;
+
+                    break;
+
+                    case "ins" + "" + "artists":
+                        InsertNewArtist();
+                        invalid = false;
+
+                    break;
+
+                    case "del" + "" + "artists":
+                        DeleteArtistByName();
                         invalid = false;
 
                     break;
