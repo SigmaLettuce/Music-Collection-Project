@@ -110,13 +110,13 @@ namespace CDOrganiserProjectApp
 
                     break;
 
-                    case "ins" + "" + "bands":
+                    case "ins" + " " + "bands":
                         InsertNewBand();
                         invalid = false;
 
                     break;
                     
-                    case "del" + "" + "bands":
+                    case "del" + " " + "bands":
                         DeleteBandByName();
                         invalid = false;
 
@@ -136,13 +136,13 @@ namespace CDOrganiserProjectApp
 
                     break;
 
-                    case "ins" + "" + "artists":
+                    case "ins" + " " + "artists":
                         InsertNewArtist();
                         invalid = false;
 
                     break;
 
-                    case "del" + "" + "artists":
+                    case "del" + " " + "artists":
                         DeleteArtistByName();
                         invalid = false;
 
