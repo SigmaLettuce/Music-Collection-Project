@@ -72,12 +72,30 @@ namespace CDOrganiserProjectApp
             do
             {
 
-                string[] suffix = { "view", "up", "ins", "del", "lost" };
-                string[] prefix = { "albums", "artists", "bands", "all", "rooms" };
+                string[] suffix = 
+                { 
+                    "albums", 
+                    "artists", 
+                    "bands", 
+                    "all", 
+                    "rooms" 
+
+                };
+
+                string[] prefix = 
+                { 
+                    "view", 
+                    "up", 
+                    "ins", 
+                    "del", 
+                    "lost" 
+
+                };
+
 
                 switch (choice.ToLower())
                 {
-                    case "view":
+                    case $"{prefix[1] + "" + $"{suffix[]}"":
                         List<Bands> bands = storageManager.GetAllBands();
                         view.DisplayBands(bands);
              
