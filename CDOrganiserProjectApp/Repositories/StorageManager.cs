@@ -1,6 +1,7 @@
 ﻿using CDOrganiserProjectApp.Model;
 using Microsoft.Data.SqlClient;
 using Microsoft.Identity.Client;
+using System.Reflection.Metadata.Ecma335;
 
 namespace CDOrganiserProjectApp
 {
@@ -119,6 +120,17 @@ namespace CDOrganiserProjectApp
                 cmd.Parameters.AddWithValue("@artistId", artistId);
                 return cmd.ExecuteNonQuery();
             }
+        }
+
+        public int DeleteArtistByName(string artistName)
+        {
+            string sqlStr = "DELETE FROM Contents.tblArtists WHERE artistName = @artistName";
+            using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
+            {
+                cmd.Parameters.AddWithValue("@artistName", artistName);
+                return cmd.ExecuteNonQuery();
+            }
+
         }
 
         public void CloseConnection()
