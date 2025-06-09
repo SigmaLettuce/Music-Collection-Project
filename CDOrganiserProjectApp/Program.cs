@@ -2,6 +2,7 @@
 using CDOrganiserProjectApp.Model;
 using CDOrganiserProjectApp.View;
 using Microsoft.IdentityModel.Tokens;
+using System.Reflection.Metadata.Ecma335;
 
 namespace CDOrganiserProjectApp
 {
@@ -167,6 +168,19 @@ namespace CDOrganiserProjectApp
 
             int rowsAffected = storageManager.UpdateBandName(artistId, artistName);
             view.DisplayMessage($"Updated {rowsAffected} records.");
+
+        }
+
+        private static void InsertNewArtist()
+        {
+            view.DisplayMessage("\nEnter the new artist... ");
+            string artistName = view.GetInput();
+            int artistId = 0;
+
+            Artists newArtist = new Artists(artistId, artistName);
+
+            int generatedId = storageManager.InsertArtist(newArtist);
+            view.DisplayMessage($"The new artists identification number is: {generatedId}");
 
         }
 
