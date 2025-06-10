@@ -153,6 +153,18 @@ namespace CDOrganiserProjectApp
             }
             return albums;
         }
+
+        /*
+        public int InsertAlbum(Albums albums)
+        {
+            using (SqlCommand cmd = new SqlCommand($"INSERT INTO Contents.tblAlbums (albumName, genreName, dateOfRelease) VALUES (@albumName, @genreName, @dateOfRelease); SELECT SCOPE_IDENTITY();", conn))
+            {
+                cmd.Parameters.AddWithValue("@albumName", albums.albumName, "@genreName", albums.genreName, "@dateOfRelease", albums.dateOfRelease);
+                return Convert.ToInt32(cmd.ExecuteScalar());
+            }
+        }
+        */
+
         public void CloseConnection()
         {
             if (conn != null && conn.State == System.Data.ConnectionState.Open)
