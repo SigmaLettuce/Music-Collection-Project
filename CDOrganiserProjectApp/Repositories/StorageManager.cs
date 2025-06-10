@@ -163,7 +163,20 @@ namespace CDOrganiserProjectApp
                 return Convert.ToInt32(cmd.ExecuteScalar());
             }
         }
+
+        public int UpdateAlbumName(int albumId, string albumName, string genreName, string dateOfRelease)
+        {
+            string sqlStr = $"UPDATE Contents.tblAlbums SET albumName = @albumName WHERE artistID = @artistId";
+            using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
+            {
+                cmd.Parameters.AddWithValue("@artistName", artistName);
+                cmd.Parameters.AddWithValue("@artistId", artistId);
+                return cmd.ExecuteNonQuery();
+            }
+        }
+
         */
+
 
         public void CloseConnection()
         {
