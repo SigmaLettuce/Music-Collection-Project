@@ -100,7 +100,7 @@ namespace CDOrganiserProjectApp
             }
             return artists;
         }
-
+         
         public int InsertArtist(Artists artists)
         {
             using (SqlCommand cmd = new SqlCommand($"INSERT INTO Contents.tblArtists (artistName) VALUES (@artistName); SELECT SCOPE_IDENTITY();", conn))
@@ -146,8 +146,8 @@ namespace CDOrganiserProjectApp
                         int albumId = Convert.ToInt32(reader["albumID"]);
                         string albumName = reader["albumName"].ToString();
                         string genreName = reader["genreName"].ToString();
-                        //DateOnly dateOfRelease = DateOnly.Parse(reader["dateOfRelease"]);
-                        albums.Add(new Albums(albumId, albumName, genreName, /*dateOfRelease*/));
+                        DateTime dateOfRelease = Convert.ToDateTime(reader["dateOfRelease"]);
+                        albums.Add(new Albums(albumId, albumName, genreName, dateOfRelease));
                       
                     }
                 }

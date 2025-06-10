@@ -25,54 +25,10 @@ namespace CDOrganiserProjectApp
             bool invalid = true;
 
 
-          /*  
+           /*
             do
-            {
-                if (choice.Equals("view"))
-                {
-                    List<Bands> bands = storageManager.GetAllBands();
-                    view.DisplayBands(bands);
-
-
-                    invalid = false;
-                }
-
-                else if (choice.Equals("up"))
-                {
-                    UpdateBandName();
-
-                    invalid = false;
-                }
-
-                else if (choice.Equals("ins"))
-                {
-                    InsertNewBand();
-
-                    invalid = false;
-                }
-
-                else if (choice.Equals("del"))
-
-                {
-                    DeleteBandByName();
-                    
-                    invalid = false;
-                }
-
-                else
-                {
-                    Console.WriteLine("I'm sorry, this isn't a valid selection. Can you try again?");
-                    view.DisplayMenu();
-
-                    invalid = true;
-                }
-            } while (invalid);
-            
-        */                 
-      
-            do
-            {
-                /*
+            {  
+                
                 string[] prefix = 
                 { 
                     "view", 
@@ -92,9 +48,83 @@ namespace CDOrganiserProjectApp
                     "rooms" 
 
                 };
-                */
+                
+                if (choice.Equals(prefix[0] + " " + suffix[2]))
+                {
+                    List<Bands> bands = storageManager.GetAllBands();
+                    view.DisplayBands(bands);
 
 
+                    invalid = false;
+                }
+
+                else if (choice.Equals(prefix[1] + " " + suffix[2]))
+                {
+                    UpdateBandName();
+
+                    invalid = false;
+                }
+
+                else if (choice.Equals(prefix[2] + " " + suffix[2]))
+                {
+                    InsertNewBand();
+
+                    invalid = false;
+                }
+
+                else if (choice.Equals(prefix[3] + " " + suffix[2]))
+
+                {
+                    DeleteBandByName();
+                    
+                    invalid = false;
+                }
+
+                else if (choice.Equals(prefix[0] + " " + suffix[1]))
+                {
+                    List<Artists> artists = storageManager.GetAllArtists();
+                    view.DisplayArtists(artists);
+
+
+                    invalid = false;
+                }
+
+                else if (choice.Equals(prefix[1] + " " + suffix[1]))
+                {
+                    UpdateArtistName();
+
+                    invalid = false;
+                }
+
+                else if (choice.Equals(prefix[2] + " " + suffix[1]))
+                {
+                    InsertNewArtist();
+
+                    invalid = false;
+                }
+
+                else if (choice.Equals(prefix[3] + " " + suffix[1]))
+
+                {
+                    DeleteArtistByName();
+
+                    invalid = false;
+                }
+
+                else
+                {
+                    Console.WriteLine("I'm sorry, this isn't a valid selection. Can you try again?");
+                    view.DisplayMenu();
+
+                    invalid = true;
+                }
+
+            } while (invalid);
+            
+            */           
+      
+            do
+            {
                 switch (choice.ToLower())
                 {
                     case "view" + " " + "bands":
@@ -167,6 +197,7 @@ namespace CDOrganiserProjectApp
 
                     break;
                 }
+
             } while (invalid);
 
 
