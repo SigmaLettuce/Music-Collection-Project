@@ -2,6 +2,7 @@
 using CDOrganiserProjectApp.Model;
 using CDOrganiserProjectApp.View;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.VisualBasic;
 using System.Reflection.Metadata.Ecma335;
 
 namespace CDOrganiserProjectApp
@@ -144,6 +145,14 @@ namespace CDOrganiserProjectApp
 
                     case "del" + " " + "artists":
                         DeleteArtistByName();
+                        invalid = false;
+
+                    break;
+
+                    case "view" + " " + "albums":
+                        List<Albums> albums = storageManager.GetAllAlbums();
+                        view.DisplayAlbums(albums);
+
                         invalid = false;
 
                     break;
