@@ -136,7 +136,7 @@ namespace CDOrganiserProjectApp
         public List<Albums> GetAllAlbums()
         {
             List<Albums> albums = new List<Albums>();
-            string sqlStr = "SELECT * FROM Contents.tblAlbums";
+            string sqlStr = "SELECT albumID, albumName, genreName, dateOfRelease FROM Contents.tblAlbums";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
                 using (SqlDataReader reader = cmd.ExecuteReader())
