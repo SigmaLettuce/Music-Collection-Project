@@ -146,7 +146,7 @@ namespace CDOrganiserProjectApp
                         int albumId = Convert.ToInt32(reader["albumID"]);
                         string albumName = reader["albumName"].ToString();
                         string genreName = reader["genreName"].ToString();
-                        string dateOfRelease = reader["dateOfRelease"].ToString();
+                        DateOnly dateOfRelease = DateOnly.Parse(reader["dateOfRelease"].ToString());
                         albums.Add(new Albums(albumId, albumName, genreName, dateOfRelease));
                     }
                 }
