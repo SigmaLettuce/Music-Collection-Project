@@ -11,7 +11,7 @@ namespace CDOrganiserProjectApp.View
 {
     public class ConsoleView
     {
-        public string DisplayMenu()
+        public string DisplayAdministratorMenu()
         {
             Console.WriteLine("\n\tWelcome to your CD Warehousing! ");
             Console.WriteLine("\tList of commands... \n");
@@ -28,6 +28,18 @@ namespace CDOrganiserProjectApp.View
             Console.WriteLine("\t'all' - All artists, including bands, who have published an album you own");
             Console.WriteLine("\t'rooms' - All available rooms\n");
              
+            return Console.ReadLine();
+        }
+
+        public string DisplayVisitorMenu()
+        {
+            Console.WriteLine("\n\tWelcome to your CD Warehousing! ");
+            Console.WriteLine("\tList of commands... \n");
+            Console.WriteLine("Suffixes · Commands to run on sets of data");
+            Console.WriteLine("\n\t'view' - Displays information\n");
+            Console.WriteLine("Prefixes · Data sets available to run commands on");
+            Console.WriteLine("\t'categories' - Categories of music\n");
+
             return Console.ReadLine();
         }
 

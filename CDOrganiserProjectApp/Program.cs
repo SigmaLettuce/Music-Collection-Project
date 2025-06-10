@@ -1,9 +1,11 @@
 ﻿using CDOrganiserProjectApp;
 using CDOrganiserProjectApp.Model;
 using CDOrganiserProjectApp.View;
+using Microsoft.Identity.Client;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.VisualBasic;
 using System.Reflection.Metadata.Ecma335;
+using System.Runtime.InteropServices;
 
 namespace CDOrganiserProjectApp
 {
@@ -11,16 +13,15 @@ namespace CDOrganiserProjectApp
     {
         private static StorageManager storageManager;
         private static ConsoleView view;
-         
+
         static void Main(string[] args)
         {
             // Console.WriteLine("Hello, World!");
             string connectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=HomeMusicCollectionDatabase;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False";
-             
             storageManager = new StorageManager(connectionString);
-            view = new ConsoleView();
 
-            string choice = view.DisplayMenu();
+            view = new ConsoleView();
+            string choice = view.DisplayAdministratorMenu();
 
             bool invalid = true;
 
@@ -122,7 +123,8 @@ namespace CDOrganiserProjectApp
             } while (invalid);
             
             */           
-      
+           
+
             do
             {
                 switch (choice.ToLower())
