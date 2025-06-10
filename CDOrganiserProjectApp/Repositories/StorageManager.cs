@@ -69,8 +69,7 @@ namespace CDOrganiserProjectApp
                 return cmd.ExecuteNonQuery();
             }
         }
-
-        
+       
         public int DeleteBandByName(string bandName)
         {
             string sqlStr = "DELETE FROM Contents.tblBands WHERE bandName = @bandName";
@@ -81,7 +80,7 @@ namespace CDOrganiserProjectApp
             }
 
         }
-        
+
 
         public List<Artists> GetAllArtists()
         {
@@ -133,6 +132,27 @@ namespace CDOrganiserProjectApp
 
         }
 
+
+        public List<Albums> GetAllAlbums()
+        {
+            List<Albums> albums = new List<Albums>();
+            string sqlStr = "SELECT * FROM Contents.tblAlbums";
+            using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
+            {
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        int albumId = Convert.ToInt32(reader["albumID"]);
+                        string albumName = reader["albumName"].ToString();
+                        string genreName = reader["genreName"].ToString();
+                        string dateOfRelease = reader["dateOfRelease"].ToString();
+                        albums.Add(new Albums(albumId, albumName, genreName, dateOfRelease));
+                    }
+                }
+            }
+            return albums;
+        }
         public void CloseConnection()
         {
             if (conn != null && conn.State == System.Data.ConnectionState.Open)
