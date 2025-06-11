@@ -39,6 +39,7 @@ namespace CDOrganiserProjectApp.View
             Console.WriteLine("Extras · Commands irrelevant to your data");
             Console.WriteLine("\n\t'create admin' - Creates an administrator account");
             Console.WriteLine("\t'create user' - Creates a user account\n");
+            Console.WriteLine("\n\t'log out' - Exits the account; brings you back to 'Start Menu'");
 
             return Console.ReadLine();
         }
@@ -51,6 +52,8 @@ namespace CDOrganiserProjectApp.View
             Console.WriteLine("\n\t'view' - Displays information\n");
             Console.WriteLine("Prefixes · Data sets available to run commands on");
             Console.WriteLine("\n\t'categories' - Categories of music\n");
+            Console.WriteLine("Extras · Commands irrelevant to your data");
+            Console.WriteLine("\n\t'log out' - Exits the account; brings you back to 'Start Menu'");
 
             return Console.ReadLine();
         }

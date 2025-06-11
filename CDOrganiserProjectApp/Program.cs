@@ -15,7 +15,7 @@ namespace CDOrganiserProjectApp
     {
         private static StorageManager storageManager;
         private static ConsoleView view;
-
+        
         static void Main(string[] args)
         {
             // Console.WriteLine("Hello, World!");
@@ -160,15 +160,13 @@ namespace CDOrganiserProjectApp
                 switch (adminInput.ToLower())
                 {
 
-                    
-
                     case Prefix.view + " " + Suffix.bands:
                         List<Bands> bands = storageManager.GetAllBands();
                         view.DisplayBands(bands);
                         char input;
                         string charInput;
 
-                        Console.WriteLine("Go back? y/n");
+                        view.DisplayMessage("Go back? y/n");
                         
                         
                         input = Convert.ToChar(Console.ReadLine());
@@ -191,7 +189,7 @@ namespace CDOrganiserProjectApp
                                 break;
 
                                 default:
-                                    Console.WriteLine("\nI'm sorry, this isn't a valid selection. Can you try again ? ");
+                                    view.DisplayMessage("\nI'm sorry, this isn't a valid selection. Can you try again ? ");
                                     
                                     invalid = true;
 
@@ -208,7 +206,7 @@ namespace CDOrganiserProjectApp
                     case Prefix.up + " " + Suffix.bands:
                         UpdateBandName();
 
-                        Console.WriteLine("Go back? y/n");
+                        view.DisplayMessage("Go back? y/n");
                         invalid = false;
 
                     break;
@@ -216,7 +214,7 @@ namespace CDOrganiserProjectApp
                     case Prefix.ins + " " + Suffix.bands:
                         InsertNewBand();
 
-                        Console.WriteLine("Go back? y/n");
+                        view.DisplayMessage("Go back? y/n");
                         invalid = false;
 
                     break;
@@ -224,7 +222,7 @@ namespace CDOrganiserProjectApp
                     case Prefix.del + " " + Suffix.bands:
                         DeleteBandByName();
 
-                        Console.WriteLine("Go back? y/n");
+                        view.DisplayMessage("Go back? y/n");
                         invalid = false;
 
                     break;
@@ -233,7 +231,7 @@ namespace CDOrganiserProjectApp
                         List<Artists> artists = storageManager.GetAllArtists();
                         view.DisplayArtists(artists);
 
-                        Console.WriteLine("Go back? y/n");
+                        view.DisplayMessage("Go back? y/n");
                         invalid = false;
 
                     break;
@@ -241,7 +239,7 @@ namespace CDOrganiserProjectApp
                     case Prefix.up + " " + Suffix.artists:
                         UpdateArtistName();
 
-                        Console.WriteLine("Go back? y/n");
+                        view.DisplayMessage("Go back? y/n");
                         invalid = false;
 
                     break;
@@ -249,7 +247,7 @@ namespace CDOrganiserProjectApp
                     case Prefix.ins + " " + Suffix.artists:
                         InsertNewArtist();
 
-                        Console.WriteLine("Go back? y/n");
+                        view.DisplayMessage("Go back? y/n");
                         invalid = false;
 
                     break;
@@ -257,7 +255,7 @@ namespace CDOrganiserProjectApp
                     case Prefix.del + " " + Suffix.artists:
                         DeleteArtistByName();
 
-                        Console.WriteLine("Go back? y/n");
+                        view.DisplayMessage("Go back? y/n");
                         invalid = false;
 
                     break;
@@ -266,13 +264,13 @@ namespace CDOrganiserProjectApp
                         List<Albums> albums = storageManager.GetAllAlbums();
                         view.DisplayAlbums(albums);
 
-                        Console.WriteLine("Go back? y/n");
+                        view.DisplayMessage("Go back? y/n");
                         invalid = false;
 
                     break;
 
                     default:
-                        Console.WriteLine("I'm sorry, this isn't a valid selection. Can you try again? ");
+                        view.DisplayMessage("I'm sorry, this isn't a valid selection. Can you try again? ");
                         Thread.Sleep(1000);
                         Console.Clear();
 
