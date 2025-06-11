@@ -11,9 +11,16 @@ namespace CDOrganiserProjectApp.View
 {
     public class ConsoleView
     {
+
+        public string StartMenu()
+        {
+            Console.WriteLine("\n\t CD Manager");
+
+            return Console.ReadLine();
+        }
         public string DisplayAdministratorMenu()
         {
-            Console.WriteLine("\n\tWelcome to your CD Warehousing! ");
+            Console.WriteLine("\n\tWelcome to your CD Manager! ");
             Console.WriteLine("\tList of commands... \n");
             Console.WriteLine("Suffixes · Commands to run on sets of data");
             Console.WriteLine("\n\t'view' - Displays information");
@@ -33,7 +40,7 @@ namespace CDOrganiserProjectApp.View
 
         public string DisplayUserMenu()
         {
-            Console.WriteLine("\n\tWelcome to your CD Warehousing! ");
+            Console.WriteLine("\n\tWelcome to your CD Manager! ");
             Console.WriteLine("\tList of commands... \n");
             Console.WriteLine("Suffixes · Commands to run on sets of data");
             Console.WriteLine("\n\t'view' - Displays information\n");

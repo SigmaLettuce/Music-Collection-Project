@@ -152,7 +152,6 @@ namespace CDOrganiserProjectApp
             */
 
 
-
             do
             {
                 switch (adminInput.ToLower())
@@ -167,6 +166,7 @@ namespace CDOrganiserProjectApp
                     
                     case "up" + " " + "bands":
                         UpdateBandName();
+
                         invalid = false;
 
                     break;
@@ -179,6 +179,7 @@ namespace CDOrganiserProjectApp
                     
                     case "del" + " " + "bands":
                         DeleteBandByName();
+
                         invalid = false;
 
                     break;
@@ -193,18 +194,21 @@ namespace CDOrganiserProjectApp
 
                     case "up" + " " + "artists":
                         UpdateArtistName();
+
                         invalid = false;
 
                     break;
 
                     case "ins" + " " + "artists":
                         InsertNewArtist();
+
                         invalid = false;
 
                     break;
 
                     case "del" + " " + "artists":
                         DeleteArtistByName();
+
                         invalid = false;
 
                     break;
@@ -223,6 +227,7 @@ namespace CDOrganiserProjectApp
                         Console.Clear();
 
                         adminInput = view.DisplayAdministratorMenu();
+
                         invalid = true;
 
                     break;
