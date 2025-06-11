@@ -110,11 +110,12 @@ namespace CDOrganiserProjectApp
             }
         }
 
-        public int UpdateArtistName(string artistName)
+        public int UpdateArtistName(string artistName, string newName)
         {
-            string sqlStr = $"UPDATE Contents.tblArtists SET artistName = @artistName WHERE artistName = @artistName";
+            string sqlStr = $"UPDATE Contents.tblArtists SET artistName = @newName WHERE artistName = @artistName";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
+                cmd.Parameters.AddWithValue("@artistName", newName);
                 cmd.Parameters.AddWithValue("@artistName", artistName);
                 return cmd.ExecuteNonQuery();
             }

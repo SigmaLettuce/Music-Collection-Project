@@ -331,9 +331,9 @@ namespace CDOrganiserProjectApp
             string artistName = view.GetInput();
 
             view.DisplayMessage("\nRename the record... ");
-            artistName = view.GetInput();
+            string rename = view.GetInput();
 
-            int rowsAffected = storageManager.UpdateArtistName(artistName);
+            int rowsAffected = storageManager.UpdateArtistName(artistName, rename);
             view.DisplayMessage($"Updated {rowsAffected} records.");
 
         }
