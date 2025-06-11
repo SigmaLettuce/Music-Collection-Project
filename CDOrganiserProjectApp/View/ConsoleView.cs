@@ -11,12 +11,11 @@ namespace CDOrganiserProjectApp.View
 {
     public class ConsoleView
     {
-
         public string StartMenu()
         {
             Console.WriteLine("\n\t CD Manager");
             Console.WriteLine("\n\t 'Sign up'");
-            Console.WriteLine("\n\t 'Login'");
+            Console.WriteLine("\n\t 'Login'\n");
 
             return Console.ReadLine();
         }
@@ -30,7 +29,7 @@ namespace CDOrganiserProjectApp.View
             Console.WriteLine("\t'up' - Updates information");
             Console.WriteLine("\t'ins' - Adds new information");
             Console.WriteLine("\t'del' - Delete unwanted information");
-            Console.WriteLine("\t'lost' - Marks a specified 'disc' as lost\n");
+            Console.WriteLine("\t'lost' - Marks a specified 'disc' as lost; this command can only be run on 'albums'\n");
             Console.WriteLine("Prefixes · Data sets available to run commands on");
             Console.WriteLine("\n\t'albums' - Albums of a compact disc; a CD");
             Console.WriteLine("\t'artists' - All artists who have published an album you own");

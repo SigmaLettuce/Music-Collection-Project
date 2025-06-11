@@ -1,4 +1,5 @@
 ﻿using CDOrganiserProjectApp;
+using CDOrganiserProjectApp.Index;
 using CDOrganiserProjectApp.Model;
 using CDOrganiserProjectApp.View;
 using Microsoft.Identity.Client;
@@ -22,6 +23,7 @@ namespace CDOrganiserProjectApp
             storageManager = new StorageManager(connectionString);
 
             view = new ConsoleView();
+
             string adminInput = view.DisplayAdministratorMenu();
 
             bool invalid = true;
@@ -157,102 +159,114 @@ namespace CDOrganiserProjectApp
             {
                 switch (adminInput.ToLower())
                 {
-                    case "view" + " " + "bands":
+
+                    
+
+                    case Prefix.view + " " + Suffix.bands:
                         List<Bands> bands = storageManager.GetAllBands();
                         view.DisplayBands(bands);
                         char input;
                         string charInput;
 
                         Console.WriteLine("Go back? y/n");
+                        
+                        
                         input = Convert.ToChar(Console.ReadLine());
                         charInput = input.ToString();
 
-                        switch (charInput.ToLower())
-                        {
-                            case "y":
-                            Thread.Sleep(10);
-                            Console.Clear();
+                        do
+                            switch (charInput.ToLower())
+                            {
+                                case "y":
+                                    Thread.Sleep(10);
+                                    Console.Clear();
+                                    invalid = false;
 
-                            adminInput = view.DisplayAdministratorMenu();
-                            break;
+                                    adminInput = view.DisplayAdministratorMenu();
+                                break;
 
-                            case "n":
-                                // Nothing happens
+                                case "n":
+                                    // Nothing happens
+                                    invalid = false;
+                                break;
 
-                            break;
+                                default:
+                                    Console.WriteLine("\nI'm sorry, this isn't a valid selection. Can you try again ? ");
+                                    
+                                    invalid = true;
 
-                            default:
-                                Console.WriteLine("\nI'm sorry, this isn't a valid selection. Can you try again ? ");
                                 break;
 
 
-                        }
+                            }
+                        while (invalid);
+
                         invalid = false;
 
                     break;
                     
-                    case "up" + " " + "bands":
+                    case Prefix.up + " " + Suffix.bands:
                         UpdateBandName();
 
-                        Console.WriteLine(  );
+                        Console.WriteLine("Go back? y/n");
                         invalid = false;
 
                     break;
 
-                    case "ins" + " " + "bands":
+                    case Prefix.ins + " " + Suffix.bands:
                         InsertNewBand();
 
-                        Console.WriteLine(  );
+                        Console.WriteLine("Go back? y/n");
                         invalid = false;
 
                     break;
                     
-                    case "del" + " " + "bands":
+                    case Prefix.del + " " + Suffix.bands:
                         DeleteBandByName();
 
-                        Console.WriteLine(  );
+                        Console.WriteLine("Go back? y/n");
                         invalid = false;
 
                     break;
 
-                    case "view" + " " + "artists":
+                    case Prefix.view + " " + Suffix.artists:
                         List<Artists> artists = storageManager.GetAllArtists();
                         view.DisplayArtists(artists);
 
-                        Console.WriteLine(  );
+                        Console.WriteLine("Go back? y/n");
                         invalid = false;
 
                     break;
 
-                    case "up" + " " + "artists":
+                    case Prefix.up + " " + Suffix.artists:
                         UpdateArtistName();
 
-                        Console.WriteLine(  );
+                        Console.WriteLine("Go back? y/n");
                         invalid = false;
 
                     break;
 
-                    case "ins" + " " + "artists":
+                    case Prefix.ins + " " + Suffix.artists:
                         InsertNewArtist();
 
-                        Console.WriteLine(  );
+                        Console.WriteLine("Go back? y/n");
                         invalid = false;
 
                     break;
 
-                    case "del" + " " + "artists":
+                    case Prefix.del + " " + Suffix.artists:
                         DeleteArtistByName();
 
-                        Console.WriteLine(  );
+                        Console.WriteLine("Go back? y/n");
                         invalid = false;
 
                     break;
 
-                    case "view" + " " + "albums":
+                    case Prefix.view + " " + Suffix.albums:
                         List<Albums> albums = storageManager.GetAllAlbums();
                         view.DisplayAlbums(albums);
 
-                        Console.WriteLine(  );
+                        Console.WriteLine("Go back? y/n");
                         invalid = false;
 
                     break;
@@ -346,8 +360,6 @@ namespace CDOrganiserProjectApp
             view.DisplayMessage($"Deleted {rowsAffected} row.");
         }
 
-
     }
-
 
 }
