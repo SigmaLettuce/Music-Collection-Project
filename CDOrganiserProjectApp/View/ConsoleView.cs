@@ -15,9 +15,12 @@ namespace CDOrganiserProjectApp.View
         public string StartMenu()
         {
             Console.WriteLine("\n\t CD Manager");
+            Console.WriteLine("\n\t 'Sign up'");
+            Console.WriteLine("\n\t 'Login'");
 
             return Console.ReadLine();
         }
+
         public string DisplayAdministratorMenu()
         {
             Console.WriteLine("\n\tWelcome to your CD Manager! ");
@@ -34,7 +37,10 @@ namespace CDOrganiserProjectApp.View
             Console.WriteLine("\t'bands' - All bands who have published an album you own");
             Console.WriteLine("\t'all' - All artists, including bands, who have published an album you own");
             Console.WriteLine("\t'rooms' - All available rooms\n");
-             
+            Console.WriteLine("Extras · Commands irrelevant to your data");
+            Console.WriteLine("\n\t'create admin' - Creates an administrator account");
+            Console.WriteLine("\t'create user' - Creates a user account\n");
+
             return Console.ReadLine();
         }
 
@@ -45,7 +51,7 @@ namespace CDOrganiserProjectApp.View
             Console.WriteLine("Suffixes · Commands to run on sets of data");
             Console.WriteLine("\n\t'view' - Displays information\n");
             Console.WriteLine("Prefixes · Data sets available to run commands on");
-            Console.WriteLine("\t'categories' - Categories of music\n");
+            Console.WriteLine("\n\t'categories' - Categories of music\n");
 
             return Console.ReadLine();
         }

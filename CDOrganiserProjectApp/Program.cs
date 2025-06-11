@@ -4,6 +4,7 @@ using CDOrganiserProjectApp.View;
 using Microsoft.Identity.Client;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.VisualBasic;
+using System.Net.Http.Headers;
 using System.Reflection.Metadata.Ecma335;
 using System.Runtime.InteropServices;
 
@@ -159,7 +160,33 @@ namespace CDOrganiserProjectApp
                     case "view" + " " + "bands":
                         List<Bands> bands = storageManager.GetAllBands();
                         view.DisplayBands(bands);
-             
+                        char input;
+                        string charInput;
+
+                        Console.WriteLine("Go back? y/n");
+                        input = Convert.ToChar(Console.ReadLine());
+                        charInput = input.ToString();
+
+                        switch (charInput.ToLower())
+                        {
+                            case "y":
+                            Thread.Sleep(10);
+                            Console.Clear();
+
+                            adminInput = view.DisplayAdministratorMenu();
+                            break;
+
+                            case "n":
+                                // Nothing happens
+
+                            break;
+
+                            default:
+                                Console.WriteLine("\nI'm sorry, this isn't a valid selection. Can you try again ? ");
+                                break;
+
+
+                        }
                         invalid = false;
 
                     break;
@@ -167,12 +194,15 @@ namespace CDOrganiserProjectApp
                     case "up" + " " + "bands":
                         UpdateBandName();
 
+                        Console.WriteLine(  );
                         invalid = false;
 
                     break;
 
                     case "ins" + " " + "bands":
                         InsertNewBand();
+
+                        Console.WriteLine(  );
                         invalid = false;
 
                     break;
@@ -180,6 +210,7 @@ namespace CDOrganiserProjectApp
                     case "del" + " " + "bands":
                         DeleteBandByName();
 
+                        Console.WriteLine(  );
                         invalid = false;
 
                     break;
@@ -188,6 +219,7 @@ namespace CDOrganiserProjectApp
                         List<Artists> artists = storageManager.GetAllArtists();
                         view.DisplayArtists(artists);
 
+                        Console.WriteLine(  );
                         invalid = false;
 
                     break;
@@ -195,6 +227,7 @@ namespace CDOrganiserProjectApp
                     case "up" + " " + "artists":
                         UpdateArtistName();
 
+                        Console.WriteLine(  );
                         invalid = false;
 
                     break;
@@ -202,6 +235,7 @@ namespace CDOrganiserProjectApp
                     case "ins" + " " + "artists":
                         InsertNewArtist();
 
+                        Console.WriteLine(  );
                         invalid = false;
 
                     break;
@@ -209,6 +243,7 @@ namespace CDOrganiserProjectApp
                     case "del" + " " + "artists":
                         DeleteArtistByName();
 
+                        Console.WriteLine(  );
                         invalid = false;
 
                     break;
@@ -217,6 +252,7 @@ namespace CDOrganiserProjectApp
                         List<Albums> albums = storageManager.GetAllAlbums();
                         view.DisplayAlbums(albums);
 
+                        Console.WriteLine(  );
                         invalid = false;
 
                     break;
