@@ -21,113 +21,141 @@ namespace CDOrganiserProjectApp
             storageManager = new StorageManager(connectionString);
 
             view = new ConsoleView();
-            string choice = view.DisplayAdministratorMenu();
+            string adminInput = view.DisplayAdministratorMenu();
 
             bool invalid = true;
 
 
-           /*
+            /*
+             do
+             {  
+
+                 string[] prefix = 
+                 { 
+                     "view", 
+                     "up", 
+                     "ins", 
+                     "del", 
+                     "lost" 
+
+                 };
+
+                 string[] suffix = 
+                 { 
+                     "albums", 
+                     "artists", 
+                     "bands", 
+                     "all", 
+                     "rooms" 
+
+                 };
+
+                 if (choice.Equals(prefix[0] + " " + suffix[2]))
+                 {
+                     List<Bands> bands = storageManager.GetAllBands();
+                     view.DisplayBands(bands);
+
+
+                     invalid = false;
+                 }
+
+                 else if (choice.Equals(prefix[1] + " " + suffix[2]))
+                 {
+                     UpdateBandName();
+
+                     invalid = false;
+                 }
+
+                 else if (choice.Equals(prefix[2] + " " + suffix[2]))
+                 {
+                     InsertNewBand();
+
+                     invalid = false;
+                 }
+
+                 else if (choice.Equals(prefix[3] + " " + suffix[2]))
+
+                 {
+                     DeleteBandByName();
+
+                     invalid = false;
+                 }
+
+                 else if (choice.Equals(prefix[0] + " " + suffix[1]))
+                 {
+                     List<Artists> artists = storageManager.GetAllArtists();
+                     view.DisplayArtists(artists);
+
+
+                     invalid = false;
+                 }
+
+                 else if (choice.Equals(prefix[1] + " " + suffix[1]))
+                 {
+                     UpdateArtistName();
+
+                     invalid = false;
+                 }
+
+                 else if (choice.Equals(prefix[2] + " " + suffix[1]))
+                 {
+                     InsertNewArtist();
+
+                     invalid = false;
+                 }
+
+                 else if (choice.Equals(prefix[3] + " " + suffix[1]))
+
+                 {
+                     DeleteArtistByName();
+
+                     invalid = false;
+                 }
+
+                 else
+                 {
+                     Console.WriteLine("I'm sorry, this isn't a valid selection. Can you try again?");
+                     view.DisplayMenu();
+
+                     invalid = true;
+                 }
+
+             } while (invalid);
+
+             */
+
+            /*
+            
+            
             do
-            {  
-                
-                string[] prefix = 
-                { 
-                    "view", 
-                    "up", 
-                    "ins", 
-                    "del", 
-                    "lost" 
-
-                };
-
-                string[] suffix = 
-                { 
-                    "albums", 
-                    "artists", 
-                    "bands", 
-                    "all", 
-                    "rooms" 
-
-                };
-                
-                if (choice.Equals(prefix[0] + " " + suffix[2]))
+            {
+                switch (switch_on)
                 {
-                    List<Bands> bands = storageManager.GetAllBands();
-                    view.DisplayBands(bands);
-
-
-                    invalid = false;
-                }
-
-                else if (choice.Equals(prefix[1] + " " + suffix[2]))
-                {
-                    UpdateBandName();
-
-                    invalid = false;
-                }
-
-                else if (choice.Equals(prefix[2] + " " + suffix[2]))
-                {
-                    InsertNewBand();
-
-                    invalid = false;
-                }
-
-                else if (choice.Equals(prefix[3] + " " + suffix[2]))
-
-                {
-                    DeleteBandByName();
-                    
-                    invalid = false;
-                }
-
-                else if (choice.Equals(prefix[0] + " " + suffix[1]))
-                {
-                    List<Artists> artists = storageManager.GetAllArtists();
-                    view.DisplayArtists(artists);
-
-
-                    invalid = false;
-                }
-
-                else if (choice.Equals(prefix[1] + " " + suffix[1]))
-                {
-                    UpdateArtistName();
-
-                    invalid = false;
-                }
-
-                else if (choice.Equals(prefix[2] + " " + suffix[1]))
-                {
-                    InsertNewArtist();
-
-                    invalid = false;
-                }
-
-                else if (choice.Equals(prefix[3] + " " + suffix[1]))
-
-                {
-                    DeleteArtistByName();
-
-                    invalid = false;
-                }
-
-                else
-                {
-                    Console.WriteLine("I'm sorry, this isn't a valid selection. Can you try again?");
-                    view.DisplayMenu();
-
-                    invalid = true;
+                    default:
                 }
 
             } while (invalid);
-            
-            */           
-           
+
+            This is for the login.
 
             do
             {
-                switch (choice.ToLower())
+                switch (switch_on)
+                {
+                    default:
+                }
+
+            } while (invalid);
+
+            This is for the register.
+
+            */
+
+
+
+            do
+            {
+                switch (adminInput.ToLower())
                 {
                     case "view" + " " + "bands":
                         List<Bands> bands = storageManager.GetAllBands();
@@ -194,7 +222,7 @@ namespace CDOrganiserProjectApp
                         Thread.Sleep(1000);
                         Console.Clear();
 
-                        choice = view.DisplayMenu();
+                        adminInput = view.DisplayAdministratorMenu();
                         invalid = true;
 
                     break;

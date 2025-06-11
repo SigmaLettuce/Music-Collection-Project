@@ -31,7 +31,7 @@ namespace CDOrganiserProjectApp.View
             return Console.ReadLine();
         }
 
-        public string DisplayVisitorMenu()
+        public string DisplayUserMenu()
         {
             Console.WriteLine("\n\tWelcome to your CD Warehousing! ");
             Console.WriteLine("\tList of commands... \n");
