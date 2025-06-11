@@ -327,13 +327,13 @@ namespace CDOrganiserProjectApp
 
         private static void UpdateArtistName()
         {
-            view.DisplayMessage("\nEnter the identification number... ");
-            int artistId = view.GetIntInput();
-
-            view.DisplayMessage("\nRename the record... ");
+            view.DisplayMessage("\nEnter the name of the record... ");
             string artistName = view.GetInput();
 
-            int rowsAffected = storageManager.UpdateBandName(artistId, artistName);
+            view.DisplayMessage("\nRename the record... ");
+            artistName = view.GetInput();
+
+            int rowsAffected = storageManager.UpdateArtistName(artistName);
             view.DisplayMessage($"Updated {rowsAffected} records.");
 
         }

@@ -110,13 +110,12 @@ namespace CDOrganiserProjectApp
             }
         }
 
-        public int UpdateArtistName(int artistId, string artistName)
+        public int UpdateArtistName(string artistName)
         {
-            string sqlStr = $"UPDATE Contents.tblArtists SET artistName = @artistName WHERE artistID = @artistId";
+            string sqlStr = $"UPDATE Contents.tblArtists SET artistName = @artistName WHERE artistName = @artistName";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
                 cmd.Parameters.AddWithValue("@artistName", artistName);
-                cmd.Parameters.AddWithValue("@artistId", artistId);
                 return cmd.ExecuteNonQuery();
             }
         }
@@ -136,7 +135,7 @@ namespace CDOrganiserProjectApp
         public List<Albums> GetAllAlbums()
         {
             List<Albums> albums = new List<Albums>();
-            string sqlStr = "SELECT albumID, albumName, genreName, dateOfRelease FROM Contents.tblAlbums";
+            string sqlStr = "SELECT * FROM Contents.tblAlbums";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
                 using (SqlDataReader reader = cmd.ExecuteReader())
