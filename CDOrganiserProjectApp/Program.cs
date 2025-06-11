@@ -292,15 +292,15 @@ namespace CDOrganiserProjectApp
 
         private static void UpdateBandName()
         {
-            view.DisplayMessage("\nEnter the identification number... ");
-            int bandId = view.GetIntInput();
-
-            view.DisplayMessage("\nRename the record... ");
+            view.DisplayMessage("\nEnter the name of the record... ");
             string bandName = view.GetInput();
 
-            int rowsAffected = storageManager.UpdateBandName(bandId, bandName);
+            view.DisplayMessage("\nRename the record... ");
+            string rename = view.GetInput();
+
+            int rowsAffected = storageManager.UpdateBandByName(bandName, rename);
             view.DisplayMessage($"Updated {rowsAffected} records.");
-             
+
         } 
 
         private static void InsertNewBand()
@@ -333,7 +333,7 @@ namespace CDOrganiserProjectApp
             view.DisplayMessage("\nRename the record... ");
             string rename = view.GetInput();
 
-            int rowsAffected = storageManager.UpdateArtistName(artistName, rename);
+            int rowsAffected = storageManager.UpdateArtistByName(artistName, rename);
             view.DisplayMessage($"Updated {rowsAffected} records.");
 
         }

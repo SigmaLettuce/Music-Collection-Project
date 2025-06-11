@@ -59,13 +59,13 @@ namespace CDOrganiserProjectApp
             }
         }
 
-        public int UpdateBandName(int bandId, string bandName)
+        public int UpdateBandByName(string bandName, string newName)
         {
-            string sqlStr = $"UPDATE Contents.tblBands SET bandName = @bandName WHERE bandID = @bandId";
+            string sqlStr = $"UPDATE Contents.tblBands SET bandName = @newName WHERE bandName = @bandName";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
                 cmd.Parameters.AddWithValue("@bandName", bandName);
-                cmd.Parameters.AddWithValue("@bandId", bandId);
+                cmd.Parameters.AddWithValue("@newName", newName);
                 return cmd.ExecuteNonQuery();
             }
         }
@@ -110,7 +110,7 @@ namespace CDOrganiserProjectApp
             }
         }
 
-        public int UpdateArtistName(string artistName, string newName)
+        public int UpdateArtistByName(string artistName, string newName)
         {
             string sqlStr = $"UPDATE Contents.tblArtists SET artistName = @newName WHERE artistName = @artistName";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
