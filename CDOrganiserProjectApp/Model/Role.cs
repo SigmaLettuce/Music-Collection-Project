@@ -6,7 +6,17 @@ using System.Threading.Tasks;
 
 namespace CDOrganiserProjectApp.Model
 {
-    internal class Role
+    public class Role
     {
+        public int RoleId { get; set; }
+        public string RoleName { get; set; }
+
+        public Role(int rid, string rn)
+        {
+            RoleId = rid;
+            RoleName = rn;
+
+        }
+
     }
 }
