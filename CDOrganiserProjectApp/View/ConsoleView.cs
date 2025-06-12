@@ -38,8 +38,8 @@ namespace CDOrganiserProjectApp.View
             Console.WriteLine("\t'rooms' - All available rooms\n");
             Console.WriteLine("Extras · Commands irrelevant to your data");
             Console.WriteLine("\n\t'create admin' - Creates an administrator account");
-            Console.WriteLine("\t'create user' - Creates a user account\n");
-            Console.WriteLine("\n\t'log out' - Exits the account; brings you back to 'Start Menu'");
+            Console.WriteLine("\t'create user' - Creates a user account");
+            Console.WriteLine("\t'log out' - Exits the account; brings you back to 'Start Menu'\n");
 
             return Console.ReadLine();
         }

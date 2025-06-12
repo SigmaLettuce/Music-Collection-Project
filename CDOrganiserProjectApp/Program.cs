@@ -21,111 +21,13 @@ namespace CDOrganiserProjectApp
             // Console.WriteLine("Hello, World!");
             string connectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=HomeMusicCollectionDatabase;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False";
             storageManager = new StorageManager(connectionString);
-
             view = new ConsoleView();
 
             string adminInput = view.DisplayAdministratorMenu();
+            view.DisplayMessage("");
 
-            bool invalid = true;
-
-
-            /*
-             do
-             {  
-
-                 string[] prefix = 
-                 { 
-                     "view", 
-                     "up", 
-                     "ins", 
-                     "del", 
-                     "lost" 
-
-                 };
-
-                 string[] suffix = 
-                 { 
-                     "albums", 
-                     "artists", 
-                     "bands", 
-                     "all", 
-                     "rooms" 
-
-                 };
-
-                 if (choice.Equals(prefix[0] + " " + suffix[2]))
-                 {
-                     List<Bands> bands = storageManager.GetAllBands();
-                     view.DisplayBands(bands);
-
-
-                     invalid = false;
-                 }
-
-                 else if (choice.Equals(prefix[1] + " " + suffix[2]))
-                 {
-                     UpdateBandName();
-
-                     invalid = false;
-                 }
-
-                 else if (choice.Equals(prefix[2] + " " + suffix[2]))
-                 {
-                     InsertNewBand();
-
-                     invalid = false;
-                 }
-
-                 else if (choice.Equals(prefix[3] + " " + suffix[2]))
-
-                 {
-                     DeleteBandByName();
-
-                     invalid = false;
-                 }
-
-                 else if (choice.Equals(prefix[0] + " " + suffix[1]))
-                 {
-                     List<Artists> artists = storageManager.GetAllArtists();
-                     view.DisplayArtists(artists);
-
-
-                     invalid = false;
-                 }
-
-                 else if (choice.Equals(prefix[1] + " " + suffix[1]))
-                 {
-                     UpdateArtistName();
-
-                     invalid = false;
-                 }
-
-                 else if (choice.Equals(prefix[2] + " " + suffix[1]))
-                 {
-                     InsertNewArtist();
-
-                     invalid = false;
-                 }
-
-                 else if (choice.Equals(prefix[3] + " " + suffix[1]))
-
-                 {
-                     DeleteArtistByName();
-
-                     invalid = false;
-                 }
-
-                 else
-                 {
-                     Console.WriteLine("I'm sorry, this isn't a valid selection. Can you try again?");
-                     view.DisplayMenu();
-
-                     invalid = true;
-                 }
-
-             } while (invalid);
-
-             */
+            bool invalidCmd = true;
+            bool invalidInput = true;
 
             /*
             
@@ -163,43 +65,49 @@ namespace CDOrganiserProjectApp
                     case Prefix.view + " " + Suffix.bands:
                         List<Bands> bands = storageManager.GetAllBands();
                         view.DisplayBands(bands);
-                        char input;
-                        string charInput;
+                        string input;
 
-                        view.DisplayMessage("Go back? y/n");
-                        
-                        
-                        input = Convert.ToChar(Console.ReadLine());
-                        charInput = input.ToString();
+                        view.DisplayMessage("\nGo back? y/n\n");              
+                        input = view.GetInput();
+
 
                         do
-                            switch (charInput.ToLower())
+                            switch (input.ToLower())
                             {
                                 case "y":
-                                    Thread.Sleep(10);
+                                    Thread.Sleep(1000);
                                     Console.Clear();
-                                    invalid = false;
+                                    invalidInput = false;
 
                                     adminInput = view.DisplayAdministratorMenu();
+                                    view.DisplayMessage("");
+                                    invalidCmd = false;
+
                                 break;
 
                                 case "n":
                                     // Nothing happens
-                                    invalid = false;
+                                    invalidInput = false;
+
                                 break;
 
                                 default:
                                     view.DisplayMessage("\nI'm sorry, this isn't a valid selection. Can you try again ? ");
-                                    
-                                    invalid = true;
+                                    Thread.Sleep(1000);
+                                    Console.Clear();
+
+                                    view.DisplayBands(bands);
+                                    input = view.GetInput();
+
+                                    invalidInput = true;
 
                                 break;
 
-
+                                
                             }
-                        while (invalid);
+                        while (invalidInput);
 
-                        invalid = false;
+                        invalidCmd = false;
 
                     break;
                     
@@ -207,7 +115,7 @@ namespace CDOrganiserProjectApp
                         UpdateBandName();
 
                         view.DisplayMessage("Go back? y/n");
-                        invalid = false;
+                        invalidCmd = false;
 
                     break;
 
@@ -215,7 +123,7 @@ namespace CDOrganiserProjectApp
                         InsertNewBand();
 
                         view.DisplayMessage("Go back? y/n");
-                        invalid = false;
+                        invalidCmd = false;
 
                     break;
                     
@@ -223,7 +131,7 @@ namespace CDOrganiserProjectApp
                         DeleteBandByName();
 
                         view.DisplayMessage("Go back? y/n");
-                        invalid = false;
+                        invalidCmd = false;
 
                     break;
 
@@ -232,7 +140,7 @@ namespace CDOrganiserProjectApp
                         view.DisplayArtists(artists);
 
                         view.DisplayMessage("Go back? y/n");
-                        invalid = false;
+                        invalidCmd = false;
 
                     break;
 
@@ -240,7 +148,7 @@ namespace CDOrganiserProjectApp
                         UpdateArtistName();
 
                         view.DisplayMessage("Go back? y/n");
-                        invalid = false;
+                        invalidCmd = false;
 
                     break;
 
@@ -248,7 +156,7 @@ namespace CDOrganiserProjectApp
                         InsertNewArtist();
 
                         view.DisplayMessage("Go back? y/n");
-                        invalid = false;
+                        invalidCmd = false;
 
                     break;
 
@@ -256,7 +164,7 @@ namespace CDOrganiserProjectApp
                         DeleteArtistByName();
 
                         view.DisplayMessage("Go back? y/n");
-                        invalid = false;
+                        invalidCmd = false;
 
                     break;
 
@@ -265,7 +173,7 @@ namespace CDOrganiserProjectApp
                         view.DisplayAlbums(albums);
 
                         view.DisplayMessage("Go back? y/n");
-                        invalid = false;
+                        invalidCmd = false;
 
                     break;
 
@@ -275,13 +183,13 @@ namespace CDOrganiserProjectApp
                         Console.Clear();
 
                         adminInput = view.DisplayAdministratorMenu();
-
-                        invalid = true;
+                        view.DisplayMessage("");
+                        invalidCmd = true;
 
                     break;
                 }
 
-            } while (invalid);
+            } while (invalidCmd);
 
 
             storageManager.CloseConnection();
