@@ -8,10 +8,19 @@ namespace CDOrganiserProjectApp.Index
 {
     public class Prefix
     {
-        public const string view = "view";
-        public const string up = "up";
-        public const string ins = "ins";
-        public const string del = "del";
-        public const string lost = "lost";
+
+        // Rudimentary prefixes
+
+            public const string view = "view";
+            public const string up = "up";
+            public const string ins = "ins";
+            public const string del = "del";
+            public const string lost = "lost";
+
+        // Extras
+
+            public const string create = "create";
+            public const string log = "log";
+
     }
 }
