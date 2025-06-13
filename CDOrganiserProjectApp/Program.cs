@@ -85,24 +85,27 @@ namespace CDOrganiserProjectApp
                     case Prefix.up + " " + Suffix.bands:
                         UpdateBandName();
 
-                        view.DisplayMessage("Go back? y/n");
                         invalid = false;
+
+                        GoBack();
 
                     break;
 
                     case Prefix.ins + " " + Suffix.bands:
                         InsertNewBand();
 
-                        view.DisplayMessage("Go back? y/n");
                         invalid = false;
+
+                        GoBack();
 
                     break;
 
                     case Prefix.del + " " + Suffix.bands:
                         DeleteBandByName();
 
-                        view.DisplayMessage("Go back? y/n");
                         invalid = false;
+
+                        GoBack();
 
                     break;
 
@@ -110,32 +113,36 @@ namespace CDOrganiserProjectApp
                         List<Artists> artists = storageManager.GetAllArtists();
                         view.DisplayArtists(artists);
 
-                        view.DisplayMessage("Go back? y/n");
                         invalid = false;
+
+                        GoBack();
 
                     break;
 
                     case Prefix.up + " " + Suffix.artists:
                         UpdateArtistName();
 
-                        view.DisplayMessage("Go back? y/n");
                         invalid = false;
+
+                        GoBack();
 
                     break;
 
                     case Prefix.ins + " " + Suffix.artists:
                         InsertNewArtist();
 
-                        view.DisplayMessage("Go back? y/n");
                         invalid = false;
+
+                        GoBack();
 
                     break;
 
                     case Prefix.del + " " + Suffix.artists:
                         DeleteArtistByName();
 
-                        view.DisplayMessage("Go back? y/n");
                         invalid = false;
+
+                        GoBack();
 
                     break;
 
@@ -143,8 +150,9 @@ namespace CDOrganiserProjectApp
                         List<Albums> albums = storageManager.GetAllAlbums();
                         view.DisplayAlbums(albums);
 
-                        view.DisplayMessage("Go back? y/n");
                         invalid = false;
+
+                        GoBack();
 
                     break;
 
