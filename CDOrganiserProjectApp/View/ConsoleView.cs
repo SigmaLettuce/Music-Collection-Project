@@ -11,6 +11,9 @@ namespace CDOrganiserProjectApp.View
 {
     public class ConsoleView
     {
+
+ 
+
         public string StartMenu()
         {
             Console.WriteLine("\n\t CD Manager");

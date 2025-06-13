@@ -64,9 +64,6 @@ namespace CDOrganiserProjectApp
 
             */
 
-
-
-
             do
             {
                 switch (adminInput.ToLower())
