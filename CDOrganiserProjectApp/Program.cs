@@ -35,8 +35,7 @@ namespace CDOrganiserProjectApp
             string adminInput = view.DisplayAdministratorMenu();
             view.DisplayMessage("");
 
-            bool invalidCmd = true;
-            bool invalidInput = true;
+            bool invalid = true;
 
             /*
             
@@ -76,46 +75,10 @@ namespace CDOrganiserProjectApp
                     case Prefix.view + " " + Suffix.bands:
                         List<Bands> bands = storageManager.GetAllBands();
                         view.DisplayBands(bands);
-                        string input;
 
-                        view.DisplayMessage("\nGo back? y/n\n");
-                        input = view.GetInput();
+                        invalid = false;
 
-
-                        do
-                            switch (input.ToLower())
-                            {
-                                case "y":
-                                    Thread.Sleep(1000);
-                                    Console.Clear();
-                                    invalidInput = false;
-
-                                    MenuscreenOptions();
-                                    view.DisplayMessage("");
-                                    invalidCmd = false;
-
-                                break;
-
-                                case "n":
-
-                                    input = view.GetInput();
-                                    invalidInput = false;
-
-                                break;
-
-                                default:
-                                    view.DisplayMessage("\nI'm sorry, this isn't a valid selection. Can you try again ? ");
-                                    input = view.GetInput();
-
-                                    invalidInput = true;
-
-                                break;
-
-
-                            }
-                        while (invalidInput);
-
-                        invalidCmd = false;
+                        GoBack();
 
                     break;
 
@@ -123,7 +86,7 @@ namespace CDOrganiserProjectApp
                         UpdateBandName();
 
                         view.DisplayMessage("Go back? y/n");
-                        invalidCmd = false;
+                        invalid = false;
 
                     break;
 
@@ -131,7 +94,7 @@ namespace CDOrganiserProjectApp
                         InsertNewBand();
 
                         view.DisplayMessage("Go back? y/n");
-                        invalidCmd = false;
+                        invalid = false;
 
                     break;
 
@@ -139,7 +102,7 @@ namespace CDOrganiserProjectApp
                         DeleteBandByName();
 
                         view.DisplayMessage("Go back? y/n");
-                        invalidCmd = false;
+                        invalid = false;
 
                     break;
 
@@ -148,7 +111,7 @@ namespace CDOrganiserProjectApp
                         view.DisplayArtists(artists);
 
                         view.DisplayMessage("Go back? y/n");
-                        invalidCmd = false;
+                        invalid = false;
 
                     break;
 
@@ -156,7 +119,7 @@ namespace CDOrganiserProjectApp
                         UpdateArtistName();
 
                         view.DisplayMessage("Go back? y/n");
-                        invalidCmd = false;
+                        invalid = false;
 
                     break;
 
@@ -164,7 +127,7 @@ namespace CDOrganiserProjectApp
                         InsertNewArtist();
 
                         view.DisplayMessage("Go back? y/n");
-                        invalidCmd = false;
+                        invalid = false;
 
                     break;
 
@@ -172,7 +135,7 @@ namespace CDOrganiserProjectApp
                         DeleteArtistByName();
 
                         view.DisplayMessage("Go back? y/n");
-                        invalidCmd = false;
+                        invalid = false;
 
                     break;
 
@@ -181,7 +144,7 @@ namespace CDOrganiserProjectApp
                         view.DisplayAlbums(albums);
 
                         view.DisplayMessage("Go back? y/n");
-                        invalidCmd = false;
+                        invalid = false;
 
                     break;
 
@@ -192,13 +155,59 @@ namespace CDOrganiserProjectApp
 
                         adminInput = view.DisplayAdministratorMenu();
                         view.DisplayMessage("");
-                        invalidCmd = true;
+                        invalid = true;
 
                     break;
 
                 }
 
-            } while (invalidCmd);
+            } while (invalid);
+
+        }
+
+        private static void GoBack() 
+        {
+            string input;
+            bool carry;
+
+
+            view.DisplayMessage("\nGo back? y/n\n");
+            input = view.GetInput();
+
+
+            do
+                switch (input.ToLower())
+                {
+                    case "y":
+                        Thread.Sleep(1000);
+                        Console.Clear();
+                        carry = false;
+
+                        MenuscreenOptions();
+                        view.DisplayMessage("");
+
+                    break;
+
+                    case "n":
+                        GoBack();
+
+                        carry = true;
+
+                    break;
+
+                    default:
+                        view.DisplayMessage("\nI'm sorry, this isn't a valid selection. Can you try again ? ");
+                        GoBack();
+
+                        carry = true;
+
+                    break;
+
+
+                }
+
+            while (carry);
+
 
         }
 
