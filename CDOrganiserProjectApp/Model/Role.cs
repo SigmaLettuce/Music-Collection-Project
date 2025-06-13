@@ -15,7 +15,7 @@ namespace CDOrganiserProjectApp.Model
         {
             RoleId = rid;
             RoleName = rn;
-
+ 
         }
 
     }
