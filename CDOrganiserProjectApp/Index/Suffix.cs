@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace CDOrganiserProjectApp.Index
 {
     public class Suffix
-    {
+    { 
         
         // Rudimentary suffixes
 
