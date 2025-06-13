@@ -23,6 +23,15 @@ namespace CDOrganiserProjectApp
             storageManager = new StorageManager(connectionString);
             view = new ConsoleView();
 
+            Menuscreen();
+
+            storageManager.CloseConnection();
+
+        }
+
+        private static void Menuscreen()
+        {
+            
             string adminInput = view.DisplayAdministratorMenu();
             view.DisplayMessage("");
 
@@ -57,6 +66,8 @@ namespace CDOrganiserProjectApp
             */
 
 
+
+
             do
             {
                 switch (adminInput.ToLower())
@@ -67,7 +78,7 @@ namespace CDOrganiserProjectApp
                         view.DisplayBands(bands);
                         string input;
 
-                        view.DisplayMessage("\nGo back? y/n\n");              
+                        view.DisplayMessage("\nGo back? y/n\n");
                         input = view.GetInput();
 
 
@@ -79,38 +90,35 @@ namespace CDOrganiserProjectApp
                                     Console.Clear();
                                     invalidInput = false;
 
-                                    adminInput = view.DisplayAdministratorMenu();
+                                    Menuscreen();
                                     view.DisplayMessage("");
                                     invalidCmd = false;
 
                                 break;
 
                                 case "n":
-                                    // Nothing happens
+
+                                    input = view.GetInput();
                                     invalidInput = false;
 
                                 break;
 
                                 default:
                                     view.DisplayMessage("\nI'm sorry, this isn't a valid selection. Can you try again ? ");
-                                    Thread.Sleep(1000);
-                                    Console.Clear();
-
-                                    view.DisplayBands(bands);
                                     input = view.GetInput();
 
                                     invalidInput = true;
 
                                 break;
 
-                                
+
                             }
                         while (invalidInput);
 
                         invalidCmd = false;
 
                     break;
-                    
+
                     case Prefix.up + " " + Suffix.bands:
                         UpdateBandName();
 
@@ -126,7 +134,7 @@ namespace CDOrganiserProjectApp
                         invalidCmd = false;
 
                     break;
-                    
+
                     case Prefix.del + " " + Suffix.bands:
                         DeleteBandByName();
 
@@ -187,12 +195,10 @@ namespace CDOrganiserProjectApp
                         invalidCmd = true;
 
                     break;
+
                 }
 
             } while (invalidCmd);
-
-
-            storageManager.CloseConnection();
 
         }
 

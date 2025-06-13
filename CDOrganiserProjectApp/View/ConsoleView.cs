@@ -69,6 +69,7 @@ namespace CDOrganiserProjectApp.View
             foreach (Bands band in bands)
             {
                 Console.WriteLine($"{band.bandId}, {band.bandName}");
+                Thread.Sleep(40);
             }
                 
 
@@ -79,6 +80,7 @@ namespace CDOrganiserProjectApp.View
             foreach (Artists artist in artists)
             {
                 Console.WriteLine($"{artist.artistId}, {artist.artistName}");
+                Thread.Sleep(40);
             }
 
         }
@@ -88,8 +90,12 @@ namespace CDOrganiserProjectApp.View
             foreach (Albums album in albums)
             {
                 Console.WriteLine($"{album.albumId}, {album.albumName}, {album.genreName}, {album.dateOfRelease}");
+                Thread.Sleep(40);
+
             }
         }
+
+        
 
         public void DisplayMessage(string msg)
         {
