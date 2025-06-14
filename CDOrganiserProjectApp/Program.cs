@@ -16,7 +16,10 @@ namespace CDOrganiserProjectApp
     {
         private static StorageManager storageManager;
         private static ConsoleView view;
-        
+        private static readonly int wait = 1000;
+
+        private static int roleId;
+
         static void Main(string[] args)
         {
             // Console.WriteLine("Hello, World!");
@@ -30,27 +33,58 @@ namespace CDOrganiserProjectApp
 
         }
 
-        private static void Login()
+        private static void StartMenuscreenOptions()
         {
 
-        }
+            bool invalid = true;
 
-        private static void SignUp()
-        {
-            view.DisplayMessage("\nEnter your first name... ");
-            string fName = view.GetInput();
+            string startInput = view.StartMenu();
 
-            view.DisplayMessage("\nEnter your last name... ");
-            string sName = view.GetInput();
+            view.DisplayMessage("");
 
-            view.DisplayMessage("\nCreate a username... ");
-            string newuser = view.GetInput();
-            int guestId = 1;
+            Thread.Sleep(wait);
 
-            view.DisplayMessage("\nCreate a password... ");
-            string newpw = view.GetInput();
+            do
+            {
+                switch (startInput.ToLower())
+                {
+                    case "r":
+                        view.DisplayMessage("\nEnter your first name... ");
+                        string fName = view.GetInput();
+                        int personId = 0;
 
-            Person newVisitor = new Person(guestId, fName, sName, newuser, newpw);
+                        view.DisplayMessage("\nEnter your last name... ");
+                        string sName = view.GetInput();
+
+                        view.DisplayMessage("\nCreate a username... ");
+                        string newuser = view.GetInput();
+                        roleId = 1;
+
+                        view.DisplayMessage("\nCreate a password... ");
+                        string newpw = view.GetInput();
+
+                        Person newVisitor = new Person(personId, fName, sName, newuser, newpw, roleId);
+
+                        int generatedId = storageManager.CreateAccount(newVisitor);
+                        Thread.Sleep(wait);
+
+                        GuestMenuscreenOptions();
+                        
+                    break;
+
+                    case "l":
+
+
+                    break;
+
+                    default:
+                    break;
+                }
+
+            }  while (invalid.Equals(true));
+
+
+
 
         }
 
@@ -156,7 +190,7 @@ namespace CDOrganiserProjectApp
 
                     default:
                         view.DisplayMessage("I'm sorry, this isn't a valid selection. Can you try again? ");
-                        Thread.Sleep(1000);
+                        Thread.Sleep(wait);
                         Console.Clear();
 
                         AdminMenuscreenOptions();
@@ -176,15 +210,15 @@ namespace CDOrganiserProjectApp
 
             bool invalid = true;
 
-            string adminInput = view.DisplayGuestMenu();
+            string guestInput = view.DisplayGuestMenu();
             view.DisplayMessage("");
 
-            Thread.Sleep(1000);
+            Thread.Sleep(wait);
 
 
             do
             {
-                switch (adminInput.ToLower())
+                switch (guestInput.ToLower())
                 {
 
                     case Prefix.view + " " + Suffix.bands:
@@ -302,7 +336,7 @@ namespace CDOrganiserProjectApp
                 switch (input.ToLower())
                 {
                     case "y":
-                        Thread.Sleep(1000);
+                        Thread.Sleep(wait);
                         Console.Clear();
                         carry = false;
 

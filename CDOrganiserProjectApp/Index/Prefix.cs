@@ -9,9 +9,13 @@ namespace CDOrganiserProjectApp.Index
     public class Prefix
     {
 
-        // Rudimentary prefixes
+        // Rudimentary prefixes ≻ Commands
+
+        // Globally used prefix
 
             public const string view = "view";
+
+
             public const string up = "up";
             public const string ins = "ins";
             public const string del = "del";

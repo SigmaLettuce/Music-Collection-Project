@@ -103,7 +103,8 @@ namespace CDOrganiserProjectApp
          
         public int InsertArtist(Artists artists)
         {
-            using (SqlCommand cmd = new SqlCommand($"INSERT INTO Contents.tblArtists (artistName) VALUES (@artistName); SELECT SCOPE_IDENTITY();", conn))
+            string sqlStr = $"INSERT INTO Contents.tblArtists (artistName) VALUES (@artistName); SELECT SCOPE_IDENTITY();";
+            using (SqlCommand cmd = new SqlCommand (sqlStr, conn))
             {
                 cmd.Parameters.AddWithValue("@artistName", artists.artistName);
                 return Convert.ToInt32(cmd.ExecuteScalar());
@@ -177,6 +178,19 @@ namespace CDOrganiserProjectApp
 
         */
 
+        public int CreateAccount(Person person)
+        {
+            string sqlStr = $"INSERT INTO Contents.tblPerson (fName, sName, username, pw) VALUES (@FirstName, @LastName, @Username, @Password); SELECT SCOPE_IDENTITY;";
+            using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
+            {
+                cmd.Parameters.AddWithValue("@FirstName", person.FirstName);
+                cmd.Parameters.AddWithValue("@LastName", person.LastName);
+                cmd.Parameters.AddWithValue("@Username", person.Username);
+                cmd.Parameters.AddWithValue("@Password", person.Password);
+                return cmd.ExecuteNonQuery();
+            }
+
+        }
 
         public void CloseConnection()
         {

@@ -13,14 +13,16 @@ namespace CDOrganiserProjectApp.Model
         public string LastName { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
+        public int RoleId {  get; set; }
         
-        public Person(int pid, string fn, string ln, string un, string pw) 
+        public Person(int pid, string fn, string ln, string un, string pw, int rid) 
         {
             PersonId = pid;
             FirstName = fn;
             LastName = ln;
             Username = un;
             Password = pw;
+            RoleId = rid;
 
         }
     }
