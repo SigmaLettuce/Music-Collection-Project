@@ -132,7 +132,6 @@ namespace CDOrganiserProjectApp
 
         }
 
-
         public List<Albums> GetAllAlbums()
         {
             List<Albums> albums = new List<Albums>();

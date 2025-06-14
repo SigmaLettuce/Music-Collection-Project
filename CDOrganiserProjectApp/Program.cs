@@ -7,6 +7,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.VisualBasic;
 using System.Net.Http.Headers;
 using System.Reflection.Metadata.Ecma335;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 namespace CDOrganiserProjectApp
@@ -23,46 +24,46 @@ namespace CDOrganiserProjectApp
             storageManager = new StorageManager(connectionString);
             view = new ConsoleView();
 
-            MenuscreenOptions();
+            AdminMenuscreenOptions();
              
             storageManager.CloseConnection();
 
         }
 
-        private static void MenuscreenOptions()
+        private static void Login()
+        {
+
+        }
+
+        private static void SignUp()
+        {
+            view.DisplayMessage("\nEnter your first name... ");
+            string fName = view.GetInput();
+
+            view.DisplayMessage("\nEnter your last name... ");
+            string sName = view.GetInput();
+
+            view.DisplayMessage("\nCreate a username... ");
+            string newuser = view.GetInput();
+            int guestId = 1;
+
+            view.DisplayMessage("\nCreate a password... ");
+            string newpw = view.GetInput();
+
+            Person newVisitor = new Person(guestId, fName, sName, newuser, newpw);
+
+        }
+
+        private static void AdminMenuscreenOptions()
         {
             
+            bool invalid = true;
+
             string adminInput = view.DisplayAdminMenu();
             view.DisplayMessage("");
 
-            bool invalid = true;
+            Thread.Sleep(1000);
 
-            /*
-            
-            
-            do
-            {
-                switch (switch_on)
-                {
-                    default:
-                }
-
-            } while (invalid);
-
-            This is for the login.
-
-            do
-            {
-                switch (switch_on)
-                {
-                    default:
-                }
-
-            } while (invalid);
-
-            This is for the register.
-
-            */
 
             do
             {
@@ -158,7 +159,124 @@ namespace CDOrganiserProjectApp
                         Thread.Sleep(1000);
                         Console.Clear();
 
-                        MenuscreenOptions();
+                        AdminMenuscreenOptions();
+
+                        invalid = true;
+
+                    break;
+
+                }
+
+            } while (invalid);
+
+        }
+
+        private static void GuestMenuscreenOptions()
+        {
+
+            bool invalid = true;
+
+            string adminInput = view.DisplayGuestMenu();
+            view.DisplayMessage("");
+
+            Thread.Sleep(1000);
+
+
+            do
+            {
+                switch (adminInput.ToLower())
+                {
+
+                    case Prefix.view + " " + Suffix.bands:
+                        List<Bands> bands = storageManager.GetAllBands();
+                        view.DisplayBands(bands);
+
+                        invalid = false;
+
+                        GoBack();
+
+                    break;
+
+                    case Prefix.up + " " + Suffix.bands:
+                        UpdateBandName();
+
+                        invalid = false;
+
+                        GoBack();
+
+                    break;
+
+                    case Prefix.ins + " " + Suffix.bands:
+                        InsertNewBand();
+
+                        invalid = false;
+
+                        GoBack();
+
+                    break;
+
+                    case Prefix.del + " " + Suffix.bands:
+                        DeleteBandByName();
+
+                        invalid = false;
+
+                        GoBack();
+
+                    break;
+
+                    case Prefix.view + " " + Suffix.artists:
+                        List<Artists> artists = storageManager.GetAllArtists();
+                        view.DisplayArtists(artists);
+
+                        invalid = false;
+
+                        GoBack();
+
+                    break;
+
+                    case Prefix.up + " " + Suffix.artists:
+                        UpdateArtistName();
+
+                        invalid = false;
+
+                        GoBack();
+
+                    break;
+
+                    case Prefix.ins + " " + Suffix.artists:
+                        InsertNewArtist();
+
+                        invalid = false;
+
+                        GoBack();
+
+                    break;
+
+                    case Prefix.del + " " + Suffix.artists:
+                        DeleteArtistByName();
+
+                        invalid = false;
+
+                        GoBack();
+
+                    break;
+
+                    case Prefix.view + " " + Suffix.albums:
+                        List<Albums> albums = storageManager.GetAllAlbums();
+                        view.DisplayAlbums(albums);
+
+                        invalid = false;
+
+                        GoBack();
+
+                    break;
+
+                    default:
+                        view.DisplayMessage("I'm sorry, this isn't a valid selection. Can you try again? ");
+                        Thread.Sleep(1000);
+                        Console.Clear();
+
+                        GuestMenuscreenOptions();
 
                         invalid = true;
 
@@ -188,8 +306,7 @@ namespace CDOrganiserProjectApp
                         Console.Clear();
                         carry = false;
 
-                        MenuscreenOptions();
-                        view.DisplayMessage("");
+                        AdminMenuscreenOptions();
 
                     break;
 
@@ -211,7 +328,6 @@ namespace CDOrganiserProjectApp
                 }
 
             while (carry);
-
 
         }
 
