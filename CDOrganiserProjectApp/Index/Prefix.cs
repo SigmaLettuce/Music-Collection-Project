@@ -17,10 +17,5 @@ namespace CDOrganiserProjectApp.Index
             public const string del = "del";
             public const string lost = "lost";
 
-        // Extras
-
-            public const string create = "create";
-            public const string log = "log";
-
     }
 }

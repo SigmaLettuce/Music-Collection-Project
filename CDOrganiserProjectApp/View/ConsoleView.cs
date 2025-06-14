@@ -23,21 +23,24 @@ namespace CDOrganiserProjectApp.View
             return Console.ReadLine();
         }
 
-        public string DisplayAdministratorMenu()
+        public string DisplayAdminMenu()
         {
             Console.WriteLine("\n\tWelcome to your CD Manager! ");
             Console.WriteLine("\tList of commands... \n");
+
             Console.WriteLine("Prefixes · Commands to run on sets of data");
             Console.WriteLine("\n\t'view' - Displays information");
             Console.WriteLine("\t'up' - Updates information");
             Console.WriteLine("\t'ins' - Adds new information");
             Console.WriteLine("\t'del' - Delete unwanted information");
             Console.WriteLine("\t'lost' - Marks a specified 'disc' as lost; this command can only be run on 'albums'\n");
+
             Console.WriteLine("Suffixes · Data sets available to run commands on");
             Console.WriteLine("\n\t'albums' - Albums of a compact disc; a CD");
             Console.WriteLine("\t'artists' - All artists who have published an album you own");
             Console.WriteLine("\t'bands' - All bands who have published an album you own");
             Console.WriteLine("\t'all' - All artists, including bands, who have published an album you own");
+
             Console.WriteLine("\t'rooms' - All available rooms\n");
             Console.WriteLine("Extras · Commands irrelevant to your data");
             Console.WriteLine("\n\t'create admin' - Creates an administrator account");
@@ -47,15 +50,19 @@ namespace CDOrganiserProjectApp.View
             return Console.ReadLine();
         }
 
-        public string DisplayUserMenu()
+        public string DisplayGuestMenu()
         {
             Console.WriteLine("\n\tWelcome to your CD Manager! ");
             Console.WriteLine("\tList of commands... \n");
+
             Console.WriteLine("Prefixes · Commands to run on sets of data");
             Console.WriteLine("\n\t'view' - Displays information\n");
+
             Console.WriteLine("Suffixes · Data sets available to run commands on");
             Console.WriteLine("\n\t'categories' - Categories of music\n");
+
             Console.WriteLine("Extras · Commands irrelevant to your data");
+            Console.WriteLine("\t'create user' - Creates a user account");
             Console.WriteLine("\n\t'log out' - Exits the account; brings you back to 'Start Menu'");
 
             return Console.ReadLine();

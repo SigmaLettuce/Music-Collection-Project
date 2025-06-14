@@ -24,7 +24,7 @@ namespace CDOrganiserProjectApp
             view = new ConsoleView();
 
             MenuscreenOptions();
-
+             
             storageManager.CloseConnection();
 
         }
@@ -32,7 +32,7 @@ namespace CDOrganiserProjectApp
         private static void MenuscreenOptions()
         {
             
-            string adminInput = view.DisplayAdministratorMenu();
+            string adminInput = view.DisplayAdminMenu();
             view.DisplayMessage("");
 
             bool invalid = true;
@@ -158,8 +158,8 @@ namespace CDOrganiserProjectApp
                         Thread.Sleep(1000);
                         Console.Clear();
 
-                        adminInput = view.DisplayAdministratorMenu();
-                        view.DisplayMessage("");
+                        MenuscreenOptions();
+
                         invalid = true;
 
                     break;

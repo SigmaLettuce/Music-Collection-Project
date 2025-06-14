@@ -17,10 +17,5 @@ namespace CDOrganiserProjectApp.Index
             public const string all = "all";
             public const string rooms = "rooms";
 
-        // Extras
-
-            public const string admin = "admin";
-            public const string user = "user";
-            public const string _out = "out";
     }
 }
