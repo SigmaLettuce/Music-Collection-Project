@@ -17,6 +17,8 @@ namespace CDOrganiserProjectApp.Index
             public const string all = "all";
             public const string rooms = "rooms";
 
+            public const string users = "users";    
+
         // 
 
     }

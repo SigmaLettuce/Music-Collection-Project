@@ -27,7 +27,7 @@ namespace CDOrganiserProjectApp
             storageManager = new StorageManager(connectionString);
             view = new ConsoleView();
 
-            AdminMenuscreenOptions();
+            StartMenuscreenOptions();
              
             storageManager.CloseConnection();
 
@@ -46,9 +46,9 @@ namespace CDOrganiserProjectApp
 
             do
             {
-                switch (startInput.ToLower())
+                switch (startInput.ToUpper())
                 {
-                    case "r":
+                    case "R":
                         view.DisplayMessage("\nEnter your first name... ");
                         string fName = view.GetInput();
                         int personId = 0;
@@ -72,7 +72,12 @@ namespace CDOrganiserProjectApp
                         
                     break;
 
-                    case "l":
+                    case "L":
+                        view.DisplayMessage("\nEnter your username... ");
+                        string user = view.GetInput();
+
+                        view.DisplayMessage("\nEnter your password... ");
+                        string pw = view.GetInput();
 
 
                     break;
@@ -319,6 +324,15 @@ namespace CDOrganiserProjectApp
                 }
 
             } while (invalid);
+
+        }
+
+        private static void Authentication()
+        {
+            string input;
+            bool invalid;
+
+            
 
         }
 

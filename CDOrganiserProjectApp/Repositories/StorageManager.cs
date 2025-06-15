@@ -180,16 +180,27 @@ namespace CDOrganiserProjectApp
 
         public int CreateAccount(Person person)
         {
-            string sqlStr = $"INSERT INTO Contents.tblPerson (fName, sName, username, pw) VALUES (@FirstName, @LastName, @Username, @Password); SELECT SCOPE_IDENTITY;";
+            string sqlStr = $"INSERT INTO Contents.tblPerson (fName, sName, username, pw, roleID) VALUES (@FirstName, @LastName, @Username, @Password, @RoleId); SELECT SCOPE_IDENTITY();";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
                 cmd.Parameters.AddWithValue("@FirstName", person.FirstName);
                 cmd.Parameters.AddWithValue("@LastName", person.LastName);
                 cmd.Parameters.AddWithValue("@Username", person.Username);
                 cmd.Parameters.AddWithValue("@Password", person.Password);
+                cmd.Parameters.AddWithValue("@RoleId", person.RoleId);
+
                 return cmd.ExecuteNonQuery();
             }
 
+        }
+
+        public int AuthenticateAccount(string username, string password)
+        {
+            string sqlStr = $"SELECT FROM Contents.tblPerson WHERE ";
+            using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
+            {
+                return cmd.ExecuteNonQuery();
+            }
         }
 
         public void CloseConnection()
