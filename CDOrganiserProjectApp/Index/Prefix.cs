@@ -13,13 +13,21 @@ namespace CDOrganiserProjectApp.Index
 
         // Globally used prefix
 
-            public const string view = "view";
+            public const string @view = "view";
 
+   
 
-            public const string up = "up";
-            public const string ins = "ins";
-            public const string del = "del";
-            public const string lost = "lost";
+        // Admin-only prefix
+
+            public const string @up = "up";
+            public const string @ins = "ins";
+            public const string @del = "del";
+            public const string @lost = "lost";
+
+                // Account related prefix
+
+                    public const string @create = "create";
+                    public const string @log = "log";
 
     }
 }
