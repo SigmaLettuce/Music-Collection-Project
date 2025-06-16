@@ -15,8 +15,7 @@ namespace CDOrganiserProjectApp.Index
 
             public const string @view = "view";
 
-   
-
+ 
         // Admin-only prefix
 
             public const string @up = "up";

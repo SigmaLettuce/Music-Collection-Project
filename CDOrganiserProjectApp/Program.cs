@@ -110,7 +110,7 @@ namespace CDOrganiserProjectApp
                 switch (adminInput.ToLower())
                 {
 
-                    case Prefix.view + " " + Suffix.bands:
+                    case Prefix.@view + " " + Suffix.@bands:
                         List<Bands> bands = storageManager.GetAllBands();
                         view.DisplayBands(bands);
 
@@ -120,7 +120,7 @@ namespace CDOrganiserProjectApp
 
                     break;
 
-                    case Prefix.up + " " + Suffix.bands:
+                    case Prefix.@up + " " + Suffix.@bands:
                         UpdateBandName();
 
                         invalid = false;
@@ -129,7 +129,7 @@ namespace CDOrganiserProjectApp
 
                     break;
 
-                    case Prefix.ins + " " + Suffix.bands:
+                    case Prefix.@ins + " " + Suffix.@bands:
                         InsertNewBand();
 
                         invalid = false;
@@ -138,7 +138,7 @@ namespace CDOrganiserProjectApp
 
                     break;
 
-                    case Prefix.del + " " + Suffix.bands:
+                    case Prefix.@del + " " + Suffix.@bands:
                         DeleteBandByName();
 
                         invalid = false;
@@ -147,7 +147,7 @@ namespace CDOrganiserProjectApp
 
                     break;
 
-                    case Prefix.view + " " + Suffix.artists:
+                    case Prefix.@view + " " + Suffix.@artists:
                         List<Artists> artists = storageManager.GetAllArtists();
                         view.DisplayArtists(artists);
 
@@ -157,7 +157,7 @@ namespace CDOrganiserProjectApp
 
                     break;
 
-                    case Prefix.up + " " + Suffix.artists:
+                    case Prefix.@up + " " + Suffix.@artists:
                         UpdateArtistName();
 
                         invalid = false;
@@ -166,7 +166,7 @@ namespace CDOrganiserProjectApp
 
                     break;
 
-                    case Prefix.ins + " " + Suffix.artists:
+                    case Prefix.@ins + " " + Suffix.@artists:
                         InsertNewArtist();
 
                         invalid = false;
@@ -175,7 +175,7 @@ namespace CDOrganiserProjectApp
 
                     break;
 
-                    case Prefix.del + " " + Suffix.artists:
+                    case Prefix.@del + " " + Suffix.@artists:
                         DeleteArtistByName();
 
                         invalid = false;
@@ -184,13 +184,23 @@ namespace CDOrganiserProjectApp
 
                     break;
 
-                    case Prefix.view + " " + Suffix.albums:
+                    case Prefix.@view + " " + Suffix.@albums:
                         List<Albums> albums = storageManager.GetAllAlbums();
                         view.DisplayAlbums(albums);
 
                         invalid = false;
 
                         GoBack();
+
+                    break;
+
+                    case Prefix.@log + " " + Suffix.@out:
+                        Thread.Sleep(wait);
+                        Console.Clear();
+
+                        StartMenuscreenOptions();
+
+                        invalid = false;
 
                     break;
 
@@ -264,7 +274,7 @@ namespace CDOrganiserProjectApp
 
                     break;
 
-                    case Prefix.view + " " + Suffix.artists:
+                    case Prefix.view + " " + Suffix.@artists:
                         List<Artists> artists = storageManager.GetAllArtists();
                         view.DisplayArtists(artists);
 
@@ -274,7 +284,7 @@ namespace CDOrganiserProjectApp
 
                     break;
 
-                    case Prefix.up + " " + Suffix.artists:
+                    case Prefix.up + " " + Suffix.@artists:
                         UpdateArtistName();
 
                         invalid = false;
@@ -283,7 +293,7 @@ namespace CDOrganiserProjectApp
 
                     break;
 
-                    case Prefix.ins + " " + Suffix.artists:
+                    case Prefix.ins + " " + Suffix.@artists:
                         InsertNewArtist();
 
                         invalid = false;
@@ -292,7 +302,7 @@ namespace CDOrganiserProjectApp
 
                     break;
 
-                    case Prefix.del + " " + Suffix.artists:
+                    case Prefix.del + " " + Suffix.@artists:
                         DeleteArtistByName();
 
                         invalid = false;
@@ -313,7 +323,7 @@ namespace CDOrganiserProjectApp
 
                     default:
                         view.DisplayMessage("I'm sorry, this isn't a valid selection. Can you try again? ");
-                        Thread.Sleep(1000);
+                        Thread.Sleep(wait);
                         Console.Clear();
 
                         GuestMenuscreenOptions();
@@ -340,6 +350,13 @@ namespace CDOrganiserProjectApp
                     default:
                     break;
                 }
+
+                switch (password)
+                {
+                    default:
+                    break;
+                }
+
             } while (invalid);
 
         }
@@ -362,7 +379,18 @@ namespace CDOrganiserProjectApp
                         Console.Clear();
                         carry = false;
 
-                        AdminMenuscreenOptions();
+                        switch (roleId)
+                        {
+                            case 1:
+                                GuestMenuscreenOptions();
+
+                            break;
+
+                            case 2:
+                                AdminMenuscreenOptions();
+                            break;
+
+                        }
 
                     break;
 

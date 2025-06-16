@@ -1,0 +1,1 @@
+﻿EXEC SP_RENAME 'Contents.tblPerson', 'tblAccounts'

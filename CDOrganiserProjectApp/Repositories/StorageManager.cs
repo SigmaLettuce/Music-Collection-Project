@@ -195,8 +195,8 @@ namespace CDOrganiserProjectApp
 
         }
 
-        /*
-        public List<Person> AuthenticateAccount(string username, string password)
+        
+        public List<Person> GetAllCredentials()
         {
             List<Person> credentials = new List<Person>();
             string sqlStr = $"SELECT FROM Contents.tblPerson WHERE username = @username AND pw = @password";
@@ -206,19 +206,23 @@ namespace CDOrganiserProjectApp
                 {
                     while (reader.Read())
                     {
-                        username = reader["username"].ToString();
-                        password = reader["password"].ToString();
+                        int personId = Convert.ToInt32(reader["personID"]);
+                        string fName = reader["fName"].ToString();
+                        string sName = reader["sName"].ToString();
+                        string username = reader["username"].ToString();
+                        string password = reader["pw"].ToString();
+                        int roleId = Convert.ToInt32(reader["roleID"]);
 
-                        credentials.Add(new Person(username, password));
+                        credentials.Add(new Person(personId, fName, sName, username, password, roleId));
                     }
 
                 }
 
 
-                return credentials();
+                return credentials;
             }
         }
-        */
+        
 
         public void CloseConnection()
         {
