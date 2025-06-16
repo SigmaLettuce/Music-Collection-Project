@@ -160,8 +160,10 @@ namespace CDOrganiserProjectApp
         {
             using (SqlCommand cmd = new SqlCommand($"INSERT INTO Contents.tblAlbums (albumName, genreName, dateOfRelease) VALUES (@albumName, @genreName, @dateOfRelease); SELECT SCOPE_IDENTITY();", conn))
             {
-                cmd.Parameters.AddWithValue("@albumName", albums.albumName, "@genreName", albums.genreName, "@dateOfRelease", albums.dateOfRelease);
-                cmd.Para
+                cmd.Parameters.AddWithValue("@albumName", albums.albumName);
+                cmd.Parameters.AddWithValue("@genreName", albums.genreName);
+                cmd.Parameters.AddWithValue("@dateOfRelease", albums.dateOfRelease);
+
                 return Convert.ToInt32(cmd.ExecuteScalar());
             }
         }
