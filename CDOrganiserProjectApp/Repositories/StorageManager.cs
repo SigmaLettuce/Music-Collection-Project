@@ -187,7 +187,7 @@ namespace CDOrganiserProjectApp
                 cmd.Parameters.AddWithValue("@FirstName", person.FirstName);
                 cmd.Parameters.AddWithValue("@LastName", person.LastName);
                 cmd.Parameters.AddWithValue("@Username", person.Username);
-                cmd.Parameters.AddWithValue("@Password", person.Password);
+                cmd.Parameters.AddWithValue("@Password", person.Password); 
                 cmd.Parameters.AddWithValue("@RoleId", person.RoleId);
 
                 return cmd.ExecuteNonQuery();
