@@ -147,7 +147,14 @@ namespace CDOrganiserProjectApp
                         string albumName = reader["albumName"].ToString();
                         string genreName = reader["genreName"].ToString();
                         string dateOfRelease = reader["dateOfRelease"].ToString();
-                        albums.Add(new Albums(albumId, albumName, genreName, dateOfRelease));
+                        int formatId = Convert.ToInt32(reader["formatID"]);
+                        int artistId = Convert.ToInt32(reader["artistID"]);
+                        int bandId = Convert.ToInt32(reader["bandID"]);
+                        int roomId = Convert.ToInt32(reader["roomID"]);
+                        char shelfTag = Convert.ToChar(reader["shelfTag"]);
+                        string shelfRow = reader["shelfRow"].ToString();
+
+                        albums.Add(new Albums(albumId, albumName, genreName, dateOfRelease, formatId, artistId, bandId, roomId, shelfTag, shelfRow));
                       
                     }
                 }
@@ -160,9 +167,9 @@ namespace CDOrganiserProjectApp
         {
             using (SqlCommand cmd = new SqlCommand($"INSERT INTO Contents.tblAlbums (albumName, genreName, dateOfRelease) VALUES (@albumName, @genreName, @dateOfRelease); SELECT SCOPE_IDENTITY();", conn))
             {
-                cmd.Parameters.AddWithValue("@albumName", albums.albumName);
-                cmd.Parameters.AddWithValue("@genreName", albums.genreName);
-                cmd.Parameters.AddWithValue("@dateOfRelease", albums.dateOfRelease);
+                cmd.Parameters.AddWithValue("@albumName", albums.AlbumName);
+                cmd.Parameters.AddWithValue("@genreName", albums.GenreName);
+                cmd.Parameters.AddWithValue("@dateOfRelease", albums.DateOfRelease);
 
                 return Convert.ToInt32(cmd.ExecuteScalar());
             }
