@@ -27,7 +27,7 @@ namespace CDOrganiserProjectApp
             storageManager = new StorageManager(connectionString);
             view = new ConsoleView();
 
-            StartMenuscreenOptions();
+            AdminMenuscreenOptions();
              
             storageManager.CloseConnection();
 
@@ -79,6 +79,7 @@ namespace CDOrganiserProjectApp
                         view.DisplayMessage("\nEnter your password... ");
                         string pw = view.GetInput();
 
+                        // Authentication();
 
                     break;
 
@@ -327,12 +328,19 @@ namespace CDOrganiserProjectApp
 
         }
 
-        private static void Authentication()
+        private static void Authentication(string username, string password)
         {
-            string input;
-            bool invalid;
 
-            
+            bool invalid = true;
+
+            do
+            {
+                switch (username)
+                {
+                    default:
+                    break;
+                }
+            } while (invalid);
 
         }
 

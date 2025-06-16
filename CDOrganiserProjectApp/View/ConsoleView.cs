@@ -12,13 +12,13 @@ namespace CDOrganiserProjectApp.View
     public class ConsoleView
     {
 
-        const int wait = 125;
+        const int wait = 100;
 
         public string StartMenu()
         {
             Console.WriteLine("\n\t CD Manager");
-            Console.WriteLine("\n\t 'Create account' - [ R ]");
-            Console.WriteLine("\n\t 'Log in' - [ L ]\n");
+            Console.WriteLine("\n\t 'Create account' - [R]");
+            Console.WriteLine("\n\t 'Log in' - [L]\n");
 
             return Console.ReadLine();
         }
@@ -115,12 +115,6 @@ namespace CDOrganiserProjectApp.View
         {
             return Console.ReadLine();
         }
-
-        public int GetIntInput()
-        {
-            return int.Parse(Console.ReadLine());
-        }
-
 
 
     }

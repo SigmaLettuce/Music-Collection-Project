@@ -161,6 +161,7 @@ namespace CDOrganiserProjectApp
             using (SqlCommand cmd = new SqlCommand($"INSERT INTO Contents.tblAlbums (albumName, genreName, dateOfRelease) VALUES (@albumName, @genreName, @dateOfRelease); SELECT SCOPE_IDENTITY();", conn))
             {
                 cmd.Parameters.AddWithValue("@albumName", albums.albumName, "@genreName", albums.genreName, "@dateOfRelease", albums.dateOfRelease);
+                cmd.Para
                 return Convert.ToInt32(cmd.ExecuteScalar());
             }
         }
@@ -194,14 +195,30 @@ namespace CDOrganiserProjectApp
 
         }
 
-        public int AuthenticateAccount(string username, string password)
+        /*
+        public List<Person> AuthenticateAccount(string username, string password)
         {
-            string sqlStr = $"SELECT FROM Contents.tblPerson WHERE ";
+            List<Person> credentials = new List<Person>();
+            string sqlStr = $"SELECT FROM Contents.tblPerson WHERE username = @username AND pw = @password";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
-                return cmd.ExecuteNonQuery();
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        username = reader["username"].ToString();
+                        password = reader["password"].ToString();
+
+                        credentials.Add(new Person(username, password));
+                    }
+
+                }
+
+
+                return credentials();
             }
         }
+        */
 
         public void CloseConnection()
         {
