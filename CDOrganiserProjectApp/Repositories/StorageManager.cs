@@ -155,7 +155,7 @@ namespace CDOrganiserProjectApp
             return albums;
         }
 
-        /*
+        
         public int InsertAlbum(Albums albums)
         {
             using (SqlCommand cmd = new SqlCommand($"INSERT INTO Contents.tblAlbums (albumName, genreName, dateOfRelease) VALUES (@albumName, @genreName, @dateOfRelease); SELECT SCOPE_IDENTITY();", conn))
@@ -166,6 +166,7 @@ namespace CDOrganiserProjectApp
             }
         }
 
+        /*
         public int UpdateAlbumName(int albumId, string albumName, string genreName, string dateOfRelease)
         {
             string sqlStr = $"UPDATE Contents.tblAlbums SET albumName = @albumName WHERE artistID = @artistId";
@@ -179,16 +180,35 @@ namespace CDOrganiserProjectApp
 
         */
 
-        public int CreateAccount(Accounts person)
+        public List<Rooms> GetAllRooms()
+        {
+            List<Rooms> rooms = new List<Rooms>();
+            string sqlStr = "SELECT * FROM Properties.tblStorageRoom";
+            using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
+            {
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        int roomId = Convert.ToInt32(reader["roomID"]);
+                        string roomName = reader["roomName"].ToString();
+                        rooms.Add(new Rooms(roomId, roomName));
+                    }
+                }
+            }
+            return rooms;
+        }
+
+        public int CreateAccount(Accounts account)
         {
             string sqlStr = $"INSERT INTO Contents.tblPerson (fName, sName, username, pw, roleID) VALUES (@FirstName, @LastName, @Username, @Password, @RoleId); SELECT SCOPE_IDENTITY();";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
-                cmd.Parameters.AddWithValue("@FirstName", person.FirstName);
-                cmd.Parameters.AddWithValue("@LastName", person.LastName);
-                cmd.Parameters.AddWithValue("@Username", person.Username);
-                cmd.Parameters.AddWithValue("@Password", person.Password); 
-                cmd.Parameters.AddWithValue("@RoleId", person.RoleId);
+                cmd.Parameters.AddWithValue("@FirstName", account.FirstName);
+                cmd.Parameters.AddWithValue("@LastName", account.LastName);
+                cmd.Parameters.AddWithValue("@Username", account.Username);
+                cmd.Parameters.AddWithValue("@Password", account.Password); 
+                cmd.Parameters.AddWithValue("@RoleId", account.RoleId);
 
                 return cmd.ExecuteNonQuery();
             }

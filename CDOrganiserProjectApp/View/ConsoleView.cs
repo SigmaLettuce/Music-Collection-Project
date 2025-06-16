@@ -50,10 +50,10 @@ namespace CDOrganiserProjectApp.View
             return Console.ReadLine();
         }
 
-        public string DisplayGuestMenu()
+        public string DisplayGuestMenu() 
         {
             Console.WriteLine("\n\tWelcome to your CD Manager! ");
-            Console.WriteLine("\tList of commands... \n");
+            Console.WriteLine("\tList of commands... \n"); 
 
             Console.WriteLine("Prefixes · Commands to run on sets of data");
             Console.WriteLine("\n\t'view' - Displays information\n");
