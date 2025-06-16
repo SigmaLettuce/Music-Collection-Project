@@ -63,7 +63,7 @@ namespace CDOrganiserProjectApp
                         view.DisplayMessage("\nCreate a password... ");
                         string newpw = view.GetInput();
 
-                        Person newVisitor = new Person(personId, fName, sName, newuser, newpw, roleId);
+                        Accounts newVisitor = new Accounts(personId, fName, sName, newuser, newpw, roleId);
 
                         int generatedId = storageManager.CreateAccount(newVisitor);
                         Thread.Sleep(wait);

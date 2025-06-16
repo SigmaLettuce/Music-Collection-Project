@@ -179,7 +179,7 @@ namespace CDOrganiserProjectApp
 
         */
 
-        public int CreateAccount(Person person)
+        public int CreateAccount(Accounts person)
         {
             string sqlStr = $"INSERT INTO Contents.tblPerson (fName, sName, username, pw, roleID) VALUES (@FirstName, @LastName, @Username, @Password, @RoleId); SELECT SCOPE_IDENTITY();";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
@@ -196,9 +196,9 @@ namespace CDOrganiserProjectApp
         }
 
         
-        public List<Person> GetAllCredentials()
+        public List<Accounts> GetAllCredentials()
         {
-            List<Person> credentials = new List<Person>();
+            List<Accounts> credentials = new List<Accounts>();
             string sqlStr = $"SELECT FROM Contents.tblPerson WHERE username = @username AND pw = @password";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
@@ -213,7 +213,7 @@ namespace CDOrganiserProjectApp
                         string password = reader["pw"].ToString();
                         int roleId = Convert.ToInt32(reader["roleID"]);
 
-                        credentials.Add(new Person(personId, fName, sName, username, password, roleId));
+                        credentials.Add(new Accounts(personId, fName, sName, username, password, roleId));
                     }
 
                 }

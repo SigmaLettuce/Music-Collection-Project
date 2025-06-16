@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CDOrganiserProjectApp.Model
 {
-    public class Person
+    public class Accounts
     {
         public int PersonId { get; set; }
         public string FirstName { get; set; }
@@ -15,7 +15,7 @@ namespace CDOrganiserProjectApp.Model
         public string Password { get; set; }
         public int RoleId {  get; set; }
         
-        public Person(int pid, string fn, string ln, string un, string pw, int rid) 
+        public Accounts(int pid, string fn, string ln, string un, string pw, int rid) 
         {
             PersonId = pid;
             FirstName = fn;
