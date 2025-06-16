@@ -40,8 +40,8 @@ namespace CDOrganiserProjectApp.View
             Console.WriteLine("\t'artists' - All artists who have published an album you own");
             Console.WriteLine("\t'bands' - All bands who have published an album you own");
             Console.WriteLine("\t'all' - All artists, including bands, who have published an album you own");
-
             Console.WriteLine("\t'rooms' - All available rooms\n");
+
             Console.WriteLine("Extras · Commands irrelevant to your data");
             Console.WriteLine("\n\t'create admin' - Creates an administrator account");
             Console.WriteLine("\t'create user' - Creates a user account");

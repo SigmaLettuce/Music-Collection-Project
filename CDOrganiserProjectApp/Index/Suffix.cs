@@ -25,8 +25,8 @@ namespace CDOrganiserProjectApp.Index
 
                     // Admin only suffix
 
-                    public const string @user = "user";
-                    public const string @admin = "admin";
+                        public const string @user = "user";
+                        public const string @admin = "admin";
 
                     // Globally used suffix
 

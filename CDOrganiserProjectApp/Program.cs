@@ -18,7 +18,7 @@ namespace CDOrganiserProjectApp
         private static ConsoleView view;
         private static readonly int wait = 1000;
 
-        private static int roleId;
+        private static int roleId = 2;
 
         static void Main(string[] args)
         {
@@ -70,6 +70,8 @@ namespace CDOrganiserProjectApp
 
                         GuestMenuscreenOptions();
                         
+                        invalid = false;
+                        
                     break;
 
                     case "L":
@@ -79,15 +81,23 @@ namespace CDOrganiserProjectApp
                         view.DisplayMessage("\nEnter your password... ");
                         string pw = view.GetInput();
 
-                        // Authentication();
+                        invalid = false;
 
                     break;
 
                     default:
+                        view.DisplayMessage("I'm sorry, this isn't a valid selection. Can you try again? ");
+                        Thread.Sleep(wait);
+                        Console.Clear();
+
+                        StartMenuscreenOptions();
+
+                        invalid = true;
+
                     break;
                 }
 
-            }  while (invalid.Equals(true));
+            }  while (invalid);
 
 
 
@@ -102,7 +112,7 @@ namespace CDOrganiserProjectApp
             string adminInput = view.DisplayAdminMenu();
             view.DisplayMessage("");
 
-            Thread.Sleep(1000);
+            Thread.Sleep(wait);
 
 
             do
@@ -338,29 +348,6 @@ namespace CDOrganiserProjectApp
 
         }
 
-        private static void Authentication(string username, string password)
-        {
-
-            bool invalid = true;
-
-            do
-            {
-                switch (username)
-                {
-                    default:
-                    break;
-                }
-
-                switch (password)
-                {
-                    default:
-                    break;
-                }
-
-            } while (invalid);
-
-        }
-
         private static void GoBack() 
         {
             string input;
@@ -388,6 +375,7 @@ namespace CDOrganiserProjectApp
 
                             case 2:
                                 AdminMenuscreenOptions();
+
                             break;
 
                         }
