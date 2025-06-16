@@ -3,17 +3,29 @@ namespace CDOrganiserProjectApp.Model
 {
     public class Albums 
     { 
-        public int albumId {  get; set; }
-        public string albumName { get; set; }
-        public string genreName { get; set; }
-        public string dateOfRelease { get; set; }
+        public int AlbumId {  get; set; }
+        public string AlbumName { get; set; }
+        public string GenreName { get; set; }
+        public string DateOfRelease { get; set; }
+        public int FormatId { get; set; }
+        public int ArtistId { get; set; }
+        public int BandId { get; set; }
+        public int RoomId { get; set; }
+        public char ShelfTag { get; set; }
 
-        public Albums(int alid, string aln, string gen, string dtor)
+        public string ShelfRow { get; set; }
+        public Albums(int alid, string aln, string gen, string dtor, int fid, int aid, int bid, int rid, char sta, string sro)
         {
-            albumId = alid;
-            albumName = aln;
-            genreName = gen;
-            dateOfRelease = dtor;
+            AlbumId = alid;
+            AlbumName = aln;
+            GenreName = gen;
+            DateOfRelease = dtor;
+            FormatId = fid;
+            ArtistId = aid;
+            BandId = bid;
+            RoomId = rid;
+            ShelfTag = sta;
+            ShelfRow = sro;
 
         }
     }
