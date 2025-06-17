@@ -79,14 +79,20 @@ namespace CDOrganiserProjectApp
                         view.DisplayMessage("\nEnter your username... ");
                         string user = view.GetInput();
 
+
                         view.DisplayMessage("\nEnter your password... ");
                         string pw = view.GetInput();
 
-                        List<Accounts> credentials = storageManager.GetAllCredentials(user, pw);
-                        view.DisplayMessage($"Updated {credentials.Count} records.");
+                        string fetchuser = storageManager.GetUsernameCredentials(user, pw);
+                        string fetchpw = storageManager.GetPasswordCredentials(user, pw);
+                        int fetchrole = storageManager.FetchRole(user);
+
                         invalid = false;
 
-                        
+                        if (user.Equals(fetchuser) && pw.Equals(fetchpw))
+                        {
+
+                        }
 
                     break;
 

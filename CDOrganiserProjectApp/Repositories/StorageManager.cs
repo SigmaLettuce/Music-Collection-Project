@@ -304,19 +304,19 @@ namespace CDOrganiserProjectApp
 
         }
 
-         
+
         public string GetUsernameCredentials(string username)
         {
-            
-            string sqlStr = $"SELECT username, pw FROM Contents.tblAccounts WHERE username = @username AND pw = @password";
+
+            string sqlStr = $"SELECT username FROM Contents.tblAccounts WHERE username = @username";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
+
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())
                     {
                         username = reader["username"].ToString();
-
                     }
 
                 }
@@ -324,12 +324,53 @@ namespace CDOrganiserProjectApp
                 return username;
             }
         }
-        
+
+        public string GetPasswordCredentials(string password)
+        {
+
+            string sqlStr = $"SELECT pw FROM Contents.tblAccounts WHERE pw = @password";
+            using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
+            {
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        password = reader["pw"].ToString();
+                    }
+
+                }
+
+                return password;
+            }
+        }
+
+        public int FetchRole()
+        {
+
+            int roleId = 0;
+
+            string sqlStr = $"SELECT roleID FROM Contents.tblAccounts WHERE username = @username";
+            using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
+            {
+
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        roleId = Convert.ToInt32(reader["roleID"].ToString());
+                    }
+
+                }
+
+                return roleId;
+            }
+        }
+
 
         public void CloseConnection()
         {
             if (conn != null && conn.State == System.Data.ConnectionState.Open)
-            {
+            { 
                 conn.Close();
                 Console.WriteLine("\nConnection terminated.");
             }
