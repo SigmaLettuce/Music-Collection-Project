@@ -1,1 +1,1 @@
-﻿DBCC CHECKIDENT('Contents.tblPerson', reseed, 13);
+﻿

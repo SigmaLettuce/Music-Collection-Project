@@ -64,6 +64,7 @@ namespace CDOrganiserProjectApp
                         string newpw = view.GetInput();
 
                         Accounts newVisitor = new Accounts(personId, fName, sName, newuser, newpw, roleId);
+                        
 
                         int generatedId = storageManager.CreateAccount(newVisitor);
                         Thread.Sleep(wait);
@@ -81,7 +82,11 @@ namespace CDOrganiserProjectApp
                         view.DisplayMessage("\nEnter your password... ");
                         string pw = view.GetInput();
 
+                        List<Accounts> credentials = storageManager.GetAllCredentials(user, pw);
+                        view.DisplayMessage($"Updated {credentials.Count} records.");
                         invalid = false;
+
+                        
 
                     break;
 

@@ -290,7 +290,7 @@ namespace CDOrganiserProjectApp
 
         public int CreateAccount(Accounts account)
         {
-            string sqlStr = $"INSERT INTO Contents.tblPerson (fName, sName, username, pw, roleID) VALUES (@FirstName, @LastName, @Username, @Password, @RoleId); SELECT SCOPE_IDENTITY();";
+            string sqlStr = $"INSERT INTO Contents.tblAccounts (fName, sName, username, pw, roleID) VALUES (@FirstName, @LastName, @Username, @Password, @RoleId); SELECT SCOPE_IDENTITY();";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
                 cmd.Parameters.AddWithValue("@FirstName", account.FirstName);
@@ -304,11 +304,11 @@ namespace CDOrganiserProjectApp
 
         }
 
-        
-        public List<Accounts> GetAllCredentials()
+         
+        public List<Accounts> GetAllCredentials(string username, string password)
         {
             List<Accounts> credentials = new List<Accounts>();
-            string sqlStr = $"SELECT FROM Contents.tblPerson WHERE username = @username AND pw = @password";
+            string sqlStr = $"SELECT username, pw FROM Contents.tblAccounts WHERE username = @username AND pw = @password";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
                 using (SqlDataReader reader = cmd.ExecuteReader())
@@ -318,15 +318,15 @@ namespace CDOrganiserProjectApp
                         int personId = Convert.ToInt32(reader["personID"]);
                         string fName = reader["fName"].ToString();
                         string sName = reader["sName"].ToString();
-                        string username = reader["username"].ToString();
-                        string password = reader["pw"].ToString();
+                        username = reader["username"].ToString();
+                        password = reader["pw"].ToString();
                         int roleId = Convert.ToInt32(reader["roleID"]);
 
                         credentials.Add(new Accounts(personId, fName, sName, username, password, roleId));
+
                     }
 
                 }
-
 
                 return credentials;
             }
