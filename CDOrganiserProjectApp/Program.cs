@@ -16,7 +16,7 @@ namespace CDOrganiserProjectApp
     {
         private static StorageManager storageManager;
         private static ConsoleView view;
-        const int wait = 1000;
+        public const int wait = 1000;
 
         private static int roleId;
 
@@ -307,7 +307,9 @@ namespace CDOrganiserProjectApp
 
                         GoBack();
 
-                        break;
+                    break;
+
+
 
                     case Prefix.@log + " " + Suffix.@out:
                         Thread.Sleep(wait);

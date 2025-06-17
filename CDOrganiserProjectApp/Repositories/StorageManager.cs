@@ -16,16 +16,18 @@ namespace CDOrganiserProjectApp
             {
                 conn = new SqlConnection(connectionStr);
                 conn.Open();
-                Console.WriteLine("Connection successful.");
+
+                Console.WriteLine("\n  Connection successful.");
+
             }
             catch (SqlException e)
             {
-                Console.WriteLine("Connection failed.\n");
+                Console.WriteLine("\n  Connection failed.\n");
                 Console.WriteLine(e.Message);
             }
             catch (Exception ex)
             {
-                Console.WriteLine("An error occured.");
+                Console.WriteLine("\n  An error occured.");
                 Console.WriteLine(ex.Message);
             }
         }

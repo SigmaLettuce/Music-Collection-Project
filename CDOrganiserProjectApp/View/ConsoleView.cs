@@ -27,7 +27,7 @@ namespace CDOrganiserProjectApp.View
         {
             Console.WriteLine("\n\tWelcome to your CD Manager! ");
             Console.WriteLine("\tList of commands... \n");
-
+                    
             Console.WriteLine("Prefixes · Commands to run on sets of data");
                 Console.WriteLine("\n\t'view' - Displays information");
                 Console.WriteLine("\t'up' - Updates information");
@@ -47,11 +47,11 @@ namespace CDOrganiserProjectApp.View
                 Console.WriteLine("\t'rooms' - All available rooms\n");
 
             Console.WriteLine("Extras · Commands irrelevant to your data");
-                Console.WriteLine("Prefixes · Commands to run on sets of data");
+                Console.WriteLine("\n  Prefixes · Commands to run on sets of data");
                     Console.WriteLine("\n\t'create' - Creates an account");
                     Console.WriteLine("\t'del' - Deletes an account\n");
 
-                Console.WriteLine("Suffixes · Data sets available to run commands on");
+                Console.WriteLine("  Suffixes · Data sets available to run commands on");
                     Console.WriteLine("\n\t'admin' - An administrator account");
                     Console.WriteLine("\t'user' - A user account");
                     Console.WriteLine("\t'help' - A comprehensive guide to the appplication");
