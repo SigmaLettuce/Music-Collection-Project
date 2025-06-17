@@ -8,10 +8,10 @@ VALUES
 (2, 'Confessions', 'R&B', '20040224', 1, 2, 5, 'A', '2A', 0),
 (3, 'Songs in A Minor', 'R&B', '20010201', 1, 3, 6, 'A', '3A', 0),
 (4, 'The College Dropout', 'Hip-Hop', '20040210', 1, 4, 1, 'B', '1B', 0),
-(5, 'Stripped', 'Pop', '20021119', 1, 5, , 2, 'B', '2B', 0),
+(5, 'Stripped', 'Pop', '20021119', 1, 5, 2, 'B', '2B', 0),
 (6, 'Back to Bedlam', 'Pop Rock', '20040523', 1, 6, 4, 'B', '3B', 0),
 (7, 'Dangerously in Love', 'R&B', '20030624', 1, 7, 5, 'C', '1C', 0),
-(8, 'Let Go', 'Pop Rock', '20020902', 1, 8, , 1, 'C', '2C', 0),
+(8, 'Let Go', 'Pop Rock', '20020902', 1, 8, 1, 'C', '2C', 0),
 (9, 'FutureSex/LoveSounds', 'Pop/R&B', '20060908', 1, 1, 6, 'D', '1D', 0),
 (10, 'The Miseducation of Lauryn Hill', 'R&B', '19980825', 1, 9, 3, 'D', '2D', 0),
 (11, 'BDay', 'R&B', '20060904', 1, 7, 2, 'E', '1E', 0),
@@ -20,7 +20,7 @@ VALUES
 (14, 'Get Lifted', 'R&B', '20041228', 1, 12, 2, 'F', '2F', 0);
 
 
-SET IDENTITY_INSERT Contnets.tblArtistAlbums OFF;
+SET IDENTITY_INSERT Contents.tblArtistAlbums OFF;
 
 SET IDENTITY_INSERT Contents.tblBandAlbums ON;
 
@@ -57,4 +57,4 @@ VALUES
 (29, 'Ten', 'Grunge', '19910827', 2, 7, 2, 'G', '1G', 0),
 (30, 'Vs.', 'Grunge', '19931019', 1, 7, 5, 'G', '1G', 0);
 
-SET IDENTITY_INSERT Contnets.tblBandAlbums OFF;
+SET IDENTITY_INSERT Contents.tblBandAlbums OFF;
