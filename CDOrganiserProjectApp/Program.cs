@@ -331,16 +331,6 @@ namespace CDOrganiserProjectApp
 
                     break;
 
-                    case Prefix.view + " " + Suffix.albums:
-                        List<Albums> albums = storageManager.GetAllAlbums();
-                        view.DisplayAlbums(albums);
-
-                        invalid = false;
-
-                        GoBack();
-
-                    break;
-
                     default:
                         view.DisplayMessage("I'm sorry, this isn't a valid selection. Can you try again? ");
                         Thread.Sleep(wait);

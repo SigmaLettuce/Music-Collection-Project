@@ -136,7 +136,7 @@ namespace CDOrganiserProjectApp
         public List<ArtistAlbums> GetAllArtistAlbums()
         {
             List<ArtistAlbums> albums = new List<ArtistAlbums>();
-            string sqlStr = "SELECT tblAlbums.albumID, tblAlbums.albumName, tblAlbums.genreName, tblAlbums.dateOfRelease, tblFormat.formatName, tblArtists.artistName, tblBands.bandName, tblStorageRoom.roomName, tblAlbums.shelfTag, tblAlbums.shelfRow FROM Contents.tblAlbums LEFT JOIN Properties.tblFormat ON tblAlbums.formatID = tblFormat.formatID LEFT JOIN Contents.tblArtists ON tblAlbums.artistID = tblArtists.artistID LEFT JOIN Contents.tblBands ON tblAlbums.bandID = tblBands.bandID LEFT JOIN Properties.tblStorageRoom ON tblAlbums.roomID = tblStorageRoom.roomID ";
+            string sqlStr = "SELECT albumID, albumName, genreName, dateOfRelease, formatName, artistName, roomName, shelfTag, shelfRow, lost FROM Contents.tblArtistAlbums, Properties.tblFormat, Contents.tblArtists, Properties.tblShelf, Properties.tblRow WHERE tblArtistAlbums.formatID = tblFormat.formatID AND tblArtistAlbums.artistID = tblArtists.artistID AND tblArtistAlbums.shelfTag = tblShelf.shelfTag AND tblArtistAlbums.shelfRow = tblRow.shelfRow ORDER BY albumID asc";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
                 using (SqlDataReader reader = cmd.ExecuteReader())
@@ -179,7 +179,7 @@ namespace CDOrganiserProjectApp
         public List<BandAlbums> GetAllBandAlbums()
         {
             List<BandAlbums> albums = new List<BandAlbums>();
-            string sqlStr = "SELECT DISTINCT tblAlbums.albumID, tblAlbums.albumName, tblAlbums.genreName, tblAlbums.dateOfRelease, tblFormat.formatName, tblArtists.artistName, tblBands.bandName, tblStorageRoom.roomName, tblAlbums.shelfTag, tblAlbums.shelfRow FROM Contents.tblAlbums LEFT JOIN Properties.tblFormat ON tblAlbums.formatID = tblFormat.formatID LEFT JOIN Contents.tblArtists ON tblAlbums.artistID = tblArtists.artistID LEFT JOIN Contents.tblBands ON tblAlbums.bandID = tblBands.bandID LEFT JOIN Properties.tblStorageRoom ON tblAlbums.roomID = tblStorageRoom.roomID ";
+            string sqlStr = "SELECT albumID, albumName, genreName, dateOfRelease, formatName, bandName, roomName, shelfTag, shelfRow, lost FROM Contents.tblBandAlbums, Properties.tblFormat, Contents.tblBands, Properties.tblStorageRoom WHERE tblBandAlbums.formatID = tblFormat.formatID AND tblBandAlbums.bandID = tblBands.bandID AND tblBandAlbums.roomID = tblStorageRoom.roomID";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
                 using (SqlDataReader reader = cmd.ExecuteReader())
@@ -206,7 +206,7 @@ namespace CDOrganiserProjectApp
         }
 
 
-        public int InsertAlbum(Albums albums)
+        public int InsertBandAlbum(BandAlbums albums)
         {
             using (SqlCommand cmd = new SqlCommand($"INSERT INTO Contents.tblAlbums (albumName, genreName, dateOfRelease) VALUES (@albumName, @genreName, @dateOfRelease); SELECT SCOPE_IDENTITY();", conn))
             {
