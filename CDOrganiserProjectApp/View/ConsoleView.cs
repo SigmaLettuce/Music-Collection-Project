@@ -96,11 +96,21 @@ namespace CDOrganiserProjectApp.View
 
         }
 
-        public void DisplayAlbums(List<Albums> albums)
+        public void DisplayArtistAlbums(List<ArtistAlbums> albums)
         {
-            foreach (Albums album in albums)
+            foreach (ArtistAlbums album in albums)
             {
-                Console.WriteLine($"{album.AlbumId}, {album.AlbumName}, {album.GenreName}, {album.DateOfRelease}, {album.FormatName}, {album.ArtistName}, {album.BandName}, {album.RoomName}, {album.ShelfTag}, {album.ShelfRow}");
+                Console.WriteLine($"{album.AlbumId}, {album.AlbumName}, {album.GenreName}, {album.DateOfRelease}, {album.FormatName}, {album.ArtistName}, {album.RoomName}, {album.ShelfTag}, {album.ShelfRow}, {album.Lost}");
+                Thread.Sleep(wait);
+
+            }
+        }
+
+        public void DisplayBandAlbums(List<BandAlbums> albums)
+        {
+            foreach (BandAlbums album in albums)
+            {
+                Console.WriteLine($"{album.AlbumId}, {album.AlbumName}, {album.GenreName}, {album.DateOfRelease}, {album.FormatName}, {album.BandName}, {album.RoomName}, {album.ShelfTag}, {album.ShelfRow}, {album.Lost}");
                 Thread.Sleep(wait);
 
             }

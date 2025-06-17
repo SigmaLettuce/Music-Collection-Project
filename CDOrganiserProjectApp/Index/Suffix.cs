@@ -11,7 +11,7 @@ namespace CDOrganiserProjectApp.Index
 
         // Rudimentary suffixes ≻ Commands
 
-        // Admin-only suffix
+        // Admin only suffix
         
             public const string @albums = "albums";
             public const string @artists = "artists";

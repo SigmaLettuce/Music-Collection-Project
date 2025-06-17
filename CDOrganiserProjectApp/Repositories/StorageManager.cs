@@ -133,15 +133,15 @@ namespace CDOrganiserProjectApp
 
         }
 
-        public List<Albums> GetAllAlbums()
+        public List<ArtistAlbums> GetAllArtistAlbums()
         {
-            List<Albums> albums = new List<Albums>();
-            string sqlStr = "SELECT DISTINCT tblAlbums.albumID, tblAlbums.albumName, tblAlbums.genreName, tblAlbums.dateOfRelease, tblFormat.formatName, tblArtists.artistName, tblBands.bandName, tblStorageRoom.roomName, tblAlbums.shelfTag, tblAlbums.shelfRow FROM Contents.tblAlbums LEFT JOIN Properties.tblFormat ON tblAlbums.formatID = tblFormat.formatID LEFT JOIN Contents.tblArtists ON tblAlbums.artistID = tblArtists.artistID LEFT JOIN Contents.tblBands ON tblAlbums.bandID = tblBands.bandID LEFT JOIN Properties.tblStorageRoom ON tblAlbums.roomID = tblStorageRoom.roomID ";
+            List<ArtistAlbums> albums = new List<ArtistAlbums>();
+            string sqlStr = "SELECT tblAlbums.albumID, tblAlbums.albumName, tblAlbums.genreName, tblAlbums.dateOfRelease, tblFormat.formatName, tblArtists.artistName, tblBands.bandName, tblStorageRoom.roomName, tblAlbums.shelfTag, tblAlbums.shelfRow FROM Contents.tblAlbums LEFT JOIN Properties.tblFormat ON tblAlbums.formatID = tblFormat.formatID LEFT JOIN Contents.tblArtists ON tblAlbums.artistID = tblArtists.artistID LEFT JOIN Contents.tblBands ON tblAlbums.bandID = tblBands.bandID LEFT JOIN Properties.tblStorageRoom ON tblAlbums.roomID = tblStorageRoom.roomID ";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
-                    while (reader.Read()) 
+                    while (reader.Read())
                     {
                         int albumId = Convert.ToInt32(reader["albumID"]);
                         string albumName = reader["albumName"].ToString();
@@ -149,20 +149,63 @@ namespace CDOrganiserProjectApp
                         string dateOfRelease = reader["dateOfRelease"].ToString();
                         string formatName = reader["formatName"].ToString();
                         string artistName = reader["artistName"].ToString();
-                        string bandName = reader["bandName"].ToString();
                         string roomName = reader["roomName"].ToString();
                         char shelfTag = Convert.ToChar(reader["shelfTag"]);
                         string shelfRow = reader["shelfRow"].ToString();
+                        bool lost = Convert.ToBoolean(reader["lost"]);
 
-                        albums.Add(new Albums(albumId, albumName, genreName, dateOfRelease, formatName, artistName, bandName, roomName, shelfTag, shelfRow));
-                      
+                        albums.Add(new ArtistAlbums(albumId, albumName, genreName, dateOfRelease, formatName, artistName, roomName, shelfTag, shelfRow, lost));
+
                     }
                 }
             }
             return albums;
         }
 
-        
+
+        public int InsertArtistAlbum(ArtistAlbums albums)
+        {
+            using (SqlCommand cmd = new SqlCommand($"INSERT INTO Contents.tblArtistAlbums (albumName, genreName, dateOfRelease, ) VALUES (@albumName, @genreName, @dateOfRelease); SELECT SCOPE_IDENTITY();", conn))
+            {
+                cmd.Parameters.AddWithValue("@albumName", albums.AlbumName);
+                cmd.Parameters.AddWithValue("@genreName", albums.GenreName);
+                cmd.Parameters.AddWithValue("@dateOfRelease", albums.DateOfRelease);
+
+                return Convert.ToInt32(cmd.ExecuteScalar());
+            }
+        }
+
+
+        public List<BandAlbums> GetAllBandAlbums()
+        {
+            List<BandAlbums> albums = new List<BandAlbums>();
+            string sqlStr = "SELECT DISTINCT tblAlbums.albumID, tblAlbums.albumName, tblAlbums.genreName, tblAlbums.dateOfRelease, tblFormat.formatName, tblArtists.artistName, tblBands.bandName, tblStorageRoom.roomName, tblAlbums.shelfTag, tblAlbums.shelfRow FROM Contents.tblAlbums LEFT JOIN Properties.tblFormat ON tblAlbums.formatID = tblFormat.formatID LEFT JOIN Contents.tblArtists ON tblAlbums.artistID = tblArtists.artistID LEFT JOIN Contents.tblBands ON tblAlbums.bandID = tblBands.bandID LEFT JOIN Properties.tblStorageRoom ON tblAlbums.roomID = tblStorageRoom.roomID ";
+            using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
+            {
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        int albumId = Convert.ToInt32(reader["albumID"]);
+                        string albumName = reader["albumName"].ToString();
+                        string genreName = reader["genreName"].ToString();
+                        string dateOfRelease = reader["dateOfRelease"].ToString();
+                        string formatName = reader["formatName"].ToString();
+                        string bandName = reader["bandName"].ToString();
+                        string roomName = reader["roomName"].ToString();
+                        char shelfTag = Convert.ToChar(reader["shelfTag"]);
+                        string shelfRow = reader["shelfRow"].ToString();
+                        bool lost = Convert.ToBoolean(reader["lost"]);
+
+                        albums.Add(new BandAlbums(albumId, albumName, genreName, dateOfRelease, formatName, bandName, roomName, shelfTag, shelfRow, lost));
+
+                    }
+                }
+            }
+            return albums;
+        }
+
+
         public int InsertAlbum(Albums albums)
         {
             using (SqlCommand cmd = new SqlCommand($"INSERT INTO Contents.tblAlbums (albumName, genreName, dateOfRelease) VALUES (@albumName, @genreName, @dateOfRelease); SELECT SCOPE_IDENTITY();", conn))
@@ -174,6 +217,7 @@ namespace CDOrganiserProjectApp
                 return Convert.ToInt32(cmd.ExecuteScalar());
             }
         }
+
 
         /*
         public int UpdateAlbumName(int albumId, string albumName, string genreName, string dateOfRelease)
