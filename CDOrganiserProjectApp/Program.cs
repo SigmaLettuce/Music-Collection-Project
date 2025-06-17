@@ -107,7 +107,32 @@ namespace CDOrganiserProjectApp
                             }
                         }
 
-                    break;
+                        else if (user != fetchuser && pw.Equals(fetchpw)) 
+                        {
+                            view.DisplayMessage("Your username is incorrect. ");
+                            Thread.Sleep(wait);
+                            Console.Clear();
+
+
+                        }
+
+                        else if (user.Equals(fetchuser) && pw != fetchpw)
+                        {
+                            view.DisplayMessage("Your password is incorrect. ");
+                            Thread.Sleep(wait);
+                            Console.Clear();
+
+
+                        }
+
+                        else if (user != fetchuser && pw != fetchpw)
+                        {
+                            view.DisplayMessage("Your username and password are incorrect. ");
+                            Thread.Sleep(wait);
+                            Console.Clear();
+                        }
+
+                            break;
 
                     default:
                         view.DisplayMessage("I'm sorry, this isn't a valid selection. Can you try again? ");
@@ -430,11 +455,13 @@ namespace CDOrganiserProjectApp
                         switch (roleId)
                         {
                             case 1:
+
                                 GuestMenuscreenOptions();
 
                             break;
 
                             case 2:
+
                                 AdminMenuscreenOptions();
 
                             break;
@@ -568,6 +595,7 @@ namespace CDOrganiserProjectApp
 
             int rowsAffected = storageManager.DeleteRoomByName(roomName);
             view.DisplayMessage($"Deleted {rowsAffected} row.");
+
         }
 
         private static void UpdateArtistAlbum()
