@@ -186,7 +186,7 @@ namespace CDOrganiserProjectApp
         public List<ArtistAlbums> GetAllArtistAlbums()
         {
             List<ArtistAlbums> albums = new List<ArtistAlbums>();
-            string sqlStr = "SELECT albumID, albumName, genreName, dateOfRelease, formatName, artistName, roomName, shelfTag, shelfRow, lost FROM Contents.tblArtistAlbums, Properties.tblFormat, Contents.tblArtists, Properties.tblShelf, Properties.tblRow WHERE tblArtistAlbums.formatID = tblFormat.formatID AND tblArtistAlbums.artistID = tblArtists.artistID AND tblArtistAlbums.shelfTag = tblShelf.shelfTag AND tblArtistAlbums.shelfRow = tblRow.shelfRow ORDER BY albumID asc";
+            string sqlStr = "SELECT DISTINCT albumID, albumName, genreName, dateOfRelease, formatName, artistName, roomName, shelfTag, shelfRow, lost FROM Contents.tblArtistAlbums, Properties.tblFormat, Contents.tblArtists, Properties.tblStorageRoom WHERE tblArtistAlbums.formatID = tblFormat.formatID AND tblArtistAlbums.artistID = tblArtists.artistID AND tblArtistAlbums.roomID = tblStorageRoom.roomID";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
                 using (SqlDataReader reader = cmd.ExecuteReader())

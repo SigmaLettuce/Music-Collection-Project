@@ -29,28 +29,33 @@ namespace CDOrganiserProjectApp.View
             Console.WriteLine("\tList of commands... \n");
 
             Console.WriteLine("Prefixes · Commands to run on sets of data");
-            Console.WriteLine("\n\t'view' - Displays information");
-            Console.WriteLine("\t'up' - Updates information");
-            Console.WriteLine("\t'ins' - Adds new information");
-            Console.WriteLine("\t'del' - Delete unwanted information");
-            Console.WriteLine("\t'lost' - Marks a specified 'disc' as lost; this command can only be run on 'albums'\n");
+                Console.WriteLine("\n\t'view' - Displays information");
+                Console.WriteLine("\t'up' - Updates information");
+                Console.WriteLine("\t'ins' - Adds new information");
+                Console.WriteLine("\t'del' - Delete unwanted information");
+                Console.WriteLine("\t'lost' - Marks a specified 'disc' as lost; this command can only be run on 'albums'\n");
 
             Console.WriteLine("Bases · Distinguishes data set variants");
-            Console.WriteLine("\n\t'artist' - Albums of artists");
-            Console.WriteLine("\t'band' - Albums of bands\n");
+                Console.WriteLine("\n\t'artist' - Albums of artists");
+                Console.WriteLine("\t'band' - Albums of bands\n");
 
             Console.WriteLine("Suffixes · Data sets available to run commands on");
-            Console.WriteLine("\n\t'albums' - Albums of a compact disc; a CD");
-            Console.WriteLine("\t'artists' - All artists who have published an album you own");
-            Console.WriteLine("\t'bands' - All bands who have published an album you own");
-            Console.WriteLine("\t'all' - All artists, including bands, who have published an album you own");
-            Console.WriteLine("\t'rooms' - All available rooms\n");
+                Console.WriteLine("\n\t'albums' - Albums of a compact disc; a CD");
+                Console.WriteLine("\t'artists' - All artists who have published an album you own");
+                Console.WriteLine("\t'bands' - All bands who have published an album you own");
+                Console.WriteLine("\t'all' - All artists, including bands, who have published an album you own");
+                Console.WriteLine("\t'rooms' - All available rooms\n");
 
             Console.WriteLine("Extras · Commands irrelevant to your data");
-            Console.WriteLine("\n\t'help' - A comprehensive guide to the appplication");
-            Console.WriteLine("\t'create admin' - Creates an administrator account");
-            Console.WriteLine("\t'create user' - Creates a user account");
-            Console.WriteLine("\t'log out' - Exits the account; brings you back to 'Start Menu'\n");
+                Console.WriteLine("Prefixes · Commands to run on sets of data");
+                    Console.WriteLine("\n\t'create' - Creates an account");
+                    Console.WriteLine("\t'del' - Deletes an account\n");
+
+                Console.WriteLine("Suffixes · Data sets available to run commands on");
+                    Console.WriteLine("\n\t'admin' - An administrator account");
+                    Console.WriteLine("\t'user' - A user account");
+                    Console.WriteLine("\t'help' - A comprehensive guide to the appplication");
+                    Console.WriteLine("\t'log out' - Exits the account; brings you back to 'Start Menu'\n");
 
 
             return Console.ReadLine();
@@ -68,8 +73,14 @@ namespace CDOrganiserProjectApp.View
             Console.WriteLine("\n\t'categories' - Categories of music\n");
 
             Console.WriteLine("Extras · Commands irrelevant to your data");
-            Console.WriteLine("\t'create user' - Creates a user account");
-            Console.WriteLine("\n\t'log out' - Exits the account; brings you back to 'Start Menu'");
+            Console.WriteLine("\n\tPrefixes · Commands to run on sets of data");
+            Console.WriteLine("\t'create' - Creates an account");
+            Console.WriteLine("\t'del' - Deletes an account\n");
+
+            Console.WriteLine("Suffixes · Data sets available to run commands on");
+            Console.WriteLine("\n\t'user' - A user account");
+            Console.WriteLine("\t'help' - A comprehensive guide to the appplication");
+            Console.WriteLine("\t'log out' - Exits the account; brings you back to 'Start Menu'\n");
 
             return Console.ReadLine();
         }
@@ -84,7 +95,7 @@ namespace CDOrganiserProjectApp.View
         {
             foreach (Bands band in bands)
             {
-                Console.WriteLine($"{band.bandId}, {band.bandName}");;
+                Console.WriteLine($"{band.bandId}\t {band.bandName}");;
                 Thread.Sleep(wait);
 
             }        
@@ -95,7 +106,7 @@ namespace CDOrganiserProjectApp.View
         {
             foreach (Artists artist in artists)
             {
-                Console.WriteLine($"{artist.artistId}, {artist.artistName}");
+                Console.WriteLine($"{artist.artistId}\t {artist.artistName}");
                 Thread.Sleep(wait);
 
             }
@@ -106,7 +117,7 @@ namespace CDOrganiserProjectApp.View
         {
             foreach (Rooms room in rooms)
             {
-                Console.WriteLine($"{room.RoomId}, {room.RoomName}");
+                Console.WriteLine($"{room.RoomId}\t {room.RoomName}");
                 Thread.Sleep(wait);
 
             }
@@ -117,7 +128,7 @@ namespace CDOrganiserProjectApp.View
         {
             foreach (ArtistAlbums album in albums)
             {
-                Console.WriteLine($"{album.AlbumId}, {album.AlbumName}, {album.GenreName}, {album.DateOfRelease.ToString("d")}, {album.FormatName}, {album.ArtistName}, {album.RoomName}, {album.ShelfTag}, {album.ShelfRow}, {album.Lost}");
+                Console.WriteLine($"{album.AlbumId}\t {album.AlbumName}\t {album.GenreName}\t {album.DateOfRelease.ToString("d")}\t {album.FormatName}\t {album.ArtistName}\t {album.RoomName}\t {album.ShelfTag}\t {album.ShelfRow}\t {album.Lost}");
                 Thread.Sleep(wait);
                 
             }
@@ -127,7 +138,7 @@ namespace CDOrganiserProjectApp.View
         {
             foreach (BandAlbums album in albums)
             {
-                Console.WriteLine($"{album.AlbumId}, {album.AlbumName}, {album.GenreName}, {album.DateOfRelease.ToString("d")}, {album.FormatName}, {album.BandName}, {album.RoomName}, {album.ShelfTag}, {album.ShelfRow}, {album.Lost}");
+                Console.WriteLine($"{album.AlbumId}\t {album.AlbumName}\t {album.GenreName}\t {album.DateOfRelease.ToString("d")}\t {album.FormatName}\t {album.BandName}\t {album.RoomName}\t {album.ShelfTag}\t {album.ShelfRow}\t {album.Lost}");
                 Thread.Sleep(wait);
 
             }

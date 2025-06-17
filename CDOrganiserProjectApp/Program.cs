@@ -27,7 +27,7 @@ namespace CDOrganiserProjectApp
             storageManager = new StorageManager(connectionString);
             view = new ConsoleView();
 
-            AdminMenuscreenOptions();
+            StartMenuscreenOptions();
             
             storageManager.CloseConnection();
 
@@ -43,6 +43,7 @@ namespace CDOrganiserProjectApp
             view.DisplayMessage("");
 
             Thread.Sleep(wait);
+            Console.Clear();
 
             do
             {
@@ -95,11 +96,17 @@ namespace CDOrganiserProjectApp
                             {
                                 case 1:
 
+                                    Thread.Sleep(wait);
+                                    Console.Clear();
+
                                     GuestMenuscreenOptions();
 
                                 break;
 
                                 case 2:
+
+                                    Thread.Sleep(wait);
+                                    Console.Clear();
 
                                     AdminMenuscreenOptions();
 
@@ -107,7 +114,7 @@ namespace CDOrganiserProjectApp
                             }
                         }
 
-                        else if (user != fetchuser && pw.Equals(fetchpw)) 
+                        else if (user != fetchuser && pw == fetchpw) 
                         {
                             view.DisplayMessage("Your username is incorrect. ");
                             Thread.Sleep(wait);
@@ -116,7 +123,7 @@ namespace CDOrganiserProjectApp
                             StartMenuscreenOptions();
                         }
 
-                        else if (user.Equals(fetchuser) && pw != fetchpw)
+                        else if (user == fetchuser && pw != fetchpw)
                         {
                             view.DisplayMessage("Your password is incorrect. ");
                             Thread.Sleep(wait);
@@ -152,7 +159,7 @@ namespace CDOrganiserProjectApp
 
 
 
-
+            
         }
 
         private static void AdminMenuscreenOptions()
@@ -416,6 +423,16 @@ namespace CDOrganiserProjectApp
                         invalid = false;
 
                         GoBack();
+
+                    break;
+
+                    case Prefix.@log + " " + Suffix.@out:
+                        Thread.Sleep(wait);
+                        Console.Clear();
+
+                        StartMenuscreenOptions();
+
+                        invalid = false;
 
                     break;
 
