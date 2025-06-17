@@ -7,23 +7,23 @@ namespace CDOrganiserProjectApp.Model
         public string AlbumName { get; set; }
         public string GenreName { get; set; }
         public string DateOfRelease { get; set; }
-        public int FormatId { get; set; }
-        public int ArtistId { get; set; }
-        public int BandId { get; set; }
-        public int RoomId { get; set; }
+        public string FormatName { get; set; }
+        public string ArtistName { get; set; }
+        public string BandName { get; set; }
+        public string RoomName { get; set; }
         public char ShelfTag { get; set; }
 
         public string ShelfRow { get; set; }
-        public Albums(int alid, string aln, string gen, string dtor, int fid, int aid, int bid, int rid, char sta, string sro)
+        public Albums(int alid, string aln, string gen, string dtor, string fn, string an, string bn, string rn, char sta, string sro)
         {
             AlbumId = alid;
             AlbumName = aln;
             GenreName = gen;
             DateOfRelease = dtor;
-            FormatId = fid;
-            ArtistId = aid;
-            BandId = bid;
-            RoomId = rid;
+            FormatName = fn;
+            ArtistName = an;
+            BandName = bn;
+            RoomName = rn;
             ShelfTag = sta;
             ShelfRow = sro;
 

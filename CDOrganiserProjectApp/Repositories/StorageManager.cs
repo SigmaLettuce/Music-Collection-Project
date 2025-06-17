@@ -136,7 +136,7 @@ namespace CDOrganiserProjectApp
         public List<Albums> GetAllAlbums()
         {
             List<Albums> albums = new List<Albums>();
-            string sqlStr = "SELECT DISTINCT * FROM Contents.tblAlbums";
+            string sqlStr = "SELECT DISTINCT tblAlbums.albumID, tblAlbums.albumName, tblAlbums.genreName, tblAlbums.dateOfRelease, tblFormat.formatName, tblArtists.artistName, tblBands.bandName, tblStorageRoom.roomName, tblAlbums.shelfTag, tblAlbums.shelfRow FROM Contents.tblAlbums LEFT JOIN Properties.tblFormat ON tblAlbums.formatID = tblFormat.formatID LEFT JOIN Contents.tblArtists ON tblAlbums.artistID = tblArtists.artistID LEFT JOIN Contents.tblBands ON tblAlbums.bandID = tblBands.bandID LEFT JOIN Properties.tblStorageRoom ON tblAlbums.roomID = tblStorageRoom.roomID ";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
                 using (SqlDataReader reader = cmd.ExecuteReader())
@@ -147,14 +147,14 @@ namespace CDOrganiserProjectApp
                         string albumName = reader["albumName"].ToString();
                         string genreName = reader["genreName"].ToString();
                         string dateOfRelease = reader["dateOfRelease"].ToString();
-                        int formatId = Convert.ToInt32(reader["formatID"]);
-                        int artistId = Convert.ToInt32(reader["artistID"]);
-                        int bandId = Convert.ToInt32(reader["bandID"]);
-                        int roomId = Convert.ToInt32(reader["roomID"]);
+                        string formatName = reader["formatName"].ToString();
+                        string artistName = reader["artistName"].ToString();
+                        string bandName = reader["bandName"].ToString();
+                        string roomName = reader["roomName"].ToString();
                         char shelfTag = Convert.ToChar(reader["shelfTag"]);
                         string shelfRow = reader["shelfRow"].ToString();
 
-                        albums.Add(new Albums(albumId, albumName, genreName, dateOfRelease, formatId, artistId, bandId, roomId, shelfTag, shelfRow));
+                        albums.Add(new Albums(albumId, albumName, genreName, dateOfRelease, formatName, artistName, bandName, roomName, shelfTag, shelfRow));
                       
                     }
                 }

@@ -100,7 +100,7 @@ namespace CDOrganiserProjectApp.View
         {
             foreach (Albums album in albums)
             {
-                Console.WriteLine($"{album.albumId}, {album.albumName}, {album.genreName}, {album.dateOfRelease}");
+                Console.WriteLine($"{album.AlbumId}, {album.AlbumName}, {album.GenreName}, {album.DateOfRelease}, {album.FormatName}, {album.ArtistName}, {album.BandName}, {album.RoomName}, {album.ShelfTag}, {album.ShelfRow}");
                 Thread.Sleep(wait);
 
             }

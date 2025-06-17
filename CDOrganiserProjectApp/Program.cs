@@ -28,7 +28,7 @@ namespace CDOrganiserProjectApp
             view = new ConsoleView();
 
             AdminMenuscreenOptions();
-             
+            
             storageManager.CloseConnection();
 
         }
@@ -123,7 +123,7 @@ namespace CDOrganiserProjectApp
                     case Prefix.@view + " " + Suffix.@bands:
                         List<Bands> bands = storageManager.GetAllBands();
                         view.DisplayBands(bands);
-
+        
                         invalid = false;
 
                         GoBack();
