@@ -569,7 +569,7 @@ namespace CDOrganiserProjectApp
             string genreName = view.GetInput();
 
             view.DisplayMessage("\nEnter the date of release... ");
-            string dateOfRelease = view.GetInput();
+            DateTime dateOfRelease = view.GetDateTimeInput();
 
             view.DisplayMessage("\nEnter the format... ");
             string formatName = view.GetInput();

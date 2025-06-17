@@ -252,7 +252,7 @@ namespace CDOrganiserProjectApp
                         string shelfRow = reader["shelfRow"].ToString();
                         bool lost = Convert.ToBoolean(reader["lost"]);
 
-                        albums.Add(new BandAlbums(albumId, albumName, genreName, dateOfRelease.Date, formatName, bandName, roomName, shelfTag, shelfRow, lost));
+                        albums.Add(new BandAlbums(albumId, albumName, genreName, dateOfRelease, formatName, bandName, roomName, shelfTag, shelfRow, lost));
 
                     }
                 }
