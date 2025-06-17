@@ -194,15 +194,25 @@ namespace CDOrganiserProjectApp
 
                     break;
 
-                    case Prefix.@view + " " + Suffix.@albums:
-                        List<Albums> albums = storageManager.GetAllAlbums();
-                        view.DisplayAlbums(albums);
+                    case Prefix.@view + " " + Base.@artist + " " + Suffix.@albums:
+                        List<ArtistAlbums> albumsa = storageManager.GetAllArtistAlbums();
+                        view.DisplayArtistAlbums(albumsa);
 
                         invalid = false;
 
                         GoBack();
 
                     break;
+
+                    case Prefix.@view + " " + Base.@band + " " + Suffix.@albums:
+                        List<BandAlbums> albumsb = storageManager.GetAllBandAlbums();
+                        view.DisplayBandAlbums(albumsb);
+
+                        invalid = false;
+
+                        GoBack();
+
+                        break;
 
                     case Prefix.@log + " " + Suffix.@out:
                         Thread.Sleep(wait);

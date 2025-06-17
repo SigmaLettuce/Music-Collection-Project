@@ -35,6 +35,10 @@ namespace CDOrganiserProjectApp.View
             Console.WriteLine("\t'del' - Delete unwanted information");
             Console.WriteLine("\t'lost' - Marks a specified 'disc' as lost; this command can only be run on 'albums'\n");
 
+            Console.WriteLine("Bases · Distinguishes data set variants");
+            Console.WriteLine("\n\t'artist' - Albums of artists");
+            Console.WriteLine("\t'band' - Albums of bands\n");
+
             Console.WriteLine("Suffixes · Data sets available to run commands on");
             Console.WriteLine("\n\t'albums' - Albums of a compact disc; a CD");
             Console.WriteLine("\t'artists' - All artists who have published an album you own");
