@@ -546,6 +546,63 @@ namespace CDOrganiserProjectApp
             view.DisplayMessage($"Deleted {rowsAffected} row.");
         }
 
+        private static void UpdateArtistAlbum()
+        {
+            view.DisplayMessage("\nEnter the name of the record... ");
+            string albumName = view.GetInput();
+
+            view.DisplayMessage("\nRename the record... ");
+            string rename = view.GetInput();
+
+            int rowsAffected = storageManager.UpdateRoomByName(albumName, rename);
+            view.DisplayMessage($"Updated {rowsAffected} records.");
+
+        }
+
+        private static void InsertArtistAlbum()
+        {
+            view.DisplayMessage("\nEnter the new album... ");
+            string albumName = view.GetInput();
+            int albumId = 0;
+
+            view.DisplayMessage("\nEnter the genre... ");
+            string genreName = view.GetInput();
+
+            view.DisplayMessage("\nEnter the date of release... ");
+            string dateOfRelease = view.GetInput();
+
+            view.DisplayMessage("\nEnter the format... ");
+            string formatName = view.GetInput();
+
+            view.DisplayMessage("\nEnter the artist... ");
+            string artistName = view.GetInput();
+
+            view.DisplayMessage("\nEnter the room its kept in... ");
+            string roomName = view.GetInput();
+
+            view.DisplayMessage("\nEnter the shelves tag letter... ");
+            char shelfTag = view.GetCharInput();
+
+            view.DisplayMessage("\nEnter the shelves row, accompanied by the tag letter... ");
+            string shelfRow = view.GetInput();
+            bool lost = false;
+
+            ArtistAlbums newAlbum = new ArtistAlbums(albumId, albumName, genreName, dateOfRelease, formatName, artistName, roomName, shelfTag, shelfRow, lost);
+
+            int generatedId = storageManager.InsertArtistAlbum(newAlbum);
+            view.DisplayMessage($"The new albums identification number is: {generatedId}");
+
+        }
+        private static void DeleteArtistAlbumByName()
+        {
+            view.DisplayMessage("Enter the room you wish to erase from your records... ");
+            string roomName = view.GetInput();
+
+            int rowsAffected = storageManager.DeleteRoomByName(roomName);
+            view.DisplayMessage($"Deleted {rowsAffected} row.");
+        }
+
+
     }
 
 }

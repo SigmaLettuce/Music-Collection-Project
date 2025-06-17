@@ -196,7 +196,7 @@ namespace CDOrganiserProjectApp
                         int albumId = Convert.ToInt32(reader["albumID"]);
                         string albumName = reader["albumName"].ToString();
                         string genreName = reader["genreName"].ToString();
-                        string dateOfRelease = reader["dateOfRelease"].ToString();
+                        DateTime dateOfRelease = Convert.ToDateTime(reader["dateOfRelease"]);
                         string formatName = reader["formatName"].ToString();
                         string artistName = reader["artistName"].ToString();
                         string roomName = reader["roomName"].ToString();
@@ -215,11 +215,16 @@ namespace CDOrganiserProjectApp
 
         public int InsertArtistAlbum(ArtistAlbums albums)
         {
-            using (SqlCommand cmd = new SqlCommand($"INSERT INTO Contents.tblArtistAlbums (albumName, genreName, dateOfRelease, ) VALUES (@albumName, @genreName, @dateOfRelease); SELECT SCOPE_IDENTITY();", conn))
+            using (SqlCommand cmd = new SqlCommand($"INSERT INTO Contents.tblArtistAlbums (albumName, genreName, dateOfRelease, formatName, artistName, roomName, shelfTag, shelfRow) VALUES (@AlbumName, @GenreName, @DateOfRelease, @FormatName, @ArtistName, @RoomName, @ShelfTag, @ShelfRow); SELECT SCOPE_IDENTITY();", conn))
             {
-                cmd.Parameters.AddWithValue("@albumName", albums.AlbumName);
-                cmd.Parameters.AddWithValue("@genreName", albums.GenreName);
-                cmd.Parameters.AddWithValue("@dateOfRelease", albums.DateOfRelease);
+                cmd.Parameters.AddWithValue("@AlbumName", albums.AlbumName);
+                cmd.Parameters.AddWithValue("@GenreName", albums.GenreName);
+                cmd.Parameters.AddWithValue("@DateOfRelease", albums.DateOfRelease);
+                cmd.Parameters.AddWithValue("@FormatName", albums.FormatName);
+                cmd.Parameters.AddWithValue("@ArtistName", albums.ArtistName);
+                cmd.Parameters.AddWithValue("@RoomName", albums.RoomName);
+                cmd.Parameters.AddWithValue("@ShelfTag", albums.ShelfTag);
+                cmd.Parameters.AddWithValue("@ShelfRow", albums.ShelfRow);
 
                 return Convert.ToInt32(cmd.ExecuteScalar());
             }
@@ -239,7 +244,7 @@ namespace CDOrganiserProjectApp
                         int albumId = Convert.ToInt32(reader["albumID"]);
                         string albumName = reader["albumName"].ToString();
                         string genreName = reader["genreName"].ToString();
-                        string dateOfRelease = reader["dateOfRelease"].ToString();
+                        DateTime dateOfRelease = Convert.ToDateTime(reader["dateOfRelease"]);
                         string formatName = reader["formatName"].ToString();
                         string bandName = reader["bandName"].ToString();
                         string roomName = reader["roomName"].ToString();
@@ -247,7 +252,7 @@ namespace CDOrganiserProjectApp
                         string shelfRow = reader["shelfRow"].ToString();
                         bool lost = Convert.ToBoolean(reader["lost"]);
 
-                        albums.Add(new BandAlbums(albumId, albumName, genreName, dateOfRelease, formatName, bandName, roomName, shelfTag, shelfRow, lost));
+                        albums.Add(new BandAlbums(albumId, albumName, genreName, dateOfRelease.Date, formatName, bandName, roomName, shelfTag, shelfRow, lost));
 
                     }
                 }

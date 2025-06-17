@@ -47,9 +47,11 @@ namespace CDOrganiserProjectApp.View
             Console.WriteLine("\t'rooms' - All available rooms\n");
 
             Console.WriteLine("Extras · Commands irrelevant to your data");
+            Console.WriteLine("\n\t''");
             Console.WriteLine("\n\t'create admin' - Creates an administrator account");
             Console.WriteLine("\t'create user' - Creates a user account");
-            Console.WriteLine("\t'log out' - Exits the account; brings you back to 'Start Menu'\n");
+            Console.WriteLine("\t'log out' - Exits the account; brings you back to 'Start Menu'");
+
 
             return Console.ReadLine();
         }
@@ -115,7 +117,7 @@ namespace CDOrganiserProjectApp.View
         {
             foreach (ArtistAlbums album in albums)
             {
-                Console.WriteLine($"{album.AlbumId}, {album.AlbumName}, {album.GenreName}, {album.DateOfRelease}, {album.FormatName}, {album.ArtistName}, {album.RoomName}, {album.ShelfTag}, {album.ShelfRow}, {album.Lost}");
+                Console.WriteLine($"{album.AlbumId}, {album.AlbumName}, {album.GenreName}, {album.DateOfRelease.Date}, {album.FormatName}, {album.ArtistName}, {album.RoomName}, {album.ShelfTag}, {album.ShelfRow}, {album.Lost}");
                 Thread.Sleep(wait);
 
             }
@@ -141,6 +143,9 @@ namespace CDOrganiserProjectApp.View
             return Console.ReadLine();
         }
 
-
+        public char GetCharInput()
+        {
+            return Convert.ToChar(Console.ReadLine());
+        }
     }
 }
