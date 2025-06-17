@@ -113,7 +113,7 @@ namespace CDOrganiserProjectApp
                             Thread.Sleep(wait);
                             Console.Clear();
 
-
+                            StartMenuscreenOptions();
                         }
 
                         else if (user.Equals(fetchuser) && pw != fetchpw)
@@ -122,7 +122,7 @@ namespace CDOrganiserProjectApp
                             Thread.Sleep(wait);
                             Console.Clear();
 
-
+                            StartMenuscreenOptions();
                         }
 
                         else if (user != fetchuser && pw != fetchpw)
@@ -130,9 +130,11 @@ namespace CDOrganiserProjectApp
                             view.DisplayMessage("Your username and password are incorrect. ");
                             Thread.Sleep(wait);
                             Console.Clear();
+
+                            StartMenuscreenOptions();
                         }
 
-                            break;
+                    break;
 
                     default:
                         view.DisplayMessage("I'm sorry, this isn't a valid selection. Can you try again? ");
