@@ -259,7 +259,7 @@ namespace CDOrganiserProjectApp
             }
             return albums;
         }
-
+        
 
         public int InsertBandAlbum(BandAlbums albums)
         {
@@ -305,9 +305,9 @@ namespace CDOrganiserProjectApp
         }
 
          
-        public List<Accounts> GetAllCredentials(string username, string password)
+        public string GetUsernameCredentials(string username)
         {
-            List<Accounts> credentials = new List<Accounts>();
+            
             string sqlStr = $"SELECT username, pw FROM Contents.tblAccounts WHERE username = @username AND pw = @password";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
@@ -315,20 +315,13 @@ namespace CDOrganiserProjectApp
                 {
                     while (reader.Read())
                     {
-                        int personId = Convert.ToInt32(reader["personID"]);
-                        string fName = reader["fName"].ToString();
-                        string sName = reader["sName"].ToString();
                         username = reader["username"].ToString();
-                        password = reader["pw"].ToString();
-                        int roleId = Convert.ToInt32(reader["roleID"]);
-
-                        credentials.Add(new Accounts(personId, fName, sName, username, password, roleId));
 
                     }
 
                 }
 
-                return credentials;
+                return username;
             }
         }
         
