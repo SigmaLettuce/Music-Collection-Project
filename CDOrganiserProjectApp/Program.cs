@@ -18,7 +18,7 @@ namespace CDOrganiserProjectApp
         private static ConsoleView view;
         const int wait = 1000;
 
-        private static int roleId = 2;
+        private static int roleId;
 
         static void Main(string[] args)
         {
@@ -83,15 +83,28 @@ namespace CDOrganiserProjectApp
                         view.DisplayMessage("\nEnter your password... ");
                         string pw = view.GetInput();
 
-                        string fetchuser = storageManager.GetUsernameCredentials(user, pw);
-                        string fetchpw = storageManager.GetPasswordCredentials(user, pw);
-                        int fetchrole = storageManager.FetchRole(user);
+                        string fetchuser = storageManager.GetUsernameCredentials(pw);
+                        string fetchpw = storageManager.GetPasswordCredentials(user);
+                        roleId = storageManager.FetchRole(pw);
 
                         invalid = false;
 
                         if (user.Equals(fetchuser) && pw.Equals(fetchpw))
                         {
+                            switch (roleId)
+                            {
+                                case 1:
 
+                                    GuestMenuscreenOptions();
+
+                                break;
+
+                                case 2:
+
+                                    AdminMenuscreenOptions();
+
+                                break;
+                            }
                         }
 
                     break;

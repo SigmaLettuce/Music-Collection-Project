@@ -305,13 +305,14 @@ namespace CDOrganiserProjectApp
         }
 
 
-        public string GetUsernameCredentials(string username)
+        public string GetUsernameCredentials(string password)
         {
+            string username = " ";
 
-            string sqlStr = $"SELECT username FROM Contents.tblAccounts WHERE username = @username";
+            string sqlStr = $"SELECT username FROM Contents.tblAccounts WHERE pw = @password";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
-
+                cmd.Parameters.AddWithValue("@password", password);
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())
@@ -325,12 +326,14 @@ namespace CDOrganiserProjectApp
             }
         }
 
-        public string GetPasswordCredentials(string password)
+        public string GetPasswordCredentials(string username)
         {
+            string password = " ";
 
-            string sqlStr = $"SELECT pw FROM Contents.tblAccounts WHERE pw = @password";
+            string sqlStr = $"SELECT pw FROM Contents.tblAccounts WHERE username = @username";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
+                cmd.Parameters.AddWithValue("@username", username);
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())
@@ -344,15 +347,15 @@ namespace CDOrganiserProjectApp
             }
         }
 
-        public int FetchRole()
+        public int FetchRole(string password)
         {
 
             int roleId = 0;
 
-            string sqlStr = $"SELECT roleID FROM Contents.tblAccounts WHERE username = @username";
+            string sqlStr = $"SELECT roleID FROM Contents.tblAccounts WHERE pw = @password";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
-
+                cmd.Parameters.AddWithValue("@password", password);
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())
