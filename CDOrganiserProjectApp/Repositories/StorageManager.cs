@@ -133,6 +133,56 @@ namespace CDOrganiserProjectApp
 
         }
 
+        public List<Rooms> GetAllRooms()
+        {
+            List<Rooms> rooms = new List<Rooms>();
+            string sqlStr = "SELECT * FROM Properties.tblStorageRoom";
+            using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
+            {
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        int roomId = Convert.ToInt32(reader["roomID"]);
+                        string roomName = reader["roomName"].ToString();
+                        rooms.Add(new Rooms(roomId, roomName));
+                    }
+                }
+            }
+            return rooms;
+        }
+
+        public int InsertRoom(Rooms rooms)
+        {
+            using (SqlCommand cmd = new SqlCommand($"INSERT INTO Properties.tblStorageRoom (roomName) VALUES (@RoomName); SELECT SCOPE_IDENTITY();", conn))
+            {
+                cmd.Parameters.AddWithValue("@RoomName", rooms.RoomName);
+                return Convert.ToInt32(cmd.ExecuteScalar());
+            }
+        }
+
+        public int UpdateRoomByName(string roomName, string newName)
+        {
+            string sqlStr = $"UPDATE Properties.tblStorageRoom SET roomName = @newName WHERE roomName = @roomName";
+            using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
+            {
+                cmd.Parameters.AddWithValue("@roomName", roomName);
+                cmd.Parameters.AddWithValue("@newName", newName);
+                return cmd.ExecuteNonQuery();
+            }
+        }
+
+        public int DeleteRoomByName(string roomName)
+        {
+            string sqlStr = "DELETE FROM Properties.tblStorageRoom WHERE roomName = @roomName";
+            using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
+            {
+                cmd.Parameters.AddWithValue("@roomName", roomName);
+                return cmd.ExecuteNonQuery();
+            }
+
+        }
+
         public List<ArtistAlbums> GetAllArtistAlbums()
         {
             List<ArtistAlbums> albums = new List<ArtistAlbums>();
@@ -232,25 +282,6 @@ namespace CDOrganiserProjectApp
         }
 
         */
-
-        public List<Rooms> GetAllRooms()
-        {
-            List<Rooms> rooms = new List<Rooms>();
-            string sqlStr = "SELECT * FROM Properties.tblStorageRoom";
-            using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
-            {
-                using (SqlDataReader reader = cmd.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        int roomId = Convert.ToInt32(reader["roomID"]);
-                        string roomName = reader["roomName"].ToString();
-                        rooms.Add(new Rooms(roomId, roomName));
-                    }
-                }
-            }
-            return rooms;
-        }
 
         public int CreateAccount(Accounts account)
         {

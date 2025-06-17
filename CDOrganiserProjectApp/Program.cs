@@ -16,7 +16,7 @@ namespace CDOrganiserProjectApp
     {
         private static StorageManager storageManager;
         private static ConsoleView view;
-        private static readonly int wait = 1000;
+        const int wait = 1000;
 
         private static int roleId = 2;
 
@@ -39,7 +39,7 @@ namespace CDOrganiserProjectApp
             bool invalid = true;
 
             string startInput = view.StartMenu();
-
+            
             view.DisplayMessage("");
 
             Thread.Sleep(wait);
@@ -187,6 +187,43 @@ namespace CDOrganiserProjectApp
 
                     case Prefix.@del + " " + Suffix.@artists:
                         DeleteArtistByName();
+
+                        invalid = false;
+
+                        GoBack();
+
+                    break;
+
+                    case Prefix.@view + " " + Suffix.@rooms:
+                        List<Rooms> rooms = storageManager.GetAllRooms();
+                        view.DisplayRooms(rooms);
+
+                        invalid = false;
+
+                        GoBack();
+
+                    break;
+
+                    case Prefix.@up + " " + Suffix.@rooms:
+                        UpdateRoomName();
+
+                        invalid = false;
+
+                        GoBack();
+
+                    break;
+
+                    case Prefix.@ins + " " + Suffix.@rooms:
+                        InsertNewRoom();
+
+                        invalid = false;
+
+                        GoBack();
+
+                    break;
+
+                    case Prefix.@del + " " + Suffix.@rooms:
+                        DeleteRoomByName();
 
                         invalid = false;
 
@@ -470,6 +507,42 @@ namespace CDOrganiserProjectApp
             string artistName = view.GetInput();
 
             int rowsAffected = storageManager.DeleteArtistByName(artistName);
+            view.DisplayMessage($"Deleted {rowsAffected} row.");
+        }
+
+
+
+        private static void UpdateRoomName()
+        {
+            view.DisplayMessage("\nEnter the name of the record... ");
+            string roomName = view.GetInput();
+
+            view.DisplayMessage("\nRename the record... ");
+            string rename = view.GetInput();
+
+            int rowsAffected = storageManager.UpdateRoomByName(roomName, rename);
+            view.DisplayMessage($"Updated {rowsAffected} records.");
+
+        }
+
+        private static void InsertNewRoom()
+        {
+            view.DisplayMessage("\nEnter the new room... ");
+            string roomName = view.GetInput();
+            int roomId = 0;
+
+            Rooms newRoom = new Rooms(roomId, roomName);
+
+            int generatedId = storageManager.InsertRoom(newRoom);
+            view.DisplayMessage($"The new rooms identification number is: {generatedId}");
+
+        }
+        private static void DeleteRoomByName()
+        {
+            view.DisplayMessage("Enter the room you wish to erase from your records... ");
+            string roomName = view.GetInput();
+
+            int rowsAffected = storageManager.DeleteRoomByName(roomName);
             view.DisplayMessage($"Deleted {rowsAffected} row.");
         }
 

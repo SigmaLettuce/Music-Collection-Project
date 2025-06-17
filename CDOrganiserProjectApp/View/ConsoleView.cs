@@ -87,13 +87,24 @@ namespace CDOrganiserProjectApp.View
 
             }        
 
-        } 
-        
+        }
+
         public void DisplayArtists(List<Artists> artists)
         {
             foreach (Artists artist in artists)
             {
                 Console.WriteLine($"{artist.artistId}, {artist.artistName}");
+                Thread.Sleep(wait);
+
+            }
+
+        }
+
+        public void DisplayRooms(List<Rooms> rooms)
+        {
+            foreach (Rooms room in rooms)
+            {
+                Console.WriteLine($"{room.RoomId}, {room.RoomName}");
                 Thread.Sleep(wait);
 
             }
