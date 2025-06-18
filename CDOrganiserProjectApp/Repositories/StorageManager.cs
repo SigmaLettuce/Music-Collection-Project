@@ -307,14 +307,16 @@ namespace CDOrganiserProjectApp
         }
 
 
-        public string GetUsernameCredentials(string password)
+        public string GetUsernameCredentials(string un, string password)
         {
             string username = " ";
 
-            string sqlStr = $"SELECT username FROM Contents.tblAccounts WHERE pw = @password";
+            string sqlStr = $"SELECT username FROM Contents.tblAccounts WHERE pw = @password OR username = @un";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
+                cmd.Parameters.AddWithValue("@un", un);
                 cmd.Parameters.AddWithValue("@password", password);
+
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())
@@ -328,14 +330,16 @@ namespace CDOrganiserProjectApp
             }
         }
 
-        public string GetPasswordCredentials(string username)
+        public string GetPasswordCredentials(string username, string pw)
         {
             string password = " ";
 
-            string sqlStr = $"SELECT pw FROM Contents.tblAccounts WHERE username = @username";
+            string sqlStr = $"SELECT pw FROM Contents.tblAccounts WHERE username = @username OR pw = @pw";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
                 cmd.Parameters.AddWithValue("@username", username);
+                cmd.Parameters.AddWithValue("@pw", pw);
+
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())
@@ -349,15 +353,17 @@ namespace CDOrganiserProjectApp
             }
         }
 
-        public int FetchRole(string password)
+        public int FetchRole(string un, string pw)
         {
 
             int roleId = 0;
 
-            string sqlStr = $"SELECT roleID FROM Contents.tblAccounts WHERE pw = @password";
+            string sqlStr = $"SELECT roleID FROM Contents.tblAccounts WHERE username = @un OR pw = @pw";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
-                cmd.Parameters.AddWithValue("@password", password);
+                cmd.Parameters.AddWithValue("@un", un);
+                cmd.Parameters.AddWithValue("@pw", pw);
+
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())

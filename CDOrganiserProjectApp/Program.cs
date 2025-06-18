@@ -84,13 +84,13 @@ namespace CDOrganiserProjectApp
                         view.DisplayMessage("\nEnter your password... ");
                         string pw = view.GetInput();
 
-                        string fetchuser = storageManager.GetUsernameCredentials(pw);
-                        string fetchpw = storageManager.GetPasswordCredentials(user);
-                        roleId = storageManager.FetchRole(pw);
+                        string fetchuser = storageManager.GetUsernameCredentials(user, pw);
+                        string fetchpw = storageManager.GetPasswordCredentials(user, pw);
+                        roleId = storageManager.FetchRole(user, pw);
 
                         invalid = false;
 
-                        if (user.Equals(fetchuser) && pw.Equals(fetchpw))
+                        if (user.Equals(fetchuser) & pw.Equals(fetchpw))
                         {
                             switch (roleId)
                             {
@@ -114,7 +114,7 @@ namespace CDOrganiserProjectApp
                             }
                         }
 
-                        else if (user != fetchuser && pw == fetchpw) 
+                        else if (user != fetchuser & pw.Equals(fetchpw)) 
                         {
                             view.DisplayMessage("Your username is incorrect. ");
                             Thread.Sleep(wait);
@@ -123,7 +123,7 @@ namespace CDOrganiserProjectApp
                             StartMenuscreenOptions();
                         }
 
-                        else if (user == fetchuser && pw != fetchpw)
+                        else if (user.Equals(fetchuser) & pw != fetchpw)
                         {
                             view.DisplayMessage("Your password is incorrect. ");
                             Thread.Sleep(wait);
@@ -132,7 +132,7 @@ namespace CDOrganiserProjectApp
                             StartMenuscreenOptions();
                         }
 
-                        else if (user != fetchuser && pw != fetchpw)
+                        else if (user != fetchuser & pw != fetchpw)
                         {
                             view.DisplayMessage("Your username and password are incorrect. ");
                             Thread.Sleep(wait);
