@@ -50,24 +50,7 @@ namespace CDOrganiserProjectApp
                 switch (startInput.ToUpper())
                 {
                     case "R":
-                        view.DisplayMessage("\nEnter your first name... ");
-                        string fName = view.GetInput();
-                        int personId = 0;
 
-                        view.DisplayMessage("\nEnter your last name... ");
-                        string sName = view.GetInput();
-
-                        view.DisplayMessage("\nCreate a username... ");
-                        string newuser = view.GetInput();
-                        roleId = 1;
-
-                        view.DisplayMessage("\nCreate a password... ");
-                        string newpw = view.GetInput();
-
-                        Accounts newVisitor = new Accounts(personId, fName, sName, newuser, newpw, roleId);
-                        
-
-                        int generatedId = storageManager.CreateAccount(newVisitor);
                         Thread.Sleep(wait);
 
                         GuestMenuscreenOptions();
@@ -77,11 +60,13 @@ namespace CDOrganiserProjectApp
                     break;
 
                     case "L":
-                        view.DisplayMessage("\nEnter your username... ");
+                        view.DisplayMessage("\n\tEnter your username... ");
+                        view.DisplayMessage(" ");
                         string user = view.GetInput();
 
 
-                        view.DisplayMessage("\nEnter your password... ");
+                        view.DisplayMessage("\n\tEnter your password... ");
+                        view.DisplayMessage(" ");
                         string pw = view.GetInput();
 
                         string fetchuser = storageManager.GetUsernameCredentials(user, pw);
@@ -114,27 +99,9 @@ namespace CDOrganiserProjectApp
                             }
                         }
 
-                        else if (user != fetchuser & pw.Equals(fetchpw)) 
+                        else
                         {
-                            view.DisplayMessage("Your username is incorrect. ");
-                            Thread.Sleep(wait);
-                            Console.Clear();
-
-                            StartMenuscreenOptions();
-                        }
-
-                        else if (user.Equals(fetchuser) & pw != fetchpw)
-                        {
-                            view.DisplayMessage("Your password is incorrect. ");
-                            Thread.Sleep(wait);
-                            Console.Clear();
-
-                            StartMenuscreenOptions();
-                        }
-
-                        else if (user != fetchuser & pw != fetchpw)
-                        {
-                            view.DisplayMessage("Your username and password are incorrect. ");
+                            view.DisplayMessage("Either your username or password are incorrect. ");
                             Thread.Sleep(wait);
                             Console.Clear();
 
@@ -309,7 +276,16 @@ namespace CDOrganiserProjectApp
 
                     break;
 
+                    case Prefix.@create + " " + Suffix.@admin:
+                        CreateAdmin();
 
+                        invalid = false;
+
+                        GoBack();
+
+                    break;
+
+                    case Prefix.@create + " " + Suffix.@user
 
                     case Prefix.@log + " " + Suffix.@out:
                         Thread.Sleep(wait);
@@ -514,165 +490,219 @@ namespace CDOrganiserProjectApp
 
         private static void UpdateBandName()
         {
-            view.DisplayMessage("\nEnter the name of the record... ");
+            view.DisplayMessage("\n\tEnter the name of the record... ");
             string bandName = view.GetInput();
 
-            view.DisplayMessage("\nRename the record... ");
+            view.DisplayMessage("\n\tRename the record... ");
             string rename = view.GetInput();
 
             int rowsAffected = storageManager.UpdateBandByName(bandName, rename);
-            view.DisplayMessage($"Updated {rowsAffected} records.");
+            view.DisplayMessage($"\n\tUpdated {rowsAffected} records.");
 
         } 
 
         private static void InsertNewBand()
         {
-            view.DisplayMessage("\nEnter the new band... ");
+            view.DisplayMessage("\n\tEnter the new band... ");
             string bandName = view.GetInput();
             int bandId = 0; 
 
             Bands newBand = new Bands(bandId, bandName);
 
             int generatedId = storageManager.InsertBand(newBand);
-            view.DisplayMessage($"The new bands identification number is: {generatedId}");
+            view.DisplayMessage($"\n\tThe new bands identification number is: {generatedId}");
 
         }
 
         private static void DeleteBandByName()
         {
-            view.DisplayMessage("Enter the band you wish to erase from your records... ");
+            view.DisplayMessage("\n\tEnter the band you wish to erase from your records... ");
             string bandName = view.GetInput();
 
             int rowsAffected = storageManager.DeleteBandByName(bandName);
-            view.DisplayMessage($"Deleted {rowsAffected} row.");
+            view.DisplayMessage($"\n\tDeleted {rowsAffected} row.");
         }
 
         private static void UpdateArtistName()
         {
-            view.DisplayMessage("\nEnter the name of the record... ");
+            view.DisplayMessage("\n\tEnter the name of the record... ");
             string artistName = view.GetInput();
 
-            view.DisplayMessage("\nRename the record... ");
+            view.DisplayMessage("\n\tRename the record... ");
             string rename = view.GetInput();
 
             int rowsAffected = storageManager.UpdateArtistByName(artistName, rename);
-            view.DisplayMessage($"Updated {rowsAffected} records.");
+            view.DisplayMessage($"\n\tUpdated {rowsAffected} records.");
 
         }
 
         private static void InsertNewArtist()
         {
-            view.DisplayMessage("\nEnter the new artist... ");
+            view.DisplayMessage("\n\tEnter the new artist... ");
             string artistName = view.GetInput();
             int artistId = 0;
 
             Artists newArtist = new Artists(artistId, artistName);
 
             int generatedId = storageManager.InsertArtist(newArtist);
-            view.DisplayMessage($"The new artists identification number is: {generatedId}");
+            view.DisplayMessage($"\n\tThe new artists identification number is: {generatedId}");
 
         }
 
         private static void DeleteArtistByName()
         {
-            view.DisplayMessage("Enter the artist you wish to erase from your records... ");
+            view.DisplayMessage("\n\tEnter the artist you wish to erase from your records... ");
             string artistName = view.GetInput();
 
             int rowsAffected = storageManager.DeleteArtistByName(artistName);
-            view.DisplayMessage($"Deleted {rowsAffected} row.");
+            view.DisplayMessage($"\n\tDeleted {rowsAffected} row.");
         }
 
 
 
         private static void UpdateRoomName()
         {
-            view.DisplayMessage("\nEnter the name of the record... ");
+            view.DisplayMessage("\n\tEnter the name of the record... ");
             string roomName = view.GetInput();
 
-            view.DisplayMessage("\nRename the record... ");
+            view.DisplayMessage("\n\tRename the record... ");
             string rename = view.GetInput();
 
             int rowsAffected = storageManager.UpdateRoomByName(roomName, rename);
-            view.DisplayMessage($"Updated {rowsAffected} records.");
+            view.DisplayMessage($"\n\tUpdated {rowsAffected} records.");
 
         }
 
         private static void InsertNewRoom()
         {
-            view.DisplayMessage("\nEnter the new room... ");
+            view.DisplayMessage("\ntEnter the new room... ");
             string roomName = view.GetInput();
             int roomId = 0;
 
             Rooms newRoom = new Rooms(roomId, roomName);
 
             int generatedId = storageManager.InsertRoom(newRoom);
-            view.DisplayMessage($"The new rooms identification number is: {generatedId}");
+            view.DisplayMessage($"\n\tThe new rooms identification number is: {generatedId}");
 
         }
         private static void DeleteRoomByName()
         {
-            view.DisplayMessage("Enter the room you wish to erase from your records... ");
+            view.DisplayMessage("\n\tEnter the room you wish to erase from your records... ");
             string roomName = view.GetInput();
 
             int rowsAffected = storageManager.DeleteRoomByName(roomName);
-            view.DisplayMessage($"Deleted {rowsAffected} row.");
+            view.DisplayMessage($"\n\tDeleted {rowsAffected} row.");
+
+        }
+
+        private static void CreateUser()
+        {
+            view.DisplayMessage("\n\tEnter your first name... ");
+            view.DisplayMessage(" ");
+            string fName = view.GetInput();
+            int personId = 0;
+
+            view.DisplayMessage("\n\tEnter your last name... ");
+            view.DisplayMessage(" ");
+            string sName = view.GetInput();
+
+            view.DisplayMessage("\n\tCreate a username... ");
+            view.DisplayMessage(" ");
+            string newuser = view.GetInput();
+            roleId = 1;
+
+            view.DisplayMessage("\n\tCreate a password... ");
+            view.DisplayMessage(" ");
+            string newpw = view.GetInput();
+
+            Accounts newUser = new Accounts(personId, fName, sName, newuser, newpw, roleId);
+
+
+            int generatedId = storageManager.CreateAccount(newUser);
+
+        }
+
+        private static void CreateAdmin()
+        {
+            view.DisplayMessage("\n\tEnter your first name... ");
+            view.DisplayMessage(" ");
+            string fName = view.GetInput();
+            int personId = 0;
+
+            view.DisplayMessage("\n\tEnter your last name... ");
+            view.DisplayMessage(" ");
+            string sName = view.GetInput();
+
+            view.DisplayMessage("\n\tCreate a username... ");
+            view.DisplayMessage(" ");
+            string newuser = view.GetInput();
+            roleId = 2;
+
+            view.DisplayMessage("\n\tCreate a password... ");
+            view.DisplayMessage(" ");
+            string newpw = view.GetInput();
+
+            Accounts newAdmin = new Accounts(personId, fName, sName, newuser, newpw, roleId);
+
+
+            int generatedId = storageManager.CreateAccount(newAdmin);
 
         }
 
         private static void UpdateArtistAlbum()
         {
-            view.DisplayMessage("\nEnter the name of the record... ");
+            view.DisplayMessage("\n\tEnter the name of the record... ");
             string albumName = view.GetInput();
 
-            view.DisplayMessage("\nRename the record... ");
+            view.DisplayMessage("\n\tRename the record... ");
             string rename = view.GetInput();
 
             int rowsAffected = storageManager.UpdateRoomByName(albumName, rename);
-            view.DisplayMessage($"Updated {rowsAffected} records.");
+            view.DisplayMessage($"\n\tUpdated {rowsAffected} records.");
 
         }
 
         private static void InsertArtistAlbum()
         {
-            view.DisplayMessage("\nEnter the new album... ");
+            view.DisplayMessage("\n\tEnter the new album... ");
             string albumName = view.GetInput();
             int albumId = 0;
 
-            view.DisplayMessage("\nEnter the genre... ");
+            view.DisplayMessage("\n\tEnter the genre... ");
             string genreName = view.GetInput();
 
-            view.DisplayMessage("\nEnter the date of release... ");
+            view.DisplayMessage("\n\tEnter the date of release... ");
             DateTime dateOfRelease = view.GetDateTimeInput();
 
-            view.DisplayMessage("\nEnter the format... ");
+            view.DisplayMessage("\n\tEnter the format... ");
             string formatName = view.GetInput();
 
-            view.DisplayMessage("\nEnter the artist... ");
+            view.DisplayMessage("\n\tEnter the artist... ");
             string artistName = view.GetInput();
 
-            view.DisplayMessage("\nEnter the room its kept in... ");
+            view.DisplayMessage("\n\tEnter the room its kept in... ");
             string roomName = view.GetInput();
 
-            view.DisplayMessage("\nEnter the shelves tag letter... ");
+            view.DisplayMessage("\n\tEnter the shelves tag letter... ");
             char shelfTag = view.GetCharInput();
 
-            view.DisplayMessage("\nEnter the shelves row, accompanied by the tag letter... ");
+            view.DisplayMessage("\n\tnEnter the shelves row, accompanied by the tag letter... ");
             string shelfRow = view.GetInput();
             bool lost = false;
 
             ArtistAlbums newAlbum = new ArtistAlbums(albumId, albumName, genreName, dateOfRelease, formatName, artistName, roomName, shelfTag, shelfRow, lost);
 
             int generatedId = storageManager.InsertArtistAlbum(newAlbum);
-            view.DisplayMessage($"The new albums identification number is: {generatedId}");
+            view.DisplayMessage($"\n\tThe new albums identification number is: {generatedId}");
 
         }
         private static void DeleteArtistAlbumByName()
         {
-            view.DisplayMessage("Enter the room you wish to erase from your records... ");
+            view.DisplayMessage("\n\tEnter the room you wish to erase from your records... ");
             string roomName = view.GetInput();
 
             int rowsAffected = storageManager.DeleteRoomByName(roomName);
-            view.DisplayMessage($"Deleted {rowsAffected} row.");
+            view.DisplayMessage($"\n\tDeleted {rowsAffected} row.");
         }
 
 
