@@ -437,6 +437,7 @@ namespace CDOrganiserProjectApp
 
         }
 
+
         private static void UpdateBandName()
         {
             view.DisplayMessage("\nEnter the name of the record... ");
@@ -471,6 +472,7 @@ namespace CDOrganiserProjectApp
             int rowsAffected = storageManager.DeleteBandByName(bandName);
             view.DisplayMessage($"\nDeleted {rowsAffected} row.");
         }
+
 
         private static void UpdateArtistName()
         {
@@ -534,6 +536,7 @@ namespace CDOrganiserProjectApp
             view.DisplayMessage($"\nThe new rooms identification number is: {generatedId}");
 
         }
+
         private static void DeleteRoomByName()
         {
             view.DisplayMessage("\nEnter the room you wish to erase from your records... ");
@@ -543,6 +546,7 @@ namespace CDOrganiserProjectApp
             view.DisplayMessage($"\nDeleted {rowsAffected} row.");
 
         }
+
 
         private static void CreateUser()
         {
@@ -645,6 +649,7 @@ namespace CDOrganiserProjectApp
             view.DisplayMessage($"\nThe new albums identification number is: {generatedId}");
 
         }
+
         private static void DeleteArtistAlbumByName()
         {
             view.DisplayMessage("\n\tEnter the room you wish to erase from your records... ");
@@ -654,6 +659,63 @@ namespace CDOrganiserProjectApp
             view.DisplayMessage($"\n\tDeleted {rowsAffected} row.");
         }
 
+
+        private static void UpdateBandAlbum()
+        {
+            view.DisplayMessage("\nEnter the name of the record... ");
+            string albumName = view.GetInput();
+
+            view.DisplayMessage("\nRename the record... ");
+            string rename = view.GetInput();
+
+            int rowsAffected = storageManager.UpdateRoomByName(albumName, rename);
+            view.DisplayMessage($"\nUpdated {rowsAffected} records.");
+
+        }
+
+        private static void InsertBandAlbum()
+        {
+            view.DisplayMessage("\nEnter the new album... ");
+            string albumName = view.GetInput();
+            int albumId = 0;
+
+            view.DisplayMessage("\nEnter the genre... ");
+            string genreName = view.GetInput();
+
+            view.DisplayMessage("\nEnter the date of release... ");
+            DateTime dateOfRelease = view.GetDateTimeInput();
+
+            view.DisplayMessage("\nEnter the format... ");
+            string formatName = view.GetInput();
+
+            view.DisplayMessage("\nEnter the artist... ");
+            string artistName = view.GetInput();
+
+            view.DisplayMessage("\nEnter the room its kept in... ");
+            string roomName = view.GetInput();
+
+            view.DisplayMessage("\nEnter the shelves tag letter... ");
+            char shelfTag = view.GetCharInput();
+
+            view.DisplayMessage("\nEnter the shelves row, accompanied by the tag letter... ");
+            string shelfRow = view.GetInput();
+            bool lost = false;
+
+            ArtistAlbums newAlbum = new ArtistAlbums(albumId, albumName, genreName, dateOfRelease, formatName, artistName, roomName, shelfTag, shelfRow, lost);
+
+            int generatedId = storageManager.InsertArtistAlbum(newAlbum);
+            view.DisplayMessage($"\nThe new albums identification number is: {generatedId}");
+
+        }
+
+        private static void DeleteBandAlbumByName()
+        {
+            view.DisplayMessage("\n\tEnter the room you wish to erase from your records... ");
+            string roomName = view.GetInput();
+
+            int rowsAffected = storageManager.DeleteRoomByName(roomName);
+            view.DisplayMessage($"\n\tDeleted {rowsAffected} row.");
+        }
 
     }
 
