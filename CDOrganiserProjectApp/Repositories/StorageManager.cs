@@ -269,11 +269,16 @@ namespace CDOrganiserProjectApp
         
         public int InsertBandAlbum(BandAlbums albums)
         {
-            using (SqlCommand cmd = new SqlCommand($"INSERT INTO Contents.tblAlbums (albumName, genreName, dateOfRelease) VALUES (@albumName, @genreName, @dateOfRelease); SELECT SCOPE_IDENTITY();", conn))
+            using (SqlCommand cmd = new SqlCommand($"INSERT INTO Contents.tblAlbums (albumName, genreName, dateOfRelease, formatID, bandID, roomID, shelfTag, shelfRow) VALUES (@AlbumName, @GenreName, @DateOfRelease, @FormatName, @BandName, @RoomName, @ShelfTag, @ShelfRow) WHERE ; SELECT SCOPE_IDENTITY();", conn))
             {
-                cmd.Parameters.AddWithValue("@albumName", albums.AlbumName);
-                cmd.Parameters.AddWithValue("@genreName", albums.GenreName);
-                cmd.Parameters.AddWithValue("@dateOfRelease", albums.DateOfRelease);
+                cmd.Parameters.AddWithValue("@AlbumName", albums.AlbumName);
+                cmd.Parameters.AddWithValue("@GenreName", albums.GenreName);
+                cmd.Parameters.AddWithValue("@DateOfRelease", albums.DateOfRelease);
+                cmd.Parameters.AddWithValue("@FormatName", albums.FormatName);
+                cmd.Parameters.AddWithValue("@BandName", albums.BandName);
+                cmd.Parameters.AddWithValue("@RoomName", albums.RoomName);
+                cmd.Parameters.AddWithValue("@ShelfTag", albums.ShelfTag);
+                cmd.Parameters.AddWithValue("@ShelfRow", albums.ShelfRow);
 
                 return Convert.ToInt32(cmd.ExecuteScalar());
             }
