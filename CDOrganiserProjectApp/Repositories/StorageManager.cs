@@ -284,7 +284,6 @@ namespace CDOrganiserProjectApp
             }
         }
 
-
         /*
         public int UpdateAlbumName(int albumId, string albumName, string genreName, string dateOfRelease)
         {
@@ -386,52 +385,52 @@ namespace CDOrganiserProjectApp
         }
 
 
-        public List<Artists> GetAllArtists()
+        public List<Formats> GetAllFormats()
         {
-            List<Artists> artists = new List<Artists>();
-            string sqlStr = "SELECT * FROM Contents.tblArtists";
+            List<Formats> formats = new List<Formats>();
+            string sqlStr = "SELECT * FROM Properties.tblFormat";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())
                     {
-                        int artistId = Convert.ToInt32(reader["artistID"]);
-                        string artistName = reader["artistName"].ToString();
-                        artists.Add(new Artists(artistId, artistName));
+                        int formatId = Convert.ToInt32(reader["formatID"]);
+                        string formatName = reader["formatName"].ToString();
+                        formats.Add(new Formats(formatId, formatName));
                     }
                 }
             }
-            return artists;
+            return formats;
         }
 
-        public int InsertArtist(Artists artists)
+        public int InsertFormat(Formats formats)
         {
-            string sqlStr = $"INSERT INTO Contents.tblArtists (artistName) VALUES (@artistName); SELECT SCOPE_IDENTITY();";
+            string sqlStr = $"INSERT INTO Properties.tblFormat (formatName) VALUES (@FormatName); SELECT SCOPE_IDENTITY();";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
-                cmd.Parameters.AddWithValue("@artistName", artists.artistName);
+                cmd.Parameters.AddWithValue("@FormatName", formats.FormatName);
                 return Convert.ToInt32(cmd.ExecuteScalar());
             }
         }
 
-        public int UpdateArtistByName(string artistName, string newName)
+        public int UpdateFormatByName(string formatName, string newName)
         {
-            string sqlStr = $"UPDATE Contents.tblArtists SET artistName = @newName WHERE artistName = @artistName";
+            string sqlStr = $"UPDATE Properties.tblFormat SET formatName = @newName WHERE formatName = @formatName";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
-                cmd.Parameters.AddWithValue("@artistName", artistName);
+                cmd.Parameters.AddWithValue("@formatName", formatName);
                 cmd.Parameters.AddWithValue("@newName", newName);
                 return cmd.ExecuteNonQuery();
             }
         }
 
-        public int DeleteArtistByName(string artistName)
+        public int DeleteFormatByName(string formatName)
         {
-            string sqlStr = "DELETE FROM Contents.tblArtists WHERE artistName = @artistName";
+            string sqlStr = "DELETE FROM Properties.tblFormat WHERE formatName = @formatName";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
-                cmd.Parameters.AddWithValue("@artistName", artistName);
+                cmd.Parameters.AddWithValue("@formatName", formatName);
                 return cmd.ExecuteNonQuery();
             }
 
