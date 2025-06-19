@@ -13,7 +13,7 @@ namespace CDOrganiserProjectApp.View
     {
 
         const int wait = 100;
-
+        
         public string StartMenu()
         {
             Console.WriteLine("\n\t CD Manager");
@@ -85,6 +85,13 @@ namespace CDOrganiserProjectApp.View
             return Console.ReadLine();
         }
 
+        public void DisplayHelp()
+        {
+
+
+        }
+
+
         /* 
          Planning to deprecate the use of commands to specifically print for the 'Bands' table. Refer to pseudocodes and diagrams in booklet to plan.
 
@@ -95,7 +102,7 @@ namespace CDOrganiserProjectApp.View
         {
             foreach (Bands band in bands)
             {
-                Console.WriteLine($"{band.bandId}\t {band.bandName}");;
+                Console.WriteLine($"{band.bandId}, {band.bandName}\n");
                 Thread.Sleep(wait);
 
             }        
@@ -106,7 +113,7 @@ namespace CDOrganiserProjectApp.View
         {
             foreach (Artists artist in artists)
             {
-                Console.WriteLine($"{artist.artistId}\t {artist.artistName}");
+                Console.WriteLine($"{artist.artistId}, {artist.artistName}\n");
                 Thread.Sleep(wait);
 
             }
@@ -117,7 +124,7 @@ namespace CDOrganiserProjectApp.View
         {
             foreach (Rooms room in rooms)
             {
-                Console.WriteLine($"{room.RoomId}\t {room.RoomName}");
+                Console.WriteLine($"{room.RoomId}, {room.RoomName}\n");
                 Thread.Sleep(wait);
 
             }
@@ -128,7 +135,7 @@ namespace CDOrganiserProjectApp.View
         {
             foreach (ArtistAlbums album in albums)
             {
-                Console.WriteLine($"{album.AlbumId}\t {album.AlbumName}\t {album.GenreName}\t {album.DateOfRelease.ToString("d")}\t {album.FormatName}\t {album.ArtistName}\t {album.RoomName}\t {album.ShelfTag}\t {album.ShelfRow}\t {album.Lost}");
+                Console.WriteLine($"{album.AlbumId}, {album.AlbumName}, {album.GenreName}, {album.DateOfRelease.ToString("d")}, {album.FormatName}, {album.ArtistName}, {album.RoomName}, {album.ShelfTag}, {album.ShelfRow}, {album.Lost}\n");
                 Thread.Sleep(wait);
                 
             }
@@ -138,7 +145,7 @@ namespace CDOrganiserProjectApp.View
         {
             foreach (BandAlbums album in albums)
             {
-                Console.WriteLine($"{album.AlbumId}\t {album.AlbumName}\t {album.GenreName}\t {album.DateOfRelease.ToString("d")}\t {album.FormatName}\t {album.BandName}\t {album.RoomName}\t {album.ShelfTag}\t {album.ShelfRow}\t {album.Lost}");
+                Console.WriteLine($"{album.AlbumId}, {album.AlbumName}, {album.GenreName}, {album.DateOfRelease.ToString("d")}, {album.FormatName}, {album.BandName}, {album.RoomName}, {album.ShelfTag}, {album.ShelfRow}, {album.Lost}\n");
                 Thread.Sleep(wait);
 
             }

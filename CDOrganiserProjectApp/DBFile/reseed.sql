@@ -1,1 +1,1 @@
-﻿
+﻿DBCC CHECKIDENT('Contents.tblAccounts', reseed, 14)

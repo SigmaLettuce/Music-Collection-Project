@@ -11,15 +11,19 @@ namespace CDOrganiserProjectApp.Index
 
         // Rudimentary suffixes ≻ Commands
 
-        // Admin only suffix
-        
-            public const string @albums = "albums";
-            public const string @artists = "artists";
-            public const string @bands = "bands";
-            public const string @all = "all";
-            public const string @rooms = "rooms";
+            // Globally used suffix
 
-            public const string @users = "users";
+                public const string @categories = "cat";
+
+            // Admin only suffix
+
+                public const string @albums = "albums";
+                public const string @artists = "artists";
+                public const string @bands = "bands";
+                public const string @all = "all";
+                public const string @rooms = "rooms";
+
+                public const string @users = "users";
 
                 // Account related suffix
 
