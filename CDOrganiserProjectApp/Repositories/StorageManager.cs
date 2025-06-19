@@ -23,11 +23,15 @@ namespace CDOrganiserProjectApp
             catch (SqlException e)
             {
                 Console.WriteLine("\n  Connection failed.\n");
+
+                Environment.Exit(0);
                 Console.WriteLine(e.Message);
             }
             catch (Exception ex)
             {
                 Console.WriteLine("\n  An error occured.");
+
+                Environment.Exit(0);
                 Console.WriteLine(ex.Message);
             }
         }

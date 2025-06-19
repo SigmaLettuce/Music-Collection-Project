@@ -18,26 +18,31 @@ namespace CDOrganiserProjectApp
     {
         private static StorageManager storageManager;
         private static ConsoleView view;
-        public const int wait = 1000;
+
         private static int roleId;
+
+        public const int wait = 1000;
 
         static void Main(string[] args)
         {
             // Console.WriteLine("Hello, World!");
-            string connectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=HomeMusicCollectionDatabase;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False";
-            storageManager = new StorageManager(connectionString);
+            
             view = new ConsoleView();
 
             StartMenuscreenOptions();
             
-            storageManager.CloseConnection();
+
 
         }
 
         private static void StartMenuscreenOptions()
         {
 
+            string connectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=HomeMusicCollectionDatabase;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False";
+            storageManager = new StorageManager(connectionString);
+
             bool invalid = true;
+
 
             string startInput = view.StartMenu();
             view.DisplayMessage("");
