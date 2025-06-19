@@ -139,6 +139,7 @@ namespace CDOrganiserProjectApp
 
         }
 
+
         public List<Rooms> GetAllRooms()
         {
             List<Rooms> rooms = new List<Rooms>();
@@ -189,6 +190,7 @@ namespace CDOrganiserProjectApp
 
         }
 
+
         public List<ArtistAlbums> GetAllArtistAlbums()
         {
             List<ArtistAlbums> albums = new List<ArtistAlbums>();
@@ -217,7 +219,6 @@ namespace CDOrganiserProjectApp
             }
             return albums;
         }
-
 
         public int InsertArtistAlbum(ArtistAlbums albums)
         {
@@ -266,7 +267,6 @@ namespace CDOrganiserProjectApp
             return albums;
         }
         
-
         public int InsertBandAlbum(BandAlbums albums)
         {
             using (SqlCommand cmd = new SqlCommand($"INSERT INTO Contents.tblAlbums (albumName, genreName, dateOfRelease) VALUES (@albumName, @genreName, @dateOfRelease); SELECT SCOPE_IDENTITY();", conn))
@@ -310,8 +310,7 @@ namespace CDOrganiserProjectApp
 
         }
 
-
-        public string GetUsernameCredentials(string un, string password)
+        public string FetchUsername(string un, string password)
         {
             string username = " ";
 
@@ -334,7 +333,7 @@ namespace CDOrganiserProjectApp
             }
         }
 
-        public string GetPasswordCredentials(string username, string pw)
+        public string FetchPassword(string username, string pw)
         {
             string password = " ";
 

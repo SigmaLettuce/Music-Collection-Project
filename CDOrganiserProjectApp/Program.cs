@@ -79,13 +79,13 @@ namespace CDOrganiserProjectApp
                         view.DisplayMessage(" ");
                         string pw = view.GetInput();
 
-                        string fetchuser = storageManager.GetUsernameCredentials(user, pw);
-                        string fetchpw = storageManager.GetPasswordCredentials(user, pw);
+                        string fetchUser = storageManager.FetchUsername(user, pw);
+                        string fetchPw = storageManager.FetchPassword(user, pw);
                         roleId = storageManager.FetchRole(user, pw);
 
                         invalid = false;
 
-                        if (user.Equals(fetchuser) & pw.Equals(fetchpw))
+                        if (user.Equals(fetchUser) & pw.Equals(fetchPw))
                         {
                             switch (roleId)
                             {
