@@ -437,6 +437,46 @@ namespace CDOrganiserProjectApp
 
         }
 
+        /*
+        private static void Update(char @class)
+        {
+
+            view.DisplayMessage("\nEnter the current name... ");
+            string name = view.GetInput();
+
+            view.DisplayMessage("\nRename the record... ");
+            string rename = view.GetInput();
+
+            int rowsAffected;
+
+            switch (@class)
+            {
+
+                case 'A':
+
+                    rowsAffected = storageManager.UpdateArtistByName(name, rename);
+                    view.DisplayMessage($"\nUpdated {rowsAffected} record/s.");
+
+                break;
+
+                case 'B':
+
+                    rowsAffected = storageManager.UpdateBandByName(name, rename);
+                    view.DisplayMessage($"\nUpdated {rowsAffected} record/s.");
+
+                break;
+
+                case 'C':
+
+                    rowsAffected = storageManager.UpdateRoomByName(name, rename);
+                    view.DisplayMessage($"\nUpdated {rowsAffected} record/s.");
+
+                break;
+
+            }
+
+        }
+        */
 
         private static void UpdateBandName()
         {
@@ -508,7 +548,6 @@ namespace CDOrganiserProjectApp
             int rowsAffected = storageManager.DeleteArtistByName(artistName);
             view.DisplayMessage($"\nDeleted {rowsAffected} row.");
         }
-
 
 
         private static void UpdateRoomName()
