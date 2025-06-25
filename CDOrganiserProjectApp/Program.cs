@@ -21,7 +21,7 @@ namespace CDOrganiserProjectApp
 
         private static int roleId;
 
-        public const int wait = 1000;
+        const int wait = 1000;
 
         static void Main(string[] args)
         {
@@ -156,7 +156,7 @@ namespace CDOrganiserProjectApp
                     case Prefix.@view + " " + Suffix.@bands:
                         List<Bands> bands = storageManager.GetAllBands();
                         view.DisplayBands(bands);
-        
+
                         invalid = false;
 
                         GoBack();
@@ -227,6 +227,15 @@ namespace CDOrganiserProjectApp
 
                     break;
 
+                    case Prefix.@view + " " + Suffix.@all:
+                        storageManager.GetAllArtistsNBands();
+
+                        invalid = false;
+
+                        GoBack();
+
+                        break;
+
                     case Prefix.@view + " " + Suffix.@rooms:
                         List<Rooms> rooms = storageManager.GetAllRooms();
                         view.DisplayRooms(rooms);
@@ -277,6 +286,15 @@ namespace CDOrganiserProjectApp
                     case Prefix.@view + " " + Base.@band + " " + Suffix.@albums:
                         List<BandAlbums> albumsb = storageManager.GetAllBandAlbums();
                         view.DisplayBandAlbums(albumsb);
+
+                        invalid = false;
+
+                        GoBack();
+
+                    break;
+
+                    case Prefix.@ins + " " + Base.@band + " " + Suffix.@albums:
+                        InsertBandAlbum();
 
                         invalid = false;
 

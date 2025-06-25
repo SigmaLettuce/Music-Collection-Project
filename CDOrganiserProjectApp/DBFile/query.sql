@@ -6,8 +6,7 @@ WHERE tblBandAlbums.formatID = tblFormat.formatID
 AND tblBandAlbums.bandID = tblBands.bandID 
 AND tblBandAlbums.roomID = tblStorageRoom.roomID
 
-INSERT INTO Contents.tblAlbums (albumName, genreName, dateOfRelease, formatID, artistID, roomID, shelfTag, shelfRow) 
-VALUES (@AlbumName, @GenreName, @DateOfRelease, @FormatName, @ArtistName, @RoomName, @ShelfTag, @ShelfRow); 
+
 
 
 SELECT SCOPE_IDENTITY();

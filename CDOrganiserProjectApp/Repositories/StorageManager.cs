@@ -8,6 +8,7 @@ namespace CDOrganiserProjectApp
     // Manages connection to database, passes queries etc.
     public class StorageManager
     {
+        const int wait = 100;
         private SqlConnection conn;
 
         public StorageManager(string connectionStr)
@@ -269,7 +270,7 @@ namespace CDOrganiserProjectApp
         
         public int InsertBandAlbum(BandAlbums albums)
         {
-            using (SqlCommand cmd = new SqlCommand($"INSERT INTO Contents.tblAlbums (albumName, genreName, dateOfRelease, formatID, bandID, roomID, shelfTag, shelfRow) VALUES (@AlbumName, @GenreName, @DateOfRelease, @FormatName, @BandName, @RoomName, @ShelfTag, @ShelfRow) WHERE ; SELECT SCOPE_IDENTITY();", conn))
+            using (SqlCommand cmd = new SqlCommand($"INSERT INTO Contents.tblAlbums (albumName, genreName, dateOfRelease, formatID, bandID, roomID, shelfTag, shelfRow) VALUES (@AlbumName, @GenreName, @DateOfRelease, (SELECT formatID from Properties.tblFormat WHERE formatName = @FormatName), (SELECT bandID FROM Contents.tblBands WHERE bandName = @BandName),(SELECT roomID FROM Properties.tblStorageRoom WHERE roomName = @RoomName), @ShelfTag, @ShelfRow); SELECT SCOPE_IDENTITY();", conn))
             {
                 cmd.Parameters.AddWithValue("@AlbumName", albums.AlbumName);
                 cmd.Parameters.AddWithValue("@GenreName", albums.GenreName);
@@ -436,7 +437,23 @@ namespace CDOrganiserProjectApp
 
         }
 
+        public void GetAllArtistsNBands()
+        {
+            string sqlStr = "SELECT bandName as 'All Artists' FROM Contents.tblBands UNION SELECT artistName FROM Contents.tblArtists;";
+            using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
+            {
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        string allArtists = reader["All Artists"].ToString();
 
+                        Console.WriteLine($"{allArtists}\n");
+                        Thread.Sleep(wait);
+                    }
+                }
+            }
+        }
 
 
         public void CloseConnection()
