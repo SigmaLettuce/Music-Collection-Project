@@ -228,7 +228,7 @@ namespace CDOrganiserProjectApp
                     break;
 
                     case Prefix.@view + " " + Suffix.@all:
-                        storageManager.GetAllArtistsNBands();
+                        storageManager.GetAllArtistsAndBands();
 
                         invalid = false;
 

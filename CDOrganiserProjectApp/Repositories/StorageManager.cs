@@ -1,6 +1,7 @@
 ﻿using CDOrganiserProjectApp.Model;
 using Microsoft.Data.SqlClient;
 using Microsoft.Identity.Client;
+using System.Collections;
 using System.Reflection.Metadata.Ecma335;
 
 namespace CDOrganiserProjectApp
@@ -437,7 +438,40 @@ namespace CDOrganiserProjectApp
 
         }
 
-        public void GetAllArtistsNBands()
+
+        public int Pagination(int totalPages)
+        {
+            int count = 0;
+
+            int ifCount = 0;
+            int pageNum = 1;
+
+            count++;
+
+            if (count % 10 == 0)
+            {
+                string input;
+
+                ifCount++;
+                Console.WriteLine("Navigate to the next page");
+                Console.WriteLine("You are on page: " + pageNum + " of " + totalPages);
+
+                input = Console.ReadLine();
+
+
+                for (int i = 0; i < totalPages; i++)
+                {
+                    if (input.Equals($"{ifCount}"))
+                    {
+
+                    }
+                }
+            }
+
+            return totalPages;
+        }
+
+        public void GetAllArtistsAndBands()
         {
             string sqlStr = "SELECT bandName as 'All Artists' FROM Contents.tblBands UNION SELECT artistName FROM Contents.tblArtists;";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))

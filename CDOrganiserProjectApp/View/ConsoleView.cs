@@ -56,7 +56,7 @@ namespace CDOrganiserProjectApp.View
                     Console.WriteLine("\t'user' - A user account");
                     Console.WriteLine("\t'help' - A comprehensive guide to the appplication");
                     Console.WriteLine("\t'log out' - Exits the account; brings you back to 'Start Menu'\n");
-
+            
 
             return Console.ReadLine();
         }
@@ -105,7 +105,7 @@ namespace CDOrganiserProjectApp.View
                 Console.WriteLine($"{band.bandId}, {band.bandName}\n");
                 Thread.Sleep(wait);
 
-            }        
+            }   
 
         }
 
@@ -128,7 +128,7 @@ namespace CDOrganiserProjectApp.View
                 Thread.Sleep(wait);
 
             }
-
+            
         }
 
         public void DisplayArtistAlbums(List<ArtistAlbums> albums)
@@ -149,6 +149,8 @@ namespace CDOrganiserProjectApp.View
                 Thread.Sleep(wait);
 
             }
+
+
         }
 
         public void DisplayMessage(string msg)
