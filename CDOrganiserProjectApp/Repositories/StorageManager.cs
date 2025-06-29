@@ -461,9 +461,9 @@ namespace CDOrganiserProjectApp
 
                 for (int i = 0; i < totalPages; i++)
                 {
-                    if (input.Equals($"{ifCount}"))
+                    if (input.Equals(ifCount))
                     {
-
+                        Console.WriteLine("E");
                     }
                 }
             }
@@ -482,7 +482,30 @@ namespace CDOrganiserProjectApp
                     {
                         string allArtists = reader["All Artists"].ToString();
 
+                        Pagination(7);
+
                         Console.WriteLine($"{allArtists}\n");
+                        Thread.Sleep(wait);
+                    }
+                }
+            }
+        }
+
+
+        public void GetAToJArtists()
+        {
+            string sqlStr = "SELECT tblArtists.artistName, tblAlbums.albumName, tblAlbums.genreName FROM Contents.tblArtists, Contents.tblAlbums WHERE tblAlbums.artistID = tblArtists.artistID AND tblArtists.artistName LIKE '[A-J]%' ORDER BY tblArtists.artistName, tblAlbums.albumName, tblAlbums.genreName;";
+            using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
+            {
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        string artistName = reader["artistName"].ToString();
+                        string albumName = reader["albumName"].ToString();
+                        string genreName = reader["genreName"].ToString();
+
+                        Console.WriteLine($"{artistName}, {albumName}, {genreName}\n");
                         Thread.Sleep(wait);
                     }
                 }
