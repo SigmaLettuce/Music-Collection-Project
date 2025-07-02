@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace CDOrganiserProjectApp.View
 {
-    public class ConsoleView
+    public class ConsoleView 
     {
 
         const int wait = 100;
