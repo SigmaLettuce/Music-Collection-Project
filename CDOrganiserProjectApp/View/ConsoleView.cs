@@ -26,15 +26,19 @@ namespace CDOrganiserProjectApp.View
         public string DisplayAdminMenu()
         {
             Console.WriteLine("\n\tWelcome to your CD Manager! \n");
-            Console.WriteLine("\tView... ");
+            Console.WriteLine("\tVIEW... ");
 
-                Console.WriteLine("\n\t'albums' - Albums of a compact disc; a CD");
-                Console.WriteLine("\t'artists' - All artists who have published an album you own");
-                Console.WriteLine("\t'bands' - All bands who have published an album you own");
-                Console.WriteLine("\t'all' - All artists, including bands, who have published an album you own");
-                Console.WriteLine("\t'rooms' - All available rooms");
-                Console.WriteLine("\t'shelves' - All available shelving units and their shelves\n");
+                Console.WriteLine("\n\t[/] 'albums' - Albums of a compact disc; a CD");
+                Console.WriteLine("\t[/] 'artists' - All artists who have published an album you own");
+                Console.WriteLine("\t[/] 'bands' - All bands who have published an album you own");
+                Console.WriteLine("\t[/] 'all' - All artists, including bands, who have published an album you own");
+                Console.WriteLine("\t[/] 'rooms' - All available rooms");
+                Console.WriteLine("\t[/] 'shelves' - All available shelving units and their shelves\n");
 
+            Console.WriteLine("\tSETTINGS... ");
+
+                Console.WriteLine("\n\t'accounts'");
+            
             Console.WriteLine("Enter the name of any dataset to view it... \n");
 
 
@@ -45,6 +49,7 @@ namespace CDOrganiserProjectApp.View
 
         public string DisplayGuestMenu() 
         {
+            /*
             Console.WriteLine("\n\tWelcome to your CD Manager! ");
             Console.WriteLine("\tList of commands... \n"); 
 
@@ -63,8 +68,10 @@ namespace CDOrganiserProjectApp.View
             Console.WriteLine("\n\t'user' - A user account");
             Console.WriteLine("\t'help' - A comprehensive guide to the appplication");
             Console.WriteLine("\t'log out' - Exits the account; brings you back to 'Start Menu'\n");
+            */
 
             return Console.ReadLine();
+
         }
 
         public void DisplayHelp()
@@ -72,13 +79,6 @@ namespace CDOrganiserProjectApp.View
 
 
         }
-
-
-        /* 
-         Planning to deprecate the use of commands to specifically print for the 'Bands' table. Refer to pseudocodes and diagrams in booklet to plan.
-
-
-        */
 
         public void DisplayBands(List<Bands> bands)
         {

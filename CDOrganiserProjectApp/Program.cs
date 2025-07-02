@@ -158,7 +158,7 @@ namespace CDOrganiserProjectApp
             
             bool invalid = true;
 
-            string adminInput = view.DisplayAdminMenu();
+            string input = view.DisplayAdminMenu();
             view.DisplayMessage("");
 
             Thread.Sleep(wait);
@@ -166,43 +166,64 @@ namespace CDOrganiserProjectApp
 
             do
             {
-                switch (adminInput.ToLower())
+                switch (input.ToLower())
                 {
 
-                    case Prefix.@view + " " + Suffix.@bands:
+                    case "bands":
                         List<Bands> bands = storageManager.GetAllBands();
                         view.DisplayBands(bands);
 
-                        invalid = false;
+                        string cmd = Console.ReadLine();
+                        view.DisplayMessage("");
 
-                        GoBack();
-
-                    break;
-
-                    case Prefix.@up + " " + Suffix.@bands:
-                        UpdateBandName();
+                        Thread.Sleep(wait);
 
                         invalid = false;
 
-                        GoBack();
+                        switch (cmd)
+                        {
+                            case "up":
+                                UpdateBandName();
 
-                    break;
+                                invalid = false;
 
-                    case Prefix.@ins + " " + Suffix.@bands:
-                        InsertNewBand();
+                                GoBack();
 
-                        invalid = false;
+                            break;
 
-                        GoBack();
+                            case "ins":
+                                InsertNewBand();
 
-                    break;
+                                invalid = false;
 
-                    case Prefix.@del + " " + Suffix.@bands:
-                        DeleteBandByName();
+                                GoBack();
 
-                        invalid = false;
+                            break;
 
-                        GoBack();
+                            case "del":
+                                DeleteBandByName();
+
+                                invalid = false;
+
+                                GoBack();
+
+                            break;
+
+
+                            case "back":
+                                GoBack();
+
+                                invalid = false;
+
+                            break;
+
+                            default:
+                                view.DisplayMessage("I'm sorry, this isn't a valid selection. Can you try again? ");
+                                Thread.Sleep(wait);
+                                Console.Clear();
+
+                            break;
+                        }
 
                     break;
 
@@ -458,7 +479,10 @@ namespace CDOrganiserProjectApp
                     break;
 
                     default:
-                        view.DisplayMessage("\nI'm sorry, this isn't a valid selection. Can you try again ? ");
+                        view.DisplayMessage("I'm sorry, this isn't a valid selection. Can you try again? ");
+                        Thread.Sleep(wait);
+                        Console.Clear();
+
                         GoBack();
 
                         carry = true;
@@ -470,6 +494,7 @@ namespace CDOrganiserProjectApp
             while (carry);
 
         }
+
 
         /*
         private static void Update(char @class)
