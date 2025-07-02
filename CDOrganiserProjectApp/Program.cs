@@ -46,7 +46,7 @@ namespace CDOrganiserProjectApp
 
             string startInput = view.StartMenu();
             view.DisplayMessage("");
-
+             
             do
             {
                 switch (startInput.ToUpper())
