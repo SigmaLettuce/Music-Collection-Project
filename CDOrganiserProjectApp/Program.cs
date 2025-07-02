@@ -53,69 +53,17 @@ namespace CDOrganiserProjectApp
                 {
                     case "R":
 
-                        Thread.Sleep(wait);
-                        Console.Clear();
+                        Register();
 
-                        CreateUser();
-                        Thread.Sleep(wait);
-                        Console.Clear();
-                        GuestMenuscreenOptions();
-                        
                         invalid = false;
-                        
+
                     break;
 
                     case "L":
 
-                        Thread.Sleep(wait);
-                        Console.Clear();
-
-                        view.DisplayMessage("\nEnter your username... ");
-                        view.DisplayMessage(" ");
-                        string user = view.GetInput();
-
-
-                        view.DisplayMessage("\nEnter your password... ");
-                        view.DisplayMessage(" ");
-                        string pw = view.GetInput();
-
-
-                        string fetchUser = storageManager.FetchUsername(user, pw);
-                        string fetchPw = storageManager.FetchPassword(user, pw);
-                        roleId = storageManager.FetchRole(user, pw);
+                        Login();
 
                         invalid = false;
-
-                        if (user.Equals(fetchUser) & pw.Equals(fetchPw))
-                        {
-                            switch (roleId)
-                            {
-                                case 1:
-                                    Thread.Sleep(wait);
-                                    Console.Clear();
-
-                                    GuestMenuscreenOptions();
-
-                                break;
-
-                                case 2:
-                                    Thread.Sleep(wait);
-                                    Console.Clear();
-
-                                    AdminMenuscreenOptions();
-
-                                break;
-                            }
-                        }
-
-                        else
-                        {
-                            view.DisplayMessage("\nEither your username or password are incorrect. ");
-                            Thread.Sleep(wait);
-                            Console.Clear();
-
-                            StartMenuscreenOptions();
-                        }
 
                     break;
 
@@ -136,6 +84,73 @@ namespace CDOrganiserProjectApp
 
 
             
+        }
+
+        private static void Register()
+        {
+            Thread.Sleep(wait);
+            Console.Clear();
+
+            CreateUser();
+            Thread.Sleep(wait);
+            Console.Clear();
+            GuestMenuscreenOptions();
+
+
+        }
+
+        private static void Login()
+        {
+            Thread.Sleep(wait);
+            Console.Clear();
+
+            view.DisplayMessage("\nEnter your username... ");
+            view.DisplayMessage(" ");
+            string user = view.GetInput();
+
+
+            view.DisplayMessage("\nEnter your password... ");
+            view.DisplayMessage(" ");
+            string pw = view.GetInput();
+
+
+            string fetchUser = storageManager.FetchUsername(user, pw);
+            string fetchPw = storageManager.FetchPassword(user, pw);
+            roleId = storageManager.FetchRole(user, pw);
+
+
+
+            if (user.Equals(fetchUser) & pw.Equals(fetchPw))
+            {
+                switch (roleId)
+                {
+                    case 1:
+                        Thread.Sleep(wait);
+                        Console.Clear();
+
+                        GuestMenuscreenOptions();
+
+                    break;
+
+                    case 2:
+                        Thread.Sleep(wait);
+                        Console.Clear();
+
+                        AdminMenuscreenOptions();
+
+                    break;
+                }
+            }
+
+            else
+            {
+                view.DisplayMessage("\nEither your username or password are incorrect. ");
+                Thread.Sleep(wait);
+                Console.Clear();
+
+                Login();
+            }
+
         }
 
         private static void AdminMenuscreenOptions()

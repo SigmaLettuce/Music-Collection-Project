@@ -25,39 +25,21 @@ namespace CDOrganiserProjectApp.View
 
         public string DisplayAdminMenu()
         {
-            Console.WriteLine("\n\tWelcome to your CD Manager! ");
-            Console.WriteLine("\tList of commands... \n");
-                    
-            Console.WriteLine("Prefixes · Commands to run on sets of data");
-                Console.WriteLine("\n\t'view' - Displays information");
-                Console.WriteLine("\t'up' - Updates information");
-                Console.WriteLine("\t'ins' - Adds new information");
-                Console.WriteLine("\t'del' - Delete unwanted information");
-                Console.WriteLine("\t'lost' - Marks a specified 'disc' as lost; this command can only be run on 'albums'\n");
+            Console.WriteLine("\n\tWelcome to your CD Manager! \n");
+            Console.WriteLine("\tView... ");
 
-            Console.WriteLine("Bases · Distinguishes data set variants");
-                Console.WriteLine("\n\t'artist' - Albums of artists");
-                Console.WriteLine("\t'band' - Albums of bands\n");
-
-            Console.WriteLine("Suffixes · Data sets available to run commands on");
                 Console.WriteLine("\n\t'albums' - Albums of a compact disc; a CD");
                 Console.WriteLine("\t'artists' - All artists who have published an album you own");
                 Console.WriteLine("\t'bands' - All bands who have published an album you own");
                 Console.WriteLine("\t'all' - All artists, including bands, who have published an album you own");
-                Console.WriteLine("\t'rooms' - All available rooms\n");
+                Console.WriteLine("\t'rooms' - All available rooms");
+                Console.WriteLine("\t'shelves' - All available shelving units and their shelves\n");
 
-            Console.WriteLine("Extras · Commands irrelevant to your data");
-                Console.WriteLine("\n  Prefixes · Commands to run on sets of data");
-                    Console.WriteLine("\n\t'create' - Creates an account");
-                    Console.WriteLine("\t'del' - Deletes an account\n");
+            Console.WriteLine("Enter the name of any dataset to view it... \n");
 
-                Console.WriteLine("  Suffixes · Data sets available to run commands on");
-                    Console.WriteLine("\n\t'admin' - An administrator account");
-                    Console.WriteLine("\t'user' - A user account");
-                    Console.WriteLine("\t'help' - A comprehensive guide to the appplication");
-                    Console.WriteLine("\t'log out' - Exits the account; brings you back to 'Start Menu'\n");
+
             
-
+                
             return Console.ReadLine();
         }
 
