@@ -37,9 +37,10 @@ namespace CDOrganiserProjectApp.View
 
             Console.WriteLine("\tSETTINGS... ");
 
-                Console.WriteLine("\n\t'accounts'");
+                Console.WriteLine("\n\t[/] 'accounts' - Manage account permissions");
+                Console.WriteLine("\t[/] 'help' - Takes you to the help page");
             
-            Console.WriteLine("Enter the name of any dataset to view it... \n");
+            Console.WriteLine("Enter any of the listings above for access... \n");
 
 
             
