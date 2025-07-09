@@ -17,8 +17,8 @@ namespace CDOrganiserProjectApp.View
         public string StartMenu()
         {
             Console.WriteLine("\n\t CD Manager");
-            Console.WriteLine("\n\t 'Create account' - [R]");
-            Console.WriteLine("\n\t 'Log in' - [L]\n");
+            Console.WriteLine("\n\t[/] 'Create account' - Press R");
+            Console.WriteLine("\n\t[/] 'Log in' - Press L\n");
 
             return Console.ReadLine();
         }
