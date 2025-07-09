@@ -81,7 +81,7 @@ namespace CDOrganiserProjectApp.View
 
             return Console.ReadLine();
 
-        }
+        } 
 
         public string DisplayEditingOptions(string d)
         {
