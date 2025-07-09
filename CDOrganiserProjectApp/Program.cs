@@ -172,57 +172,66 @@ namespace CDOrganiserProjectApp
                         List<Bands> bands = storageManager.GetAllBands();
                         view.DisplayBands(bands);
 
-                        string cmd = Console.ReadLine();
+                        Thread.Sleep(wait);
+
+                        string cmd = view.DisplayEditingOptions("bands");
                         view.DisplayMessage("");
 
                         Thread.Sleep(wait);
 
                         invalid = false;
 
-                        switch (cmd)
+                        do
                         {
-                            case "up":
-                                UpdateBandName();
 
-                                invalid = false;
+                            switch (cmd)
+                            {
+                                case "up":
+                                    UpdateBandName();
 
-                                GoBack();
+                                    invalid = false;
 
-                            break;
+                                    GoBack();
 
-                            case "ins":
-                                InsertNewBand();
+                                break;
 
-                                invalid = false;
+                                case "ins":
+                                    InsertNewBand();
 
-                                GoBack();
+                                    invalid = false;
 
-                            break;
+                                    GoBack();
 
-                            case "del":
-                                DeleteBandByName();
+                                break;
 
-                                invalid = false;
+                                case "del":
+                                    DeleteBandByName();
 
-                                GoBack();
+                                    invalid = false;
 
-                            break;
+                                    GoBack();
+
+                                break;
 
 
-                            case "back":
-                                GoBack();
 
-                                invalid = false;
 
-                            break;
+                                case "back":
+                                    GoBack();
 
-                            default:
-                                view.DisplayMessage("I'm sorry, this isn't a valid selection. Can you try again? ");
-                                Thread.Sleep(wait);
-                                Console.Clear();
+                                    invalid = false;
 
-                            break;
-                        }
+                                break;
+
+                                default:
+                                    view.DisplayMessage("I'm sorry, this isn't a valid selection. Can you try again? ");
+                                    Thread.Sleep(wait);
+                                    Console.Clear();
+
+                                break;
+                            }
+
+                        } while (invalid);
 
                     break;
 

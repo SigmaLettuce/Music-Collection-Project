@@ -3,6 +3,7 @@ using Microsoft.Identity.Client;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Channels;
 using System.Threading.Tasks;
@@ -13,12 +14,14 @@ namespace CDOrganiserProjectApp.View
     {
 
         const int wait = 100;
+
+        string[,] datasets = { };
         
         public string StartMenu()
         {
             Console.WriteLine("\n\t CD Manager");
-            Console.WriteLine("\n\t[/] 'Create account' - Press R");
-            Console.WriteLine("\n\t[/] 'Log in' - Press L\n");
+            Console.WriteLine("\n\t     Create account - Press R + Enter");
+            Console.WriteLine("\n\t     Log in - Press L + Enter\n");
 
             return Console.ReadLine();
         }
@@ -27,20 +30,25 @@ namespace CDOrganiserProjectApp.View
         {
             Console.WriteLine("\n\tWelcome to your CD Manager! \n");
             Console.WriteLine("\tVIEW... ");
+            Console.WriteLine("\tThese are your available listings, compiled into directories.");
 
-                Console.WriteLine("\n\t[/] 'albums' - Albums of a compact disc; a CD");
-                Console.WriteLine("\t[/] 'artists' - All artists who have published an album you own");
-                Console.WriteLine("\t[/] 'bands' - All bands who have published an album you own");
-                Console.WriteLine("\t[/] 'all' - All artists, including bands, who have published an album you own");
-                Console.WriteLine("\t[/] 'rooms' - All available rooms");
-                Console.WriteLine("\t[/] 'shelves' - All available shelving units and their shelves\n");
+                Console.WriteLine("\n\t[/]  'albums' - Albums of a compact disc; a CD");
+                Console.WriteLine("\t[/]  'artists' - All artists who have published an album you own");
+                Console.WriteLine("\t[/]  'bands' - All bands who have published an album you own");
+                Console.WriteLine("\t[/]  'all' - All artists, including bands, who have published an album you own");
+                Console.WriteLine("\t[/]  'rooms' - All available rooms");
+                Console.WriteLine("\t[/]  'shelves' - All available shelving units and their shelves\n");
 
             Console.WriteLine("\tSETTINGS... ");
+            Console.WriteLine("\tThese are your available settings, compiled into directories.");
 
-                Console.WriteLine("\n\t[/] 'accounts' - Manage account permissions");
-                Console.WriteLine("\t[/] 'help' - Takes you to the help page");
+                Console.WriteLine("\n\t[/]  'accounts' - Manage account permissions");
+                Console.WriteLine("\t[/]  'help' - Takes you to the help page\n");
+
+                Console.WriteLine("\n\t     Log out - Press L + Enter\n");
             
-            Console.WriteLine("Enter any of the listings above for access... \n");
+
+            Console.WriteLine("Enter any of the listings above to gain access... \n");
 
 
             
@@ -75,10 +83,34 @@ namespace CDOrganiserProjectApp.View
 
         }
 
-        public void DisplayHelp()
+        public string DisplayEditingOptions(string d)
+        {
+            Console.WriteLine($"\n\t [ {d} /]\n");
+            Console.WriteLine("\tEDIT... ");
+            Console.WriteLine("\tYou can now modify this listing.");
+
+                Console.WriteLine("\n\t'up' - Updates information");
+                Console.WriteLine("\t'ins' - Adds new information");
+                Console.WriteLine("\t'del' - Deletes unwanted information\n");
+
+            Console.WriteLine("\tVIEW... ");
+            Console.WriteLine("\tThese are the available report listings, compiled into directories.");
+
+                Console.WriteLine("\n\t'reports' - Opens the reports\n");
+
+            Console.WriteLine("\n\t'back' - Return to homepage\n");
+
+
+            Console.WriteLine("Enter any of the listings above to gain access... \n");
+
+
+            return Console.ReadLine();
+        }
+
+        public string DisplayHelp()
         {
 
-
+            return Console.ReadLine();
         }
 
         public void DisplayBands(List<Bands> bands)
