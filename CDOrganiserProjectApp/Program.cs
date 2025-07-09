@@ -1,5 +1,4 @@
 ﻿using CDOrganiserProjectApp;
-using CDOrganiserProjectApp.Index;
 using CDOrganiserProjectApp.Model;
 using CDOrganiserProjectApp.View;
 using Microsoft.Identity.Client;
@@ -227,6 +226,8 @@ namespace CDOrganiserProjectApp
 
                     break;
 
+                    /*
+
                     case Prefix.@view + " " + Suffix.@artists:
                         List<Artists> artists = storageManager.GetAllArtists();
                         view.DisplayArtists(artists);
@@ -367,6 +368,8 @@ namespace CDOrganiserProjectApp
 
                     break;
 
+                    */
+
                     default:
                         view.DisplayMessage("I'm sorry, this isn't a valid selection. Can you try again? ");
                         Thread.Sleep(wait);
@@ -399,6 +402,7 @@ namespace CDOrganiserProjectApp
             {
                 switch (guestInput.ToLower())
                 {
+                    /*
 
                     case Prefix.@view + " " + Suffix.@categories:
                         Thread.Sleep(wait);
@@ -428,6 +432,8 @@ namespace CDOrganiserProjectApp
                         invalid = true;
 
                     break;
+
+                    */
 
                 }
 
