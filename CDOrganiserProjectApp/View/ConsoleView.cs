@@ -15,8 +15,12 @@ namespace CDOrganiserProjectApp.View
 
         const int wait = 100;
 
-        string[,] datasets = { };
-        
+        /*
+         
+         The 'Start Menu.'
+        Acts as a gateway to an account which holds a users unique history.
+
+        */
         public string StartMenu()
         {
             Console.WriteLine("\n\t CD Manager");

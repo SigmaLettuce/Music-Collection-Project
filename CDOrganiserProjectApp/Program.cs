@@ -18,6 +18,7 @@ namespace CDOrganiserProjectApp
         private static StorageManager storageManager;
         private static ConsoleView view;
 
+        static int accountId;
         static int roleId;
 
         const int wait = 1000;
@@ -28,7 +29,7 @@ namespace CDOrganiserProjectApp
             
             view = new ConsoleView();
 
-            AdminMenuscreenOptions();
+            StartMenuscreenOptions();
             
 
 
@@ -112,9 +113,10 @@ namespace CDOrganiserProjectApp
             view.DisplayMessage(" ");
             string pw = view.GetInput();
 
-            int fetchAccount = storageManager.FetchAccount(user, pw);
+
             string fetchUsername = storageManager.FetchUsername(user, pw);
             string fetchPassword = storageManager.FetchPassword(user, pw);
+            accountId = storageManager.FetchAccount(user, pw);
             roleId = storageManager.FetchRole(user, pw);
 
 
@@ -447,6 +449,7 @@ namespace CDOrganiserProjectApp
 
         }
 
+        
         private static void GoBack() 
         {
             string input;
