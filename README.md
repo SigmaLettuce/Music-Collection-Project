@@ -1,7 +1,7 @@
 ### CD Manager: Console Application
 
 > [!WARNING]
-> The application will not work if atleast one of the following conditions are met.
+> The application will __not__ work if atleast one of the following conditions are met.
 
 <details>
 <summary>Present issues</summary>
