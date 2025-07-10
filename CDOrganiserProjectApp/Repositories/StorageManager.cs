@@ -302,7 +302,7 @@ namespace CDOrganiserProjectApp
 
         public int CreateAccount(Accounts account)
         {
-            string sqlStr = $"INSERT INTO Contents.tblAccounts (fName, sName, username, pw, roleID) VALUES (@FirstName, @LastName, @Username, @Password, @RoleId); SELECT SCOPE_IDENTITY();";
+            string sqlStr = $"INSERT INTO Properties.tblAccounts (fName, sName, username, pw, roleID) VALUES (@FirstName, @LastName, @Username, @Password, @RoleId); SELECT SCOPE_IDENTITY();";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
                 cmd.Parameters.AddWithValue("@FirstName", account.FirstName);
@@ -316,11 +316,35 @@ namespace CDOrganiserProjectApp
 
         }
 
+
+        public int FetchAccount(string un, string pw)
+        {
+            int personId = 0;
+
+            string sqlStr = $"SELECT personID FROM Properties.tblAccounts WHERE username = @un OR pw = @pw";
+            using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
+            {
+                cmd.Parameters.AddWithValue("@un", un);
+                cmd.Parameters.AddWithValue("@pw", pw);
+
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        personId = Convert.ToInt32(reader["personID"]);
+                    }
+                }
+
+                return personId;
+            }
+
+        }
+
         public string FetchUsername(string un, string password)
         {
             string username = " ";
 
-            string sqlStr = $"SELECT username FROM Contents.tblAccounts WHERE pw = @password OR username = @un";
+            string sqlStr = $"SELECT username FROM Properties.tblAccounts WHERE pw = @password OR username = @un";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
                 cmd.Parameters.AddWithValue("@un", un);
@@ -343,7 +367,7 @@ namespace CDOrganiserProjectApp
         {
             string password = " ";
 
-            string sqlStr = $"SELECT pw FROM Contents.tblAccounts WHERE username = @username OR pw = @pw";
+            string sqlStr = $"SELECT pw FROM Properties.tblAccounts WHERE username = @username OR pw = @pw";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
                 cmd.Parameters.AddWithValue("@username", username);
@@ -367,7 +391,7 @@ namespace CDOrganiserProjectApp
 
             int roleId = 0;
 
-            string sqlStr = $"SELECT roleID FROM Contents.tblAccounts WHERE username = @un OR pw = @pw";
+            string sqlStr = $"SELECT roleID FROM Properties.tblAccounts WHERE username = @un OR pw = @pw";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
                 cmd.Parameters.AddWithValue("@un", un);

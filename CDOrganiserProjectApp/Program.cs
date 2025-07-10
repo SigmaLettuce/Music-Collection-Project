@@ -112,7 +112,7 @@ namespace CDOrganiserProjectApp
             view.DisplayMessage(" ");
             string pw = view.GetInput();
 
-            int fetchAccountId = 
+            int fetchAccount = storageManager.FetchAccount(user, pw);
             string fetchUsername = storageManager.FetchUsername(user, pw);
             string fetchPassword = storageManager.FetchPassword(user, pw);
             roleId = storageManager.FetchRole(user, pw);
