@@ -79,6 +79,26 @@ namespace CDOrganiserProjectApp.View
             Console.WriteLine("\t'log out' - Exits the account; brings you back to 'Start Menu'\n");
             */
 
+            Console.WriteLine("\n\tWelcome to your CD Manager! \n");
+            Console.WriteLine("\tVIEW... ");
+            Console.WriteLine("\tThese are your available listings, compiled into directories.");
+
+                Console.WriteLine("\n\t[/]  'albums' - Albums of a compact disc; a CD");
+                Console.WriteLine("\t[/]  'artists' - All artists who have published an album you own");
+                Console.WriteLine("\t[/]  'bands' - All bands who have published an album you own");
+                Console.WriteLine("\t[/]  'all' - All artists, including bands, who have published an album you own");
+                Console.WriteLine("\n\t[/]  'shelves' - All available shelving units and their shelves\n");
+
+            Console.WriteLine("\tSETTINGS... ");
+            Console.WriteLine("\tThese are your available settings, compiled into directories.");
+
+                Console.WriteLine("\n\t[/]  'help' - Takes you to the help page\n");
+
+                Console.WriteLine("\n\t     Log out - Press L + Enter\n");
+            
+
+            Console.WriteLine("Enter any of the listings above to gain access... \n");
+
             return Console.ReadLine();
 
         } 

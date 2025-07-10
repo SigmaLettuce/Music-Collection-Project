@@ -18,7 +18,7 @@ namespace CDOrganiserProjectApp
         private static StorageManager storageManager;
         private static ConsoleView view;
 
-        private static int roleId;
+        static int roleId;
 
         const int wait = 1000;
 
@@ -28,7 +28,7 @@ namespace CDOrganiserProjectApp
             
             view = new ConsoleView();
 
-            StartMenuscreenOptions();
+            AdminMenuscreenOptions();
             
 
 
@@ -112,14 +112,14 @@ namespace CDOrganiserProjectApp
             view.DisplayMessage(" ");
             string pw = view.GetInput();
 
-
-            string fetchUser = storageManager.FetchUsername(user, pw);
-            string fetchPw = storageManager.FetchPassword(user, pw);
+            int fetchAccountId = 
+            string fetchUsername = storageManager.FetchUsername(user, pw);
+            string fetchPassword = storageManager.FetchPassword(user, pw);
             roleId = storageManager.FetchRole(user, pw);
 
 
 
-            if (user.Equals(fetchUser) & pw.Equals(fetchPw))
+            if (user.Equals(fetchUsername) & pw.Equals(fetchPassword))
             {
                 switch (roleId)
                 {
@@ -212,9 +212,6 @@ namespace CDOrganiserProjectApp
                                     GoBack();
 
                                 break;
-
-
-
 
                                 case "back":
                                     GoBack();
