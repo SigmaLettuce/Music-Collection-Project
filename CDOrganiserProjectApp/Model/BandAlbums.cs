@@ -15,10 +15,12 @@ namespace CDOrganiserProjectApp.Model
         public string FormatName { get; set; }
         public string BandName { get; set; }
         public string ShelfRow { get; set; }
-        public string 
+        public string Username { get; set; }
+        public char TierTag { get; set; }
+        public bool Favourite { get; set; }
         public bool Lost { get; set; }
 
-        public BandAlbums(int alid, string aln, string gen, DateTime dtor, string fn, string bn, string rn, char sta, string sro, bool l)
+        public BandAlbums(int alid, string aln, string gen, DateTime dtor, string fn, string bn, string sro, string un, char tta, bool fv, bool l)
         {
             AlbumId = alid;
             AlbumName = aln;
@@ -26,9 +28,10 @@ namespace CDOrganiserProjectApp.Model
             DateOfRelease = dtor;
             FormatName = fn;
             BandName = bn;
-            RoomName = rn;
-            ShelfTag = sta;
             ShelfRow = sro;
+            Username = un;
+            TierTag = tta;
+            Favourite = fv;
             Lost = l;
 
         }
