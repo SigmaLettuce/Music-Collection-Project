@@ -21,7 +21,7 @@ namespace CDOrganiserProjectApp
         static int accountId;
         static int roleId;
 
-        const int wait = 1000;
+        const int wait = 1000; 
 
         static void Main(string[] args)
         {

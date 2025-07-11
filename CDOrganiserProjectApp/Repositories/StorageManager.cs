@@ -14,26 +14,27 @@ namespace CDOrganiserProjectApp
 
         public StorageManager(string connectionStr)
         {
+
             try
             {
                 conn = new SqlConnection(connectionStr);
                 conn.Open();
 
                 Console.WriteLine("\n  Connection successful.");
-
+                
             }
             catch (SqlException e)
             {
                 Console.WriteLine("\n  Connection failed.\n");
 
-                Environment.Exit(0);
+                // Environment.Exit(0);
                 Console.WriteLine(e.Message);
             }
             catch (Exception ex)
             {
                 Console.WriteLine("\n  An error occured.");
 
-                Environment.Exit(0);
+                // Environment.Exit(0);
                 Console.WriteLine(ex.Message);
             }
         }

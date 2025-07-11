@@ -21,14 +21,26 @@ namespace CDOrganiserProjectApp.View
         Acts as a gateway to an account which holds a users unique history.
 
         */
+
         public string StartMenu()
         {
             Console.WriteLine("\n\t CD Manager");
             Console.WriteLine("\n\t     Create account - Press R + Enter");
             Console.WriteLine("\n\t     Log in - Press L + Enter\n");
 
-            return Console.ReadLine();
+            Console.WriteLine("\n\t     Help - Press H + Enter\n");
+
+            // When the method is called, a prompt for the users input is reciprocated. This let me store whatever is placed inside of the methods returned prompt in strings.
+
+            return Console.ReadLine(); 
         }
+
+        /*
+        
+         The 'Administrator Menu.'
+        This is the Administrators menuscreen; the listings displayed are exclusive to the administrators of the application.
+
+        */ 
 
         public string DisplayAdminMenu()
         {
@@ -59,6 +71,13 @@ namespace CDOrganiserProjectApp.View
                 
             return Console.ReadLine();
         }
+
+        /*
+        
+         The 'Guest Menu.'
+        This is the Guests menuscreen; the listings displayed are readily available to all users of the application.
+
+        */ 
 
         public string DisplayGuestMenu() 
         {
