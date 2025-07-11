@@ -160,7 +160,7 @@ namespace CDOrganiserProjectApp.View
         {
             foreach (Bands band in bands)
             {
-                Console.WriteLine($"{band.bandId}, {band.bandName}\n");
+                Console.WriteLine($"{band.BandId}, {band.BandName}\n");
                 Thread.Sleep(wait);
 
             }   
@@ -171,7 +171,7 @@ namespace CDOrganiserProjectApp.View
         {
             foreach (Artists artist in artists)
             {
-                Console.WriteLine($"{artist.artistId}, {artist.artistName}\n");
+                Console.WriteLine($"{artist.ArtistId}, {artist.ArtistName}\n");
                 Thread.Sleep(wait);
 
             }

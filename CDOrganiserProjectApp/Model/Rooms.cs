@@ -8,7 +8,7 @@ namespace CDOrganiserProjectApp.Model
 {
     public class Rooms
     {
-        public string RoomId { get; set; }
+        public int RoomId { get; set; }
         public string RoomName { get; set; }
 
         public Rooms(string rid, string rn)

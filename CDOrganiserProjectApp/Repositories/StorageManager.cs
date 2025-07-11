@@ -63,7 +63,7 @@ namespace CDOrganiserProjectApp
         {
             using (SqlCommand cmd = new SqlCommand($"INSERT INTO Contents.tblBands (bandName) VALUES (@bandName); SELECT SCOPE_IDENTITY();", conn))
             {
-                cmd.Parameters.AddWithValue("@bandName", bands.bandName);
+                cmd.Parameters.AddWithValue("@bandName", bands.BandName);
                 return Convert.ToInt32(cmd.ExecuteScalar());
             }
         }
@@ -115,7 +115,7 @@ namespace CDOrganiserProjectApp
             string sqlStr = $"INSERT INTO Contents.tblArtists (artistName) VALUES (@artistName); SELECT SCOPE_IDENTITY();";
             using (SqlCommand cmd = new SqlCommand (sqlStr, conn))
             {
-                cmd.Parameters.AddWithValue("@artistName", artists.artistName);
+                cmd.Parameters.AddWithValue("@artistName", artists.ArtistName);
                 return Convert.ToInt32(cmd.ExecuteScalar());
             }
         }
