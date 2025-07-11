@@ -14,9 +14,8 @@ namespace CDOrganiserProjectApp.Model
         public DateTime DateOfRelease { get; set; }
         public string FormatName { get; set; }
         public string BandName { get; set; }
-        public string RoomName { get; set; }
-        public char ShelfTag { get; set; }
         public string ShelfRow { get; set; }
+        public string 
         public bool Lost { get; set; }
 
         public BandAlbums(int alid, string aln, string gen, DateTime dtor, string fn, string bn, string rn, char sta, string sro, bool l)
