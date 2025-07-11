@@ -9,9 +9,13 @@ namespace CDOrganiserProjectApp
     // Manages connection to database, passes queries etc.
     public class StorageManager
     {
-        const int wait = 100;
-        private SqlConnection conn;
+        // A generically shared integer for delays.
+        const int wait = 100; 
 
+        // A private connection string that acts as a bridge to the database.
+        private SqlConnection conn; 
+
+        // A constructor with a connection string parameter to handle any connection related exceptions using exception handling. Displays the respective exception message as well as the handwritten. Any exceptions that are caught terminate the program.
         public StorageManager(string connectionStr)
         {
 
@@ -27,14 +31,16 @@ namespace CDOrganiserProjectApp
             {
                 Console.WriteLine("\n  Connection failed.\n");
 
-                // Environment.Exit(0);
+                Console.WriteLine("\n Please check GitHub for relevant information. ");
+                Environment.Exit(0);
                 Console.WriteLine(e.Message);
             }
             catch (Exception ex)
             {
                 Console.WriteLine("\n  An error occured.");
 
-                // Environment.Exit(0);
+                Console.WriteLine("\n Please check GitHub for relevant information. ");
+                Environment.Exit(0);
                 Console.WriteLine(ex.Message);
             }
         }
@@ -197,7 +203,7 @@ namespace CDOrganiserProjectApp
         public List<ArtistAlbums> GetAllArtistAlbums()
         {
             List<ArtistAlbums> albums = new List<ArtistAlbums>();
-            string sqlStr = "SELECT albumID, albumName, genreName, dateOfRelease, formatName, artistName, roomName, shelfTag, shelfRow, lost FROM Contents.tblArtistAlbums, Properties.tblFormat, Contents.tblArtists, Properties.tblStorageRoom WHERE tblArtistAlbums.formatID = tblFormat.formatID AND tblArtistAlbums.artistID = tblArtists.artistID AND tblArtistAlbums.roomID = tblStorageRoom.roomID";
+            string sqlStr = "SELECT albumID, albumName, genreName, dateOfRelease, formatName, artistName, shelfRow, username, tierTag, favourite, lost FROM Contents.tblGenres, Contents.tblArtistAlbums, Properties.tblFormat, Contents.tblArtists, Properties.tblRow, Properties.tblAccounts, Properties.tblTier WHERE tblArtistAlbums.genreID = tblGenres.genreID AND tblArtistAlbums.formatID = tblFormat.formatID AND tblArtistAlbums.artistID = tblArtists.artistID AND tblArtistAlbums.shelfRowID = tblRow.shelfRowID AND tblArtistAlbums.tierID = tblTier.tierID";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
                 using (SqlDataReader reader = cmd.ExecuteReader())
@@ -210,12 +216,13 @@ namespace CDOrganiserProjectApp
                         DateTime dateOfRelease = Convert.ToDateTime(reader["dateOfRelease"]);
                         string formatName = reader["formatName"].ToString();
                         string artistName = reader["artistName"].ToString();
-                        string roomName = reader["roomName"].ToString();
-                        char shelfTag = Convert.ToChar(reader["shelfTag"]);
                         string shelfRow = reader["shelfRow"].ToString();
+                        string username = reader["username"].ToString();
+                        char tierTag = Convert.ToChar(reader["tierTag"]);
+                        bool favourite = Convert.ToBoolean(reader["favourite"]);
                         bool lost = Convert.ToBoolean(reader["lost"]);
 
-                        albums.Add(new ArtistAlbums(albumId, albumName, genreName, dateOfRelease, formatName, artistName, roomName, shelfTag, shelfRow, lost));
+                        albums.Add(new ArtistAlbums(albumId, albumName, genreName, dateOfRelease, formatName, artistName, shelfRow, username, tierTag, favourite, lost));
 
                     }
                 }
@@ -244,7 +251,7 @@ namespace CDOrganiserProjectApp
         public List<BandAlbums> GetAllBandAlbums()
         {
             List<BandAlbums> albums = new List<BandAlbums>();
-            string sqlStr = "SELECT albumID, albumName, genreName, dateOfRelease, formatName, bandName, roomName, shelfTag, shelfRow, lost FROM Contents.tblBandAlbums, Properties.tblFormat, Contents.tblBands, Properties.tblStorageRoom WHERE tblBandAlbums.formatID = tblFormat.formatID AND tblBandAlbums.bandID = tblBands.bandID AND tblBandAlbums.roomID = tblStorageRoom.roomID";
+            string sqlStr = "SELECT albumID, albumName, genreName, dateOfRelease, formatName, bandName, shelfRow, username, tierTag, favourite, lost FROM Contents.tblGenres, Contents.tlbBandAlbums, Properties.tblFormat, Contents.tblBands, Properties.tblRow, Properties.tblAccounts, Properties.tblTier WHERE tblBandAlbums.genreID = tblGenres.genreID AND tblBandAlbums.formatID = tblFormat.formatID AND tblBandAlbums.artistID = tblArtists.artistID AND tblBandAlbums.shelfRowID = tblRow.shelfRowID AND tblBandAlbums.tierID = tblTier.tierID";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
                 using (SqlDataReader reader = cmd.ExecuteReader())
@@ -256,13 +263,14 @@ namespace CDOrganiserProjectApp
                         string genreName = reader["genreName"].ToString();
                         DateTime dateOfRelease = Convert.ToDateTime(reader["dateOfRelease"]);
                         string formatName = reader["formatName"].ToString();
-                        string bandName = reader["bandName"].ToString();
-                        string roomName = reader["roomName"].ToString();
-                        char shelfTag = Convert.ToChar(reader["shelfTag"]);
+                        string artistName = reader["artistName"].ToString();
                         string shelfRow = reader["shelfRow"].ToString();
+                        string username = reader["username"].ToString();
+                        char tierTag = Convert.ToChar(reader["tierTag"]);
+                        bool favourite = Convert.ToBoolean(reader["favourite"]);
                         bool lost = Convert.ToBoolean(reader["lost"]);
 
-                        albums.Add(new BandAlbums(albumId, albumName, genreName, dateOfRelease, formatName, bandName, roomName, shelfTag, shelfRow, lost));
+                        albums.Add(new BandAlbums(albumId, albumName, genreName, dateOfRelease, formatName, artistName, shelfRow, username, tierTag, favourite, lost));
 
                     }
                 }
@@ -272,7 +280,7 @@ namespace CDOrganiserProjectApp
         
         public int InsertBandAlbum(BandAlbums albums)
         {
-            using (SqlCommand cmd = new SqlCommand($"INSERT INTO Contents.tblAlbums (albumName, genreName, dateOfRelease, formatID, bandID, roomID, shelfTag, shelfRow) VALUES (@AlbumName, @GenreName, @DateOfRelease, (SELECT formatID from Properties.tblFormat WHERE formatName = @FormatName), (SELECT bandID FROM Contents.tblBands WHERE bandName = @BandName),(SELECT roomID FROM Properties.tblStorageRoom WHERE roomName = @RoomName), @ShelfTag, @ShelfRow); SELECT SCOPE_IDENTITY();", conn))
+            using (SqlCommand cmd = new SqlCommand($"INSERT INTO Contents.tblAlbums (albumName, genreID, dateOfRelease, formatID, bandID, shelfRow, s) VALUES (@AlbumName, @GenreName, @DateOfRelease, (SELECT formatID from Properties.tblFormat WHERE formatName = @FormatName), (SELECT bandID FROM Contents.tblBands WHERE bandName = @BandName),(SELECT roomID FROM Properties.tblStorageRoom WHERE roomName = @RoomName), @ShelfTag, @ShelfRow); SELECT SCOPE_IDENTITY();", conn))
             {
                 cmd.Parameters.AddWithValue("@AlbumName", albums.AlbumName);
                 cmd.Parameters.AddWithValue("@GenreName", albums.GenreName);
@@ -317,7 +325,8 @@ namespace CDOrganiserProjectApp
 
         }
 
-
+        
+        // Checks the username and password against themselves, then returns a match for a persons identification number in the database.
         public int FetchAccount(string un, string pw)
         {
             int personId = 0;
@@ -341,6 +350,8 @@ namespace CDOrganiserProjectApp
 
         }
 
+        
+        // Checks the username and password against themselves, then returns a match for a username in the database.
         public string FetchUsername(string un, string password)
         {
             string username = " ";
@@ -364,6 +375,8 @@ namespace CDOrganiserProjectApp
             }
         }
 
+
+        // Checks the username and password against themselves, then returns a match for a password in the database.
         public string FetchPassword(string username, string pw)
         {
             string password = " ";
@@ -387,6 +400,8 @@ namespace CDOrganiserProjectApp
             }
         }
 
+        
+        // Checks the username and password against themselves, then returns a match for a role in the database.
         public int FetchRole(string un, string pw)
         {
 
@@ -412,6 +427,8 @@ namespace CDOrganiserProjectApp
         }
 
 
+        
+        // Pulls data from the Formats table using the reader, and returns a list.
         public List<Formats> GetAllFormats()
         {
             List<Formats> formats = new List<Formats>();
@@ -431,6 +448,8 @@ namespace CDOrganiserProjectApp
             return formats;
         }
 
+
+        // Associates all the listed  with the insert; basically adds a new  
         public int InsertFormat(Formats formats)
         {
             string sqlStr = $"INSERT INTO Properties.tblFormat (formatName) VALUES (@FormatName); SELECT SCOPE_IDENTITY();";
@@ -441,6 +460,8 @@ namespace CDOrganiserProjectApp
             }
         }
 
+        
+        // Associates the variables in the SQL with the string parameters, and returns the identification number. 
         public int UpdateFormatByName(string formatName, string newName)
         {
             string sqlStr = $"UPDATE Properties.tblFormat SET formatName = @newName WHERE formatName = @formatName";
@@ -452,6 +473,8 @@ namespace CDOrganiserProjectApp
             }
         }
 
+
+        // Pulls data from the Formats table using the reader, and returns a list.
         public int DeleteFormatByName(string formatName)
         {
             string sqlStr = "DELETE FROM Properties.tblFormat WHERE formatName = @formatName";

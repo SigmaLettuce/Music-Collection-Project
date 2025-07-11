@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Security;
 using System.Text;
 using System.Threading.Channels;
 using System.Threading.Tasks;
@@ -201,7 +202,6 @@ namespace CDOrganiserProjectApp.View
         
         public void DisplayBandAlbums(List<BandAlbums> albums)
         {
-            Console.WriteLine("ID,  ");
             foreach (BandAlbums album in albums)
             {
                 Console.WriteLine($"{album.AlbumId}, {album.AlbumName}, {album.GenreName}, {album.DateOfRelease.ToString("d")}, {album.FormatName}, {album.BandName}, {album.RoomName}, {album.ShelfTag}, {album.ShelfRow}, {album.Lost}\n");

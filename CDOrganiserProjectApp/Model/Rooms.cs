@@ -11,7 +11,7 @@ namespace CDOrganiserProjectApp.Model
         public int RoomId { get; set; }
         public string RoomName { get; set; }
 
-        public Rooms(string rid, string rn)
+        public Rooms(int rid, string rn)
         {
             RoomId = rid;
             RoomName = rn;
