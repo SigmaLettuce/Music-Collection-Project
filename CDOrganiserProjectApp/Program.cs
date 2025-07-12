@@ -650,7 +650,7 @@ namespace CDOrganiserProjectApp
 
                     case "shelves":
                         List<Shelves> shelves = storageManager.GetAllShelves();
-                        view.DisplayRooms(rooms);
+                        view.DisplayShelves(shelves);
 
                         Thread.Sleep(wait);
 
@@ -1393,12 +1393,6 @@ namespace CDOrganiserProjectApp
 
                             break;
 
-                            case 3:
-
-                                TAdminMenuscreenOptions();
-
-                            break;
-
                         }
 
                     break;
@@ -1601,12 +1595,12 @@ namespace CDOrganiserProjectApp
 
         }
 
-        private static void DeleteRoomById()
+        private static void DeleteShelfByTag()
         {
             view.DisplayMessage("\nEnter the identification number... ");
-            int roomId = view.GetIntInput();
+            char shelfTag = view.GetCharInput();
 
-            int rowsAffected = storageManager.DeleteRoomById(roomId);
+            int rowsAffected = storageManager.DeleteShelfRoomByTag(shelfTag);
             view.DisplayMessage($"\nDeleted {rowsAffected} row.");
 
         }

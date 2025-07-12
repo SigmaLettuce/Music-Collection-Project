@@ -369,19 +369,18 @@ namespace CDOrganiserProjectApp.View
         {
             Console.WriteLine("ID:  NAME:\tCATEGORY:\tRELEASE DATE:\tFORMAT:\tARTIST\tROW:\tFAVOURITE:\t");
 
-            foreach (ArtistAlbums album in albums)
-            {
-                Console.WriteLine($"{album.AlbumId}, {album.AlbumName}, {album.GenreName}, {album.DateOfRelease.ToString("d")}, {album.FormatName}, {album.ArtistName}, {album.ShelfRow}, {album.Favourite}, {album.Lost}\n");
+            
+                Console.WriteLine($"{album.AlbumId}, {album.AlbumName}, {album.GenreName}, \t\t\t\t{album.DateOfRelease.ToString("d")}, {album.FormatName}, {album.ArtistName}, {album.ShelfRow}, {album.Favourite}, {album.Lost}\n");
                 Thread.Sleep(wait);
                 
-            }
+            
             
 
         }   
         
         public void DisplayBandAlbums(List<BandAlbums> albums)
         {
-            Console.WriteLine("ID: NAME:\tCATEGORY:\tRELEASE DATE:\tFORMAT:\tARTIST\tROW:\tFAVOURITE:\t");
+            Console.WriteLine("ID:  NAME:\tCATEGORY:\tRELEASE DATE:\tFORMAT:\tARTIST\tROW:\tFAVOURITE:\t");
 
             foreach (BandAlbums album in albums)
             {
