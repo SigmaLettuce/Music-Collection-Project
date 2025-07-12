@@ -756,7 +756,7 @@ namespace CDOrganiserProjectApp
             string shelfRow = view.GetInput();
             bool lost = false;
 
-            ArtistAlbums newAlbum = new ArtistAlbums(albumId, albumName, genreName, dateOfRelease, formatName, artistName, roomName, shelfTag, shelfRow, lost);
+            ArtistAlbums newAlbum = new ArtistAlbums(albumId, albumName, genreName, dateOfRelease, formatName, artistName, , shelfRow, lost);
 
             int generatedId = storageManager.InsertArtistAlbum(newAlbum);
             view.DisplayMessage($"\nThe new albums identification number is: {generatedId}");
