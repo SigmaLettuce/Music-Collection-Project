@@ -41,10 +41,10 @@ namespace CDOrganiserProjectApp
             string connectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=HomeMusicCollectionDatabase;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False";
             storageManager = new StorageManager(connectionString);
 
-            bool invalid = true;
+            bool invalid = true; // A variable that evaluates the continuation of a process.
 
 
-            string startInput = view.StartMenu();
+            string startInput = view.StartMenu(); // Calls the display, and returns a prompt for input.
             view.DisplayMessage("");
              
             do
@@ -53,26 +53,32 @@ namespace CDOrganiserProjectApp
                 {
                     case "R":
 
-                        Register();
+                        Register(); // This calls the register. 
 
-                        invalid = false;
+                        invalid = false; // Overwrites the boolean so that the Register can proceed.
 
                     break;
 
                     case "L":
 
-                        Login();
+                        Login(); // This calls the login.
 
                         invalid = false;
 
                     break;
 
+                    case "H":
+
+                        view.DisplayHelp(); // This calls the support page, and returns a prompt for input.
+
+                    break;
+
                     default:
-                        view.DisplayError(wait);
+                        view.DisplayError(wait); // This calls the error prompt. It's parameterized simply to utilise the same threadsleep count as the one used in the main Program, as the ConsoleView already contains a threadsleep.
 
                         StartMenuscreenOptions();
 
-                        invalid = true;
+                        invalid = true; // The condition is evaluated to match the conditions of the do ...while. The block of code stays alive.
 
                     break;
                 }
@@ -84,7 +90,7 @@ namespace CDOrganiserProjectApp
             
         }
 
-        private static void Register()
+        private static void Register() // The Register method. Essentially an insert.
         {
             Thread.Sleep(wait);
             Console.Clear();
@@ -97,7 +103,7 @@ namespace CDOrganiserProjectApp
 
         }
 
-        private static void Login()
+        private static void Login() // The Login method. When the username and password are provided, they cross-examine each other and if both are a match you either get logged in as an administrator, user or a true administrator. The accounts identification number is also fetched to tailor 'to query' specific data listings.
         {
             Thread.Sleep(wait);
             Console.Clear();
@@ -152,13 +158,13 @@ namespace CDOrganiserProjectApp
 
         }
 
-        private static void AdminMenuscreenOptions()
+        private static void AdminMenuscreenOptions() // The Admin Menuscreen. 
         {
-            string cmd;
+            string cmd; // Stores the users written modifcation command.
             bool invalid = true;
 
-            string input = view.DisplayAdminMenu();
-            view.DisplayMessage("");
+            string input = view.DisplayAdminMenu(); // Calls the display.
+            view.DisplayMessage(""); 
 
             Thread.Sleep(wait);
             Console.Clear();
@@ -205,7 +211,7 @@ namespace CDOrganiserProjectApp
                                 break;
 
                                 case "del":
-                                    DeleteBandByName();
+                                    DeleteBandById();
 
                                     invalid = false;
 
@@ -272,7 +278,7 @@ namespace CDOrganiserProjectApp
                                 break;
 
                                 case "del":
-                                    DeleteArtistByName();
+                                    DeleteArtistById();
 
                                     invalid = false;
 
@@ -780,13 +786,13 @@ namespace CDOrganiserProjectApp
 
         private static void UpdateBandName()
         {
-            view.DisplayMessage("\nEnter the name of the record... ");
-            string bandName = view.GetInput();
+            view.DisplayMessage("\nEnter the identification number... ");
+            int bandId = view.GetIntInput();
 
             view.DisplayMessage("\nRename the record... ");
-            string rename = view.GetInput();
+            string bandName = view.GetInput();
 
-            int rowsAffected = storageManager.UpdateBandByName(bandName, rename);
+            int rowsAffected = storageManager.UpdateBandById(bandId, bandName);
             view.DisplayMessage($"\nUpdated {rowsAffected} records.");
 
         } 
@@ -804,35 +810,12 @@ namespace CDOrganiserProjectApp
 
         }
 
-        private static void DeleteBandByName()
+        private static void DeleteBandById()
         {
-            view.DisplayMessage("\nEnter the band you wish to erase from your records... ");
-            string bandName = view.GetInput();
+            view.DisplayMessage("\nEnter the identification number... ");
+            int bandId = view.GetIntInput();
 
-            int rowsAffected = storageManager.DeleteBandByName(bandName);
-            view.DisplayMessage($"\nDeleted {rowsAffected} row.");
-        }
-
-
-        private static void InsertNewGenre()
-        {
-            view.DisplayMessage("\nEnter the new genre... ");
-            string genreName = view.GetInput();
-            int genreId = 0; 
-
-            Genres newGenre = new Genres(genreId, genreName);
-
-            int generatedId = storageManager.InsertGenre(newGenre);
-            view.DisplayMessage($"\nThe new bands identification number is: {generatedId}");
-
-        }
-
-        private static void DeleteGenreById()
-        {
-            view.DisplayMessage("\nEnter the genre you wish to erase from your records... ");
-            int genreId = view.GetIntInput();
-
-            int rowsAffected = storageManager.DeleteGenreById(genreId);
+            int rowsAffected = storageManager.DeleteBandById(bandId);
             view.DisplayMessage($"\nDeleted {rowsAffected} row.");
         }
 
@@ -850,16 +833,38 @@ namespace CDOrganiserProjectApp
 
         }
 
+        private static void InsertNewGenre()
+        {
+            view.DisplayMessage("\nEnter the new genre... ");
+            string genreName = view.GetInput();
+            int genreId = 0; 
+
+            Genres newGenre = new Genres(genreId, genreName);
+
+            int generatedId = storageManager.InsertGenre(newGenre);
+            view.DisplayMessage($"\nThe new bands identification number is: {generatedId}");
+
+        }
+
+        private static void DeleteGenreById()
+        {
+            view.DisplayMessage("\nEnter the identification number... ");
+            int genreId = view.GetIntInput();
+
+            int rowsAffected = storageManager.DeleteGenreById(genreId);
+            view.DisplayMessage($"\nDeleted {rowsAffected} row.");
+        }
+
 
         private static void UpdateArtistName()
         {
             view.DisplayMessage("\nEnter the identification number... ");
-            int artistID = view.GetIntInput();
+            int artistId = view.GetIntInput();
 
             view.DisplayMessage("\nRename the record... ");
             string genreName = view.GetInput();
 
-            int rowsAffected = storageManager.UpdateArtistById(artistID, genreName);
+            int rowsAffected = storageManager.UpdateArtistById(artistId, genreName);
             view.DisplayMessage($"\nUpdated {rowsAffected} records.");
 
         }
@@ -889,13 +894,13 @@ namespace CDOrganiserProjectApp
 
         private static void UpdateRoomName()
         {
-            view.DisplayMessage("\nEnter the name of the record... ");
-            string roomName = view.GetInput();
+            view.DisplayMessage("\nEnter the identification number... ");
+            int roomId = view.GetIntInput();
 
             view.DisplayMessage("\nRename the record... ");
-            string rename = view.GetInput();
+            string roomName = view.GetInput();
 
-            int rowsAffected = storageManager.UpdateRoomByName(roomName, rename);
+            int rowsAffected = storageManager.UpdateRoomById(roomId, roomName);
             view.DisplayMessage($"\nUpdated {rowsAffected} records.");
 
         }
@@ -913,12 +918,12 @@ namespace CDOrganiserProjectApp
 
         }
 
-        private static void DeleteRoomByName()
+        private static void DeleteRoomById()
         {
-            view.DisplayMessage("\nEnter the room you wish to erase from your records... ");
-            string roomName = view.GetInput();
+            view.DisplayMessage("\nEnter the identification number... ");
+            int roomId = view.GetIntInput();
 
-            int rowsAffected = storageManager.DeleteRoomByName(roomName);
+            int rowsAffected = storageManager.DeleteRoomById(roomId);
             view.DisplayMessage($"\nDeleted {rowsAffected} row.");
 
         }
@@ -978,15 +983,16 @@ namespace CDOrganiserProjectApp
 
         }
 
+
         private static void UpdateArtistAlbum()
         {
-            view.DisplayMessage("\nEnter the name of the record... ");
-            string albumName = view.GetInput();
+            view.DisplayMessage("\nEnter the identification number... ");
+            int albumId = view.GetIntInput();
 
             view.DisplayMessage("\nRename the record... ");
-            string rename = view.GetInput();
+            string albumName = view.GetInput();
 
-            int rowsAffected = storageManager.UpdateRoomByName(albumName, rename);
+            int rowsAffected = storageManager.UpdateRoomById(albumId, albumName);
             view.DisplayMessage($"\nUpdated {rowsAffected} records.");
 
         }
@@ -1031,25 +1037,25 @@ namespace CDOrganiserProjectApp
         }
         */
 
-        private static void DeleteArtistAlbumByName()
+        private static void DeleteArtistAlbumById()
         {
-            view.DisplayMessage("\n\tEnter the room you wish to erase from your records... ");
-            string roomName = view.GetInput();
+            view.DisplayMessage("\nEnter the identification number... ");
+            int albumId = view.GetIntInput();
 
-            int rowsAffected = storageManager.DeleteRoomByName(roomName);
+            int rowsAffected = storageManager.DeleteRoomById(albumId);
             view.DisplayMessage($"\n\tDeleted {rowsAffected} row.");
         }
 
 
         private static void UpdateBandAlbum()
         {
-            view.DisplayMessage("\nEnter the name of the record... ");
-            string albumName = view.GetInput();
+            view.DisplayMessage("\nEnter the identification number... ");
+            int albumId = view.GetIntInput();
 
             view.DisplayMessage("\nRename the record... ");
-            string rename = view.GetInput();
+            string albumName = view.GetInput();
 
-            int rowsAffected = storageManager.UpdateRoomByName(albumName, rename);
+            int rowsAffected = storageManager.UpdateRoomById(albumId, albumName);
             view.DisplayMessage($"\nUpdated {rowsAffected} records.");
 
         }
@@ -1091,12 +1097,12 @@ namespace CDOrganiserProjectApp
         }
         */
 
-        private static void DeleteBandAlbumByName()
+        private static void DeleteBandAlbumById()
         {
-            view.DisplayMessage("\n\tEnter the room you wish to erase from your records... ");
-            string roomName = view.GetInput();
+            view.DisplayMessage("\nEnter the identification number... ");
+            int albumId = view.GetIntInput();
 
-            int rowsAffected = storageManager.DeleteRoomByName(roomName);
+            int rowsAffected = storageManager.DeleteRoomById(albumId);
             view.DisplayMessage($"\n\tDeleted {rowsAffected} row.");
         }
 

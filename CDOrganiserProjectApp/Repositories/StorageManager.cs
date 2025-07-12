@@ -31,7 +31,7 @@ namespace CDOrganiserProjectApp
             {
                 Console.WriteLine("\n  Connection failed.\n");
 
-                Console.WriteLine("\n Please check GitHub for relevant information. ");
+                Console.WriteLine("\n Please check GitHub or folder for relevant information. ");
                 Environment.Exit(0);
                 Console.WriteLine(e.Message);
             }
@@ -39,7 +39,7 @@ namespace CDOrganiserProjectApp
             {
                 Console.WriteLine("\n  An error occured.");
 
-                Console.WriteLine("\n Please check GitHub for relevant information. ");
+                Console.WriteLine("\n Please check GitHub or folder for relevant information. ");
                 Environment.Exit(0);
                 Console.WriteLine(ex.Message);
             }
@@ -74,7 +74,7 @@ namespace CDOrganiserProjectApp
             }
         }
 
-        public int UpdateBandByName(string bandName, string newName)
+        public int UpdateBandById(string bandName, string newName)
         {
             string sqlStr = $"UPDATE Contents.tblBands SET bandName = @newName WHERE bandName = @bandName";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
@@ -85,7 +85,7 @@ namespace CDOrganiserProjectApp
             }
         }
        
-        public int DeleteBandByName(string bandName)
+        public int DeleteBandById(string bandName)
         {
             string sqlStr = "DELETE FROM Contents.tblBands WHERE bandName = @bandName";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
@@ -228,7 +228,7 @@ namespace CDOrganiserProjectApp
             }
         }
 
-        public int UpdateRoomByName(string roomName, string newName)
+        public int UpdateRoomById(string roomName, string newName)
         {
             string sqlStr = $"UPDATE Properties.tblStorageRoom SET roomName = @newName WHERE roomName = @roomName";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
@@ -239,7 +239,7 @@ namespace CDOrganiserProjectApp
             }
         }
 
-        public int DeleteRoomByName(string roomName)
+        public int DeleteRoomById(string roomName)
         {
             string sqlStr = "DELETE FROM Properties.tblStorageRoom WHERE roomName = @roomName";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
@@ -515,7 +515,7 @@ namespace CDOrganiserProjectApp
 
         
         // Associates the variables in the SQL with the string parameters, and returns the identification number. 
-        public int UpdateFormatByName(string formatName, string newName)
+        public int UpdateFormatById(string formatName, string newName)
         {
             string sqlStr = $"UPDATE Properties.tblFormat SET formatName = @newName WHERE formatName = @formatName";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
@@ -528,7 +528,7 @@ namespace CDOrganiserProjectApp
 
 
         // Pulls data from the Formats table using the reader, and returns a list.
-        public int DeleteFormatByName(string formatName)
+        public int DeleteFormatById(string formatName)
         {
             string sqlStr = "DELETE FROM Properties.tblFormat WHERE formatName = @formatName";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
