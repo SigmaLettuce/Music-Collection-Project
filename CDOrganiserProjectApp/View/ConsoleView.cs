@@ -52,6 +52,7 @@ namespace CDOrganiserProjectApp.View
             Console.WriteLine("\tThese are your available listings, compiled into directories.");
 
                 Console.WriteLine("\n\t[/]  'albums' - Albums of a compact disc; a CD");
+                Console.WriteLine("\n\t[/]  'reviews' - Reviews left by your friends");
                 Console.WriteLine("\t[/]  'artists' - All artists who have published an album you own");
                 Console.WriteLine("\t[/]  'bands' - All bands who have published an album you own");
                 Console.WriteLine("\t[/]  'genres' - All musical categories of your collection");
@@ -190,6 +191,43 @@ namespace CDOrganiserProjectApp.View
                     Console.WriteLine("\t'favourite' - Mark your favourite album\n");
                     Console.WriteLine("\t'lost' - Mark an album as lost\n");
 
+                Console.WriteLine("\tVIEW... ");
+                Console.WriteLine("\tThese are the available report listings, compiled into directories.");
+
+                    Console.WriteLine("\n\t'reports' - Opens the reports\n");
+
+                    Console.WriteLine("\n\t'back' - Return to homepage\n");
+
+
+                Console.WriteLine("Enter any of the listings above to gain access... \n");
+            }
+
+            else if (type.Equals("album~variants"))
+            {
+                Console.WriteLine($"\n\t [CD MANAGER / {d}]\n");
+                Console.WriteLine("\tVIEW... ");
+                Console.WriteLine("\tThese are the available album listings, compiled into directories.");
+
+                    Console.WriteLine("\t[/]  'artists' - All the albums published by singular artists");
+                    Console.WriteLine("\t[/]  'bands' - All the albums published by bands");
+
+                Console.WriteLine("\n\t'back' - Return to homepage\n");
+
+
+                Console.WriteLine("Enter any of the listings above to gain access... \n");
+            }
+
+            else if (type.Equals("album~extras"))
+            {
+                Console.WriteLine($"\n\t [CD MANAGER / {d}]\n");
+                Console.WriteLine("\tEDIT... ");
+                Console.WriteLine("\tYou can now modify this listing.");
+
+                    Console.WriteLine("\n\t'up' - Updates information");
+                    Console.WriteLine("\t'ins' - Adds new information");
+                    Console.WriteLine("\t'del' - Deletes unwanted information\n");
+                    Console.WriteLine("\t'favourite' - Mark your favourite album\n");
+                    Console.WriteLine("\t'lost' - Mark an album as lost\n");
                 Console.WriteLine("\tVIEW... ");
                 Console.WriteLine("\tThese are the available report listings, compiled into directories.");
 

@@ -180,59 +180,116 @@ SET IDENTITY_INSERT Contents.tblGenres OFF;
 
 SET IDENTITY_INSERT Contents.tblArtistAlbums ON;
 
-INSERT INTO Contents.tblArtistAlbums(albumID, albumName, genreID, dateOfRelease, formatID, artistID, shelfRowID, personID, tierID, favourite, lost)
+INSERT INTO Contents.tblArtistAlbums (albumID, albumName, genreID, dateOfRelease, formatID, artistID, shelfRowID, lost) 
 VALUES
-(1, 'Justified', 9, '2002-11-05', 1, 1, 1, 2, 3, 0, 0),
-(2, 'Confessions', 9, '2004-02-24', 1, 2, 2, 12, 1, 0, 0),
-(3, 'Songs in A Minor', 9, '2001-02-01', 1, 3, 3, 5, 4, 0, 0),
-(4, 'The College Dropout', 10, '2004-02-10', 1, 4, 10, 7, 2, 0, 0),
-(5, 'Stripped', 11, '2002-11-19', 1, 5, 9, 11, 1, 0, 0),
-(6, 'Back to Bedlam', 4, '2004-05-23', 1, 6, 11, 4, 3, 0, 0),
-(7, 'Dangerously in Love', 9, '2003-06-24', 1, 7, 3, 9, 2, 0, 0),
-(8, 'Let Go', 4, '2002-09-02', 1, 8, 12, 1, 4, 0, 0),
-(9, 'FutureSex/LoveSounds', 11, '2006-09-08', 1, 1, 5, 6, 1, 0, 0),
-(10, 'The Miseducation of Lauryn Hill', 9, '1998-08-25', 1, 9, 6, 8, 3, 0, 0),
-(11, 'BDay', 9, '2006-09-04', 1, 7, 7, 10, 2, 0, 0),
-(12, 'Aaliyah', 9, '2001-03-19', 1, 10, 8, 3, 4, 0, 0),
-(13, 'The Dutchess', 11, '2006-09-19', 1, 11, 11, 2, 1, 0, 0),
-(14, 'Get Lifted', 9, '2004-12-28', 1, 12, 4, 12, 2, 0, 0);
+(1, 'Justified', 9, '2002-11-05', 1, 1, 1, 0),
+(2, 'Confessions', 9, '2004-02-24', 1, 2, 2, 0),
+(3, 'Songs in A Minor', 9, '2001-02-01', 1, 3, 3, 0),
+(4, 'The College Dropout', 10, '2004-02-10', 1, 4, 10, 0),
+(5, 'Stripped', 11, '2002-11-19', 1, 5, 9, 0),
+(6, 'Back to Bedlam', 4, '2004-05-23', 1, 6, 11, 0),
+(7, 'Dangerously in Love', 9, '2003-06-24', 1, 7, 3, 0),
+(8, 'Let Go', 4, '2002-09-02', 1, 8, 12, 0),
+(9, 'FutureSex/LoveSounds', 11, '2006-09-08', 1, 1, 5, 0),
+(10, 'The Miseducation of Lauryn Hill', 9, '1998-08-25', 1, 9, 6, 0),
+(11, 'BDay', 9, '2006-09-04', 1, 7, 7, 0),
+(12, 'Aaliyah', 9, '2001-03-19', 1, 10, 8, 0),
+(13, 'The Dutchess', 11, '2006-09-19', 1, 11, 11, 0),
+(14, 'Get Lifted', 9, '2004-12-28', 1, 12, 4, 0);
 
 SET IDENTITY_INSERT Contents.tblArtistAlbums OFF;
 
 
 SET IDENTITY_INSERT Contents.tblBandAlbums ON;
 
-INSERT INTO Contents.tblBandAlbums(albumID, albumName, genreID, dateOfRelease, formatID, bandID, shelfRowID, personID, tierID, favourite, lost)
+INSERT INTO Contents.tblBandAlbums (albumID, albumName, genreID, dateOfRelease, formatID, bandID, shelfRowID, lost) 
 VALUES
-(1, 'System Of A Down', 1, '1998-06-30', 1, 1, 15, 5, 4, 0, 0),
-(2, 'Toxicity', 1, '2001-08-13', 2, 1, 16, 11, 2, 0, 0),
-(3, 'Hypnotize', 1, '2005-11-22', 1, 1, 17, 2, 1, 0, 0),
-(4, 'Mezmerize', 1, '2005-05-17', 1, 1, 18, 7, 3, 0, 0),
-(5, 'Steal This Album!', 1, '2002-11-26', 2, 1, 19, 10, 2, 0, 0),
-(6, 'Hybrid Theory', 2, '2000-10-24', 1, 2, 16, 3, 4, 0, 0),
-(7, 'Meteora', 2, '2003-03-25', 1, 2, 17, 6, 1, 0, 0),
-(8, 'Minutes to Midnight', 3, '2007-05-14', 2, 2, 15, 12, 3, 0, 0),
-(9, 'The Hunting Party', 1, '2014-06-13', 2, 2, 15, 9, 2, 0, 0),
-(10, 'One More Light', 4, '2017-05-19', 1, 2, 13, 4, 1, 0, 0),
-(11, 'The Black Album', 5, '1991-08-12', 2, 3, 30, 8, 4, 0, 0),
-(12, 'Master of Puppets', 6, '1986-03-03', 1, 3, 20, 1, 2, 0, 0),
-(13, 'Ride the Lightning', 6, '1984-07-27', 1, 3, 21, 2, 3, 0, 0),
-(14, '...And Justice for All', 6, '1988-09-07', 1, 3, 22, 6, 1, 0, 0),
-(15, 'Kill Em All', 6, '1983-07-25', 2, 3, 23, 7, 4, 0, 0),
-(16, 'Reign in Blood', 6, '1986-10-07', 2, 4, 24, 11, 3, 0, 0),
-(17, 'South of Heaven', 6, '1988-07-05', 1, 4, 25, 5, 2, 0, 0),
-(18, 'Seasons in the Abyss', 6, '1990-10-09', 2, 4, 26, 3, 1, 0, 0),
-(19, 'God Hates Us All', 6, '2001-09-11', 2, 4, 27, 9, 2, 0, 0),
-(20, 'Christ Illusion', 6, '2006-08-08', 1, 4, 28, 12, 4, 0, 0),
-(21, 'American Idiot', 7, '2004-09-21', 2, 5, 18, 4, 1, 0, 0),
-(22, 'Dookie', 7, '1994-02-01', 1, 5, 19, 10, 4, 0, 0),
-(23, 'Insomniac', 7, '1995-10-10', 1, 5, 20, 6, 2, 0, 0),
-(24, 'Warning', 7, '2000-10-03', 2, 5, 21, 2, 1, 0, 0),
-(25, 'Nimrod', 7, '1997-10-14', 1, 5, 22, 8, 3, 0, 0),
-(26, 'Nevermind', 8, '1991-09-24', 2, 6, 11, 7, 3, 0, 0),
-(27, 'In Utero', 8, '1993-09-21', 1, 6, 12, 1, 1, 0, 0),
-(28, 'Bleach', 8, '1989-06-15', 1, 6, 13, 5, 2, 0, 0),
-(29, 'Ten', 8, '1991-08-27', 2, 7, 14, 12, 4, 0, 0),
-(30, 'Vs.', 8, '1993-10-19', 1, 7, 30, 3, 1, 0, 0);
+(1, 'System Of A Down', 1, '1998-06-30', 1, 1, 15, 0),
+(2, 'Toxicity', 1, '2001-08-13', 2, 1, 16, 0),
+(3, 'Hypnotize', 1, '2005-11-22', 1, 1, 17, 0),
+(4, 'Mezmerize', 1, '2005-05-17', 1, 1, 18, 0),
+(5, 'Steal This Album!', 1, '2002-11-26', 2, 1, 19, 0),
+(6, 'Hybrid Theory', 2, '2000-10-24', 1, 2, 16, 0),
+(7, 'Meteora', 2, '2003-03-25', 1, 2, 17, 0),
+(8, 'Minutes to Midnight', 3, '2007-05-14', 2, 2, 15, 0),
+(9, 'The Hunting Party', 1, '2014-06-13', 2, 2, 15, 0),
+(10, 'One More Light', 4, '2017-05-19', 1, 2, 13, 0),
+(11, 'The Black Album', 5, '1991-08-12', 2, 3, 30, 0),
+(12, 'Master of Puppets', 6, '1986-03-03', 1, 3, 20, 0),
+(13, 'Ride the Lightning', 6, '1984-07-27', 1, 3, 21, 0),
+(14, '...And Justice for All', 6, '1988-09-07', 1, 3, 22, 0),
+(15, 'Kill Em All', 6, '1983-07-25', 2, 3, 23, 0),
+(16, 'Reign in Blood', 6, '1986-10-07', 2, 4, 24, 0),
+(17, 'South of Heaven', 6, '1988-07-05', 1, 4, 25, 0),
+(18, 'Seasons in the Abyss', 6, '1990-10-09', 2, 4, 26, 0),
+(19, 'God Hates Us All', 6, '2001-09-11', 2, 4, 27, 0),
+(20, 'Christ Illusion', 6, '2006-08-08', 1, 4, 28, 0),
+(21, 'American Idiot', 7, '2004-09-21', 2, 5, 18, 0),
+(22, 'Dookie', 7, '1994-02-01', 1, 5, 19, 0),
+(23, 'Insomniac', 7, '1995-10-10', 1, 5, 20, 0),
+(24, 'Warning', 7, '2000-10-03', 2, 5, 21, 0),
+(25, 'Nimrod', 7, '1997-10-14', 1, 5, 22, 0),
+(26, 'Nevermind', 8, '1991-09-24', 2, 6, 11, 0),
+(27, 'In Utero', 8, '1993-09-21', 1, 6, 12, 0),
+(28, 'Bleach', 8, '1989-06-15', 1, 6, 13, 0),
+(29, 'Ten', 8, '1991-08-27', 2, 7, 14, 0),
+(30, 'Vs.', 8, '1993-10-19', 1, 7, 30, 0);
 
 SET IDENTITY_INSERT Contents.tblBandAlbums OFF;
+
+SET IDENTITY_INSERT Contents.tblArtistReviews ON;
+
+INSERT INTO Contents.tblArtistReviews (reviewID, albumID, personID, tierID, favourite) 
+VALUES
+(1, 1, 2, 3, 0),
+(2, 2, 5, 2, 1),
+(3, 3, 8, 1, 0),
+(4, 4, 1, 4, 1),
+(5, 5, 12, 2, 0),
+(6, 6, 3, 3, 1),
+(7, 7, 10, 1, 0),
+(8, 8, 7, 4, 1),
+(9, 9, 6, 2, 0),
+(10, 10, 11, 3, 1),
+(11, 11, 4, 1, 0),
+(12, 12, 9, 4, 1),
+(13, 13, 2, 2, 0),
+(14, 14, 5, 3, 1),
+(15, 1, 3, 4, 0),
+(16, 2, 6, 1, 1),
+(17, 3, 9, 2, 0),
+(18, 4, 12, 3, 1),
+(19, 5, 1, 4, 0),
+(20, 6, 8, 2, 1);
+
+SET IDENTITY_INSERT Contents.tblArtistReviews OFF;
+
+
+SET IDENTITY_INSERT Contents.tblBandReviews ON;
+
+INSERT INTO Contents.tblBandReviews (reviewID, albumID, personID, tierID, favourite) 
+VALUES
+(1, 1, 3, 1, 1),
+(2, 2, 6, 2, 0),
+(3, 3, 9, 3, 1),
+(4, 4, 12, 4, 0),
+(5, 5, 2, 1, 1),
+(6, 6, 5, 2, 0),
+(7, 7, 8, 3, 1),
+(8, 8, 11, 4, 0),
+(9, 9, 1, 1, 1),
+(10, 10, 4, 2, 0),
+(11, 11, 7, 3, 1),
+(12, 12, 10, 4, 0),
+(13, 13, 2, 1, 1),
+(14, 14, 5, 2, 0),
+(15, 15, 8, 3, 1),
+(16, 16, 11, 4, 0),
+(17, 17, 3, 1, 1),
+(18, 18, 6, 2, 0),
+(19, 19, 9, 3, 1),
+(20, 20, 12, 4, 0);
+
+SET IDENTITY_INSERT Contents.tblBandReviews OFF;
+
+

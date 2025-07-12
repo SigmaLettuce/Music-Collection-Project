@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Identity.Client;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,8 +16,9 @@ namespace CDOrganiserProjectApp.Model
         public int FormatId { get; set; }
         public int BandId { get; set; }
         public int ShelfRowId { get; set; }
+        public bool Lost { get; set; }
 
-        public BandAlbums(int alid, string aln, int gid, DateTime dtor, int fid, int bid, int sroid)
+        public BandAlbums(int alid, string aln, int gid, DateTime dtor, int fid, int bid, int sroid, bool l)
         {
             AlbumId = alid;
             AlbumName = aln;
@@ -25,6 +27,7 @@ namespace CDOrganiserProjectApp.Model
             FormatId = fid;
             BandId = bid;
             ShelfRowId = sroid;
+            Lost = l;
 
         }
     }

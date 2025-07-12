@@ -67,13 +67,14 @@ CREATE TABLE Properties.tblRow (
 );
 
 CREATE TABLE Contents.tblArtistAlbums (
-	albumID INT IDENTITY(1,1),
+	albumID INT IDENTITY(1,1) PRIMARY KEY,
 	albumName VARCHAR(255) NOT NULL,
 	genreID INT NOT NULL,
 	dateOfRelease DATE NOT NULL,
 	formatID INT NOT NULL,
 	artistID INT NOT NULL,
 	shelfRowID INT NOT NULL,
+	lost BIT NOT NULL,
 
 	FOREIGN KEY (genreID) REFERENCES Contents.tblGenres (genreID) ON DELETE CASCADE ON UPDATE CASCADE,
 	FOREIGN KEY (formatID) REFERENCES Properties.tblFormat (formatID) ON DELETE CASCADE ON UPDATE CASCADE,
@@ -83,14 +84,14 @@ CREATE TABLE Contents.tblArtistAlbums (
 );
 
 CREATE TABLE Contents.tblBandAlbums (
-	albumID INT IDENTITY(1,1) NOT NULL,
+	albumID INT IDENTITY(1,1) PRIMARY KEY,
 	albumName VARCHAR(255) NOT NULL,
 	genreID INT NOT NULL,
 	dateOfRelease DATE NOT NULL,
 	bandID INT NOT NULL,
-
 	formatID INT NOT NULL,
 	shelfRowID INT NOT NULL,
+	lost BIT NOT NULL,
 
 	FOREIGN KEY (genreID) REFERENCES Contents.tblGenres (genreID) ON DELETE CASCADE ON UPDATE CASCADE,
 	FOREIGN KEY (formatID) REFERENCES Properties.tblFormat (formatID) ON DELETE CASCADE ON UPDATE CASCADE,
@@ -105,10 +106,8 @@ CREATE TABLE Contents.tblArtistReviews (
 	personID INT NOT NULL,
 	tierID INT NOT NULL,
 	favourite BIT NOT NULL,
-	lost BIT NOT NULL,
 	
 	FOREIGN KEY (albumID) REFERENCES Contents.tblArtistAlbums (albumID) ON DELETE CASCADE ON UPDATE CASCADE,
-	FOREIGN KEY (artistID) REFERENCES Contents.tblArtists (artistID) ON DELETE CASCADE ON UPDATE CASCADE,
 	FOREIGN KEY (personID) REFERENCES Properties.tblAccounts (personID) ON DELETE CASCADE ON UPDATE CASCADE,
 	FOREIGN KEY (tierID) REFERENCES Properties.tblTier (tierID) ON DELETE CASCADE ON UPDATE CASCADE
 
@@ -120,10 +119,8 @@ CREATE TABLE Contents.tblBandReviews (
 	personID INT NOT NULL,
 	tierID INT NOT NULL,
 	favourite BIT NOT NULL,
-	lost BIT NOT NULL,
 	
 	FOREIGN KEY (albumID) REFERENCES Contents.tblBandAlbums (albumID) ON DELETE CASCADE ON UPDATE CASCADE,
-	FOREIGN KEY (bandID) REFERENCES Contents.tblBands (bandID) ON DELETE CASCADE ON UPDATE CASCADE,
 	FOREIGN KEY (personID) REFERENCES Properties.tblAccounts (personID) ON DELETE CASCADE ON UPDATE CASCADE,
 	FOREIGN KEY (tierID) REFERENCES Properties.tblTier (tierID) ON DELETE CASCADE ON UPDATE CASCADE
 
