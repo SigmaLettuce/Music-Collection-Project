@@ -116,55 +116,56 @@ namespace CDOrganiserProjectApp
             return artists;
         }
 
-        public List<Bands> GetAllBands()
+        public List<Genres> GetAllGenres()
         {
-            List<Bands> bands = new List<Bands>();
-            string sqlStr = "SELECT * FROM Contents.tblBands";
+            List<Genres> genres = new List<Genres>();
+            string sqlStr = "SELECT * FROM Contents.tblGenres";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
                 using (SqlDataReader reader = cmd.ExecuteReader()) 
                 {
                     while (reader.Read())
                     {
-                        int bandId = Convert.ToInt32(reader["bandID"]);
-                        string bandName = reader["bandName"].ToString();
-                        bands.Add(new Bands(bandId, bandName)); 
+                        int genreId = Convert.ToInt32(reader["genreID"]);
+                        string genreName = reader["genreName"].ToString();
+                        genres.Add(new Genres(genreId, genreName)); 
                     }
                 }
             }
-            return bands;
+            return genres;
         }
 
-        public int InsertBand(Bands bands)
+        public int InsertGenre(Genres genres)
         {
-            using (SqlCommand cmd = new SqlCommand($"INSERT INTO Contents.tblBands (bandName) VALUES (@bandName); SELECT SCOPE_IDENTITY();", conn))
+            using (SqlCommand cmd = new SqlCommand($"INSERT INTO Contents.tblGenres (genreName) VALUES (@genreName); SELECT SCOPE_IDENTITY();", conn))
             {
-                cmd.Parameters.AddWithValue("@bandName", bands.BandName);
+                cmd.Parameters.AddWithValue("@genreName", genres.GenreName);
                 return Convert.ToInt32(cmd.ExecuteScalar());
             }
         }
 
-        public int UpdateBandByName(string bandName, string newName)
+        public int UpdateGenreByName(int genreId, string genreName)
         {
-            string sqlStr = $"UPDATE Contents.tblBands SET bandName = @newName WHERE bandName = @bandName";
+            string sqlStr = $"UPDATE Contents.tblGenres SET genreName = @genreName WHERE genreID = @genreId";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
-                cmd.Parameters.AddWithValue("@bandName", bandName);
-                cmd.Parameters.AddWithValue("@newName", newName);
+                cmd.Parameters.AddWithValue("@genreId", genreId);
+                cmd.Parameters.AddWithValue("@genreName", genreName);
                 return cmd.ExecuteNonQuery();
             }
         }
        
-        public int DeleteBandByName(string bandName)
+        public int DeleteGenreById(int genreId)
         {
-            string sqlStr = "DELETE FROM Contents.tblBands WHERE bandName = @bandName";
+            string sqlStr = "DELETE FROM Contents.tblGenres WHERE genreID = @genreID";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
-                cmd.Parameters.AddWithValue("@bandName", bandName);
+                cmd.Parameters.AddWithValue("@genreID", genreId);
                 return cmd.ExecuteNonQuery();
             }
 
         }
+
          
         public int InsertArtist(Artists artists)
         {

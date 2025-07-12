@@ -245,14 +245,15 @@ namespace CDOrganiserProjectApp.View
             return Console.ReadLine();
         }
 
+        public int GetIntInput()
+        {
+            return Convert.ToInt32(Console.ReadLine());
+        }
+
         public char GetCharInput()
         {
             return Convert.ToChar(Console.ReadLine());
         }
 
-        public DateTime GetDateTimeInput()
-        {
-            return Convert.ToDateTime(Console.ReadLine()).Date;
-        }
     }
 }

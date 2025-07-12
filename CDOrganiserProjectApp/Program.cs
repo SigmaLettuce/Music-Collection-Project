@@ -609,6 +609,43 @@ namespace CDOrganiserProjectApp
         }
 
 
+        private static void InsertNewGenre()
+        {
+            view.DisplayMessage("\nEnter the new genre... ");
+            string genreName = view.GetInput();
+            int genreId = 0; 
+
+            Genres newGenre = new Genres(genreId, genreName);
+
+            int generatedId = storageManager.InsertGenre(newGenre);
+            view.DisplayMessage($"\nThe new bands identification number is: {generatedId}");
+
+        }
+
+        private static void DeleteGenreById()
+        {
+            view.DisplayMessage("\nEnter the genre you wish to erase from your records... ");
+            string genreName = view.getintinput();
+
+            int rowsAffected = storageManager.DeleteGenreById(genreName);
+            view.DisplayMessage($"\nDeleted {rowsAffected} row.");
+        }
+
+
+        private static void UpdateArtistName()
+        {
+            view.DisplayMessage("\nEnter the name of the record... ");
+            string artistName = view.GetInput();
+
+            view.DisplayMessage("\nRename the record... ");
+            string rename = view.GetInput();
+
+            int rowsAffected = storageManager.UpdateArtistByName(artistName, rename);
+            view.DisplayMessage($"\nUpdated {rowsAffected} records.");
+
+        }
+
+
         private static void UpdateArtistName()
         {
             view.DisplayMessage("\nEnter the name of the record... ");
