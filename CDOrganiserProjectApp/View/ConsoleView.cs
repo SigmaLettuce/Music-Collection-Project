@@ -158,10 +158,10 @@ namespace CDOrganiserProjectApp.View
             return Console.ReadLine();
         }
 
-        public void DisplayError()
+        public void DisplayError(int delay)
         {
             Console.WriteLine("I'm sorry, this isn't a valid selection. Can you try again? ");
-            Thread.Sleep(wait);
+            Thread.Sleep(delay);
             Console.Clear();
 
         }

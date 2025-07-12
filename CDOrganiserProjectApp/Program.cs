@@ -67,7 +67,7 @@ namespace CDOrganiserProjectApp
                     break;
 
                     default:
-                        view.DisplayError();
+                        view.DisplayError(wait);
 
                         StartMenuscreenOptions();
 
