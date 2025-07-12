@@ -17,6 +17,13 @@ namespace CDOrganiserProjectApp
 {
     public class Program
     {
+
+        /*                   *\  
+         
+               [PROGRAM]
+         
+        \*                   */
+
         private static StorageManager storageManager;
         private static ConsoleView view;
 
@@ -352,6 +359,11 @@ namespace CDOrganiserProjectApp
                                     invalid = false;
 
                                     GoBack();
+
+                                break;
+
+                                case "reports":
+
 
                                 break;
 
@@ -808,7 +820,7 @@ namespace CDOrganiserProjectApp
 
                         Thread.Sleep(wait);
 
-                        cmd = view.DisplayEditingOptions("formats", "none");
+                        cmd = view.DisplayEditingOptions("formats", "default");
                         view.DisplayMessage("");
 
                         Thread.Sleep(wait);
@@ -1108,6 +1120,11 @@ namespace CDOrganiserProjectApp
                         Thread.Sleep(wait);
                         Console.Clear();
 
+                        // Resets the accounts credentials.
+
+                        roleId = 0;
+                        accountId = 0;
+                        storageManager.CloseConnection(); // Closes the connection upon signing out.
                         StartMenuscreenOptions();
 
                         invalid = false;
@@ -1433,6 +1450,9 @@ namespace CDOrganiserProjectApp
                         Thread.Sleep(wait);
                         Console.Clear();
 
+                        roleId = 0;
+                        accountId = 0;
+                        storageManager.CloseConnection();
                         StartMenuscreenOptions();
 
                         invalid = false;
@@ -1440,6 +1460,11 @@ namespace CDOrganiserProjectApp
                     break;
 
                     default:
+                        view.DisplayError(wait);
+
+                        GuestMenuscreenOptions();
+
+                        invalid = true;
 
                     break;
 

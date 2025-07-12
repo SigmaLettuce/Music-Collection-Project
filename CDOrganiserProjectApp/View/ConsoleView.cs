@@ -14,9 +14,18 @@ using System.Linq;
 namespace CDOrganiserProjectApp.View
 {
     public class ConsoleView 
-    {
+    { 
 
-        const int wait = 100;
+        /*                     *\  
+         
+             [CONSOLE VIEW]
+         
+        \*                     */  
+
+
+        // Global variable for the threadsleep.
+
+            int wait = 100;
 
         /*
          
@@ -33,7 +42,7 @@ namespace CDOrganiserProjectApp.View
 
             Console.WriteLine("\n\t     Help - Press H + Enter\n");
 
-            // When the method is called, a prompt for the users input is reciprocated. This let me store whatever is placed inside of the methods returned prompt in strings.
+            // When the method is called, a prompt for the users input is returned. This let me store whatever is placed inside of the methods returned prompt in strings.
 
             return Console.ReadLine(); 
         }
@@ -41,7 +50,7 @@ namespace CDOrganiserProjectApp.View
         /*
         
          The 'Administrator Menu.'
-        This is the Administrators menuscreen; the listings displayed are exclusive to the administrators of the application.
+        This is the Administrators menuscreen; the listings displayed are exclusive to the administrators of the application. A prompt for the users input is returned like the others.
 
         */ 
 
@@ -130,6 +139,13 @@ namespace CDOrganiserProjectApp.View
             return Console.ReadLine();
 
         } 
+
+        /*
+          
+         Display Editing Options.
+        These are the editing options. The method is parameterized to evaluate which version of options a user gets.
+
+        */
 
         public string DisplayEditingOptions(string d, string type)
         {
@@ -272,12 +288,27 @@ namespace CDOrganiserProjectApp.View
                 return Console.ReadLine();
         }
 
+        /* 
+          
+         Configure Option.
+        A prompt used to confirm the users nature. 
+
+
+        */ 
+
         public string ConfigureOption()
         {
             Console.WriteLine("Are you sure... ? Y/n");
 
             return Console.ReadLine();
         }
+
+        /*
+         
+         Display Error.
+        A generic error prompt to avoid rewriting lines of code. Like many others, I can just call it in the defaults: of switch cases.
+         
+        */
 
         public void DisplayError(int delay)
         {
@@ -286,6 +317,13 @@ namespace CDOrganiserProjectApp.View
             Console.Clear();
 
         }
+
+        /*
+         
+         The Support Page.
+        This addresses some of the biggest issues a user might encounter when using this application that is out of my hands.
+         
+        */
 
         public string DisplayHelp(int delay)
         {
@@ -318,7 +356,7 @@ namespace CDOrganiserProjectApp.View
 
         public void DisplayBands(List<Bands> bands)
         {
-            Console.WriteLine("ID: NAME: ");
+            Console.WriteLine("ID:  NAME:");
 
             foreach (Bands band in bands)
             {
@@ -331,7 +369,7 @@ namespace CDOrganiserProjectApp.View
 
         public void DisplayGenres(List<Genres> genres)
         {
-            Console.WriteLine("ID: NAME: ");
+            Console.WriteLine("ID:  NAME:");
 
             foreach (Genres genre in genres)
             {
@@ -344,7 +382,7 @@ namespace CDOrganiserProjectApp.View
 
         public void DisplayTiers(List<Tiers> tiers)
         {
-            Console.WriteLine("ID: CLASS: VALUE:");
+            Console.WriteLine("ID:  CLASS:   VALUE:");
 
             foreach (Tiers tier in tiers)
             {
@@ -357,7 +395,7 @@ namespace CDOrganiserProjectApp.View
 
         public void DisplayArtists(List<Artists> artists)
         {
-            Console.WriteLine("ID: NAME: ");
+            Console.WriteLine("ID:  NAME:");
 
             foreach (Artists artist in artists)
             {
@@ -372,6 +410,10 @@ namespace CDOrganiserProjectApp.View
         {
             Console.WriteLine(msg);
         }
+
+        /*
+          
+        */ 
 
         public string GetInput()
         {
