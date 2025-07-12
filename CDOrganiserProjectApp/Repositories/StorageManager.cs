@@ -934,10 +934,10 @@ namespace CDOrganiserProjectApp
             }
         }
 
-
+        // Closes the connection; Evaluates whether to based on if the connection is null, or if the state says its open. If the first is returned as false, the second isn't evaluated.
         public void CloseConnection()
         {
-            if (conn != null && conn.State == System.Data.ConnectionState.Open)
+            if (conn != null && conn.State == System.Data.ConnectionState.Open) 
             { 
                 conn.Close();
                 Console.WriteLine("\nConnection terminated.");

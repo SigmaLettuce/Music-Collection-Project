@@ -336,6 +336,7 @@ namespace CDOrganiserProjectApp.View
                 Console.WriteLine("\t[*]  'How can I login?' - Open the folder you installed, then open the .txt file 'account~list'.");
                 Console.WriteLine("\t[*]  'The connection isn't being established!' - Open the .sln in an IDE > Open the SQL Server Object Explorer. If that doesn't fix it, please open the repository .url.");
                 Console.WriteLine("\t[*]  'Text from a record is clipping into the next line!' - Enter F11 or Alt + Enter.");
+                Console.WriteLine("\t[*]  'Why does failing a command input send me back to the menuscreen?' - It was taking up too much of my time, couldn't wrap my head around it.");
                 Console.WriteLine("\t[*]  'How do I view the listings?' - Exactly how you ended up here. Enter a listed keyword. This is not case-sensitive.");
                 Console.WriteLine("\t[*]  'How do I leave the support page?' - Press E + Enter\n");
 
