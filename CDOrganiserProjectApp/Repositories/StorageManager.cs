@@ -348,11 +348,18 @@ namespace CDOrganiserProjectApp
                         bool favourite = Convert.ToBoolean(reader["favourite"]);
                         bool lost = Convert.ToBoolean(reader["lost"]);
 
+                        string genreName = reader["genreName"].ToString();
+                        string formatName = reader["formatName"].ToString();
+                        string artistName = reader["artistName"].ToString();
+                        string shelfRow = reader["shelfRow"].ToString();
+                        string username = reader["username"].ToString();
+                        char tierTag = Convert.ToChar(reader["tierTag"]);
+
                         albums.Add(new ArtistAlbums(albumId, albumName, genreId, dateOfRelease, genreId, artistId, shelfRowId, personId, tierId, favourite, lost));
 
                         
             
-                        Console.WriteLine($"{album.AlbumId}, {album.AlbumName}, {album.GenreName}, \t\t\t\t{album.DateOfRelease.ToString("d")}, {album.FormatName}, {album.ArtistName}, {album.ShelfRow}, {album.Favourite}, {album.Lost}\n");
+                        Console.WriteLine($"{albumId}, {albumName}, {genreName}, \t\t\t\t{dateOfRelease.ToString("d")}, {formatName}, {artistName}, {shelfRow}, {favourite}, {lost}\n");
                         Thread.Sleep(wait);
                     }
                 }
@@ -378,32 +385,43 @@ namespace CDOrganiserProjectApp
         }
 
 
-        public List<BandAlbums> GetAllBandAlbums(int account)
+        public List<BandAlbums> GetBandAlbums()
         {
             List<BandAlbums> albums = new List<BandAlbums>();
-            string sqlStr = "SELECT albumID, albumName, genreName, dateOfRelease, formatName, bandName, shelfRow, username, tierTag, favourite, lost FROM Contents.tblGenres, Contents.tblBandAlbums, Properties.tblFormat, Contents.tblBands, Properties.tblRow, Properties.tblAccounts, Properties.tblTier WHERE tblBandAlbums.genreID = tblGenres.genreID AND tblBandAlbums.formatID = tblFormat.formatID AND tblBandAlbums.artistID = tblArtists.artistID AND tblBandAlbums.shelfRowID = tblRow.shelfRowID AND tblAccounts.personID = @account AND tblBandAlbums.tierID = tblTier.tierID";
+            string sqlStr = "SELECT albumID, albumName, genreName, dateOfRelease, formatName, bandName, shelfRow, username, tierTag, favourite, lost FROM Contents.tblGenres, Contents.tblBandAlbums, Properties.tblFormat, Contents.tblBands, Properties.tblRow, Properties.tblAccounts, Properties.tblTier WHERE tblBandAlbums.genreID = tblGenres.genreID AND tblBandAlbums.formatID = tblFormat.formatID AND tblBandAlbums.bandID = tblBandAlbums.bandID AND tblBandAlbums.shelfRowID = tblRow.shelfRowID AND tblBandAlbums.personID = tblAccounts.personID AND tblBandAlbums.tierID = tblTier.tierID";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
-                cmd.Parameters.AddWithValue("@account", account);
-
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
+                    Console.WriteLine("ID:  NAME:\tCATEGORY:\tRELEASE DATE:\tFORMAT:\tARTIST\tROW:\tFAVOURITE:\t");
+
                     while (reader.Read())
                     {
                         int albumId = Convert.ToInt32(reader["albumID"]);
                         string albumName = reader["albumName"].ToString();
-                        string genreName = reader["genreName"].ToString();
+                        int genreId = Convert.ToChar(reader["genreID"]);
                         DateTime dateOfRelease = Convert.ToDateTime(reader["dateOfRelease"]);
-                        string formatName = reader["formatName"].ToString();
-                        string artistName = reader["artistName"].ToString();
-                        string shelfRow = reader["shelfRow"].ToString();
-                        string username = reader["username"].ToString();
-                        char tierTag = Convert.ToChar(reader["tierTag"]);
+                        int formatId = Convert.ToInt32(reader["formatID"]);
+                        int artistId = Convert.ToInt32(reader["artistID"]);
+                        int shelfRowId = Convert.ToInt32(reader["shelfRowID"]);
+                        int personId = Convert.ToInt32(reader["personID"]);
+                        int tierId = Convert.ToChar(reader["tierID"]);
                         bool favourite = Convert.ToBoolean(reader["favourite"]);
                         bool lost = Convert.ToBoolean(reader["lost"]);
 
-                        albums.Add(new BandAlbums(albumId, albumName, genreName, dateOfRelease, formatName, artistName, shelfRow, username, tierTag, favourite, lost));
+                        string genreName = reader["genreName"].ToString();
+                        string formatName = reader["formatName"].ToString();
+                        string bandName = reader["bandName"].ToString();
+                        string shelfRow = reader["shelfRow"].ToString();
+                        string username = reader["username"].ToString();
+                        char tierTag = Convert.ToChar(reader["tierTag"]);
 
+                        albums.Add(new BandAlbums(albumId, albumName, genreId, dateOfRelease, genreId, artistId, shelfRowId, personId, tierId, favourite, lost));
+
+                        
+            
+                        Console.WriteLine($"{albumId}, {albumName}, {genreName}, \t\t\t\t{dateOfRelease.ToString("d")}, {formatName}, {bandName}, {shelfRow}, {favourite}, {lost}\n");
+                        Thread.Sleep(wait);
                     }
                 }
             }

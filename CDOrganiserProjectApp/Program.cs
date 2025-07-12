@@ -1577,7 +1577,7 @@ namespace CDOrganiserProjectApp
             view.DisplayMessage("\nEnter the identification number... ");
             int roomId = view.GetIntInput();
 
-            int rowsAffected = storageManager.UpdateShelfRoomByTag(shelfTag, roomName);
+            int rowsAffected = storageManager.UpdateShelfRoomByTag(shelfTag, roomId);
             view.DisplayMessage($"\nUpdated {rowsAffected} records.");
 
         }
