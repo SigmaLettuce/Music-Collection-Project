@@ -144,7 +144,7 @@ namespace CDOrganiserProjectApp
             }
         }
 
-        public int UpdateGenreByName(int genreId, string genreName)
+        public int UpdateGenreById(int genreId, string genreName)
         {
             string sqlStr = $"UPDATE Contents.tblGenres SET genreName = @genreName WHERE genreID = @genreId";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))

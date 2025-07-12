@@ -625,22 +625,22 @@ namespace CDOrganiserProjectApp
         private static void DeleteGenreById()
         {
             view.DisplayMessage("\nEnter the genre you wish to erase from your records... ");
-            string genreName = view.getintinput();
+            int genreId = view.GetIntInput();
 
-            int rowsAffected = storageManager.DeleteGenreById(genreName);
+            int rowsAffected = storageManager.DeleteGenreById(genreId);
             view.DisplayMessage($"\nDeleted {rowsAffected} row.");
         }
 
 
-        private static void UpdateArtistName()
+        private static void UpdateGenreName()
         {
-            view.DisplayMessage("\nEnter the name of the record... ");
-            string artistName = view.GetInput();
+            view.DisplayMessage("\nEnter the identification number... ");
+            int genreId = view.GetIntInput();
 
             view.DisplayMessage("\nRename the record... ");
-            string rename = view.GetInput();
+            string genreName = view.GetInput();
 
-            int rowsAffected = storageManager.UpdateArtistByName(artistName, rename);
+            int rowsAffected = storageManager.UpdateGenreById(genreId, genreName);
             view.DisplayMessage($"\nUpdated {rowsAffected} records.");
 
         }

@@ -110,6 +110,7 @@ namespace CDOrganiserProjectApp.View
                 Console.WriteLine("\n\t[/]  'albums' - Albums of a compact disc; a CD");
                 Console.WriteLine("\t[/]  'artists' - All artists who have published an album you own");
                 Console.WriteLine("\t[/]  'bands' - All bands who have published an album you own");
+                Console.WriteLine("\t[/]  'genres' - All musical categories of your collection");
                 Console.WriteLine("\t[/]  'all' - All artists, including bands, who have published an album you own");
                 Console.WriteLine("\n\t[/]  'shelves' - All available shelving units and their shelves\n");
 
