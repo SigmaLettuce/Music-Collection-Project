@@ -55,7 +55,6 @@ namespace CDOrganiserProjectApp.View
                 Console.WriteLine("\t[/]  'artists' - All artists who have published an album you own");
                 Console.WriteLine("\t[/]  'bands' - All bands who have published an album you own");
                 Console.WriteLine("\t[/]  'genres' - All musical categories of your collection");
-                Console.WriteLine("\t[/]  'all' - All artists, including bands, who have published an album you own");
                 Console.WriteLine("\t[/]  'rooms' - All available rooms");
                 Console.WriteLine("\t[/]  'shelves' - All available shelving units and their shelves\n");
 
@@ -122,7 +121,7 @@ namespace CDOrganiserProjectApp.View
                 Console.WriteLine("\n\t[/]  'accounts' - Manage account permissions");
                 Console.WriteLine("\t[/]  'help' - Takes you to the help page\n");
 
-                Console.WriteLine("\n\t     Log out - Press L + Enter\n");
+                Console.WriteLine("\n\t     Log out - Press l + Enter\n");
             
 
             Console.WriteLine("Enter any of the listings above to gain access... \n");

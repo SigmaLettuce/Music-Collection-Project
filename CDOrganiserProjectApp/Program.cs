@@ -275,6 +275,8 @@ namespace CDOrganiserProjectApp
 
                                     AdminMenuscreenOptions();
 
+                                    invalid = true;
+
                                 break;
                             }
 
@@ -337,6 +339,10 @@ namespace CDOrganiserProjectApp
                                 default:
                                     view.DisplayError(wait);
 
+                                    AdminMenuscreenOptions();
+
+                                    invalid = true;
+
                                 break;
                             }
 
@@ -345,11 +351,15 @@ namespace CDOrganiserProjectApp
                     break;
                                         
                     case "albums":
-                      
+
+                        Thread.Sleep(wait);
+
                         select = view.DisplayEditingOptions("albums", "album~variants");
 
                         Thread.Sleep(wait);
                         Console.Clear();
+
+                        invalid = false;
 
                         do
                         {
@@ -496,6 +506,8 @@ namespace CDOrganiserProjectApp
 
                                     AdminMenuscreenOptions();
 
+                                    invalid = true;
+
                                 break;
 
                             }
@@ -560,6 +572,8 @@ namespace CDOrganiserProjectApp
 
                                     AdminMenuscreenOptions();
 
+                                    invalid = true;
+
                                 break;
                             }
 
@@ -598,6 +612,8 @@ namespace CDOrganiserProjectApp
 
                                     AdminMenuscreenOptions();
 
+                                    invalid = true;
+
                                 break;
                             }
 
@@ -606,6 +622,8 @@ namespace CDOrganiserProjectApp
                     break;
 
                     case "accounts":
+
+                        Thread.Sleep(wait);
 
                         select = view.DisplayEditingOptions("albums", "account~variants");
 
@@ -656,101 +674,19 @@ namespace CDOrganiserProjectApp
 
                     break;
 
-                        /*
-                    case Prefix.@view + " " + Suffix.@all:
-                        storageManager.GetAllArtistsAndBands();
+                    case "help":
+
+                        Thread.Sleep(wait);
+
+                        Help(); // This calls the support page.
+
+                        Thread.Sleep(wait);
 
                         invalid = false;
-
-                        GoBack();
-
-                        break;
-
-                    case Prefix.@view + " " + Suffix.@rooms:
-                        List<Rooms> rooms = storageManager.GetAllRooms();
-                        view.DisplayRooms(rooms);
-
-                        invalid = false;
-
-                        GoBack();
 
                     break;
 
-                    case Prefix.@up + " " + Suffix.@rooms:
-                        UpdateRoomName();
-
-                        invalid = false;
-
-                        GoBack();
-
-                    break;
-
-                    case Prefix.@ins + " " + Suffix.@rooms:
-                        InsertNewRoom();
-
-                        invalid = false;
-
-                        GoBack();
-
-                    break;
-
-                    case Prefix.@del + " " + Suffix.@rooms:
-                        DeleteRoomByName();
-
-                        invalid = false;
-
-                        GoBack();
-
-                    break;
-
-                    case Prefix.@view + " " + Base.@artist + " " + Suffix.@albums:
-                        List<ArtistAlbums> albumsa = storageManager.GetAllArtistAlbums();
-                        view.DisplayArtistAlbums(albumsa);
-
-                        invalid = false;
-
-                        GoBack();
-
-                    break;
-
-                    case Prefix.@view + " " + Base.@band + " " + Suffix.@albums:
-                        List<BandAlbums> albumsb = storageManager.GetAllBandAlbums();
-                        view.DisplayBandAlbums(albumsb);
-
-                        invalid = false;
-
-                        GoBack();
-
-                    break;
-
-                    case Prefix.@ins + " " + Base.@band + " " + Suffix.@albums:
-                        InsertBandAlbum();
-
-                        invalid = false;
-
-                        GoBack();
-
-                    break;
-
-                    case Prefix.@create + " " + Suffix.@admin:
-                        CreateAdmin();
-
-                        invalid = false;
-
-                        GoBack();
-
-                    break;
-
-                    case Prefix.@create + " " + Suffix.@user:
-                        CreateUser();
-
-                        invalid = false;
-                        
-                        GoBack();
-
-                    break;
-                */
-                    case "L":
+                    case "l":
                         Thread.Sleep(wait);
                         Console.Clear();
 
@@ -827,7 +763,7 @@ namespace CDOrganiserProjectApp
 
             } while (invalid);
 
-        }
+        } // The Guest Menuscreen.
 
         
         private static void GoBack() 
@@ -886,7 +822,7 @@ namespace CDOrganiserProjectApp
 
             while (carry);
 
-        }
+        } // The Go Back function.
 
 
         private static void UpdateBandName()
@@ -900,7 +836,7 @@ namespace CDOrganiserProjectApp
             int rowsAffected = storageManager.UpdateBandById(bandId, bandName);
             view.DisplayMessage($"\nUpdated {rowsAffected} records.");
 
-        } 
+        }  // 
 
         private static void InsertNewBand()
         {
