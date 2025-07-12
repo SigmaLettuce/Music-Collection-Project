@@ -853,13 +853,13 @@ namespace CDOrganiserProjectApp
 
         private static void UpdateArtistName()
         {
-            view.DisplayMessage("\nEnter the name of the record... ");
-            string artistName = view.GetInput();
+            view.DisplayMessage("\nEnter the identification number... ");
+            int artistID = view.GetIntInput();
 
             view.DisplayMessage("\nRename the record... ");
-            string rename = view.GetInput();
+            string genreName = view.GetInput();
 
-            int rowsAffected = storageManager.UpdateArtistByName(artistName, rename);
+            int rowsAffected = storageManager.UpdateArtistById(artistID, genreName);
             view.DisplayMessage($"\nUpdated {rowsAffected} records.");
 
         }
@@ -879,10 +879,10 @@ namespace CDOrganiserProjectApp
 
         private static void DeleteArtistByName()
         {
-            view.DisplayMessage("\nEnter the artist you wish to erase from your records... ");
-            string artistName = view.GetInput();
+            view.DisplayMessage("\nEnter the identification number... ");
+            int artistId = view.GetIntInput();
 
-            int rowsAffected = storageManager.DeleteArtistByName(artistName);
+            int rowsAffected = storageManager.DeleteArtistById(artistId);
             view.DisplayMessage($"\nDeleted {rowsAffected} row.");
         }
 

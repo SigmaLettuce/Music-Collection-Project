@@ -97,25 +97,6 @@ namespace CDOrganiserProjectApp
         }
 
 
-        public List<Artists> GetAllArtists()
-        {
-            List<Artists> artists = new List<Artists>();
-            string sqlStr = "SELECT * FROM Contents.tblArtists";
-            using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
-            {
-                using (SqlDataReader reader = cmd.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        int artistId = Convert.ToInt32(reader["artistID"]);
-                        string artistName = reader["artistName"].ToString();
-                        artists.Add(new Artists(artistId, artistName));
-                    }
-                }
-            }
-            return artists;
-        }
-
         public List<Genres> GetAllGenres()
         {
             List<Genres> genres = new List<Genres>();
@@ -166,7 +147,26 @@ namespace CDOrganiserProjectApp
 
         }
 
-         
+
+        public List<Artists> GetAllArtists()
+        {
+            List<Artists> artists = new List<Artists>();
+            string sqlStr = "SELECT * FROM Contents.tblArtists";
+            using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
+            {
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        int artistId = Convert.ToInt32(reader["artistID"]);
+                        string artistName = reader["artistName"].ToString();
+                        artists.Add(new Artists(artistId, artistName));
+                    }
+                }
+            }
+            return artists;
+        }
+
         public int InsertArtist(Artists artists)
         {
             string sqlStr = $"INSERT INTO Contents.tblArtists (artistName) VALUES (@artistName); SELECT SCOPE_IDENTITY();";
@@ -177,23 +177,23 @@ namespace CDOrganiserProjectApp
             }
         }
 
-        public int UpdateArtistByName(string artistName, string newName)
+        public int UpdateArtistById(int artistId, string artistName)
         {
-            string sqlStr = $"UPDATE Contents.tblArtists SET artistName = @newName WHERE artistName = @artistName";
+            string sqlStr = $"UPDATE Contents.tblArtists SET artistName = @artistName WHERE artistID = @artistId";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
+                cmd.Parameters.AddWithValue("@artistId", artistId);
                 cmd.Parameters.AddWithValue("@artistName", artistName);
-                cmd.Parameters.AddWithValue("@newName", newName);
                 return cmd.ExecuteNonQuery();
             }
         }
 
-        public int DeleteArtistByName(string artistName)
+        public int DeleteArtistById(int artistId)
         {
-            string sqlStr = "DELETE FROM Contents.tblArtists WHERE artistName = @artistName";
+            string sqlStr = "DELETE FROM Contents.tblArtists WHERE artistId = @artistId";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
-                cmd.Parameters.AddWithValue("@artistName", artistName);
+                cmd.Parameters.AddWithValue("@artistId", artistId);
                 return cmd.ExecuteNonQuery();
             }
 

@@ -246,7 +246,7 @@ namespace CDOrganiserProjectApp.View
 
         public void DisplayArtistAlbums(List<ArtistAlbums> albums)
         {
-            Console.WriteLine("ID: NAME:\tCATEGORY:\tRELEASE DATE:\tFORMAT:\tARTIST\tROW:\tFAVOURITE:\t");
+            Console.WriteLine("ID:  NAME:\tCATEGORY:\tRELEASE DATE:\tFORMAT:\tARTIST\tROW:\tFAVOURITE:\t");
 
             foreach (ArtistAlbums album in albums)
             {
@@ -254,7 +254,7 @@ namespace CDOrganiserProjectApp.View
                 Thread.Sleep(wait);
                 
             }
-        }
+        }   
         
         public void DisplayBandAlbums(List<BandAlbums> albums)
         {
@@ -262,7 +262,7 @@ namespace CDOrganiserProjectApp.View
 
             foreach (BandAlbums album in albums)
             {
-                Console.WriteLine($"{album.AlbumId}, {album.AlbumName}, {album.GenreName}, {album.DateOfRelease.ToString("d")}, {album.FormatName}, {album.BandName}, {album.ShelfRow}, {album.Favourite}, {album.Lost}\n");
+                Console.WriteLine($"{album.AlbumId}, {album.AlbumName}, {album.GenreName}, \t\t\t\t\t{album.DateOfRelease.ToString("d")}, {album.FormatName}, {album.BandName}, {album.ShelfRow}, {album.Favourite}, {album.Lost}\n");
                 Thread.Sleep(wait);
 
             }
