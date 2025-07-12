@@ -53,7 +53,8 @@ CREATE TABLE Properties.tblStorageRoom (
 );
 
 CREATE TABLE Properties.tblShelf (
-	shelfTag VARCHAR(1) PRIMARY KEY,
+	shelfTagID INT IDENTITY(1,1) PRIMARY KEY,
+	shelfTag VARCHAR(1) NOT NULL, 
 	roomID INT NOT NULL,
 	FOREIGN KEY (roomID) REFERENCES Properties.tblStorageRoom (roomID) ON DELETE CASCADE ON UPDATE CASCADE
 );
@@ -61,8 +62,8 @@ CREATE TABLE Properties.tblShelf (
 CREATE TABLE Properties.tblRow (
 	shelfRowID INT IDENTITY(1,1) PRIMARY KEY,
 	shelfRow INT NOT NULL,
-	shelfTag VARCHAR(1) NOT NULL,
-	FOREIGN KEY (shelfTag) REFERENCES Properties.tblShelf (shelfTag) ON DELETE CASCADE ON UPDATE CASCADE 
+	shelfTagID INT NOT NULL,
+	FOREIGN KEY (shelfTagID) REFERENCES Properties.tblShelf (shelfTagID) ON DELETE CASCADE ON UPDATE CASCADE 
 );
 
 CREATE TABLE Contents.tblArtistAlbums (

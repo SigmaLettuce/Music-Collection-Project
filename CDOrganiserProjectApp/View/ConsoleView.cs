@@ -340,31 +340,6 @@ namespace CDOrganiserProjectApp.View
 
         }
 
-        public void DisplayRooms(List<Rooms> rooms)
-        {
-            Console.WriteLine("ID: NAME: ");
-
-            foreach (Rooms room in rooms)
-            {
-                Console.WriteLine($"{room.RoomId}, {room.RoomName}\n");
-                Thread.Sleep(wait);
-
-            }
-            
-        }
-        public void DisplayShelves(List<Shelves> shelves)
-        {
-            Console.WriteLine("ID: NAME: ");
-
-            foreach (Shelves shelf in shelves)
-            {
-                Console.WriteLine($"{shelf.ShelfTag}, {shelf.RoomName}\n");
-                Thread.Sleep(wait);
-
-            }
-            
-        }
-
         public void DisplayMessage(string msg)
         {
             Console.WriteLine(msg);

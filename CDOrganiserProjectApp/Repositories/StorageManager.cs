@@ -282,8 +282,8 @@ namespace CDOrganiserProjectApp
                     while (reader.Read())
                     {
                         char shelfTag = Convert.ToChar(reader["shelfTag"]);
-                        string roomName = reader["roomName"].ToString();
-                        shelves.Add(new Shelves(shelfTag, roomName));
+                        int roomId = Convert.ToInt32(reader["roomName"]);
+                        shelves.Add(new Shelves(shelfTag, roomId));
                     }
                 }
             }
@@ -295,7 +295,7 @@ namespace CDOrganiserProjectApp
             using (SqlCommand cmd = new SqlCommand($"INSERT INTO Properties.tblShelf (roomName) VALUES (@roomName); SELECT SCOPE_IDENTITY();", conn))
             {
         
-                cmd.Parameters.AddWithValue("@roomName", shelves.RoomName);
+                cmd.Parameters.AddWithValue("@roomId", shelves.RoomId);
                 
                 return Convert.ToInt32(cmd.ExecuteScalar());
             }

@@ -101,56 +101,60 @@ VALUES
 
 SET IDENTITY_INSERT Properties.tblStorageRoom OFF;
 
-INSERT INTO Properties.tblShelf(shelfTag, roomID)
+SET IDENTITY_INSERT Properties.tblShelf ON;
+
+INSERT INTO Properties.tblShelf(shelfTagID, shelfTag, roomID)
 VALUES
-('A', 1),
-('B', 2),
-('C', 3),
-('D', 4),
-('E', 5),
-('F', 5),
-('G', 6);
+(1, 'A', 1),
+(2, 'B', 2),
+(3, 'C', 3),
+(4, 'D', 4),
+(5, 'E', 5),
+(6, 'F', 5),
+(7, 'G', 6);
+
+SET IDENTITY_INSERT Properties.tblShelf OFF;
 
 SET IDENTITY_INSERT Properties.tblRow ON;
 
-INSERT INTO Properties.tblRow(shelfRowID, shelfRow, shelfTag)
+INSERT INTO Properties.tblRow(shelfRowID, shelfRow, shelfTagID)
 VALUES
-(1, 1, 'A'),
-(2, 2, 'A'),
-(3, 3, 'A'),
-(4, 4, 'A'),
-(5, 5, 'A'),
+(1, 1, 1),
+(2, 2, 1),
+(3, 3, 1),
+(4, 4, 1),
+(5, 5, 1),
 
-(6, 1, 'B'),
-(7, 2, 'B'),
-(8, 3, 'B'),
-(9, 4, 'B'),
-(10, 5, 'B'),
+(6, 1, 2),
+(7, 2, 2),
+(8, 3, 2),
+(9, 4, 2),
+(10, 5, 2),
 
-(11, 1, 'C'),
-(12, 2, 'C'),
-(13, 3, 'C'),
-(14, 4, 'C'),
+(11, 1, 3),
+(12, 2, 3),
+(13, 3, 3),
+(14, 4, 3),
 
-(15, 1, 'D'),
-(16, 2, 'D'),
-(17, 3, 'D'),
-(18, 4, 'D'),
-(19, 5, 'D'),
+(15, 1, 4),
+(16, 2, 4),
+(17, 3, 4),
+(18, 4, 4),
+(19, 5, 4),
 
-(20, 1, 'E'),
-(21, 2, 'E'),
-(22, 3, 'E'),
-(23, 4, 'E'),
-(24, 5, 'E'),
+(20, 1, 5),
+(21, 2, 5),
+(22, 3, 5),
+(23, 4, 5),
+(24, 5, 5),
 
-(25, 1, 'F'),
-(26, 2, 'F'),
-(27, 3, 'F'),
-(28, 4, 'F'),
-(29, 5, 'F'),
+(25, 1, 6),
+(26, 2, 6),
+(27, 3, 6),
+(28, 4, 6),
+(29, 5, 6),
 
-(30, 1, 'G');
+(30, 1, 7);
 
 SET IDENTITY_INSERT Properties.tblRow OFF;
 
