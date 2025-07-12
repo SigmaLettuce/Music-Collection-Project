@@ -220,6 +220,8 @@ namespace CDOrganiserProjectApp
                                 break;
 
                                 case "back":
+
+                                    
                                     GoBack();
 
                                     invalid = false;

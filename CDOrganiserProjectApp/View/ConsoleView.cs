@@ -129,7 +129,7 @@ namespace CDOrganiserProjectApp.View
 
         public string DisplayEditingOptions(string d)
         {
-            Console.WriteLine($"\n\t [ {d} /]\n");
+            // Console.WriteLine($"\n\t [ {d} /]\n");
             Console.WriteLine("\tEDIT... ");
             Console.WriteLine("\tYou can now modify this listing.");
 
@@ -151,14 +151,32 @@ namespace CDOrganiserProjectApp.View
             return Console.ReadLine();
         }
 
+        public string ConfigureOption()
+        {
+            Console.WriteLine("Are you sure... ? Y/n");
+
+            return Console.ReadLine();
+        }
+
+        public string DisplayError()
+        {
+            Console.WriteLine("I'm sorry, this isn't a valid selection. Can you try again? ");
+            Thread.Sleep(wait);
+            Console.Clear();
+
+            return Console.ReadLine();
+        }
+
         public string DisplayHelp()
         {
-
+            Console.WriteLine(" ");
             return Console.ReadLine();
         }
 
         public void DisplayBands(List<Bands> bands)
         {
+            Console.WriteLine("ID:  NAME:");
+
             foreach (Bands band in bands)
             {
                 Console.WriteLine($"{band.BandId}, {band.BandName}\n");
