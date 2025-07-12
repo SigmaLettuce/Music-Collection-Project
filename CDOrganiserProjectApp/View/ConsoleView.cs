@@ -131,7 +131,7 @@ namespace CDOrganiserProjectApp.View
 
         public string DisplayEditingOptions(string d)
         {
-            // Console.WriteLine($"\n\t [ {d} /]\n");
+            Console.WriteLine($"\n\t [CD MANAGER / {d}]\n");
             Console.WriteLine("\tEDIT... ");
             Console.WriteLine("\tYou can now modify this listing.");
 
@@ -155,7 +155,7 @@ namespace CDOrganiserProjectApp.View
 
         public string SelectAlbumVariant(string d)
         {
-            Console.WriteLine($"\n\t [listings / {d}]\n");
+            Console.WriteLine($"\n\t [CD MANAGER / {d}]\n");
             Console.WriteLine("\tVIEW... ");
             Console.WriteLine("\tThese are the available album listings, compiled into directories.");
 

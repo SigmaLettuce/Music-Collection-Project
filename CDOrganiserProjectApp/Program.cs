@@ -161,7 +161,7 @@ namespace CDOrganiserProjectApp
             view.DisplayMessage("");
 
             Thread.Sleep(wait);
-
+            Console.Clear();
 
             do
             {
@@ -301,7 +301,7 @@ namespace CDOrganiserProjectApp
 
                         string select;
 
-                        select = view.SelectAlbumVariant(" ");
+                        select = view.SelectAlbumVariant("albums");
 
                         Thread.Sleep(wait);
                         Console.Clear();
@@ -318,6 +318,7 @@ namespace CDOrganiserProjectApp
                                 view.DisplayMessage("");
 
                                 Thread.Sleep(wait);
+                                Console.Clear();
 
                                 invalid = false;
 

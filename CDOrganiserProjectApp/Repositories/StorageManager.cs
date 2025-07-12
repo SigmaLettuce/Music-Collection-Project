@@ -304,7 +304,7 @@ namespace CDOrganiserProjectApp
         public List<BandAlbums> GetAllBandAlbums(int account)
         {
             List<BandAlbums> albums = new List<BandAlbums>();
-            string sqlStr = "SELECT albumID, albumName, genreName, dateOfRelease, formatName, bandName, shelfRow, username, tierTag, favourite, lost FROM Contents.tblGenres, Contents.tlbBandAlbums, Properties.tblFormat, Contents.tblBands, Properties.tblRow, Properties.tblAccounts, Properties.tblTier WHERE tblBandAlbums.genreID = tblGenres.genreID AND tblBandAlbums.formatID = tblFormat.formatID AND tblBandAlbums.artistID = tblArtists.artistID AND tblBandAlbums.shelfRowID = tblRow.shelfRowID AND tblAccounts.personID = @account AND tblBandAlbums.tierID = tblTier.tierID";
+            string sqlStr = "SELECT albumID, albumName, genreName, dateOfRelease, formatName, bandName, shelfRow, username, tierTag, favourite, lost FROM Contents.tblGenres, Contents.tblBandAlbums, Properties.tblFormat, Contents.tblBands, Properties.tblRow, Properties.tblAccounts, Properties.tblTier WHERE tblBandAlbums.genreID = tblGenres.genreID AND tblBandAlbums.formatID = tblFormat.formatID AND tblBandAlbums.artistID = tblArtists.artistID AND tblBandAlbums.shelfRowID = tblRow.shelfRowID AND tblAccounts.personID = @account AND tblBandAlbums.tierID = tblTier.tierID";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
                 cmd.Parameters.AddWithValue("@account", account);
