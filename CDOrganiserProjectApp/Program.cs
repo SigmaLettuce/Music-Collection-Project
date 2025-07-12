@@ -196,12 +196,558 @@ namespace CDOrganiserProjectApp
         }
 
         private static void AdminMenuscreenOptions() // The Admin Menuscreen. 
-        {
+        {           
             string select; // Stores a selection from a listing that branches into multiple.
             string cmd; // Stores the users written modification command.
             bool invalid = true;
 
             string input = view.DisplayAdminMenu(); // Calls the display.
+            view.DisplayMessage(""); 
+
+            Thread.Sleep(wait);
+            Console.Clear();
+
+            do
+            {
+                switch (input.ToLower())
+                {
+
+                    case "bands":
+                        
+                        List<Bands> bands = storageManager.GetAllBands();
+                        view.DisplayBands(bands);
+
+                        Thread.Sleep(wait);
+
+                        cmd = view.DisplayEditingOptions("bands", "default");
+                        view.DisplayMessage("");
+
+                        Thread.Sleep(wait);
+
+                        invalid = false;
+
+                        switch (roleId)
+                        {
+                            case 1:
+                                cmd = view.DisplayEditingOptions("bands", "none");
+                                view.DisplayMessage("");
+
+                                Thread.Sleep(wait);
+
+                            break;
+
+                            case 2:
+                                cmd = view.DisplayEditingOptions("bands", "default");
+                                view.DisplayMessage("");
+
+                                Thread.Sleep(wait);
+
+                            break;
+
+                            case 3:
+                                cmd = view.DisplayEditingOptions("bands", "default");
+                                view.DisplayMessage("");
+
+                                Thread.Sleep(wait);
+
+                            break;
+             
+                        }
+
+                        do
+                        {
+
+                            switch (cmd.ToLower())
+                            {
+                                case "up":
+                                    UpdateBandName();
+
+                                    invalid = false;
+
+                                    GoBack();
+
+                                break;
+
+                                case "ins":
+                                    InsertNewBand();
+
+                                    invalid = false;
+
+                                    GoBack();
+
+                                break;
+
+                                case "del":
+                                    DeleteBandById();
+
+                                    invalid = false;
+
+                                    GoBack();
+
+                                break;
+
+                                case "reports":
+
+                                    invalid = false;
+
+                                break;
+
+                                case "back":
+                                    GoBack();
+
+                                    invalid = false;
+
+                                break;
+
+                                default:
+                                    view.DisplayError(wait);
+
+                                    AdminMenuscreenOptions();
+
+                                    invalid = true;
+
+                                break;
+                            }
+
+                        } while (invalid);
+
+                    break;
+                  
+                    case "artists":
+                        List<Artists> artists = storageManager.GetAllArtists();
+                        view.DisplayArtists(artists);
+
+                        Thread.Sleep(wait);
+
+                        cmd = view.DisplayEditingOptions("artists", "default");
+                        view.DisplayMessage("");
+
+                        Thread.Sleep(wait);
+
+                        invalid = false;
+
+                        do
+                        {
+
+                            switch (cmd)
+                            {
+                                case "up":
+                                    UpdateArtistName();
+
+                                    invalid = false;
+
+                                    GoBack();
+
+                                break;
+
+                                case "ins":
+                                    InsertNewArtist();
+
+                                    invalid = false;
+
+                                    GoBack();
+
+                                break;
+
+                                case "del":
+                                    DeleteArtistById();
+
+                                    invalid = false;
+
+                                    GoBack();
+
+                                break;
+
+                                case "back":                                   
+                                    GoBack();
+
+                                    invalid = false;
+
+                                break;
+
+                                default:
+                                    view.DisplayError(wait);
+
+                                    AdminMenuscreenOptions();
+
+                                    invalid = true;
+
+                                break;
+                            }
+
+                        } while (invalid);
+
+                    break;
+                                        
+                    case "albums":
+
+                        Thread.Sleep(wait);
+
+                        select = view.DisplayEditingOptions("albums", "album~variants");
+
+                        Thread.Sleep(wait);
+                        Console.Clear();
+
+                        invalid = false;
+
+                        do
+                        {
+                            switch (select)
+                            {
+                                case "artists":
+                                    List<ArtistAlbums> Aalbums = storageManager.GetAllArtistAlbums(accountId);
+                                    view.DisplayArtistAlbums(Aalbums);
+
+                                    Thread.Sleep(wait);
+
+                                    cmd = view.DisplayEditingOptions("artist-albums", "album~extras");
+                                    view.DisplayMessage("");
+
+                                    Thread.Sleep(wait);
+                                    Console.Clear();
+
+                                    invalid = false;
+
+                                    do
+                                    {
+
+                                        switch (cmd)
+                                        {
+                                            case "up":
+                                                UpdateArtistAlbum();
+
+                                                invalid = false;
+
+                                                GoBack();
+
+                                            break;
+
+                                            case "ins":
+                                                //Insert
+
+                                                invalid = false;
+
+                                                GoBack();
+
+                                            break;
+
+                                            case "del":
+                                                DeleteArtistById();
+
+                                                invalid = false;
+
+                                                GoBack();
+
+                                            break;
+
+                                            case "back":
+                                                GoBack();
+
+                                                invalid = false;
+
+                                            break;
+
+                                            default:
+                                                view.DisplayError(wait);
+
+                                                AdminMenuscreenOptions();
+
+                                            break;
+                                        }
+
+                                    } while (invalid);
+
+                                    break;
+
+                                case "bands":
+                                    List<BandAlbums> Balbums = storageManager.GetAllBandAlbums(accountId);
+                                    view.DisplayBandAlbums(Balbums);
+
+                                    Thread.Sleep(wait);
+
+                                    cmd = view.DisplayEditingOptions("band-albums", "album~extras");
+                                    view.DisplayMessage("");
+
+                                    Thread.Sleep(wait);
+
+                                    invalid = false;
+
+                                    do
+                                    {
+
+                                        switch (cmd)
+                                        {
+                                            case "up":
+                                                UpdateArtistName();
+
+                                                invalid = false;
+
+                                                GoBack();
+
+                                            break;
+
+                                            case "ins":
+                                                UpdateArtistAlbum();
+
+                                                invalid = false;
+
+                                                GoBack();
+
+                                            break;
+
+                                            case "del":
+                                                DeleteArtistById();
+
+                                                invalid = false;
+
+                                                GoBack();
+
+                                            break;
+
+                                            case "back":
+                                                GoBack();
+
+                                                invalid = false;
+
+                                            break;
+
+                                            default:
+                                                view.DisplayError(wait);
+
+                                                AdminMenuscreenOptions();
+
+                                            break;
+                                        }
+
+                                    } while (invalid);
+
+                                    break;
+
+                                case "back":                                   
+                                    GoBack();
+
+                                    invalid = false;
+
+                                break;
+
+                                default:
+                                    view.DisplayError(wait);
+
+                                    AdminMenuscreenOptions();
+
+                                    invalid = true;
+
+                                break;
+
+                            }
+
+                        } while (invalid);
+                    break;
+
+                    case "genres":
+                        List<Genres> genres = storageManager.GetAllGenres();
+                        view.DisplayGenres(genres);
+
+                        Thread.Sleep(wait);
+
+                        cmd = view.DisplayEditingOptions("genres", "default");
+                        view.DisplayMessage("");
+
+                        Thread.Sleep(wait);
+
+                        invalid = false;
+
+                        do
+                        {
+
+                            switch (cmd)
+                            {
+                                case "up":
+                                    UpdateArtistName();
+
+                                    invalid = false;
+
+                                    GoBack();
+
+                                break;
+
+                                case "ins":
+                                    UpdateArtistAlbum();
+
+                                    invalid = false;
+
+                                    GoBack();
+
+                                break;
+
+                                case "del":
+                                    DeleteArtistById();
+
+                                    invalid = false;
+
+                                    GoBack();
+
+                                break;
+
+                                case "back":                                   
+                                    GoBack();
+
+                                    invalid = false;
+
+                                break;
+
+                                default:
+                                    view.DisplayError(wait);
+
+                                    AdminMenuscreenOptions();
+
+                                    invalid = true;
+
+                                break;
+                            }
+
+                        } while (invalid);
+
+                    break;
+
+                    case "tiers":
+                        List<Tiers> tiers = storageManager.GetAllTiers();
+                        view.DisplayTiers(tiers);
+
+                        Thread.Sleep(wait);
+
+                        cmd = view.DisplayEditingOptions("tiers", "none");
+                        view.DisplayMessage("");
+
+                        Thread.Sleep(wait);
+
+                        invalid = false;
+
+                        do
+                        {
+
+                            switch (cmd.ToLower())
+                            {
+
+                                case "back":                                   
+                                    GoBack();
+
+                                    invalid = false;
+
+                                break;
+
+                                default:
+                                    view.DisplayError(wait);
+
+                                    AdminMenuscreenOptions();
+
+                                    invalid = true;
+
+                                break;
+                            }
+
+                        } while (invalid);
+
+                    break;
+
+                    case "accounts":
+
+                        Thread.Sleep(wait);
+
+                        select = view.DisplayEditingOptions("albums", "account~variants");
+
+                        Thread.Sleep(wait);
+                        Console.Clear();
+
+                        do
+                        {
+                            switch (select)
+                            {
+                                case "default":
+                                    CreateUser();
+
+                                    GoBack();
+
+                                    invalid = false;
+
+                                break;
+
+                                case "admin":
+                                    CreateAdmin();
+
+                                    GoBack();
+
+                                    invalid = false;
+
+                                break;
+
+                                case "back":
+                                    GoBack();
+
+                                    invalid = false;
+
+                                break;
+
+                                default:
+                                    view.DisplayError(wait);
+
+                                    AdminMenuscreenOptions();
+
+                                    invalid = true;
+
+                                break;
+
+                            }
+
+                        } while (invalid);
+
+                    break;
+
+                    case "help":
+
+                        Thread.Sleep(wait);
+
+                        Help(); // This calls the support page.
+
+                        Thread.Sleep(wait);
+
+                        invalid = false;
+
+                    break;
+
+                    case "l":
+                        Thread.Sleep(wait);
+                        Console.Clear();
+
+                        StartMenuscreenOptions();
+
+                        invalid = false;
+
+                    break;
+
+                    default:
+                        view.DisplayError(wait);
+
+                        AdminMenuscreenOptions();
+
+                        invalid = true;
+
+                    break;
+
+                }
+
+            } while (invalid);
+
+        }
+
+
+        private static void GuestMenuscreenOptions() // The Admin Menuscreen. 
+        {
+            string select; // Stores a selection from a listing that branches into multiple.
+            string cmd; // Stores the users written modification command.
+            bool invalid = true;
+
+            string input = view.DisplayGuestMenu(); // Calls the display.
             view.DisplayMessage(""); 
 
             Thread.Sleep(wait);
@@ -710,61 +1256,6 @@ namespace CDOrganiserProjectApp
             } while (invalid);
 
         }
-
-        private static void GuestMenuscreenOptions()
-        {
-
-            bool invalid = true;
-
-            string guestInput = view.DisplayGuestMenu();
-            view.DisplayMessage("");
-
-            Thread.Sleep(wait);
-
-
-            do
-            {
-                switch (guestInput.ToLower())
-                {
-                    /*
-
-                    case Prefix.@view + " " + Suffix.@categories:
-                        Thread.Sleep(wait);
-                        Console.Clear();
-
-                        
-
-                    break;
-
-                    case Prefix.@log + " " + Suffix.@out:
-                        Thread.Sleep(wait);
-                        Console.Clear();
-
-                        StartMenuscreenOptions();
-
-                        invalid = false;
-
-                    break;
-
-                    default:
-                        view.DisplayMessage("I'm sorry, this isn't a valid selection. Can you try again? ");
-                        Thread.Sleep(wait);
-                        Console.Clear();
-
-                        GuestMenuscreenOptions();
-
-                        invalid = true;
-
-                    break;
-
-                    */
-
-                }
-
-            } while (invalid);
-
-        } // The Guest Menuscreen.
-
         
         private static void GoBack() 
         {
@@ -798,6 +1289,12 @@ namespace CDOrganiserProjectApp
 
                             break;
 
+                            case 3:
+
+                                TAdminMenuscreenOptions();
+
+                            break;
+
                         }
 
                     break;
@@ -825,6 +1322,7 @@ namespace CDOrganiserProjectApp
         } // The Go Back function.
 
 
+        // The data-modifying commands for the Bands table.
         private static void UpdateBandName()
         {
             view.DisplayMessage("\nEnter the identification number... ");
@@ -836,7 +1334,7 @@ namespace CDOrganiserProjectApp
             int rowsAffected = storageManager.UpdateBandById(bandId, bandName);
             view.DisplayMessage($"\nUpdated {rowsAffected} records.");
 
-        }  // 
+        }  
 
         private static void InsertNewBand()
         {
@@ -861,6 +1359,7 @@ namespace CDOrganiserProjectApp
         }
 
 
+        // The data-modifying commands for the Genres table.
         private static void UpdateGenreName()
         {
             view.DisplayMessage("\nEnter the identification number... ");
@@ -897,6 +1396,7 @@ namespace CDOrganiserProjectApp
         }
 
 
+        // The data-modifying commands for the Artists table.
         private static void UpdateArtistName()
         {
             view.DisplayMessage("\nEnter the identification number... ");
@@ -933,6 +1433,7 @@ namespace CDOrganiserProjectApp
         }
 
 
+        // The data-modifying commands for the Rooms table.
         private static void UpdateRoomName()
         {
             view.DisplayMessage("\nEnter the identification number... ");
@@ -970,6 +1471,7 @@ namespace CDOrganiserProjectApp
         }
 
 
+        // The data-modifying commands for the accounts.
         private static void CreateUser()
         {
             view.DisplayMessage("\nEnter your first name... ");
@@ -1025,6 +1527,7 @@ namespace CDOrganiserProjectApp
         }
 
 
+        // The data-modifying commands for the Artist Albums table.
         private static void UpdateArtistAlbum()
         {
             view.DisplayMessage("\nEnter the identification number... ");
@@ -1087,7 +1590,7 @@ namespace CDOrganiserProjectApp
             view.DisplayMessage($"\n\tDeleted {rowsAffected} row.");
         }
 
-
+        // The data-modifying commands for the Band Albums table.
         private static void UpdateBandAlbum()
         {
             view.DisplayMessage("\nEnter the identification number... ");
