@@ -271,6 +271,7 @@ namespace CDOrganiserProjectApp
 
         }
 
+
         public List<Shelves> GetAllShelves()
         {
             List<Shelves> shelves = new List<Shelves>();
@@ -367,7 +368,7 @@ namespace CDOrganiserProjectApp
 
         public int InsertArtistAlbum(ArtistAlbums albums)
         {
-            using (SqlCommand cmd = new SqlCommand($"INSERT INTO Contents.tblArtistAlbums (albumName, genreID, dateOfRelease, fortmatID, artistID, shelfRowID) VALUES (@AlbumName, @GenreName, @DateOfRelease, @FormatName, @ArtistName, @ShelfRowId); SELECT SCOPE_IDENTITY();", conn))
+            using (SqlCommand cmd = new SqlCommand($"INSERT INTO Contents.tblArtistAlbums (albumName, genreID, dateOfRelease, formatID, artistID, shelfRowID) VALUES (@albumName, @GenreId, @DateOfRelease, @FormatId, @ArtistName, @ShelfRowId); SELECT SCOPE_IDENTITY();", conn))
             {
                 cmd.Parameters.AddWithValue("@AlbumName", albums.AlbumName);
                 cmd.Parameters.AddWithValue("@GenreId", albums.GenreId);
@@ -382,7 +383,7 @@ namespace CDOrganiserProjectApp
 
         public int UpdateArtistAlbum(string albumName, int genreId, DateTime dateOfRelease, int formatId, int artistId, int shelfRowId)
         {
-            string sqlStr = $"UPDATE Contents.tblAlbums SET (albumName = @albumName, genreID = @genreId, dateOfRelease = @dateOfRelease, formatID = @formatId, artistID = @artistId, shelfRowId = @shelfRowId) WHERE albumID = @albumId";
+            string sqlStr = $"UPDATE Contents.tblArtistAlbums SET (albumName = @albumName, genreID = @genreId, dateOfRelease = @dateOfRelease, formatID = @formatId, artistID = @artistId, shelfRowId = @shelfRowId) WHERE albumID = @albumId";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
                 cmd.Parameters.AddWithValue("@albumName", albumName);
@@ -398,7 +399,7 @@ namespace CDOrganiserProjectApp
 
         public int DeleteArtistAlbumById(int albumId)
         {
-            string sqlStr = "DELETE FROM Contents.tblArtistAlbum WHERE albumId = @albumId";
+            string sqlStr = "DELETE FROM Contents.tblArtistAlbums WHERE albumID = @albumId";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
                 cmd.Parameters.AddWithValue("@albumId", albumId);
@@ -411,7 +412,7 @@ namespace CDOrganiserProjectApp
         public List<BandAlbums> GetAllBandAlbums()
         {
             List<BandAlbums> albums = new List<BandAlbums>();
-            string sqlStr = "SELECT albumID, albumName, genreName, dateOfRelease, formatName, bandName, shelfRow, lost FROM Contents.tblGenres, Contents.tblBandAlbums, Properties.tblFormat, Contents.tblArtists, Properties.tblRow WHERE tblArtistAlbums.genreID = tblGenres.genreID AND tblArtistAlbums.formatID = tblFormat.formatID AND tblArtistAlbums.artistID = tblArtists.artistID AND tblArtistAlbums.shelfRowId = tblRow.shelfRowId";
+            string sqlStr = "SELECT albumID, albumName, genreName, dateOfRelease, formatName, bandName, shelfRow, lost FROM Contents.tblGenres, Contents.tblBandAlbums, Properties.tblFormat, Contents.tblBands, Properties.tblRow WHERE tblBandAlbums.genreID = tblGenres.genreID AND tblBandAlbums.formatID = tblFormat.formatID AND tblBandAlbums.bandID = tblArtists.bandID AND tblBandAlbums.shelfRowId = tblRow.shelfRowId";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
                 using (SqlDataReader reader = cmd.ExecuteReader())
@@ -448,7 +449,7 @@ namespace CDOrganiserProjectApp
         
         public int InsertBandAlbum(BandAlbums albums)
         {
-            using (SqlCommand cmd = new SqlCommand($"INSERT INTO Contents.tblArtistAlbums (albumName, genreID, dateOfRelease, formatID, artistID, shelfRowID) VALUES (@AlbumId, @GenreId, @DateOfRelease, @FormatId, @BandName, @ShelfRowId); SELECT SCOPE_IDENTITY();", conn))
+            using (SqlCommand cmd = new SqlCommand($"INSERT INTO Contents.tblBandAlbums (albumName, genreID, dateOfRelease, formatID, bandID, shelfRowID) VALUES (@AlbumId, @GenreId, @DateOfRelease, @FormatId, @BandId, @ShelfRowId); SELECT SCOPE_IDENTITY();", conn))
             {
                 cmd.Parameters.AddWithValue("@AlbumName", albums.AlbumName);
                 cmd.Parameters.AddWithValue("@GenreId", albums.GenreId);
@@ -463,7 +464,7 @@ namespace CDOrganiserProjectApp
 
         public int UpdateBandAlbum(string albumName, int genreId, DateTime dateOfRelease, int formatId, int bandId, int shelfRowId)
         {
-            string sqlStr = $"UPDATE Contents.tblAlbums SET (albumName = @albumName, genreID = @genreId, dateOfRelease = @dateOfRelease, formatID = @formatId, bandID = @bandId, shelfRowId = @shelfRowId) WHERE albumID = @albumId";
+            string sqlStr = $"UPDATE Contents.tblBandAlbums SET (albumName = @albumName, genreID = @genreId, dateOfRelease = @dateOfRelease, formatID = @formatId, bandID = @bandId, shelfRowId = @shelfRowId) WHERE albumID = @albumId";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
                 cmd.Parameters.AddWithValue("@albumName", albumName);
@@ -479,10 +480,165 @@ namespace CDOrganiserProjectApp
         
         public int DeleteBandAlbumById(int albumId)
         {
-            string sqlStr = "DELETE FROM Contents.tblBandAlbums WHERE albumId = @albumId";
+            string sqlStr = "DELETE FROM Contents.tblBandAlbums WHERE albumID = @albumId";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
                 cmd.Parameters.AddWithValue("@albumId", albumId);
+                return cmd.ExecuteNonQuery();
+            }
+
+        }
+
+
+        public List<ArtistReviews> GetAllArtistReviews()
+        {
+            List<ArtistAlbums> albums = new List<ArtistAlbums>();
+            string sqlStr = "SELECT albumID, albumName, genreName, dateOfRelease, formatName, artistName, shelfRow, lost FROM Contents.tblGenres, Contents.tblArtistAlbums, Properties.tblFormat, Contents.tblArtists, Properties.tblRow WHERE tblArtistAlbums.genreID = tblGenres.genreID AND tblArtistAlbums.formatID = tblFormat.formatID AND tblArtistAlbums.artistID = tblArtists.artistID AND tblArtistAlbums.shelfRowId = tblRow.shelfRowId";
+            using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
+            {
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    Console.WriteLine("ID:  NAME:\tCATEGORY:\tRELEASE DATE:\tFORMAT:\tARTIST\tROW:\tFAVOURITE:\t");
+
+                    while (reader.Read())
+                    {
+                        int albumId = Convert.ToInt32(reader["albumID"]);
+                        string albumName = reader["albumName"].ToString();
+                        int genreId = Convert.ToChar(reader["genreID"]);
+                        DateTime dateOfRelease = Convert.ToDateTime(reader["dateOfRelease"]);
+                        int formatId = Convert.ToInt32(reader["formatID"]);
+                        int artistId = Convert.ToInt32(reader["artistID"]);
+                        int shelfRowId = Convert.ToInt32(reader["shelfRowID"]);
+                        bool lost = Convert.ToBoolean(reader["lost"]);
+
+                        string genreName = reader["genreName"].ToString();
+                        string formatName = reader["formatName"].ToString();
+                        string artistName = reader["artistName"].ToString();
+                        string shelfRow = reader["shelfRow"].ToString();                      
+
+                        albums.Add(new ArtistAlbums(albumId, albumName, genreId, dateOfRelease, formatId, artistId, shelfRowId, lost));
+
+                        
+            
+                        Console.WriteLine($"{albumId}, {albumName}, {genreName}, \t\t\t\t{dateOfRelease.ToString("d")}, {formatName}, {artistName}, {shelfRow}, {lost}\n");
+                        Thread.Sleep(wait);
+                    }
+                }
+            }
+            return albums;
+        }
+
+        public int InsertArtistReview(ArtistAlbums albums)
+        {
+            using (SqlCommand cmd = new SqlCommand($"INSERT INTO Contents.tblArtistReviews (albumName, genreID, dateOfRelease, formatID, artistID, shelfRowID) VALUES (@AlbumName, @GenreName, @DateOfRelease, @FormatName, @ArtistName, @ShelfRowId); SELECT SCOPE_IDENTITY();", conn))
+            {
+                cmd.Parameters.AddWithValue("@AlbumName", albums.AlbumName);
+                cmd.Parameters.AddWithValue("@GenreId", albums.GenreId);
+                cmd.Parameters.AddWithValue("@DateOfRelease", albums.DateOfRelease);
+                cmd.Parameters.AddWithValue("@FormatId", albums.FormatId);
+                cmd.Parameters.AddWithValue("@ArtistId", albums.ArtistId);
+                cmd.Parameters.AddWithValue("@ShelfRowId", albums.ShelfRowId);
+
+                return Convert.ToInt32(cmd.ExecuteScalar());
+            }
+        }
+
+        public int UpdateArtistReview(string albumName, int genreId, DateTime dateOfRelease, int formatId, int artistId, int shelfRowId)
+        {
+            string sqlStr = $"UPDATE Contents.tblAlbums SET (albumName = @albumName, genreID = @genreId, dateOfRelease = @dateOfRelease, formatID = @formatId, artistID = @artistId, shelfRowId = @shelfRowId) WHERE albumID = @albumId";
+            using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
+            {
+                cmd.Parameters.AddWithValue("@albumName", albumName);
+                cmd.Parameters.AddWithValue("@genreId", genreId);
+                cmd.Parameters.AddWithValue("@dateOfRelease", dateOfRelease);
+                cmd.Parameters.AddWithValue("@formatId", formatId);
+                cmd.Parameters.AddWithValue("@artistId", artistId);
+                cmd.Parameters.AddWithValue("@shelfRowId", shelfRowId);
+
+                return cmd.ExecuteNonQuery();
+            }
+        }
+
+        public int DeleteArtistReviewById(int albumId)
+        {
+            string sqlStr = "DELETE FROM Contents.tblArtistAlbums WHERE albumId = @albumId";
+            using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
+            {
+                cmd.Parameters.AddWithValue("@albumId", albumId);
+                return cmd.ExecuteNonQuery();
+            }
+
+        }
+
+
+        public List<BandReviews> GetAllBandReviews()
+        {
+            List<BandReviews> albums = new List<BandReviews>();
+            string sqlStr = "SELECT reviewID, albumName, fName, tierTag, favourite FROM Contents.tblBandAlbums, Properties.tblAccounts, Properties.tblTier WHERE tblBandReviews.albumID = tblBandAlbums.albumID AND tblBandReviews.personID = tblAccounts.personID AND tblBandReviews.tierID = tblTier.tierID";
+            using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
+            {
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    Console.WriteLine("ID:\tNAME:\t\tCATEGORY:\t\tFIRST NAME:\tRANK:\tFAVOURITE:\t");
+
+                    while (reader.Read())
+                    {
+                        int reviewId = Convert.ToInt32(reader["reviewID"]);
+                        int albumId = Convert.ToInt32(reader["albumID"]);
+                        int personId = Convert.ToInt32(reader["personID"]);
+                        int tierId = Convert.ToInt32(reader["tierID"]);
+                        bool favourite = Convert.ToBoolean(reader["favourite"]);
+
+                        string albumName = reader["albumName"].ToString();
+                        string fName = reader["fName"].ToString();
+                        char tierTag = Convert.ToChar(reader["tierTag"]);
+
+                        albums.Add(new BandReviews(albumId, albumId, personId, tierTag, favourite));
+
+
+
+                        Console.WriteLine($"{reviewId}, {albumName}, {tierTag}, {favourite}\n");
+                        Thread.Sleep(wait);
+                    }
+                }
+            }
+            return albums;
+        }
+        
+        public int InsertBandReview(BandReviews albums)
+        {
+            using (SqlCommand cmd = new SqlCommand($"INSERT INTO Contents.tblBandReviews (albumID, tierID) VALUES (@AlbumId, @TierId); SELECT SCOPE_IDENTITY();", conn))
+            {
+                cmd.Parameters.AddWithValue("@AlbumId", albums.AlbumId);
+                cmd.Parameters.AddWithValue("@TierId", albums.TierId);
+                
+
+                return Convert.ToInt32(cmd.ExecuteScalar());
+            }
+        }
+
+        public int UpdateBandReview(int reviewId, int albumId, int tierId, int personId, bool favourite)
+        {
+            string sqlStr = $"UPDATE Contents.tblAlbums SET (albumID = @albumId, tierID = @tierId, personID = @personId, favourite = @favourite) WHERE reviewID = @reviewId";
+            using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
+            {
+                cmd.Parameters.AddWithValue("@reviewId", reviewId);
+                cmd.Parameters.AddWithValue("@albumId", albumId);
+                cmd.Parameters.AddWithValue("@tierId", tierId);
+                cmd.Parameters.AddWithValue("@personId", personId);
+                cmd.Parameters.AddWithValue("@favourite", favourite);
+
+
+                return cmd.ExecuteNonQuery();
+            }
+        }
+        
+        public int DeleteBandReviewById(int reviewId)
+        {
+            string sqlStr = "DELETE FROM Contents.tblBandReviews WHERE reviewID = @reviewId";
+            using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
+            {
+                cmd.Parameters.AddWithValue("@reviewId", reviewId);
                 return cmd.ExecuteNonQuery();
             }
 
@@ -629,7 +785,7 @@ namespace CDOrganiserProjectApp
         }
 
 
-        // Associates all the listed  with the insert; basically adds a new  
+        // Associates all the listed with the insert; basically adds a new  
         public int InsertFormat(Formats formats)
         {
             string sqlStr = $"INSERT INTO Properties.tblFormat (formatName) VALUES (@FormatName); SELECT SCOPE_IDENTITY();";
