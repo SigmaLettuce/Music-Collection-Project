@@ -548,7 +548,7 @@ namespace CDOrganiserProjectApp
 
                         Thread.Sleep(wait);
 
-                        cmd = view.DisplayEditingOptions("tiers");
+                        cmd = view.DisplayEditingOptions("tiers", false, false, true, false, false);
                         view.DisplayMessage("");
 
                         Thread.Sleep(wait);

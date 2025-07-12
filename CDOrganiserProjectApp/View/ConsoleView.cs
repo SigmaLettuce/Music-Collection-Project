@@ -131,9 +131,9 @@ namespace CDOrganiserProjectApp.View
 
         } 
 
-        public string DisplayEditingOptions(string d,  bool albumvariants, bool albumextras, bool viewonly, bool all, bool none)
+        public string DisplayEditingOptions(string d, string type)
         {
-            if (all.Equals(true))
+            if (type.Equals("default"))
             {
                 Console.WriteLine($"\n\t [CD MANAGER / {d}]\n");
                 Console.WriteLine("\tEDIT... ");
@@ -154,7 +154,7 @@ namespace CDOrganiserProjectApp.View
                 Console.WriteLine("Enter any of the listings above to gain access... \n");
             }
 
-            else if (viewonly.Equals(true))
+            if (type.Equals("view~only"))
             {
                 Console.WriteLine($"\n\t [CD MANAGER / {d}]\n");
                 Console.WriteLine("\tVIEW... ");
@@ -168,7 +168,7 @@ namespace CDOrganiserProjectApp.View
                 Console.WriteLine("Enter any of the listings above to gain access... \n");
             }
 
-            else if (none.Equals(true))
+            else if (if (type.Equals("none"))
             {
                 Console.WriteLine($"\n\t [CD MANAGER / {d}]\n");
 
@@ -179,7 +179,7 @@ namespace CDOrganiserProjectApp.View
 
             }
 
-            else if (albumextras.Equals(true))
+            else if if (type.Equals("album~extras"))
             {
                 Console.WriteLine($"\n\t [CD MANAGER / {d}]\n");
                 Console.WriteLine("\tEDIT... ");
@@ -202,7 +202,7 @@ namespace CDOrganiserProjectApp.View
                 Console.WriteLine("Enter any of the listings above to gain access... \n");
             }
 
-            else if (albumvariants.Equals(true))
+            else if (type.Equals("album~variants"))
             {
                 Console.WriteLine($"\n\t [CD MANAGER / {d}]\n");
                 Console.WriteLine("\tVIEW... ");
