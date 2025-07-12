@@ -52,6 +52,7 @@ namespace CDOrganiserProjectApp.View
                 Console.WriteLine("\n\t[/]  'albums' - Albums of a compact disc; a CD");
                 Console.WriteLine("\t[/]  'artists' - All artists who have published an album you own");
                 Console.WriteLine("\t[/]  'bands' - All bands who have published an album you own");
+                Console.WriteLine("\t[/]  'genres' - All musical categories of your collection");
                 Console.WriteLine("\t[/]  'all' - All artists, including bands, who have published an album you own");
                 Console.WriteLine("\t[/]  'rooms' - All available rooms");
                 Console.WriteLine("\t[/]  'shelves' - All available shelving units and their shelves\n");
@@ -183,6 +184,19 @@ namespace CDOrganiserProjectApp.View
                 Thread.Sleep(wait);
 
             }   
+
+        }
+
+        public void DisplayGenres(List<Genres> genres)
+        {
+            Console.WriteLine("ID:\tNAME: ");
+
+            foreach (Genres genre in genres)
+            {
+                Console.WriteLine($"{genre.GenreId}, {genre.GenreName}\n");
+                Thread.Sleep(wait);
+
+            }
 
         }
 

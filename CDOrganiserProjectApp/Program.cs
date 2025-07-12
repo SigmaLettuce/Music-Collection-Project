@@ -295,7 +295,68 @@ namespace CDOrganiserProjectApp
                         } while (invalid);
 
                     break;
+                                        
+                    case "genres":
+                        List<Genres> genres = storageManager.GetAllGenres();
+                        view.displaygenre(artists);
 
+                        Thread.Sleep(wait);
+
+                        cmd = view.DisplayEditingOptions("artists");
+                        view.DisplayMessage("");
+
+                        Thread.Sleep(wait);
+
+                        invalid = false;
+
+                        do
+                        {
+
+                            switch (cmd)
+                            {
+                                case "up":
+                                    UpdateArtistName();
+
+                                    invalid = false;
+
+                                    GoBack();
+
+                                break;
+
+                                case "ins":
+                                    UpdateArtistAlbum();
+
+                                    invalid = false;
+
+                                    GoBack();
+
+                                break;
+
+                                case "del":
+                                    DeleteArtistByName();
+
+                                    invalid = false;
+
+                                    GoBack();
+
+                                break;
+
+                                case "back":                                   
+                                    GoBack();
+
+                                    invalid = false;
+
+                                break;
+
+                                default:
+                                    view.DisplayError(wait);
+
+                                break;
+                            }
+
+                        } while (invalid);
+
+                    break;
                         /*
                     case Prefix.@view + " " + Suffix.@all:
                         storageManager.GetAllArtistsAndBands();
@@ -786,7 +847,7 @@ namespace CDOrganiserProjectApp
 
         }
 
-        
+        /*
         private static void InsertArtistAlbum()
         {
             view.DisplayMessage("\nEnter the new album... ");
@@ -822,9 +883,9 @@ namespace CDOrganiserProjectApp
 
             int generatedId = storageManager.InsertArtistAlbum(newAlbum);
             view.DisplayMessage($"\nThe new albums identification number is: {generatedId}");
-
+            
         }
-        
+        */
 
         private static void DeleteArtistAlbumByName()
         {
