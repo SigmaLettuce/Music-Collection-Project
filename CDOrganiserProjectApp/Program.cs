@@ -224,7 +224,7 @@ namespace CDOrganiserProjectApp
                                 break;
 
                                 default:
-                                    view.DisplayError();
+                                    view.DisplayError(wait);
 
                                 break;
                             }
@@ -287,7 +287,7 @@ namespace CDOrganiserProjectApp
                                 break;
 
                                 default:
-                                    view.DisplayError();
+                                    view.DisplayError(wait);
 
                                 break;
                             }
@@ -404,7 +404,7 @@ namespace CDOrganiserProjectApp
            
 
                     default:
-                        view.DisplayError();
+                        view.DisplayError(wait);
 
                         AdminMenuscreenOptions();
 
@@ -517,7 +517,7 @@ namespace CDOrganiserProjectApp
                     break;
 
                     default:
-                        view.DisplayError();
+                        view.DisplayError(wait);
 
                         GoBack();
 
@@ -749,17 +749,20 @@ namespace CDOrganiserProjectApp
 
         }
 
-        /*
+        
         private static void InsertArtistAlbum()
         {
             view.DisplayMessage("\nEnter the new album... ");
             string albumName = view.GetInput();
             int albumId = 0;
 
-            view.DisplayMessage("\nEnter the genre... ");
+            view.DisplayMessage("\nEnter a genre identification number...");
+            List<Genres> genres = storageManager.GetAllBands();
+            view.DisplayBands(bands);
+
             string genreName = view.GetInput();
 
-            view.DisplayMessage("\nEnter the date of release... ");
+            view.DisplayMessage("\nEnter the date of release... YYYY/MM/DD");
             DateTime dateOfRelease = view.GetDateTimeInput();
 
             view.DisplayMessage("\nEnter the format... ");
@@ -784,7 +787,7 @@ namespace CDOrganiserProjectApp
             view.DisplayMessage($"\nThe new albums identification number is: {generatedId}");
 
         }
-        */
+        
 
         private static void DeleteArtistAlbumByName()
         {

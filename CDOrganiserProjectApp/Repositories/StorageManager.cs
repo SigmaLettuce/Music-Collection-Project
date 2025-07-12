@@ -115,6 +115,56 @@ namespace CDOrganiserProjectApp
             }
             return artists;
         }
+
+        public List<Bands> GetAllBands()
+        {
+            List<Bands> bands = new List<Bands>();
+            string sqlStr = "SELECT * FROM Contents.tblBands";
+            using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
+            {
+                using (SqlDataReader reader = cmd.ExecuteReader()) 
+                {
+                    while (reader.Read())
+                    {
+                        int bandId = Convert.ToInt32(reader["bandID"]);
+                        string bandName = reader["bandName"].ToString();
+                        bands.Add(new Bands(bandId, bandName)); 
+                    }
+                }
+            }
+            return bands;
+        }
+
+        public int InsertBand(Bands bands)
+        {
+            using (SqlCommand cmd = new SqlCommand($"INSERT INTO Contents.tblBands (bandName) VALUES (@bandName); SELECT SCOPE_IDENTITY();", conn))
+            {
+                cmd.Parameters.AddWithValue("@bandName", bands.BandName);
+                return Convert.ToInt32(cmd.ExecuteScalar());
+            }
+        }
+
+        public int UpdateBandByName(string bandName, string newName)
+        {
+            string sqlStr = $"UPDATE Contents.tblBands SET bandName = @newName WHERE bandName = @bandName";
+            using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
+            {
+                cmd.Parameters.AddWithValue("@bandName", bandName);
+                cmd.Parameters.AddWithValue("@newName", newName);
+                return cmd.ExecuteNonQuery();
+            }
+        }
+       
+        public int DeleteBandByName(string bandName)
+        {
+            string sqlStr = "DELETE FROM Contents.tblBands WHERE bandName = @bandName";
+            using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
+            {
+                cmd.Parameters.AddWithValue("@bandName", bandName);
+                return cmd.ExecuteNonQuery();
+            }
+
+        }
          
         public int InsertArtist(Artists artists)
         {
