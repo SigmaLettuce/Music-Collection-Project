@@ -85,6 +85,11 @@ namespace CDOrganiserProjectApp
             
         }
 
+        private static void PasswordEncryption()
+        {
+            
+        }
+
         private static void Register()
         {
             Thread.Sleep(wait);
@@ -728,6 +733,7 @@ namespace CDOrganiserProjectApp
 
         }
 
+        /*
         private static void InsertArtistAlbum()
         {
             view.DisplayMessage("\nEnter the new album... ");
@@ -756,12 +762,13 @@ namespace CDOrganiserProjectApp
             string shelfRow = view.GetInput();
             bool lost = false;
 
-            ArtistAlbums newAlbum = new ArtistAlbums(albumId, albumName, genreName, dateOfRelease, formatName, artistName, , shelfRow, lost);
+            ArtistAlbums newAlbum = new ArtistAlbums(albumId, albumName, genreName, dateOfRelease, formatName, artistName, shelfRow, lost);
 
             int generatedId = storageManager.InsertArtistAlbum(newAlbum);
             view.DisplayMessage($"\nThe new albums identification number is: {generatedId}");
 
         }
+        */
 
         private static void DeleteArtistAlbumByName()
         {
@@ -786,6 +793,7 @@ namespace CDOrganiserProjectApp
 
         }
 
+        /*
         private static void InsertBandAlbum()
         {
             view.DisplayMessage("\nEnter the new album... ");
@@ -820,6 +828,7 @@ namespace CDOrganiserProjectApp
             view.DisplayMessage($"\nThe new albums identification number is: {generatedId}");
 
         }
+        */
 
         private static void DeleteBandAlbumByName()
         {
