@@ -65,7 +65,7 @@ namespace CDOrganiserProjectApp.View
                 Console.WriteLine("\n\t[/]  'accounts' - Manage account permissions");
                 Console.WriteLine("\t[/]  'help' - Takes you to the help page\n");
 
-                Console.WriteLine("\n\t     Log out - Press L + Enter\n");
+                Console.WriteLine("\n\t     Log out - Press l + Enter\n");
             
 
             Console.WriteLine("Enter any of the listings above to gain access... \n");
@@ -188,7 +188,6 @@ namespace CDOrganiserProjectApp.View
                     Console.WriteLine("\n\t'up' - Updates information");
                     Console.WriteLine("\t'ins' - Adds new information");
                     Console.WriteLine("\t'del' - Deletes unwanted information\n");
-                    Console.WriteLine("\t'favourite' - Mark your favourite album\n");
                     Console.WriteLine("\t'lost' - Mark an album as lost\n");
 
                 Console.WriteLine("\tVIEW... ");
@@ -217,7 +216,7 @@ namespace CDOrganiserProjectApp.View
                 Console.WriteLine("Enter any of the listings above to gain access... \n");
             }
 
-            else if (type.Equals("album~extras"))
+            else if (type.Equals("review~extras"))
             {
                 Console.WriteLine($"\n\t [CD MANAGER / {d}]\n");
                 Console.WriteLine("\tEDIT... ");
@@ -227,28 +226,13 @@ namespace CDOrganiserProjectApp.View
                     Console.WriteLine("\t'ins' - Adds new information");
                     Console.WriteLine("\t'del' - Deletes unwanted information\n");
                     Console.WriteLine("\t'favourite' - Mark your favourite album\n");
-                    Console.WriteLine("\t'lost' - Mark an album as lost\n");
+                    
                 Console.WriteLine("\tVIEW... ");
                 Console.WriteLine("\tThese are the available report listings, compiled into directories.");
 
                     Console.WriteLine("\n\t'reports' - Opens the reports\n");
 
                     Console.WriteLine("\n\t'back' - Return to homepage\n");
-
-
-                Console.WriteLine("Enter any of the listings above to gain access... \n");
-            }
-
-            else if (type.Equals("album~variants"))
-            {
-                Console.WriteLine($"\n\t [CD MANAGER / {d}]\n");
-                Console.WriteLine("\tVIEW... ");
-                Console.WriteLine("\tThese are the available album listings, compiled into directories.");
-
-                    Console.WriteLine("\t[/]  'artists' - All the albums published by singular artists");
-                    Console.WriteLine("\t[/]  'bands' - All the albums published by bands");
-
-                Console.WriteLine("\n\t'back' - Return to homepage\n");
 
 
                 Console.WriteLine("Enter any of the listings above to gain access... \n");

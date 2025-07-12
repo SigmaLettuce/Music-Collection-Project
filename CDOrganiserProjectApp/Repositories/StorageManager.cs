@@ -391,17 +391,43 @@ namespace CDOrganiserProjectApp
             }
         }
 
-        public int UpdateArtistAlbum(string albumName, int genreId, DateTime dateOfRelease, int formatId, int artistId, int shelfRowId)
+        public int UpdateArtistAlbumById(int albumId, string albumName, int genreId, DateTime dateOfRelease, int formatId, int artistId, int shelfRowId, bool lost)
         {
-            string sqlStr = $"UPDATE Contents.tblArtistAlbums SET (albumName = @albumName, genreID = @genreId, dateOfRelease = @dateOfRelease, formatID = @formatId, artistID = @artistId, shelfRowId = @shelfRowId) WHERE albumID = @albumId";
+            string sqlStr = $"UPDATE Contents.tblArtistAlbums SET (albumID = @albumId, albumName = @albumName, genreID = @genreId, dateOfRelease = @dateOfRelease, formatID = @formatId, artistID = @artistId, shelfRowId = @shelfRowId, lost = @lost) WHERE albumID = @albumId";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
+                cmd.Parameters.AddWithValue("@albumId", albumId);
                 cmd.Parameters.AddWithValue("@albumName", albumName);
                 cmd.Parameters.AddWithValue("@genreId", genreId);
                 cmd.Parameters.AddWithValue("@dateOfRelease", dateOfRelease);
                 cmd.Parameters.AddWithValue("@formatId", formatId);
                 cmd.Parameters.AddWithValue("@artistId", artistId);
                 cmd.Parameters.AddWithValue("@shelfRowId", shelfRowId);
+                cmd.Parameters.AddWithValue("@lost", lost);
+
+                return cmd.ExecuteNonQuery();
+            }
+        }
+        
+        public int LostArtist(int albumId, bool favourite)
+        {
+            string sqlStr = $"UPDATE Contents.tblArtistAlbums SET (lost = @lost) WHERE albumID = @albumId";
+            using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
+            {
+                cmd.Parameters.AddWithValue("@albumId", albumId);
+                cmd.Parameters.AddWithValue("@favourite", favourite);                
+
+                return cmd.ExecuteNonQuery();
+            }
+        }
+
+        public int FavouriteArtist(int reviewId, bool favourite)
+        {
+            string sqlStr = $"UPDATE Contents.tblArtistReviews SET (favourite = @favourite) WHERE reviewID = @reviewId";
+            using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
+            {
+                cmd.Parameters.AddWithValue("@reviewId", reviewId);
+                cmd.Parameters.AddWithValue("@favourite", favourite);                
 
                 return cmd.ExecuteNonQuery();
             }
@@ -472,17 +498,43 @@ namespace CDOrganiserProjectApp
             }
         }
 
-        public int UpdateBandAlbum(string albumName, int genreId, DateTime dateOfRelease, int formatId, int bandId, int shelfRowId)
+        public int UpdateBandAlbumById(int albumId, string albumName, int genreId, DateTime dateOfRelease, int formatId, int bandId, int shelfRowId, bool lost)
         {
-            string sqlStr = $"UPDATE Contents.tblBandAlbums SET (albumName = @albumName, genreID = @genreId, dateOfRelease = @dateOfRelease, formatID = @formatId, bandID = @bandId, shelfRowId = @shelfRowId) WHERE albumID = @albumId";
+            string sqlStr = $"UPDATE Contents.tblBandAlbums SET (albumID = @albumId, albumName = @albumName, genreID = @genreId, dateOfRelease = @dateOfRelease, formatID = @formatId, bandID = @bandId, shelfRowId = @shelfRowId, lost = @lost) WHERE albumID = @albumId";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
+                cmd.Parameters.AddWithValue("@albumId", albumId);
                 cmd.Parameters.AddWithValue("@albumName", albumName);
                 cmd.Parameters.AddWithValue("@genreId", genreId);
                 cmd.Parameters.AddWithValue("@dateOfRelease", dateOfRelease);
                 cmd.Parameters.AddWithValue("@formatId", formatId);
                 cmd.Parameters.AddWithValue("@bandId", bandId);
                 cmd.Parameters.AddWithValue("@shelfRowId", shelfRowId);
+                cmd.Parameters.AddWithValue("@lost", lost);
+
+                return cmd.ExecuteNonQuery();
+            }
+        }
+
+        public int LostBand(int albumId, bool favourite)
+        {
+            string sqlStr = $"UPDATE Contents.tblBandAlbums SET (lost = @lost) WHERE albumID = @albumId";
+            using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
+            {
+                cmd.Parameters.AddWithValue("@albumId", albumId);
+                cmd.Parameters.AddWithValue("@favourite", favourite);                
+
+                return cmd.ExecuteNonQuery();
+            }
+        }
+
+        public int FavouriteBand(int reviewId, bool favourite)
+        {
+            string sqlStr = $"UPDATE Contents.tblBandReviews SET (favourite = @favourite) WHERE reviewID = @reviewId";
+            using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
+            {
+                cmd.Parameters.AddWithValue("@reviewId", reviewId);
+                cmd.Parameters.AddWithValue("@favourite", favourite);                
 
                 return cmd.ExecuteNonQuery();
             }
@@ -547,9 +599,9 @@ namespace CDOrganiserProjectApp
             }
         }
 
-        public int UpdateArtistReview(int reviewId, int albumId, int tierId, int personId, bool favourite)
+        public int UpdateArtistReviewById(int reviewId, int albumId, int tierId, int personId, bool favourite)
         {
-            string sqlStr = $"UPDATE Contents.tblArtistAlbums SET (albumID = @albumId, tierID = @tierId, personID = @personId, favourite = @favourite) WHERE reviewID = @reviewId";
+            string sqlStr = $"UPDATE Contents.tblArtistAlbums SET (reviewID = @reviewId, albumID = @albumId, tierID = @tierId, personID = @personId, favourite = @favourite) WHERE reviewID = @reviewId";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
                 cmd.Parameters.AddWithValue("@reviewId", reviewId);
@@ -622,9 +674,9 @@ namespace CDOrganiserProjectApp
             }
         }
 
-        public int UpdateBandReview(int reviewId, int albumId, int tierId, int personId, bool favourite)
+        public int UpdateBandReviewById(int reviewId, int albumId, int tierId, int personId, bool favourite)
         {
-            string sqlStr = $"UPDATE Contents.tblBandReviews SET (albumID = @albumId, tierID = @tierId, personID = @personId, favourite = @favourite) WHERE reviewID = @reviewId";
+            string sqlStr = $"UPDATE Contents.tblBandReviews SET (reviewID = @reviewId, albumID = @albumId, tierID = @tierId, personID = @personId, favourite = @favourite) WHERE reviewID = @reviewId";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
                 cmd.Parameters.AddWithValue("@reviewId", reviewId);

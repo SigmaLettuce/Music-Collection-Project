@@ -367,174 +367,11 @@ namespace CDOrganiserProjectApp
                             switch (select)
                             {
                                 case "artists":
-                                    storageManager.GetAllArtistAlbums();
-
-                                    Thread.Sleep(wait);
-
-                                    cmd = view.DisplayEditingOptions("artist-albums", "album~extras");
-                                    view.DisplayMessage("");
-
-                                    Thread.Sleep(wait);
-                                    Console.Clear();
-
-                                    invalid = false;
-
-                                    do
-                                    {
-
-                                        switch (cmd)
-                                        {
-                                            case "up":
-                                                UpdateArtistAlbum();
-
-                                                invalid = false;
-
-                                                GoBack();
-
-                                            break;
-
-                                            case "ins":
-                                                
-
-                                                invalid = false;
-
-                                                GoBack();
-
-                                            break;
-
-                                            case "del":
-                                                DeleteArtistById();
-
-                                                invalid = false;
-
-                                                GoBack();
-
-                                            break;
-
-                                            case "back":
-                                                GoBack();
-
-                                                invalid = false;
-
-                                            break;
-
-                                            default:
-                                                view.DisplayError(wait);
-
-                                                AdminMenuscreenOptions();
-
-                                            break;
-                                        }
-
-                                    } while (invalid);
-
-                                    break;
-
-                                case "bands":
-                                    storageManager.GetAllBandAlbums();
-
-                                    Thread.Sleep(wait);
-
-                                    cmd = view.DisplayEditingOptions("band-albums", "album~extras");
-                                    view.DisplayMessage("");
-
-                                    Thread.Sleep(wait);
-
-                                    invalid = false;
-
-                                    do
-                                    {
-
-                                        switch (cmd)
-                                        {
-                                            case "up":
-                                                UpdateArtistName();
-
-                                                invalid = false;
-
-                                                GoBack();
-
-                                            break;
-
-                                            case "ins":
-                                                UpdateArtistAlbum();
-
-                                                invalid = false;
-
-                                                GoBack();
-
-                                            break;
-
-                                            case "del":
-                                                DeleteArtistById();
-
-                                                invalid = false;
-
-                                                GoBack();
-
-                                            break;
-
-                                            case "back":
-                                                GoBack();
-
-                                                invalid = false;
-
-                                            break;
-
-                                            default:
-                                                view.DisplayError(wait);
-
-                                                AdminMenuscreenOptions();
-
-                                            break;
-                                        }
-
-                                    } while (invalid);
-
-                                    break;
-
-                                case "back":                                   
-                                    GoBack();
-
-                                    invalid = false;
-
-                                break;
-
-                                default:
-                                    view.DisplayError(wait);
-
-                                    AdminMenuscreenOptions();
-
-                                    invalid = true;
-
-                                break;
-
-                            }
-
-                        } while (invalid);
-                    break;
-
-                    case "reviews":
-
-                        Thread.Sleep(wait);
-
-                        select = view.DisplayEditingOptions("reviews", "album~variants");
-
-                        Thread.Sleep(wait);
-                        Console.Clear();
-
-                        invalid = false;
-
-                        do
-                        {
-                            switch (select)
-                            {
-                                case "artists":
                                     storageManager.GetAllArtistReviews(accountId);
 
                                     Thread.Sleep(wait);
 
-                                    cmd = view.DisplayEditingOptions("artist-album-reviews", "album~extras");
+                                    cmd = view.DisplayEditingOptions("artist-albums", "album~extras");
                                     view.DisplayMessage("");
 
                                     Thread.Sleep(wait);
@@ -567,6 +404,15 @@ namespace CDOrganiserProjectApp
 
                                             case "del":
                                                 DeleteArtistAlbumById();
+
+                                                invalid = false;
+
+                                                GoBack();
+
+                                            break;
+
+                                            case "lost":
+                                                MarkArtistAsLost();
 
                                                 invalid = false;
 
@@ -630,6 +476,195 @@ namespace CDOrganiserProjectApp
 
                                             case "del":
                                                 DeleteBandAlbumById();
+
+                                                invalid = false;
+
+                                                GoBack();
+
+                                            break;
+
+                                            case "lost":
+                                                MarkBandAsLost();
+
+                                                invalid = false;
+
+                                                GoBack();
+                                            break;
+
+                                            case "back":
+                                                GoBack();
+
+                                                invalid = false;
+
+                                            break;
+
+                                            default:
+                                                view.DisplayError(wait);
+
+                                                AdminMenuscreenOptions();
+
+                                            break;
+                                        }
+
+                                    } while (invalid);
+
+                                    break;
+
+                                case "back":                                   
+                                    GoBack();
+
+                                    invalid = false;
+
+                                break;
+
+                                default:
+                                    view.DisplayError(wait);
+
+                                    AdminMenuscreenOptions();
+
+                                    invalid = true;
+
+                                break;
+
+                            }
+
+                        } while (invalid);
+                    break;
+
+                    case "reviews":
+
+                        Thread.Sleep(wait);
+
+                        select = view.DisplayEditingOptions("reviews", "album~variants");
+
+                        Thread.Sleep(wait);
+                        Console.Clear();
+
+                        invalid = false;
+
+                        do
+                        {
+                            switch (select)
+                            {
+                                case "artists":
+                                    storageManager.GetAllArtistReviews(accountId);
+
+                                    Thread.Sleep(wait);
+
+                                    cmd = view.DisplayEditingOptions("artist-album-reviews", "review~extras");
+                                    view.DisplayMessage("");
+
+                                    Thread.Sleep(wait);
+                                    Console.Clear();
+
+                                    invalid = false;
+
+                                    do
+                                    {
+
+                                        switch (cmd)
+                                        {
+                                            case "up":
+                                                UpdateArtistReview();
+
+                                                invalid = false;
+
+                                                GoBack();
+
+                                            break;
+
+                                            case "ins":
+                                                InsertArtistReview();
+
+                                                invalid = false;
+
+                                                GoBack();
+
+                                            break;
+
+                                            case "del":
+                                                DeleteArtistReviewById();
+
+                                                invalid = false;
+
+                                                GoBack();
+
+                                            break;
+
+                                            case "favourite":
+                                                FavouriteArtistReview();
+
+                                                invalid = false;
+
+                                                GoBack();
+
+                                            break;
+
+                                            case "back":
+                                                GoBack();
+
+                                                invalid = false;
+
+                                            break;
+
+                                            default:
+                                                view.DisplayError(wait);
+
+                                                AdminMenuscreenOptions();
+
+                                            break;
+                                        }
+
+                                    } while (invalid);
+
+                                    break;
+
+                                case "bands":
+                                    storageManager.GetAllBandReviews(accountId);
+
+                                    Thread.Sleep(wait);
+
+                                    cmd = view.DisplayEditingOptions("band-album-reviews", "review~extras");
+                                    view.DisplayMessage("");
+
+                                    Thread.Sleep(wait);
+
+                                    invalid = false;
+
+                                    do
+                                    {
+
+                                        switch (cmd)
+                                        {
+                                            case "up":
+                                                UpdateBandReview();
+
+                                                invalid = false;
+
+                                                GoBack();
+
+                                            break;
+
+                                            case "ins":
+                                                InsertBandReview();
+
+                                                invalid = false;
+
+                                                GoBack();
+
+                                            break;
+
+                                            case "del":
+                                                DeleteBandReviewById();
+
+                                                invalid = false;
+
+                                                GoBack();
+
+                                            break;
+
+                                            case "favourite":
+                                                FavouriteBandReview();
 
                                                 invalid = false;
 
@@ -1827,13 +1862,43 @@ namespace CDOrganiserProjectApp
         // The data-modifying commands for the Artist Albums table.
         private static void UpdateArtistAlbum()
         {
-            view.DisplayMessage("\nEnter the identification number... ");
+            view.DisplayMessage("\nEnter an album identification number... ");
+            List<ArtistAlbums> albums = storageManager.GetAllArtistAlbums();
             int albumId = view.GetIntInput();
-
-            view.DisplayMessage("\nRename the record... ");
+            
+            view.DisplayMessage("\nEnter the new album name... ");
+            albums = storageManager.GetAllArtistAlbums();
+            
             string albumName = view.GetInput();
 
-            int rowsAffected = storageManager.UpdateRoomById(albumId, albumName);
+            view.DisplayMessage("\nEnter a new genre identification number...");
+            List<Genres> genres = storageManager.GetAllGenres();
+            view.DisplayGenres(genres);
+
+            int genreId = view.GetIntInput();
+
+            view.DisplayMessage("\nEnter a new date of release... YYYY/MM/DD");
+            DateTime dateOfRelease = view.GetDateTimeInput();
+
+            view.DisplayMessage("\nEnter a new format identification number... ");
+            List<Formats> formats = storageManager.GetAllFormats();
+
+            int formatId = view.GetIntInput();
+
+            view.DisplayMessage("\nEnter a new artist identification number... ");
+            List<Bands> bands = storageManager.GetAllBands();
+            view.DisplayBands(bands);
+
+            int artistId = view.GetIntInput();
+
+            view.DisplayMessage("\nEnter a new shelf row identification number... ");
+            List<Shelves> shelves = storageManager.GetAllShelves();
+
+            int shelfRowId = view.GetIntInput();
+  
+            bool lost = false;
+
+            int rowsAffected = storageManager.UpdateArtistAlbumById(albumId, albumName, genreId, dateOfRelease, formatId, artistId, shelfRowId, lost);
             view.DisplayMessage($"\nUpdated {rowsAffected} records.");
 
         }
@@ -1887,16 +1952,68 @@ namespace CDOrganiserProjectApp
             view.DisplayMessage($"\nDeleted {rowsAffected} row.");
         }
 
-        // The data-modifying commands for the Band Albums table.
-        private static void UpdateBandAlbum()
+        private static void MarkArtistAsLost()
         {
             view.DisplayMessage("\nEnter the identification number... ");
             int albumId = view.GetIntInput();
 
-            view.DisplayMessage("\nRename the record... ");
+            bool lost = true;
+
+            int rowsAffected = storageManager.LostArtist(albumId, lost);
+            view.DisplayMessage($"\nMarked {rowsAffected} records as lost.");
+
+        }
+
+
+        // The data-modifying commands for the Band Albums table.
+        private static void UpdateBandAlbum()
+        {
+            try
+            {
+
+            }
+            catch (FormatException f)
+            {
+
+                
+            }
+            view.DisplayMessage("\nEnter an album identification number... ");
+            List<BandAlbums> albums = storageManager.GetAllBandAlbums();
+            int albumId = view.GetIntInput();
+            
+            view.DisplayMessage("\nEnter the new album name... ");
+            albums = storageManager.GetAllBandAlbums();
+            
             string albumName = view.GetInput();
 
-            int rowsAffected = storageManager.UpdateRoomById(albumId, albumName);
+            view.DisplayMessage("\nEnter a new genre identification number...");
+            List<Genres> genres = storageManager.GetAllGenres();
+            view.DisplayGenres(genres);
+
+            int genreId = view.GetIntInput();
+
+            view.DisplayMessage("\nEnter a new date of release... YYYY/MM/DD");
+            DateTime dateOfRelease = view.GetDateTimeInput();
+
+            view.DisplayMessage("\nEnter a new format identification number... ");
+            List<Formats> formats = storageManager.GetAllFormats();
+
+            int formatId = view.GetIntInput();
+
+            view.DisplayMessage("\nEnter a new band identification number... ");
+            List<Bands> bands = storageManager.GetAllBands();
+            view.DisplayBands(bands);
+
+            int bandId = view.GetIntInput();
+
+            view.DisplayMessage("\nEnter a new shelf row identification number... ");
+            List<Shelves> shelves = storageManager.GetAllShelves();
+
+            int shelfRowId = view.GetIntInput();
+  
+            bool lost = false;
+
+            int rowsAffected = storageManager.UpdateBandAlbumById(albumId, albumName, genreId, dateOfRelease, formatId, bandId, shelfRowId, lost);
             view.DisplayMessage($"\nUpdated {rowsAffected} records.");
 
         }
@@ -1944,11 +2061,173 @@ namespace CDOrganiserProjectApp
         private static void DeleteBandAlbumById()
         {
             view.DisplayMessage("\nEnter the identification number... ");
+            List<BandAlbums> albums = storageManager.GetAllBandAlbums();
             int albumId = view.GetIntInput();
 
-            int rowsAffected = storageManager.DeleteRoomById(albumId);
+            int rowsAffected = storageManager.DeleteBandAlbumById(albumId);
             view.DisplayMessage($"\n\tDeleted {rowsAffected} row.");
         }
+
+        private static void MarkBandAsLost()
+        {
+            view.DisplayMessage("\nEnter the identification number... ");
+            List<BandAlbums> albums = storageManager.GetAllBandAlbums();
+            int albumId = view.GetIntInput();
+
+            bool lost = true;
+
+            int rowsAffected = storageManager.LostBand(albumId, lost);
+            view.DisplayMessage($"\nMarked {rowsAffected} records as lost.");
+
+        }
+
+
+        // The data-modifying commands for the Artist Albums Reviews table.
+        private static void UpdateArtistReview()
+        {
+            view.DisplayMessage("\nEnter a review identification number... ");
+            List<ArtistReviews> reviews = storageManager.GetAllArtistReviews(accountId);
+
+            int reviewId = view.GetIntInput();
+
+            view.DisplayMessage("\nEnter an album identification number...");
+            List<ArtistAlbums> albums = storageManager.GetAllArtistAlbums();
+
+            int albumId = view.GetIntInput();
+
+            view.DisplayMessage("\nEnter a ranking identification number...");
+            List<Tiers> tiers = storageManager.GetAllTiers();
+            int tierId = view.GetIntInput();
+
+            int personId = accountId;
+  
+            bool favourite = false;
+
+            int rowsAffected = storageManager.UpdateArtistReviewById(reviewId, albumId, personId, tierId, favourite);
+            view.DisplayMessage($"\nUpdated {rowsAffected} records.");
+
+        }
+        
+        private static void InsertArtistReview()
+        {
+            view.DisplayMessage("\nEnter an album identification number...");
+            List<ArtistAlbums> albums = storageManager.GetAllArtistAlbums();
+
+            int albumId = view.GetIntInput();
+            int reviewId = 0;
+
+            view.DisplayMessage("\nEnter a ranking identification number...");
+            List<Tiers> tiers = storageManager.GetAllTiers();
+            int tierId = view.GetIntInput();
+
+            int personId = accountId;
+  
+            bool favourite = false;
+
+            ArtistReviews newReviews = new ArtistReviews(reviewId, albumId, personId, tierId, favourite);
+
+            int generatedId = storageManager.InsertArtistReview(newReviews);
+            view.DisplayMessage($"\nThe new albums identification number is: {generatedId}");
+            
+        }
+        
+        private static void DeleteArtistReviewById()
+        {
+            view.DisplayMessage("\nEnter the identification number... ");
+            List<ArtistReviews> reviews = storageManager.GetAllArtistReviews(accountId);
+            int reviewId = view.GetIntInput();
+
+            int rowsAffected = storageManager.DeleteArtistReviewById(reviewId);
+            view.DisplayMessage($"\nDeleted {rowsAffected} row.");
+        }
+
+        private static void FavouriteArtistReview()
+        {
+            view.DisplayMessage("\nEnter the identification number... ");
+            List<ArtistReviews> reviews = storageManager.GetAllArtistReviews(accountId);
+            int reviewId = view.GetIntInput();
+
+            bool favourite = true;
+
+            int rowsAffected = storageManager.FavouriteArtist(reviewId, favourite);
+            view.DisplayMessage($"\nMarked {rowsAffected} records as a favourite.");
+
+        }
+
+
+        // The data-modifying commands for the Band Albums Reviews table.
+        private static void UpdateBandReview()
+        {
+            view.DisplayMessage("\nEnter a review identification number... ");
+            List<BandReviews> reviews = storageManager.GetAllBandReviews(accountId);
+
+            int reviewId = view.GetIntInput();
+
+            view.DisplayMessage("\nEnter an album identification number...");
+            List<BandAlbums> albums = storageManager.GetAllBandAlbums();
+
+            int albumId = view.GetIntInput();
+
+            view.DisplayMessage("\nEnter a ranking identification number...");
+            List<Tiers> tiers = storageManager.GetAllTiers();
+            int tierId = view.GetIntInput();
+
+            int personId = accountId;
+  
+            bool favourite = false;
+
+            int rowsAffected = storageManager.UpdateBandReviewById(reviewId, albumId, personId, tierId, favourite);
+            view.DisplayMessage($"\nUpdated {rowsAffected} records.");
+
+        }
+
+        private static void InsertBandReview()
+        {
+
+            view.DisplayMessage("\nEnter an album identification number...");
+            List<BandAlbums> albums = storageManager.GetAllBandAlbums();
+
+            int albumId = view.GetIntInput();
+            int reviewId = 0;
+
+            view.DisplayMessage("\nEnter a ranking identification number...");
+            List<Tiers> tiers = storageManager.GetAllTiers();
+            int tierId = view.GetIntInput();
+
+            int personId = accountId;
+  
+            bool favourite = false;
+
+            BandReviews newReviews = new BandReviews(reviewId, albumId, personId, tierId, favourite);
+
+            int generatedId = storageManager.InsertBandReview(newReviews);
+            view.DisplayMessage($"\nThe new albums identification number is: {generatedId}");
+            
+        }
+
+        private static void DeleteBandReviewById()
+        {
+            view.DisplayMessage("\nEnter the identification number... ");
+            List<BandReviews> reviews = storageManager.GetAllBandReviews(accountId);
+            int reviewId = view.GetIntInput();
+
+            int rowsAffected = storageManager.DeleteBandReviewById(reviewId);
+            view.DisplayMessage($"\n\tDeleted {rowsAffected} row.");
+        }
+
+        private static void FavouriteBandReview()
+        {
+            view.DisplayMessage("\nEnter the identification number... ");
+            List<BandReviews> reviews = storageManager.GetAllBandReviews(accountId);
+            int reviewId = view.GetIntInput();
+
+            bool favourite = true;
+
+            int rowsAffected = storageManager.FavouriteBand(reviewId, favourite);
+            view.DisplayMessage($"\nMarked {rowsAffected} records as a favourite.");
+
+        }
+
 
     }
 
