@@ -1,4 +1,5 @@
-﻿using CDOrganiserProjectApp.Model;
+﻿using Azure;
+using CDOrganiserProjectApp.Model;
 using Microsoft.Identity.Client;
 using System;
 using System.Collections.Generic;
@@ -8,6 +9,7 @@ using System.Security;
 using System.Text;
 using System.Threading.Channels;
 using System.Threading.Tasks;
+using System.Linq;
 
 namespace CDOrganiserProjectApp.View
 {
@@ -204,6 +206,13 @@ namespace CDOrganiserProjectApp.View
             return Console.ReadLine();
         }
 
+        public IList<Bands> BandPager(IList<Bands> bands, int pg, int pgsz)
+        {
+            
+
+            return bands.Skip(pg - 1 * pgsz).Take(pgsz).ToList();
+        }
+
         public void DisplayBands(List<Bands> bands)
         {
             Console.WriteLine("ID: NAME: ");
@@ -214,7 +223,6 @@ namespace CDOrganiserProjectApp.View
                 Thread.Sleep(wait);
 
             }   
-
         }
 
         public void DisplayGenres(List<Genres> genres)
@@ -224,6 +232,19 @@ namespace CDOrganiserProjectApp.View
             foreach (Genres genre in genres)
             {
                 Console.WriteLine($"{genre.GenreId}, {genre.GenreName}\n");
+                Thread.Sleep(wait);
+
+            }
+
+        }
+
+        public void DisplayTiers(List<Tiers> tiers)
+        {
+            Console.WriteLine("ID: CLASS: VALUE:");
+
+            foreach (Tiers tier in tiers)
+            {
+                Console.WriteLine($"{tier.TierId}, {tier.TierTag}, {tier.TierNumericalValue}\n");
                 Thread.Sleep(wait);
 
             }
@@ -266,6 +287,8 @@ namespace CDOrganiserProjectApp.View
                 Thread.Sleep(wait);
                 
             }
+            
+
         }   
         
         public void DisplayBandAlbums(List<BandAlbums> albums)
@@ -295,6 +318,11 @@ namespace CDOrganiserProjectApp.View
         public int GetIntInput()
         {
             return Convert.ToInt32(Console.ReadLine());
+        }
+
+        public DateTime GetDateTimeInput()
+        {
+            return Convert.ToDateTime(Console.ReadLine());
         }
 
         public char GetCharInput()

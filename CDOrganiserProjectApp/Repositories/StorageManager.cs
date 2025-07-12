@@ -74,23 +74,23 @@ namespace CDOrganiserProjectApp
             }
         }
 
-        public int UpdateBandById(string bandName, string newName)
+        public int UpdateBandById(int bandId, string bandName)
         {
-            string sqlStr = $"UPDATE Contents.tblBands SET bandName = @newName WHERE bandName = @bandName";
+            string sqlStr = $"UPDATE Contents.tblBands SET bandName = @bandName WHERE bandID = @bandId";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
+                cmd.Parameters.AddWithValue("@bandId", bandId);
                 cmd.Parameters.AddWithValue("@bandName", bandName);
-                cmd.Parameters.AddWithValue("@newName", newName);
                 return cmd.ExecuteNonQuery();
             }
         }
        
-        public int DeleteBandById(string bandName)
+        public int DeleteBandById(int bandId)
         {
-            string sqlStr = "DELETE FROM Contents.tblBands WHERE bandName = @bandName";
+            string sqlStr = "DELETE FROM Contents.tblBands WHERE bandID = @bandId";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
-                cmd.Parameters.AddWithValue("@bandName", bandName);
+                cmd.Parameters.AddWithValue("@bandId", bandId);
                 return cmd.ExecuteNonQuery();
             }
 
@@ -145,6 +145,27 @@ namespace CDOrganiserProjectApp
                 return cmd.ExecuteNonQuery();
             }
 
+        }
+
+
+        public List<Tiers> GetAllTiers()
+        {
+            List<Tiers> tiers = new List<Tiers>();
+            string sqlStr = "SELECT * FROM Properties.tblTier";
+            using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
+            {
+                using (SqlDataReader reader = cmd.ExecuteReader()) 
+                {
+                    while (reader.Read())
+                    {
+                        int tierId = Convert.ToInt32(reader["tierID"]);
+                        char tierTag = Convert.ToChar(reader["tierTag"]);
+                        int tagValue = Convert.ToInt32(reader["tierNumericalValue"]);
+                        tiers.Add(new Tiers(tierId, tierTag, tagValue)); 
+                    }
+                }
+            }
+            return tiers;
         }
 
 
@@ -228,23 +249,23 @@ namespace CDOrganiserProjectApp
             }
         }
 
-        public int UpdateRoomById(string roomName, string newName)
+        public int UpdateRoomById(int roomId, string roomName)
         {
-            string sqlStr = $"UPDATE Properties.tblStorageRoom SET roomName = @newName WHERE roomName = @roomName";
+            string sqlStr = $"UPDATE Properties.tblStorageRoom SET roomName = @roomName WHERE roomID = @roomId";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
+                cmd.Parameters.AddWithValue("@roomId", roomId);
                 cmd.Parameters.AddWithValue("@roomName", roomName);
-                cmd.Parameters.AddWithValue("@newName", newName);
                 return cmd.ExecuteNonQuery();
             }
         }
 
-        public int DeleteRoomById(string roomName)
+        public int DeleteRoomById(int roomId)
         {
-            string sqlStr = "DELETE FROM Properties.tblStorageRoom WHERE roomName = @roomName";
+            string sqlStr = "DELETE FROM Properties.tblStorageRoom WHERE roomId = @roomId";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
-                cmd.Parameters.AddWithValue("@roomName", roomName);
+                cmd.Parameters.AddWithValue("@roomId", roomId);
                 return cmd.ExecuteNonQuery();
             }
 
@@ -349,18 +370,18 @@ namespace CDOrganiserProjectApp
         }
 
         /*
-        public int UpdateAlbumName(int albumId, string albumName, string genreName, string dateOfRelease)
+        public int UpdateBandAlbum(int albumId, string albumName, int genreId, DateTime dateOfRelease, int )
         {
-            string sqlStr = $"UPDATE Contents.tblAlbums SET albumName = @albumName WHERE artistID = @artistId";
+            string sqlStr = $"UPDATE Contents.tblAlbums SET albumName = @albumName WHERE albumID = @albumId";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
-                cmd.Parameters.AddWithValue("@artistName", artistName);
+                cmd.Parameters.AddWithValue("@albumName", albumName);
                 cmd.Parameters.AddWithValue("@artistId", artistId);
                 return cmd.ExecuteNonQuery();
             }
         }
-
         */
+        
 
         public int CreateAccount(Accounts account)
         {
@@ -515,62 +536,30 @@ namespace CDOrganiserProjectApp
 
         
         // Associates the variables in the SQL with the string parameters, and returns the identification number. 
-        public int UpdateFormatById(string formatName, string newName)
+        public int UpdateFormatById(int formatId, string formatName)
         {
-            string sqlStr = $"UPDATE Properties.tblFormat SET formatName = @newName WHERE formatName = @formatName";
+            string sqlStr = $"UPDATE Properties.tblFormat SET formatName = @formatName WHERE formatID = @formatId";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
+                cmd.Parameters.AddWithValue("@formatId", formatId);
                 cmd.Parameters.AddWithValue("@formatName", formatName);
-                cmd.Parameters.AddWithValue("@newName", newName);
                 return cmd.ExecuteNonQuery();
             }
         }
 
 
         // Pulls data from the Formats table using the reader, and returns a list.
-        public int DeleteFormatById(string formatName)
+        public int DeleteFormatById(int formatId)
         {
-            string sqlStr = "DELETE FROM Properties.tblFormat WHERE formatName = @formatName";
+            string sqlStr = "DELETE FROM Properties.tblFormat WHERE formatID = @formatId";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
-                cmd.Parameters.AddWithValue("@formatName", formatName);
+                cmd.Parameters.AddWithValue("@formatId", formatId);
                 return cmd.ExecuteNonQuery();
             }
 
         }
 
-
-        public int Pagination(int totalPages)
-        {
-            int count = 0;
-
-            int ifCount = 0;
-            int pageNum = 1;
-
-            count++;
-
-            if (count % 10 == 0)
-            {
-                string input;
-
-                ifCount++;
-                Console.WriteLine("Navigate to the next page");
-                Console.WriteLine("You are on page: " + pageNum + " of " + totalPages);
-
-                input = Console.ReadLine();
-
-
-                for (int i = 0; i < totalPages; i++)
-                {
-                    if (input.Equals(ifCount))
-                    {
-                        Console.WriteLine("E");
-                    }
-                }
-            }
-
-            return totalPages;
-        }
 
         public void GetAllArtistsAndBands()
         {

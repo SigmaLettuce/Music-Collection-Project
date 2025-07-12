@@ -480,7 +480,7 @@ namespace CDOrganiserProjectApp
 
                     break;
 
-                        case "genres":
+                    case "genres":
                         List<Genres> genres = storageManager.GetAllGenres();
                         view.DisplayGenres(genres);
 
@@ -524,6 +524,42 @@ namespace CDOrganiserProjectApp
                                     GoBack();
 
                                 break;
+
+                                case "back":                                   
+                                    GoBack();
+
+                                    invalid = false;
+
+                                break;
+
+                                default:
+                                    view.DisplayError(wait);
+
+                                break;
+                            }
+
+                        } while (invalid);
+
+                    break;
+
+                    case "tiers":
+                        List<Tiers> tiers = storageManager.GetAllTiers();
+                        view.DisplayTiers(tiers);
+
+                        Thread.Sleep(wait);
+
+                        cmd = view.DisplayEditingOptions("tiers");
+                        view.DisplayMessage("");
+
+                        Thread.Sleep(wait);
+
+                        invalid = false;
+
+                        do
+                        {
+
+                            switch (cmd)
+                            {
 
                                 case "back":                                   
                                     GoBack();
@@ -916,7 +952,7 @@ namespace CDOrganiserProjectApp
 
         }
 
-        private static void DeleteArtistByName()
+        private static void DeleteArtistById()
         {
             view.DisplayMessage("\nEnter the identification number... ");
             int artistId = view.GetIntInput();

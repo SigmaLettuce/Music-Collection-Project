@@ -20,7 +20,7 @@ namespace CDOrganiserProjectApp.Model
         public bool Favourite { get; set; }
         public bool Lost { get; set; }
 
-        public ArtistAlbums(int alid, string aln, string gen, DateTime dtor, string fn, string an, string sro, string un, char tta, bool fv, bool l)
+        public ArtistAlbums(int alid, string aln, string gen, DateTime dtor, string fn, string an, string sro, string un, char tta, bool fv, bool l, params int[] foreignkeys)
         {
             AlbumId = alid;
             AlbumName = aln;
