@@ -282,7 +282,7 @@ namespace CDOrganiserProjectApp.View
             return Console.ReadLine();
         }
 
-        public IList<Bands> BandPager(IList<Bands> bands, int pg, int pgsz)
+       /* public IList<Bands> BandPager(IList<Bands> bands, int pg, int pgsz)
         {
             
 
@@ -300,6 +300,7 @@ namespace CDOrganiserProjectApp.View
 
             }   
         }
+       */
 
         public void DisplayGenres(List<Genres> genres)
         {

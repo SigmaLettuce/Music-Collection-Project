@@ -8,11 +8,13 @@ namespace CDOrganiserProjectApp.Model
 {
     public class Shelves
     {
+        public int ShelfTagId { get; set; }
         public char ShelfTag { get; set; }
         public int RoomId {  get; set; }
 
-        public Shelves(char sta, int rid) 
+        public Shelves(int staid, char sta, int rid) 
         { 
+            ShelfTagId = staid;
             ShelfTag = sta;
             RoomId = rid;
 

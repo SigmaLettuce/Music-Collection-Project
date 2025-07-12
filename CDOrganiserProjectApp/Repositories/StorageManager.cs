@@ -279,11 +279,14 @@ namespace CDOrganiserProjectApp
             {
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
+                    Console.WriteLine("ID: TAG: ROOM:");
+
                     while (reader.Read())
                     {
+                        int shelfTagId = Convert.ToInt32(reader["shelfTagID"]);
                         char shelfTag = Convert.ToChar(reader["shelfTag"]);
                         int roomId = Convert.ToInt32(reader["roomName"]);
-                        shelves.Add(new Shelves(shelfTag, roomId));
+                        shelves.Add(new Shelves(shelfTagId, shelfTag, roomId));
                     }
                 }
             }
@@ -301,23 +304,23 @@ namespace CDOrganiserProjectApp
             }
         }
 
-        public int UpdateShelfRoomByTag(char shelfTag, string roomName)
+        public int UpdateShelfRoomById(int shelfTagId, int roomId)
         {
-            string sqlStr = $"UPDATE Properties.tblShelf SET roomName = @RoomName WHERE shelfTag = @shelfTag";
+            string sqlStr = $"UPDATE Properties.tblShelf SET roomId = @roomId WHERE shelfTagID = @shelfTagId";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
-                cmd.Parameters.AddWithValue("@shelfTag", shelfTag);
-                cmd.Parameters.AddWithValue("@roomName", roomName);
+                cmd.Parameters.AddWithValue("@shelfTagId", shelfTagId);
+                cmd.Parameters.AddWithValue("@roomId", roomId);
                 return cmd.ExecuteNonQuery();
             }
         }
 
-        public int DeleteShelfRoomByTag(char shelfTag)
+        public int DeleteShelfRoomById(int shelfTagId)
         {
-            string sqlStr = "DELETE FROM Properties.tblShelf WHERE shelfTag = @shelfTag";
+            string sqlStr = "DELETE FROM Properties.tblShelf WHERE shelfTagID = @shelfTagId";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
-                cmd.Parameters.AddWithValue("@shelfTag", shelfTag);
+                cmd.Parameters.AddWithValue("@shelfTagId", shelfTagId);
                 return cmd.ExecuteNonQuery();
             }
 
@@ -372,11 +375,13 @@ namespace CDOrganiserProjectApp
             using (SqlCommand cmd = new SqlCommand($"INSERT INTO Contents.tblArtistAlbums (albumName, genreID, dateOfRelease, formatName, artistName, shelfRowID) VALUES (@AlbumName, @GenreName, @DateOfRelease, @FormatName, @ArtistName, @ShelfRow); SELECT SCOPE_IDENTITY();", conn))
             {
                 cmd.Parameters.AddWithValue("@AlbumName", albums.AlbumName);
-                cmd.Parameters.AddWithValue("@GenreName", albums.GenreName);
+                cmd.Parameters.AddWithValue("@GenreId", albums.GenreId);
                 cmd.Parameters.AddWithValue("@DateOfRelease", albums.DateOfRelease);
-                cmd.Parameters.AddWithValue("@FormatName", albums.FormatName);
-                cmd.Parameters.AddWithValue("@ArtistName", albums.ArtistName);
-                cmd.Parameters.AddWithValue("@ShelfRow", albums.ShelfRow);
+                cmd.Parameters.AddWithValue("@FormatId", albums.FormatId);
+                cmd.Parameters.AddWithValue("@ArtistId", albums.ArtistId);
+                cmd.Parameters.AddWithValue("@ShelfRowId", albums.ShelfRowId);
+                cmd.Parameters.AddWithValue("@PersonId", albums.PersonId);
+                cmd.Parameters.AddWithValue
               
 
 
@@ -385,7 +390,7 @@ namespace CDOrganiserProjectApp
         }
 
 
-        public List<BandAlbums> GetBandAlbums()
+        public List<BandAlbums> GetAllBandAlbums()
         {
             List<BandAlbums> albums = new List<BandAlbums>();
             string sqlStr = "SELECT albumID, albumName, genreName, dateOfRelease, formatName, bandName, shelfRow, username, tierTag, favourite, lost FROM Contents.tblGenres, Contents.tblBandAlbums, Properties.tblFormat, Contents.tblBands, Properties.tblRow, Properties.tblAccounts, Properties.tblTier WHERE tblBandAlbums.genreID = tblGenres.genreID AND tblBandAlbums.formatID = tblFormat.formatID AND tblBandAlbums.bandID = tblBandAlbums.bandID AND tblBandAlbums.shelfRowID = tblRow.shelfRowID AND tblBandAlbums.personID = tblAccounts.personID AND tblBandAlbums.tierID = tblTier.tierID";

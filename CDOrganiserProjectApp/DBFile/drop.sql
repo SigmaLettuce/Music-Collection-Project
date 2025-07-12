@@ -10,6 +10,8 @@ DROP TABLE IF EXISTS Properties.tblTier;
 DROP TABLE IF EXISTS Properties.tblFormat;
 DROP TABLE IF EXISTS Contents.tblBands;
 DROP TABLE IF EXISTS Contents.tblArtists;
+DROP TABLE IF EXISTS Contents.tblBandReviews;
+DROP TABLE IF EXISTS Contents.tblArtistReviews;
 
 DROP SCHEMA IF EXISTS Properties;
 DROP SCHEMA IF EXISTS Contents;

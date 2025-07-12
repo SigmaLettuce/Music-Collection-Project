@@ -101,7 +101,7 @@ namespace CDOrganiserProjectApp
             CreateUser();
             Thread.Sleep(wait);
             Console.Clear();
-            GuestMenuscreenOptions();
+            // GuestMenuscreenOptions();
 
 
         }
@@ -136,7 +136,7 @@ namespace CDOrganiserProjectApp
                         Thread.Sleep(wait);
                         Console.Clear();
 
-                        GuestMenuscreenOptions();
+                        // GuestMenuscreenOptions();
 
                     break;
 
@@ -367,8 +367,7 @@ namespace CDOrganiserProjectApp
                             switch (select)
                             {
                                 case "artists":
-                                    List<ArtistAlbums> Aalbums = storageManager.GetAllArtistAlbums(accountId);
-                                    view.DisplayArtistAlbums(Aalbums);
+                                    storageManager.GetAllArtistAlbums();
 
                                     Thread.Sleep(wait);
 
@@ -432,8 +431,7 @@ namespace CDOrganiserProjectApp
                                     break;
 
                                 case "bands":
-                                    List<BandAlbums> Balbums = storageManager.GetAllBandAlbums(accountId);
-                                    view.DisplayBandAlbums(Balbums);
+                                    storageManager.GetAllBandAlbums();
 
                                     Thread.Sleep(wait);
 
@@ -583,8 +581,7 @@ namespace CDOrganiserProjectApp
                     break;
 
                     case "rooms":
-                        List<Rooms> rooms = storageManager.GetAllRooms();
-                        view.DisplayRooms(rooms);
+                        storageManager.GetAllRooms();
 
                         Thread.Sleep(wait);
 
@@ -649,8 +646,7 @@ namespace CDOrganiserProjectApp
                     break;
 
                     case "shelves":
-                        List<Shelves> shelves = storageManager.GetAllShelves();
-                        view.DisplayShelves(shelves);
+                        storageManager.GetAllShelves();
 
                         Thread.Sleep(wait);
 
@@ -844,7 +840,7 @@ namespace CDOrganiserProjectApp
 
         }
 
-
+        /*
         private static void GuestMenuscreenOptions() // The Admin Menuscreen. 
         {
             string select; // Stores a selection from a listing that branches into multiple.
@@ -1016,8 +1012,7 @@ namespace CDOrganiserProjectApp
                             switch (select)
                             {
                                 case "artists":
-                                    List<ArtistAlbums> Aalbums = storageManager.GetAllArtistAlbums(accountId);
-                                    view.DisplayArtistAlbums(Aalbums);
+                                    storageManager.GetAllArtistAlbums();
 
                                     Thread.Sleep(wait);
 
@@ -1081,8 +1076,7 @@ namespace CDOrganiserProjectApp
                                     break;
 
                                 case "bands":
-                                    List<BandAlbums> Balbums = storageManager.GetAllBandAlbums(accountId);
-                                    view.DisplayBandAlbums(Balbums);
+                                    storageManager.GetAllBandAlbums();
 
                                     Thread.Sleep(wait);
 
@@ -1360,7 +1354,8 @@ namespace CDOrganiserProjectApp
             } while (invalid);
 
         }
-        
+        */
+
         private static void GoBack() 
         {
             string input;
@@ -1383,7 +1378,7 @@ namespace CDOrganiserProjectApp
                         {
                             case 1:
 
-                                GuestMenuscreenOptions();
+                                // GuestMenuscreenOptions();
 
                             break;
 
@@ -1572,12 +1567,12 @@ namespace CDOrganiserProjectApp
         private static void UpdateShelfRoom()
         {
             view.DisplayMessage("\nEnter the identification number... ");
-            char shelfTag = view.GetCharInput();
+            int shelfTagId = view.GetIntInput();
 
             view.DisplayMessage("\nEnter the identification number... ");
             int roomId = view.GetIntInput();
 
-            int rowsAffected = storageManager.UpdateShelfRoomByTag(shelfTag, roomId);
+            int rowsAffected = storageManager.UpdateShelfRoomById(shelfTagId, roomId);
             view.DisplayMessage($"\nUpdated {rowsAffected} records.");
 
         }
@@ -1598,9 +1593,9 @@ namespace CDOrganiserProjectApp
         private static void DeleteShelfByTag()
         {
             view.DisplayMessage("\nEnter the identification number... ");
-            char shelfTag = view.GetCharInput();
+            int shelfTagId = view.GetIntInput();
 
-            int rowsAffected = storageManager.DeleteShelfRoomByTag(shelfTag);
+            int rowsAffected = storageManager.DeleteShelfRoomById(shelfTagId);
             view.DisplayMessage($"\nDeleted {rowsAffected} row.");
 
         }
@@ -1713,8 +1708,9 @@ namespace CDOrganiserProjectApp
             view.DisplayMessage($"\nThe new albums identification number is: {generatedId}");
             
         }
-        */
+        
 
+        
         private static void DeleteArtistAlbumById()
         {
             view.DisplayMessage("\nEnter the identification number... ");
