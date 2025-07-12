@@ -158,13 +158,12 @@ namespace CDOrganiserProjectApp.View
             return Console.ReadLine();
         }
 
-        public string DisplayError()
+        public void DisplayError()
         {
             Console.WriteLine("I'm sorry, this isn't a valid selection. Can you try again? ");
             Thread.Sleep(wait);
             Console.Clear();
 
-            return Console.ReadLine();
         }
 
         public string DisplayHelp()
@@ -175,7 +174,7 @@ namespace CDOrganiserProjectApp.View
 
         public void DisplayBands(List<Bands> bands)
         {
-            Console.WriteLine("ID:  NAME:");
+            Console.WriteLine("ID:\tNAME: ");
 
             foreach (Bands band in bands)
             {
@@ -188,6 +187,8 @@ namespace CDOrganiserProjectApp.View
 
         public void DisplayArtists(List<Artists> artists)
         {
+            Console.WriteLine("ID:\tNAME: ");
+
             foreach (Artists artist in artists)
             {
                 Console.WriteLine($"{artist.ArtistId}, {artist.ArtistName}\n");
@@ -199,6 +200,8 @@ namespace CDOrganiserProjectApp.View
 
         public void DisplayRooms(List<Rooms> rooms)
         {
+            Console.WriteLine("ID:\tNAME: ");
+
             foreach (Rooms room in rooms)
             {
                 Console.WriteLine($"{room.RoomId}, {room.RoomName}\n");
@@ -210,6 +213,8 @@ namespace CDOrganiserProjectApp.View
 
         public void DisplayArtistAlbums(List<ArtistAlbums> albums)
         {
+            Console.WriteLine("ID:\tNAME:\tCATEGORY:\tRELEASE DATE:\tFORMAT:\tARTIST\tROW:\tFAVOURITE:\t");
+
             foreach (ArtistAlbums album in albums)
             {
                 Console.WriteLine($"{album.AlbumId}, {album.AlbumName}, {album.GenreName}, {album.DateOfRelease.ToString("d")}, {album.FormatName}, {album.ArtistName}, {album.ShelfRow}, {album.Favourite}, {album.Lost}\n");

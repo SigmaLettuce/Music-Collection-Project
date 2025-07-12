@@ -27,7 +27,7 @@ namespace CDOrganiserProjectApp
         static void Main(string[] args)
         {
             // Console.WriteLine("Hello, World!");
-            
+
             view = new ConsoleView();
 
             StartMenuscreenOptions();
@@ -209,6 +209,10 @@ namespace CDOrganiserProjectApp
                                     invalid = false;
 
                                     GoBack();
+
+                                break;
+
+                                case "reports":
 
                                 break;
 
