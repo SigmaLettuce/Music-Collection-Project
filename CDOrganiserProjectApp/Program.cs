@@ -69,7 +69,9 @@ namespace CDOrganiserProjectApp
 
                     case "H":
 
-                        view.DisplayHelp(); // This calls the support page, and returns a prompt for input.
+                        Help(); // This calls the support page.
+
+                        invalid = false;
 
                     break;
 
@@ -156,6 +158,38 @@ namespace CDOrganiserProjectApp
                 Login();
             }
 
+        }
+
+        private static void Help()
+        {
+            bool invalid = true;
+
+            string input = view.DisplayHelp();
+            view.DisplayMessage("");
+
+            Thread.Sleep(wait);
+            Console.Clear();
+
+            do
+            {
+                switch (input.ToUpper())
+                {
+                    case "E":
+
+                        Thread.Sleep(wait);
+                        Console.Clear();
+
+                        StartMenuscreenOptions();
+
+                    break;
+
+                    default:
+                        view.DisplayError(wait);
+
+                    break;
+                }
+            } while (invalid);
+            
         }
 
         private static void AdminMenuscreenOptions() // The Admin Menuscreen. 
@@ -352,7 +386,7 @@ namespace CDOrganiserProjectApp
                                         break;
 
                                         case "del":
-                                            DeleteArtistByName();
+                                            DeleteArtistById();
 
                                             invalid = false;
 
@@ -414,7 +448,7 @@ namespace CDOrganiserProjectApp
                                         break;
 
                                         case "del":
-                                            DeleteArtistByName();
+                                            DeleteArtistById();
 
                                             invalid = false;
 
@@ -483,7 +517,7 @@ namespace CDOrganiserProjectApp
                                 break;
 
                                 case "del":
-                                    DeleteArtistByName();
+                                    DeleteArtistById();
 
                                     invalid = false;
 
