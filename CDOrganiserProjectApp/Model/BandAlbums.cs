@@ -15,12 +15,8 @@ namespace CDOrganiserProjectApp.Model
         public int FormatId { get; set; }
         public int BandId { get; set; }
         public int ShelfRowId { get; set; }
-        public int PersonId { get; set; }
-        public int TierId { get; set; }
-        public bool Favourite { get; set; }
-        public bool Lost { get; set; }
 
-        public BandAlbums(int alid, string aln, int gid, DateTime dtor, int fid, int bid, int sroid, int pid, int tid, bool fv, bool l)
+        public BandAlbums(int alid, string aln, int gid, DateTime dtor, int fid, int bid, int sroid)
         {
             AlbumId = alid;
             AlbumName = aln;
@@ -29,10 +25,6 @@ namespace CDOrganiserProjectApp.Model
             FormatId = fid;
             BandId = bid;
             ShelfRowId = sroid;
-            PersonId = pid;
-            TierId = tid;
-            Favourite = fv;
-            Lost = l;
 
         }
     }
