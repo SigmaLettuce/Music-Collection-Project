@@ -224,7 +224,7 @@ namespace CDOrganiserProjectApp
                         do
                         {
 
-                            switch (cmd)
+                            switch (cmd.ToLower())
                             {
                                 case "up":
                                     UpdateBandName();
@@ -558,7 +558,7 @@ namespace CDOrganiserProjectApp
                         do
                         {
 
-                            switch (cmd)
+                            switch (cmd.ToLower())
                             {
 
                                 case "back":                                   
