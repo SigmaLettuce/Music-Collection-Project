@@ -326,7 +326,7 @@ namespace CDOrganiserProjectApp
             }
         }
 
-        public int DeleteShelfRoomById(int shelfTagId)
+        public int DeleteShelfById(int shelfTagId)
         {
             string sqlStr = "DELETE FROM Properties.tblShelf WHERE shelfTagID = @shelfTagId";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
@@ -776,6 +776,8 @@ namespace CDOrganiserProjectApp
             string sqlStr = "SELECT * FROM Properties.tblFormat";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
+                Console.WriteLine("ID:  NAME:");
+
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())
@@ -783,6 +785,8 @@ namespace CDOrganiserProjectApp
                         int formatId = Convert.ToInt32(reader["formatID"]);
                         string formatName = reader["formatName"].ToString();
                         formats.Add(new Formats(formatId, formatName));
+
+                        Console.WriteLine($"{formatId}, {formatName}\n");
                     }
                 }
             }

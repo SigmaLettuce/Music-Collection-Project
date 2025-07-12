@@ -548,7 +548,7 @@ namespace CDOrganiserProjectApp
                                         switch (cmd)
                                         {
                                             case "up":
-                                                ();
+                                                UpdateArtistAlbum();
 
                                                 invalid = false;
 
@@ -557,7 +557,7 @@ namespace CDOrganiserProjectApp
                                             break;
 
                                             case "ins":
-                                                //Insert
+                                                InsertArtistAlbum();
 
                                                 invalid = false;
 
@@ -566,7 +566,7 @@ namespace CDOrganiserProjectApp
                                             break;
 
                                             case "del":
-                                                DeleteArtistById();
+                                                DeleteArtistAlbumById();
 
                                                 invalid = false;
 
@@ -611,7 +611,7 @@ namespace CDOrganiserProjectApp
                                         switch (cmd)
                                         {
                                             case "up":
-                                                UpdateArtistName();
+                                                UpdateBandAlbum();
 
                                                 invalid = false;
 
@@ -620,7 +620,7 @@ namespace CDOrganiserProjectApp
                                             break;
 
                                             case "ins":
-                                                UpdateArtistAlbum();
+                                                InsertBandAlbum();
 
                                                 invalid = false;
 
@@ -629,7 +629,7 @@ namespace CDOrganiserProjectApp
                                             break;
 
                                             case "del":
-                                                DeleteArtistById();
+                                                DeleteBandAlbumById();
 
                                                 invalid = false;
 
@@ -1750,10 +1750,10 @@ namespace CDOrganiserProjectApp
             int roomId = view.GetIntInput();
             int shelfTagId = 0;
 
-            Shelves newShelf = new Rooms(roomId, roomName);
+            Shelves newShelf = new Shelves(shelfTagId, shelfTag, roomId);
 
-            int generatedId = storageManager.InsertShelf(newRoom);
-            view.DisplayMessage($"\nThe new rooms identification number is: {generatedId}");
+            int generatedId = storageManager.InsertShelf(newShelf);
+            view.DisplayMessage($"\nThe new shelves identification number is: {generatedId}");
 
         }
 
@@ -1762,10 +1762,11 @@ namespace CDOrganiserProjectApp
             view.DisplayMessage("\nEnter the identification number... ");
             int shelfTagId = view.GetIntInput();
 
-            int rowsAffected = storageManager.DeleteShelfRoomById(shelfTagId);
+            int rowsAffected = storageManager.DeleteShelfById(shelfTagId);
             view.DisplayMessage($"\nDeleted {rowsAffected} row.");
 
         }
+
 
         // The data-modifying commands for the accounts.
         private static void CreateUser()
@@ -1836,8 +1837,7 @@ namespace CDOrganiserProjectApp
             view.DisplayMessage($"\nUpdated {rowsAffected} records.");
 
         }
-
-        /*
+        
         private static void InsertArtistAlbum()
         {
             view.DisplayMessage("\nEnter the new album... ");
@@ -1845,46 +1845,46 @@ namespace CDOrganiserProjectApp
             int albumId = 0;
 
             view.DisplayMessage("\nEnter a genre identification number...");
-            List<Genres> genres = storageManager.GetAllBands();
-            view.DisplayBands(bands);
+            List<Genres> genres = storageManager.GetAllGenres();
+            view.DisplayGenres(genres);
 
-            string genreName = view.GetInput();
+            int genreId = view.GetIntInput();
 
             view.DisplayMessage("\nEnter the date of release... YYYY/MM/DD");
             DateTime dateOfRelease = view.GetDateTimeInput();
 
-            view.DisplayMessage("\nEnter the format... ");
-            string formatName = view.GetInput();
+            view.DisplayMessage("\nEnter the format identification number... ");
+            List<Formats> formats = storageManager.GetAllFormats();
 
-            view.DisplayMessage("\nEnter the artist... ");
-            string artistName = view.GetInput();
+            int formatId = view.GetIntInput();
 
-            view.DisplayMessage("\nEnter the room its kept in... ");
-            string roomName = view.GetInput();
+            view.DisplayMessage("\nEnter the artist identification number... ");
+            List<Artists> artists = storageManager.GetAllArtists();
+            view.DisplayArtists(artists);
 
-            view.DisplayMessage("\nEnter the shelves tag letter... ");
-            char shelfTag = view.GetCharInput();
+            int artistId = view.GetIntInput();
 
-            view.DisplayMessage("\nEnter the shelves row, accompanied by the tag letter... ");
-            string shelfRow = view.GetInput();
+            view.DisplayMessage("\nEnter the shelf rows identification number... ");
+            List<Shelves> shelves = storageManager.GetAllShelves();
+
+            int shelfRowId = view.GetIntInput();
+  
             bool lost = false;
 
-            ArtistAlbums newAlbum = new ArtistAlbums(albumId, albumName, genreName, dateOfRelease, formatName, artistName, shelfRow, lost);
+            ArtistAlbums newAlbum = new ArtistAlbums(albumId, albumName, genreId, dateOfRelease, formatId, artistId, shelfRowId, lost);
 
             int generatedId = storageManager.InsertArtistAlbum(newAlbum);
             view.DisplayMessage($"\nThe new albums identification number is: {generatedId}");
             
         }
         
-
-        
         private static void DeleteArtistAlbumById()
         {
             view.DisplayMessage("\nEnter the identification number... ");
             int albumId = view.GetIntInput();
 
-            int rowsAffected = storageManager.DeleteRoomById(albumId);
-            view.DisplayMessage($"\n\tDeleted {rowsAffected} row.");
+            int rowsAffected = storageManager.DeleteArtistAlbumById(albumId);
+            view.DisplayMessage($"\nDeleted {rowsAffected} row.");
         }
 
         // The data-modifying commands for the Band Albums table.
@@ -1901,42 +1901,45 @@ namespace CDOrganiserProjectApp
 
         }
 
-        /*
         private static void InsertBandAlbum()
         {
             view.DisplayMessage("\nEnter the new album... ");
             string albumName = view.GetInput();
             int albumId = 0;
 
-            view.DisplayMessage("\nEnter the genre... ");
-            string genreName = view.GetInput();
+            view.DisplayMessage("\nEnter a genre identification number...");
+            List<Genres> genres = storageManager.GetAllGenres();
+            view.DisplayGenres(genres);
 
-            view.DisplayMessage("\nEnter the date of release... ");
+            int genreId = view.GetIntInput();
+
+            view.DisplayMessage("\nEnter the date of release... YYYY/MM/DD");
             DateTime dateOfRelease = view.GetDateTimeInput();
 
-            view.DisplayMessage("\nEnter the format... ");
-            string formatName = view.GetInput();
+            view.DisplayMessage("\nEnter the format identification number... ");
+            List<Formats> formats = storageManager.GetAllFormats();
 
-            view.DisplayMessage("\nEnter the artist... ");
-            string artistName = view.GetInput();
+            int formatId = view.GetIntInput();
 
-            view.DisplayMessage("\nEnter the room its kept in... ");
-            string roomName = view.GetInput();
+            view.DisplayMessage("\nEnter the band identification number... ");
+            List<Bands> bands = storageManager.GetAllBands();
+            view.DisplayBands(bands);
 
-            view.DisplayMessage("\nEnter the shelves tag letter... ");
-            char shelfTag = view.GetCharInput();
+            int bandId = view.GetIntInput();
 
-            view.DisplayMessage("\nEnter the shelves row, accompanied by the tag letter... ");
-            string shelfRow = view.GetInput();
+            view.DisplayMessage("\nEnter the shelf rows identification number... ");
+            List<Shelves> shelves = storageManager.GetAllShelves();
+
+            int shelfRowId = view.GetIntInput();
+  
             bool lost = false;
 
-            ArtistAlbums newAlbum = new ArtistAlbums(albumId, albumName, genreName, dateOfRelease, formatName, artistName, roomName, shelfTag, shelfRow, lost);
+            BandAlbums newAlbum = new BandAlbums(albumId, albumName, genreId, dateOfRelease, formatId, bandId, shelfRowId, lost);
 
-            int generatedId = storageManager.InsertArtistAlbum(newAlbum);
+            int generatedId = storageManager.InsertBandAlbum(newAlbum);
             view.DisplayMessage($"\nThe new albums identification number is: {generatedId}");
-
+            
         }
-        */
 
         private static void DeleteBandAlbumById()
         {
