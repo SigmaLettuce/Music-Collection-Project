@@ -326,6 +326,7 @@ namespace CDOrganiserProjectApp.View
 
             return bands.Skip(pg - 1 * pgsz).Take(pgsz).ToList();
         }
+       */
 
         public void DisplayBands(List<Bands> bands)
         {
@@ -338,7 +339,7 @@ namespace CDOrganiserProjectApp.View
 
             }   
         }
-       */
+       
 
         public void DisplayGenres(List<Genres> genres)
         {

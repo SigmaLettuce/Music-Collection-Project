@@ -394,6 +394,169 @@ namespace CDOrganiserProjectApp
                                             break;
 
                                             case "ins":
+                                                
+
+                                                invalid = false;
+
+                                                GoBack();
+
+                                            break;
+
+                                            case "del":
+                                                DeleteArtistById();
+
+                                                invalid = false;
+
+                                                GoBack();
+
+                                            break;
+
+                                            case "back":
+                                                GoBack();
+
+                                                invalid = false;
+
+                                            break;
+
+                                            default:
+                                                view.DisplayError(wait);
+
+                                                AdminMenuscreenOptions();
+
+                                            break;
+                                        }
+
+                                    } while (invalid);
+
+                                    break;
+
+                                case "bands":
+                                    storageManager.GetAllBandAlbums();
+
+                                    Thread.Sleep(wait);
+
+                                    cmd = view.DisplayEditingOptions("band-albums", "album~extras");
+                                    view.DisplayMessage("");
+
+                                    Thread.Sleep(wait);
+
+                                    invalid = false;
+
+                                    do
+                                    {
+
+                                        switch (cmd)
+                                        {
+                                            case "up":
+                                                UpdateArtistName();
+
+                                                invalid = false;
+
+                                                GoBack();
+
+                                            break;
+
+                                            case "ins":
+                                                UpdateArtistAlbum();
+
+                                                invalid = false;
+
+                                                GoBack();
+
+                                            break;
+
+                                            case "del":
+                                                DeleteArtistById();
+
+                                                invalid = false;
+
+                                                GoBack();
+
+                                            break;
+
+                                            case "back":
+                                                GoBack();
+
+                                                invalid = false;
+
+                                            break;
+
+                                            default:
+                                                view.DisplayError(wait);
+
+                                                AdminMenuscreenOptions();
+
+                                            break;
+                                        }
+
+                                    } while (invalid);
+
+                                    break;
+
+                                case "back":                                   
+                                    GoBack();
+
+                                    invalid = false;
+
+                                break;
+
+                                default:
+                                    view.DisplayError(wait);
+
+                                    AdminMenuscreenOptions();
+
+                                    invalid = true;
+
+                                break;
+
+                            }
+
+                        } while (invalid);
+                    break;
+
+                    case "reviews":
+
+                        Thread.Sleep(wait);
+
+                        select = view.DisplayEditingOptions("reviews", "album~variants");
+
+                        Thread.Sleep(wait);
+                        Console.Clear();
+
+                        invalid = false;
+
+                        do
+                        {
+                            switch (select)
+                            {
+                                case "artists":
+                                    storageManager.GetAllArtistReviews(accountId);
+
+                                    Thread.Sleep(wait);
+
+                                    cmd = view.DisplayEditingOptions("artist-album-reviews", "album~extras");
+                                    view.DisplayMessage("");
+
+                                    Thread.Sleep(wait);
+                                    Console.Clear();
+
+                                    invalid = false;
+
+                                    do
+                                    {
+
+                                        switch (cmd)
+                                        {
+                                            case "up":
+                                                ();
+
+                                                invalid = false;
+
+                                                GoBack();
+
+                                            break;
+
+                                            case "ins":
                                                 //Insert
 
                                                 invalid = false;
@@ -650,7 +813,7 @@ namespace CDOrganiserProjectApp
 
                         Thread.Sleep(wait);
 
-                        cmd = view.DisplayEditingOptions("rooms", "default");
+                        cmd = view.DisplayEditingOptions("shelves", "default");
                         view.DisplayMessage("");
 
                         Thread.Sleep(wait);
@@ -754,7 +917,7 @@ namespace CDOrganiserProjectApp
 
                         Thread.Sleep(wait);
 
-                        select = view.DisplayEditingOptions("albums", "account~variants");
+                        select = view.DisplayEditingOptions("accounts", "account~variants");
 
                         Thread.Sleep(wait);
                         Console.Clear();
@@ -1475,7 +1638,7 @@ namespace CDOrganiserProjectApp
             Genres newGenre = new Genres(genreId, genreName);
 
             int generatedId = storageManager.InsertGenre(newGenre);
-            view.DisplayMessage($"\nThe new bands identification number is: {generatedId}");
+            view.DisplayMessage($"\nThe new genres identification number is: {generatedId}");
 
         }
 
@@ -1496,9 +1659,9 @@ namespace CDOrganiserProjectApp
             int artistId = view.GetIntInput();
 
             view.DisplayMessage("\nRename the record... ");
-            string genreName = view.GetInput();
+            string artistName = view.GetInput();
 
-            int rowsAffected = storageManager.UpdateArtistById(artistId, genreName);
+            int rowsAffected = storageManager.UpdateArtistById(artistId, artistName);
             view.DisplayMessage($"\nUpdated {rowsAffected} records.");
 
         }
@@ -1542,7 +1705,7 @@ namespace CDOrganiserProjectApp
 
         private static void InsertNewRoom()
         {
-            view.DisplayMessage("\ntEnter the new room... ");
+            view.DisplayMessage("\nEnter the new room... ");
             string roomName = view.GetInput();
             int roomId = 0;
 
@@ -1563,6 +1726,7 @@ namespace CDOrganiserProjectApp
 
         }
 
+
         // The data-modifying commands for the Shelves table.
         private static void UpdateShelfRoom()
         {
@@ -1579,18 +1743,21 @@ namespace CDOrganiserProjectApp
 
         private static void InsertNewShelf()
         {
-            view.DisplayMessage("\ntEnter the new room... ");
-            string roomName = view.GetInput();
-            int roomId = 0;
+            view.DisplayMessage("\nEnter the new shelves tag... ");
+            char shelfTag = view.GetCharInput();
 
-            Rooms newRoom = new Rooms(roomId, roomName);
+            view.DisplayMessage("\nEnter the new room... ");
+            int roomId = view.GetIntInput();
+            int shelfTagId = 0;
 
-            int generatedId = storageManager.InsertRoom(newRoom);
+            Shelves newShelf = new Rooms(roomId, roomName);
+
+            int generatedId = storageManager.InsertShelf(newRoom);
             view.DisplayMessage($"\nThe new rooms identification number is: {generatedId}");
 
         }
 
-        private static void DeleteShelfByTag()
+        private static void DeleteShelfById()
         {
             view.DisplayMessage("\nEnter the identification number... ");
             int shelfTagId = view.GetIntInput();
