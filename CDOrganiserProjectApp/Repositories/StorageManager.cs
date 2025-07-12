@@ -271,6 +271,58 @@ namespace CDOrganiserProjectApp
 
         }
 
+        public List<Shelves> GetAllShelves()
+        {
+            List<Shelves> shelves = new List<Shelves>();
+            string sqlStr = "SELECT * FROM Properties.tblShelf";
+            using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
+            {
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        char shelfTag = Convert.ToChar(reader["shelfTag"]);
+                        string roomName = reader["roomName"].ToString();
+                        shelves.Add(new Shelves(shelfTag, roomName));
+                    }
+                }
+            }
+            return shelves;
+        }
+
+        public int InsertShelf(Shelves shelves)
+        {
+            using (SqlCommand cmd = new SqlCommand($"INSERT INTO Properties.tblShelf (roomName) VALUES (@roomName); SELECT SCOPE_IDENTITY();", conn))
+            {
+        
+                cmd.Parameters.AddWithValue("@roomName", shelves.RoomName);
+                
+                return Convert.ToInt32(cmd.ExecuteScalar());
+            }
+        }
+
+        public int UpdateShelfRoomByTag(char shelfTag, string roomName)
+        {
+            string sqlStr = $"UPDATE Properties.tblShelf SET roomName = @RoomName WHERE shelfTag = @shelfTag";
+            using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
+            {
+                cmd.Parameters.AddWithValue("@shelfTag", shelfTag);
+                cmd.Parameters.AddWithValue("@roomName", roomName);
+                return cmd.ExecuteNonQuery();
+            }
+        }
+
+        public int DeleteShelfRoomByTag(char shelfTag)
+        {
+            string sqlStr = "DELETE FROM Properties.tblShelf WHERE shelfTag = @shelfTag";
+            using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
+            {
+                cmd.Parameters.AddWithValue("@shelfTag", shelfTag);
+                return cmd.ExecuteNonQuery();
+            }
+
+        }
+
 
         public List<ArtistAlbums> GetAllArtistAlbums(int account)
         {

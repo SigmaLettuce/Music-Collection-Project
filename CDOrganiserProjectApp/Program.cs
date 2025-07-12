@@ -226,34 +226,6 @@ namespace CDOrganiserProjectApp
 
                         invalid = false;
 
-                        switch (roleId)
-                        {
-                            case 1:
-                                cmd = view.DisplayEditingOptions("bands", "none");
-                                view.DisplayMessage("");
-
-                                Thread.Sleep(wait);
-
-                            break;
-
-                            case 2:
-                                cmd = view.DisplayEditingOptions("bands", "default");
-                                view.DisplayMessage("");
-
-                                Thread.Sleep(wait);
-
-                            break;
-
-                            case 3:
-                                cmd = view.DisplayEditingOptions("bands", "default");
-                                view.DisplayMessage("");
-
-                                Thread.Sleep(wait);
-
-                            break;
-             
-                        }
-
                         do
                         {
 
@@ -582,6 +554,138 @@ namespace CDOrganiserProjectApp
 
                                 case "del":
                                     DeleteArtistById();
+
+                                    invalid = false;
+
+                                    GoBack();
+
+                                break;
+
+                                case "back":                                   
+                                    GoBack();
+
+                                    invalid = false;
+
+                                break;
+
+                                default:
+                                    view.DisplayError(wait);
+
+                                    AdminMenuscreenOptions();
+
+                                    invalid = true;
+
+                                break;
+                            }
+
+                        } while (invalid);
+
+                    break;
+
+                    case "rooms":
+                        List<Rooms> rooms = storageManager.GetAllRooms();
+                        view.DisplayRooms(rooms);
+
+                        Thread.Sleep(wait);
+
+                        cmd = view.DisplayEditingOptions("rooms", "default");
+                        view.DisplayMessage("");
+
+                        Thread.Sleep(wait);
+
+                        invalid = false;
+
+                        do
+                        {
+
+                            switch (cmd)
+                            {
+                                case "up":
+                                    UpdateRoomName();
+
+                                    invalid = false;
+
+                                    GoBack();
+
+                                break;
+
+                                case "ins":
+                                    InsertNewRoom();
+
+                                    invalid = false;
+
+                                    GoBack();
+
+                                break;
+
+                                case "del":
+                                    DeleteRoomById();
+
+                                    invalid = false;
+
+                                    GoBack();
+
+                                break;
+
+                                case "back":                                   
+                                    GoBack();
+
+                                    invalid = false;
+
+                                break;
+
+                                default:
+                                    view.DisplayError(wait);
+
+                                    AdminMenuscreenOptions();
+
+                                    invalid = true;
+
+                                break;
+                            }
+
+                        } while (invalid);
+
+                    break;
+
+                    case "shelves":
+                        List<Shelves> shelves = storageManager.GetAllShelves();
+                        view.DisplayRooms(rooms);
+
+                        Thread.Sleep(wait);
+
+                        cmd = view.DisplayEditingOptions("rooms", "default");
+                        view.DisplayMessage("");
+
+                        Thread.Sleep(wait);
+
+                        invalid = false;
+
+                        do
+                        {
+
+                            switch (cmd)
+                            {
+                                case "up":
+                                    UpdateRoomName();
+
+                                    invalid = false;
+
+                                    GoBack();
+
+                                break;
+
+                                case "ins":
+                                    InsertNewRoom();
+
+                                    invalid = false;
+
+                                    GoBack();
+
+                                break;
+
+                                case "del":
+                                    DeleteRoomById();
 
                                     invalid = false;
 
@@ -1470,6 +1574,42 @@ namespace CDOrganiserProjectApp
 
         }
 
+        // The data-modifying commands for the Shelves table.
+        private static void UpdateShelfRoom()
+        {
+            view.DisplayMessage("\nEnter the identification number... ");
+            char shelfTag = view.GetCharInput();
+
+            view.DisplayMessage("\nEnter the identification number... ");
+            int roomId = view.GetIntInput();
+
+            int rowsAffected = storageManager.UpdateShelfRoomByTag(shelfTag, roomName);
+            view.DisplayMessage($"\nUpdated {rowsAffected} records.");
+
+        }
+
+        private static void InsertNewShelf()
+        {
+            view.DisplayMessage("\ntEnter the new room... ");
+            string roomName = view.GetInput();
+            int roomId = 0;
+
+            Rooms newRoom = new Rooms(roomId, roomName);
+
+            int generatedId = storageManager.InsertRoom(newRoom);
+            view.DisplayMessage($"\nThe new rooms identification number is: {generatedId}");
+
+        }
+
+        private static void DeleteRoomById()
+        {
+            view.DisplayMessage("\nEnter the identification number... ");
+            int roomId = view.GetIntInput();
+
+            int rowsAffected = storageManager.DeleteRoomById(roomId);
+            view.DisplayMessage($"\nDeleted {rowsAffected} row.");
+
+        }
 
         // The data-modifying commands for the accounts.
         private static void CreateUser()

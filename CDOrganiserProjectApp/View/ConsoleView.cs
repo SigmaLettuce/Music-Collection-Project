@@ -56,7 +56,7 @@ namespace CDOrganiserProjectApp.View
                 Console.WriteLine("\t[/]  'bands' - All bands who have published an album you own");
                 Console.WriteLine("\t[/]  'genres' - All musical categories of your collection");
                 Console.WriteLine("\t[/]  'rooms' - All available rooms");
-                Console.WriteLine("\t[/]  'shelves' - All available shelving units and their shelves\n");
+                Console.WriteLine("\t[/]  'shelves' - All available shelving units and their locations\n");
 
             Console.WriteLine("\tSETTINGS... ");
             Console.WriteLine("\tThese are your available settings, compiled into directories.");
@@ -113,7 +113,6 @@ namespace CDOrganiserProjectApp.View
                 Console.WriteLine("\t[/]  'artists' - All artists who have published an album you own");
                 Console.WriteLine("\t[/]  'bands' - All bands who have published an album you own");
                 Console.WriteLine("\t[/]  'genres' - All musical categories of your collection");
-                Console.WriteLine("\n\t[/]  'shelves' - All available shelving units and their shelves\n");
 
             Console.WriteLine("\tSETTINGS... ");
             Console.WriteLine("\tThese are your available settings, compiled into directories.");
@@ -177,6 +176,7 @@ namespace CDOrganiserProjectApp.View
                 Console.WriteLine("You can't modify this listing. \n");
 
             }
+
 
             else if (type.Equals("album~extras"))
             {
@@ -347,6 +347,18 @@ namespace CDOrganiserProjectApp.View
             foreach (Rooms room in rooms)
             {
                 Console.WriteLine($"{room.RoomId}, {room.RoomName}\n");
+                Thread.Sleep(wait);
+
+            }
+            
+        }
+        public void DisplayShelves(List<Shelves> shelves)
+        {
+            Console.WriteLine("ID: NAME: ");
+
+            foreach (Shelves shelf in shelves)
+            {
+                Console.WriteLine($"{shelf.ShelfTag}, {shelf.RoomName}\n");
                 Thread.Sleep(wait);
 
             }
