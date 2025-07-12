@@ -200,10 +200,10 @@ namespace CDOrganiserProjectApp
         }
 
 
-        public List<ArtistAlbums> GetAllArtistAlbums()
+        public List<ArtistAlbums> GetAllArtistAlbums(int account)
         {
             List<ArtistAlbums> albums = new List<ArtistAlbums>();
-            string sqlStr = "SELECT albumID, albumName, genreName, dateOfRelease, formatName, artistName, shelfRow, username, tierTag, favourite, lost FROM Contents.tblGenres, Contents.tblArtistAlbums, Properties.tblFormat, Contents.tblArtists, Properties.tblRow, Properties.tblAccounts, Properties.tblTier WHERE tblArtistAlbums.genreID = tblGenres.genreID AND tblArtistAlbums.formatID = tblFormat.formatID AND tblArtistAlbums.artistID = tblArtists.artistID AND tblArtistAlbums.shelfRowID = tblRow.shelfRowID AND tblArtistAlbums.tierID = tblTier.tierID";
+            string sqlStr = "SELECT albumID, albumName, genreName, dateOfRelease, formatName, artistName, shelfRow, username, tierTag, favourite, lost FROM Contents.tblGenres, Contents.tblArtistAlbums, Properties.tblFormat, Contents.tblArtists, Properties.tblRow, Properties.tblAccounts, Properties.tblTier WHERE tblArtistAlbums.genreID = tblGenres.genreID AND tblArtistAlbums.formatID = tblFormat.formatID AND tblArtistAlbums.artistID = tblArtists.artistID AND tblArtistAlbums.shelfRowID = tblRow.shelfRowID AND tblArtistAlbums.personID = tblAccounts.personID AND tblArtistAlbums.tierID = tblTier.tierID";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
                 using (SqlDataReader reader = cmd.ExecuteReader())
@@ -232,16 +232,16 @@ namespace CDOrganiserProjectApp
 
         public int InsertArtistAlbum(ArtistAlbums albums)
         {
-            using (SqlCommand cmd = new SqlCommand($"INSERT INTO Contents.tblArtistAlbums (albumName, genreName, dateOfRelease, formatName, artistName, roomName, shelfTag, shelfRow) VALUES (@AlbumName, @GenreName, @DateOfRelease, @FormatName, @ArtistName, @RoomName, @ShelfTag, @ShelfRow); SELECT SCOPE_IDENTITY();", conn))
+            using (SqlCommand cmd = new SqlCommand($"INSERT INTO Contents.tblArtistAlbums (albumName, genreID, dateOfRelease, formatName, artistName, shelfRowID) VALUES (@AlbumName, @GenreName, @DateOfRelease, @FormatName, @ArtistName, @ShelfRow); SELECT SCOPE_IDENTITY();", conn))
             {
                 cmd.Parameters.AddWithValue("@AlbumName", albums.AlbumName);
                 cmd.Parameters.AddWithValue("@GenreName", albums.GenreName);
                 cmd.Parameters.AddWithValue("@DateOfRelease", albums.DateOfRelease);
                 cmd.Parameters.AddWithValue("@FormatName", albums.FormatName);
                 cmd.Parameters.AddWithValue("@ArtistName", albums.ArtistName);
-                cmd.Parameters.AddWithValue("@RoomName", albums.RoomName);
-                cmd.Parameters.AddWithValue("@ShelfTag", albums.ShelfTag);
                 cmd.Parameters.AddWithValue("@ShelfRow", albums.ShelfRow);
+              
+
 
                 return Convert.ToInt32(cmd.ExecuteScalar());
             }
@@ -251,7 +251,7 @@ namespace CDOrganiserProjectApp
         public List<BandAlbums> GetAllBandAlbums()
         {
             List<BandAlbums> albums = new List<BandAlbums>();
-            string sqlStr = "SELECT albumID, albumName, genreName, dateOfRelease, formatName, bandName, shelfRow, username, tierTag, favourite, lost FROM Contents.tblGenres, Contents.tlbBandAlbums, Properties.tblFormat, Contents.tblBands, Properties.tblRow, Properties.tblAccounts, Properties.tblTier WHERE tblBandAlbums.genreID = tblGenres.genreID AND tblBandAlbums.formatID = tblFormat.formatID AND tblBandAlbums.artistID = tblArtists.artistID AND tblBandAlbums.shelfRowID = tblRow.shelfRowID AND tblBandAlbums.tierID = tblTier.tierID";
+            string sqlStr = "SELECT albumID, albumName, genreName, dateOfRelease, formatName, bandName, shelfRow, username, tierTag, favourite, lost FROM Contents.tblGenres, Contents.tlbBandAlbums, Properties.tblFormat, Contents.tblBands, Properties.tblRow, Properties.tblAccounts, Properties.tblTier WHERE tblBandAlbums.genreID = tblGenres.genreID AND tblBandAlbums.formatID = tblFormat.formatID AND tblBandAlbums.artistID = tblArtists.artistID AND tblBandAlbums.shelfRowID = tblRow.shelfRowID AND tblAccounts.personID = tblAccounts.personID AND tblBandAlbums.tierID = tblTier.tierID";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
                 using (SqlDataReader reader = cmd.ExecuteReader())
@@ -280,15 +280,13 @@ namespace CDOrganiserProjectApp
         
         public int InsertBandAlbum(BandAlbums albums)
         {
-            using (SqlCommand cmd = new SqlCommand($"INSERT INTO Contents.tblAlbums (albumName, genreID, dateOfRelease, formatID, bandID, shelfRow, s) VALUES (@AlbumName, @GenreName, @DateOfRelease, (SELECT formatID from Properties.tblFormat WHERE formatName = @FormatName), (SELECT bandID FROM Contents.tblBands WHERE bandName = @BandName),(SELECT roomID FROM Properties.tblStorageRoom WHERE roomName = @RoomName), @ShelfTag, @ShelfRow); SELECT SCOPE_IDENTITY();", conn))
+            using (SqlCommand cmd = new SqlCommand($"INSERT INTO Contents.tblBandAlbums (albumName, genreID, dateOfRelease, formatName, bandName, shelfRowID) VALUES (@AlbumName, @GenreName, @DateOfRelease, @FormatName, @BandName, @ShelfRow); SELECT SCOPE_IDENTITY();", conn))
             {
                 cmd.Parameters.AddWithValue("@AlbumName", albums.AlbumName);
                 cmd.Parameters.AddWithValue("@GenreName", albums.GenreName);
                 cmd.Parameters.AddWithValue("@DateOfRelease", albums.DateOfRelease);
                 cmd.Parameters.AddWithValue("@FormatName", albums.FormatName);
                 cmd.Parameters.AddWithValue("@BandName", albums.BandName);
-                cmd.Parameters.AddWithValue("@RoomName", albums.RoomName);
-                cmd.Parameters.AddWithValue("@ShelfTag", albums.ShelfTag);
                 cmd.Parameters.AddWithValue("@ShelfRow", albums.ShelfRow);
 
                 return Convert.ToInt32(cmd.ExecuteScalar());
@@ -529,8 +527,6 @@ namespace CDOrganiserProjectApp
                     while (reader.Read())
                     {
                         string allArtists = reader["All Artists"].ToString();
-
-                        Pagination(7);
 
                         Console.WriteLine($"{allArtists}\n");
                         Thread.Sleep(wait);

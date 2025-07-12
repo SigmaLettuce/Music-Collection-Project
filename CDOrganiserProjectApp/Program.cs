@@ -31,8 +31,6 @@ namespace CDOrganiserProjectApp
             view = new ConsoleView();
 
             StartMenuscreenOptions();
-            
-
 
         }
 
@@ -366,18 +364,19 @@ namespace CDOrganiserProjectApp
                         GoBack();
 
                     break;
-
-                    case Prefix.@log + " " + Suffix.@out:
+                */
+                    case "L":
                         Thread.Sleep(wait);
                         Console.Clear();
 
                         StartMenuscreenOptions();
+                        storageManager.CloseConnection();
 
                         invalid = false;
 
                     break;
 
-                    */
+           
 
                     default:
                         view.DisplayMessage("I'm sorry, this isn't a valid selection. Can you try again? ");
