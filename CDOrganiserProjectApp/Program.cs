@@ -83,11 +83,6 @@ namespace CDOrganiserProjectApp
             
         }
 
-        private static void PasswordEncryption()
-        {
-            
-        }
-
         private static void Register()
         {
             Thread.Sleep(wait);
@@ -158,7 +153,7 @@ namespace CDOrganiserProjectApp
 
         private static void AdminMenuscreenOptions()
         {
-            
+            string cmd;
             bool invalid = true;
 
             string input = view.DisplayAdminMenu();
@@ -178,7 +173,7 @@ namespace CDOrganiserProjectApp
 
                         Thread.Sleep(wait);
 
-                        string cmd = view.DisplayEditingOptions("bands");
+                        cmd = view.DisplayEditingOptions("bands");
                         view.DisplayMessage("");
 
                         Thread.Sleep(wait);
@@ -218,8 +213,6 @@ namespace CDOrganiserProjectApp
                                 break;
 
                                 case "back":
-
-                                    
                                     GoBack();
 
                                     invalid = false;
@@ -236,45 +229,70 @@ namespace CDOrganiserProjectApp
 
                     break;
 
-                    /*
-
-                    case Prefix.@view + " " + Suffix.@artists:
+                    
+                    case "artists":
                         List<Artists> artists = storageManager.GetAllArtists();
                         view.DisplayArtists(artists);
 
-                        invalid = false;
+                        Thread.Sleep(wait);
 
-                        GoBack();
+                        cmd = view.DisplayEditingOptions("artists");
+                        view.DisplayMessage("");
 
-                    break;
-
-                    case Prefix.@up + " " + Suffix.@artists:
-                        UpdateArtistName();
+                        Thread.Sleep(wait);
 
                         invalid = false;
 
-                        GoBack();
+                        do
+                        {
+
+                            switch (cmd)
+                            {
+                                case "up":
+                                    UpdateArtistName();
+
+                                    invalid = false;
+
+                                    GoBack();
+
+                                break;
+
+                                case "ins":
+                                    UpdateArtistAlbum();
+
+                                    invalid = false;
+
+                                    GoBack();
+
+                                break;
+
+                                case "del":
+                                    DeleteArtistByName();
+
+                                    invalid = false;
+
+                                    GoBack();
+
+                                break;
+
+                                case "back":                                   
+                                    GoBack();
+
+                                    invalid = false;
+
+                                break;
+
+                                default:
+                                    view.DisplayError();
+
+                                break;
+                            }
+
+                        } while (invalid);
 
                     break;
 
-                    case Prefix.@ins + " " + Suffix.@artists:
-                        InsertNewArtist();
-
-                        invalid = false;
-
-                        GoBack();
-
-                    break;
-
-                    case Prefix.@del + " " + Suffix.@artists:
-                        DeleteArtistByName();
-
-                        invalid = false;
-
-                        GoBack();
-
-                    break;
-
+                        /*
                     case Prefix.@view + " " + Suffix.@all:
                         storageManager.GetAllArtistsAndBands();
 
