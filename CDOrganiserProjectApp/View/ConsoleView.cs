@@ -120,7 +120,8 @@ namespace CDOrganiserProjectApp.View
             Console.WriteLine("\tSETTINGS... ");
             Console.WriteLine("\tThese are your available settings, compiled into directories.");
 
-                Console.WriteLine("\n\t[/]  'help' - Takes you to the help page\n");
+                Console.WriteLine("\n\t[/]  'accounts' - Manage account permissions");
+                Console.WriteLine("\t[/]  'help' - Takes you to the help page\n");
 
                 Console.WriteLine("\n\t     Log out - Press L + Enter\n");
             
@@ -154,7 +155,7 @@ namespace CDOrganiserProjectApp.View
                 Console.WriteLine("Enter any of the listings above to gain access... \n");
             }
 
-            if (type.Equals("view~only"))
+            else if (type.Equals("view~only"))
             {
                 Console.WriteLine($"\n\t [CD MANAGER / {d}]\n");
                 Console.WriteLine("\tVIEW... ");
@@ -165,10 +166,10 @@ namespace CDOrganiserProjectApp.View
                     Console.WriteLine("\n\t'back' - Return to homepage\n");
 
 
-                Console.WriteLine("Enter any of the listings above to gain access... \n");
+                Console.WriteLine("Enter 'reports' to gain access... \n");
             }
 
-            else if (if (type.Equals("none"))
+            else if (type.Equals("none"))
             {
                 Console.WriteLine($"\n\t [CD MANAGER / {d}]\n");
 
@@ -179,7 +180,7 @@ namespace CDOrganiserProjectApp.View
 
             }
 
-            else if if (type.Equals("album~extras"))
+            else if (type.Equals("album~extras"))
             {
                 Console.WriteLine($"\n\t [CD MANAGER / {d}]\n");
                 Console.WriteLine("\tEDIT... ");
@@ -215,6 +216,35 @@ namespace CDOrganiserProjectApp.View
 
 
                 Console.WriteLine("Enter any of the listings above to gain access... \n");
+            }
+
+            else if (type.Equals("account~variants"))
+            {
+                Console.WriteLine($"\n\t [CD MANAGER / {d}]\n");
+                Console.WriteLine("\tEDIT... ");
+                Console.WriteLine("\tThese are the creatable account-type listings, compiled into directories.");
+
+                    Console.WriteLine("\t[/]  'default' - Creates a default account");
+                    Console.WriteLine("\t[/]  'admin' - Creates an admin account");
+
+                Console.WriteLine("\n\t'back' - Return to homepage\n");
+
+
+                Console.WriteLine("Enter any of the listings above to create ann account... \n");
+            }
+
+            else if (type.Equals("df~account~variants"))
+            {
+                Console.WriteLine($"\n\t [CD MANAGER / {d}]\n");
+                Console.WriteLine("\tEDIT... ");
+                Console.WriteLine("\tThese are the creatable account-type listings, compiled into directories.");
+
+                    Console.WriteLine("\t[/]  'default' - Creates a default account");
+
+                Console.WriteLine("\n\t'back' - Return to homepage\n");
+
+
+                Console.WriteLine("Enter any of the listings above to create ann account... \n");
             }
 
 

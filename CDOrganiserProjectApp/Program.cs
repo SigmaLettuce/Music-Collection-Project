@@ -5,6 +5,7 @@ using Microsoft.Identity.Client;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.VisualBasic;
 using System.ComponentModel.DataAnnotations;
+using System.Dynamic;
 using System.Globalization;
 using System.Net.Http.Headers;
 using System.Reflection.Metadata.Ecma335;
@@ -186,6 +187,8 @@ namespace CDOrganiserProjectApp
                     default:
                         view.DisplayError(wait);
 
+                        Help();
+
                     break;
                 }
             } while (invalid);
@@ -194,7 +197,8 @@ namespace CDOrganiserProjectApp
 
         private static void AdminMenuscreenOptions() // The Admin Menuscreen. 
         {
-            string cmd; // Stores the users written modifcation command.
+            string select; // Stores a selection from a listing that branches into multiple.
+            string cmd; // Stores the users written modification command.
             bool invalid = true;
 
             string input = view.DisplayAdminMenu(); // Calls the display.
@@ -214,7 +218,7 @@ namespace CDOrganiserProjectApp
 
                         Thread.Sleep(wait);
 
-                        cmd = view.DisplayEditingOptions("bands");
+                        cmd = view.DisplayEditingOptions("bands", "default");
                         view.DisplayMessage("");
 
                         Thread.Sleep(wait);
@@ -255,6 +259,8 @@ namespace CDOrganiserProjectApp
 
                                 case "reports":
 
+                                    invalid = false;
+
                                 break;
 
                                 case "back":
@@ -267,21 +273,22 @@ namespace CDOrganiserProjectApp
                                 default:
                                     view.DisplayError(wait);
 
+                                    AdminMenuscreenOptions();
+
                                 break;
                             }
 
                         } while (invalid);
 
                     break;
-
-                    
+                  
                     case "artists":
                         List<Artists> artists = storageManager.GetAllArtists();
                         view.DisplayArtists(artists);
 
                         Thread.Sleep(wait);
 
-                        cmd = view.DisplayEditingOptions("artists");
+                        cmd = view.DisplayEditingOptions("artists", "default");
                         view.DisplayMessage("");
 
                         Thread.Sleep(wait);
@@ -338,146 +345,162 @@ namespace CDOrganiserProjectApp
                     break;
                                         
                     case "albums":
-
-                        string select;
-
-                        select = view.SelectAlbumVariant("albums");
+                      
+                        select = view.DisplayEditingOptions("albums", "album~variants");
 
                         Thread.Sleep(wait);
                         Console.Clear();
 
-                        switch (select)
+                        do
                         {
-                            case "artists":
-                                List<ArtistAlbums> Aalbums = storageManager.GetAllArtistAlbums(accountId);
-                                view.DisplayArtistAlbums(Aalbums);
+                            switch (select)
+                            {
+                                case "artists":
+                                    List<ArtistAlbums> Aalbums = storageManager.GetAllArtistAlbums(accountId);
+                                    view.DisplayArtistAlbums(Aalbums);
 
-                                Thread.Sleep(wait);
+                                    Thread.Sleep(wait);
 
-                                cmd = view.DisplayEditingOptions("artist-albums");
-                                view.DisplayMessage("");
+                                    cmd = view.DisplayEditingOptions("artist-albums", "album~extras");
+                                    view.DisplayMessage("");
 
-                                Thread.Sleep(wait);
-                                Console.Clear();
+                                    Thread.Sleep(wait);
+                                    Console.Clear();
 
-                                invalid = false;
+                                    invalid = false;
 
-                                do
-                                {
-
-                                    switch (cmd)
+                                    do
                                     {
-                                        case "up":
-                                            UpdateArtistAlbum();
 
-                                            invalid = false;
+                                        switch (cmd)
+                                        {
+                                            case "up":
+                                                UpdateArtistAlbum();
 
-                                            GoBack();
+                                                invalid = false;
 
-                                        break;
+                                                GoBack();
 
-                                        case "ins":
-                                            //Insert
+                                            break;
 
-                                            invalid = false;
+                                            case "ins":
+                                                //Insert
 
-                                            GoBack();
+                                                invalid = false;
 
-                                        break;
+                                                GoBack();
 
-                                        case "del":
-                                            DeleteArtistById();
+                                            break;
 
-                                            invalid = false;
+                                            case "del":
+                                                DeleteArtistById();
 
-                                            GoBack();
+                                                invalid = false;
 
-                                        break;
+                                                GoBack();
 
-                                        case "back":
-                                            GoBack();
+                                            break;
 
-                                            invalid = false;
+                                            case "back":
+                                                GoBack();
 
-                                        break;
+                                                invalid = false;
 
-                                        default:
-                                            view.DisplayError(wait);
+                                            break;
 
-                                        break;
-                                    }
+                                            default:
+                                                view.DisplayError(wait);
 
-                                } while (invalid);
+                                                AdminMenuscreenOptions();
 
-                            break;
+                                            break;
+                                        }
 
-                            case "bands":
-                                List<BandAlbums> Balbums = storageManager.GetAllBandAlbums(accountId);
-                                view.DisplayBandAlbums(Balbums);
+                                    } while (invalid);
 
-                                Thread.Sleep(wait);
+                                    break;
 
-                                cmd = view.DisplayEditingOptions("band-albums");
-                                view.DisplayMessage("");
+                                case "bands":
+                                    List<BandAlbums> Balbums = storageManager.GetAllBandAlbums(accountId);
+                                    view.DisplayBandAlbums(Balbums);
 
-                                Thread.Sleep(wait);
+                                    Thread.Sleep(wait);
 
-                                invalid = false;
+                                    cmd = view.DisplayEditingOptions("band-albums", "album~extras");
+                                    view.DisplayMessage("");
 
-                                do
-                                {
+                                    Thread.Sleep(wait);
 
-                                    switch (cmd)
+                                    invalid = false;
+
+                                    do
                                     {
-                                        case "up":
-                                            UpdateArtistName();
 
-                                            invalid = false;
+                                        switch (cmd)
+                                        {
+                                            case "up":
+                                                UpdateArtistName();
 
-                                            GoBack();
+                                                invalid = false;
 
-                                        break;
+                                                GoBack();
 
-                                        case "ins":
-                                            UpdateArtistAlbum();
+                                            break;
 
-                                            invalid = false;
+                                            case "ins":
+                                                UpdateArtistAlbum();
 
-                                            GoBack();
+                                                invalid = false;
 
-                                        break;
+                                                GoBack();
 
-                                        case "del":
-                                            DeleteArtistById();
+                                            break;
 
-                                            invalid = false;
+                                            case "del":
+                                                DeleteArtistById();
 
-                                            GoBack();
+                                                invalid = false;
 
-                                        break;
+                                                GoBack();
 
-                                        case "back":
-                                            GoBack();
+                                            break;
 
-                                            invalid = false;
+                                            case "back":
+                                                GoBack();
 
-                                        break;
+                                                invalid = false;
 
-                                        default:
-                                            view.DisplayError(wait);
+                                            break;
 
-                                        break;
-                                    }
+                                            default:
+                                                view.DisplayError(wait);
 
-                                } while (invalid);
+                                                AdminMenuscreenOptions();
 
-                            break;
+                                            break;
+                                        }
 
-                            default:
-                            break;
+                                    } while (invalid);
 
-                        }
+                                    break;
 
+                                case "back":                                   
+                                    GoBack();
+
+                                    invalid = false;
+
+                                break;
+
+                                default:
+                                    view.DisplayError(wait);
+
+                                    AdminMenuscreenOptions();
+
+                                break;
+
+                            }
+
+                        } while (invalid);
                     break;
 
                     case "genres":
@@ -486,7 +509,7 @@ namespace CDOrganiserProjectApp
 
                         Thread.Sleep(wait);
 
-                        cmd = view.DisplayEditingOptions("artists");
+                        cmd = view.DisplayEditingOptions("genres", "default");
                         view.DisplayMessage("");
 
                         Thread.Sleep(wait);
@@ -535,6 +558,8 @@ namespace CDOrganiserProjectApp
                                 default:
                                     view.DisplayError(wait);
 
+                                    AdminMenuscreenOptions();
+
                                 break;
                             }
 
@@ -548,7 +573,7 @@ namespace CDOrganiserProjectApp
 
                         Thread.Sleep(wait);
 
-                        cmd = view.DisplayEditingOptions("tiers", false, false, true, false, false);
+                        cmd = view.DisplayEditingOptions("tiers", "none");
                         view.DisplayMessage("");
 
                         Thread.Sleep(wait);
@@ -571,12 +596,66 @@ namespace CDOrganiserProjectApp
                                 default:
                                     view.DisplayError(wait);
 
+                                    AdminMenuscreenOptions();
+
                                 break;
                             }
 
                         } while (invalid);
 
                     break;
+
+                    case "accounts":
+
+                        select = view.DisplayEditingOptions("albums", "account~variants");
+
+                        Thread.Sleep(wait);
+                        Console.Clear();
+
+                        do
+                        {
+                            switch (select)
+                            {
+                                case "default":
+                                    CreateUser();
+
+                                    GoBack();
+
+                                    invalid = false;
+
+                                break;
+
+                                case "admin":
+                                    CreateAdmin();
+
+                                    GoBack();
+
+                                    invalid = false;
+
+                                break;
+
+                                case "back":
+                                    GoBack();
+
+                                    invalid = false;
+
+                                break;
+
+                                default:
+                                    view.DisplayError(wait);
+
+                                    AdminMenuscreenOptions();
+
+                                    invalid = true;
+
+                                break;
+
+                            }
+
+                        } while (invalid);
+
+                    break;
+
                         /*
                     case Prefix.@view + " " + Suffix.@all:
                         storageManager.GetAllArtistsAndBands();
@@ -676,7 +755,6 @@ namespace CDOrganiserProjectApp
                         Console.Clear();
 
                         StartMenuscreenOptions();
-                        storageManager.CloseConnection();
 
                         invalid = false;
 
@@ -812,47 +890,6 @@ namespace CDOrganiserProjectApp
 
         }
 
-
-        /*
-        private static void Update(char @class)
-        {
-
-            view.DisplayMessage("\nEnter the current name... ");
-            string name = view.GetInput();
-
-            view.DisplayMessage("\nRename the record... ");
-            string rename = view.GetInput();
-
-            int rowsAffected;
-
-            switch (@class)
-            {
-
-                case 'A':
-
-                    rowsAffected = storageManager.UpdateArtistByName(name, rename);
-                    view.DisplayMessage($"\nUpdated {rowsAffected} record/s.");
-
-                break;
-
-                case 'B':
-
-                    rowsAffected = storageManager.UpdateBandByName(name, rename);
-                    view.DisplayMessage($"\nUpdated {rowsAffected} record/s.");
-
-                break;
-
-                case 'C':
-
-                    rowsAffected = storageManager.UpdateRoomByName(name, rename);
-                    view.DisplayMessage($"\nUpdated {rowsAffected} record/s.");
-
-                break;
-
-            }
-
-        }
-        */
 
         private static void UpdateBandName()
         {

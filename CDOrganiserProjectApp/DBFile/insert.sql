@@ -40,7 +40,8 @@ SET IDENTITY_INSERT Properties.tblRole ON;
 INSERT INTO Properties.tblRole(roleID, roleName)
 VALUES 
 (1, 'Visitor'),
-(2, 'Administrator');
+(2, 'Administrator'),
+(3, 'T-Administrator');
 
 SET IDENTITY_INSERT Properties.tblRole OFF;
 
