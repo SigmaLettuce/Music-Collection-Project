@@ -52,7 +52,8 @@ namespace CDOrganiserProjectApp.View
             Console.WriteLine("\tThese are your available listings, compiled into directories.");
 
                 Console.WriteLine("\n\t[/]  'albums' - Albums of a compact disc; a CD");
-                Console.WriteLine("\n\t[/]  'reviews' - Reviews left by your friends");
+                Console.WriteLine("\t[/]  'reviews' - Reviews left by your friends");
+                Console.WriteLine("\t[/]  'tiers' - All available ranks and their numerical value out of 10");
                 Console.WriteLine("\t[/]  'artists' - All artists who have published an album you own");
                 Console.WriteLine("\t[/]  'bands' - All bands who have published an album you own");
                 Console.WriteLine("\t[/]  'genres' - All musical categories of your collection");
@@ -65,7 +66,7 @@ namespace CDOrganiserProjectApp.View
                 Console.WriteLine("\n\t[/]  'accounts' - Manage account permissions");
                 Console.WriteLine("\t[/]  'help' - Takes you to the help page\n");
 
-                Console.WriteLine("\n\t     Log out - Press l + Enter\n");
+                Console.WriteLine("\n\t[*]  Log out - Press l + Enter\n");
             
 
             Console.WriteLine("Enter any of the listings above to gain access... \n");
@@ -111,6 +112,7 @@ namespace CDOrganiserProjectApp.View
             Console.WriteLine("\tThese are your available listings, compiled into directories.");
 
                 Console.WriteLine("\n\t[/]  'albums' - Albums of a compact disc; a CD");
+                Console.WriteLine("\n[/]  'reviews' - Reviews left by your friends");
                 Console.WriteLine("\t[/]  'artists' - All artists who have published an album you own");
                 Console.WriteLine("\t[/]  'bands' - All bands who have published an album you own");
                 Console.WriteLine("\t[/]  'genres' - All musical categories of your collection");
@@ -121,7 +123,7 @@ namespace CDOrganiserProjectApp.View
                 Console.WriteLine("\n\t[/]  'accounts' - Manage account permissions");
                 Console.WriteLine("\t[/]  'help' - Takes you to the help page\n");
 
-                Console.WriteLine("\n\t     Log out - Press l + Enter\n");
+                Console.WriteLine("\n\t[*]  Log out - Press l + Enter\n");
             
 
             Console.WriteLine("Enter any of the listings above to gain access... \n");
@@ -286,19 +288,22 @@ namespace CDOrganiserProjectApp.View
 
         }
 
-        public string DisplayHelp()
+        public string DisplayHelp(int delay)
         {
-            Console.WriteLine("\n\t [SUPPORT]");
+            Thread.Sleep(delay);
+            Console.Clear();
+
+            Console.WriteLine("\n\t [SUPPORT]\n");
             Console.WriteLine("\tFAQ... ");
 
-                Console.WriteLine("\t[/]  'How can I login?' - Open the folder you installed, then open the .txt file 'account~list'.");
-                Console.WriteLine("\t[/]  'The connection isn't being established!' - Open the .sln in an IDE > Open the SQL Server Object Explorer. If that doesn't fix it, please open the repository .url.");
-                Console.WriteLine("\t[/]  'Text from a record is clipping into the next line!' - Enter F11 or Alt + Enter.");
-                Console.WriteLine("\t[/]  'How do I view the listings?' - Exactly how you ended up here. Enter a listed keyword. This is not case-sensitive.");
-                Console.WriteLine("\t[/]  'How do I leave the support page?' - Press E + Enter");
+                Console.WriteLine("\t[*]  'How can I login?' - Open the folder you installed, then open the .txt file 'account~list'.");
+                Console.WriteLine("\t[*]  'The connection isn't being established!' - Open the .sln in an IDE > Open the SQL Server Object Explorer. If that doesn't fix it, please open the repository .url.");
+                Console.WriteLine("\t[*]  'Text from a record is clipping into the next line!' - Enter F11 or Alt + Enter.");
+                Console.WriteLine("\t[*]  'How do I view the listings?' - Exactly how you ended up here. Enter a listed keyword. This is not case-sensitive.");
+                Console.WriteLine("\t[*]  'How do I leave the support page?' - Press E + Enter\n");
 
                 Console.WriteLine("For more information, please refer to the .url file or the listed websites in the repository 'README.MD' for support. ");
-
+                Console.WriteLine("");
                 
 
             return Console.ReadLine();

@@ -22,6 +22,7 @@ namespace CDOrganiserProjectApp
 
         static int accountId;
         static int roleId;
+        static bool logStatus;
 
         const int wait = 1000; 
 
@@ -136,7 +137,7 @@ namespace CDOrganiserProjectApp
                         Thread.Sleep(wait);
                         Console.Clear();
 
-                        // GuestMenuscreenOptions();
+                        GuestMenuscreenOptions();
 
                     break;
 
@@ -165,7 +166,7 @@ namespace CDOrganiserProjectApp
         {
             bool invalid = true;
 
-            string input = view.DisplayHelp();
+            string input = view.DisplayHelp(wait);
             view.DisplayMessage("");
 
             Thread.Sleep(wait);
@@ -180,7 +181,31 @@ namespace CDOrganiserProjectApp
                         Thread.Sleep(wait);
                         Console.Clear();
 
-                        StartMenuscreenOptions();
+                        switch (logStatus)
+                        {
+                            case true:
+                                switch (roleId)
+                                {
+                                    case 1:
+                                        GuestMenuscreenOptions();
+
+                                    break;
+
+                                    case 2:
+                                        AdminMenuscreenOptions();
+
+                                    break;
+                                  
+                                }
+
+                            break;
+
+                            case false:
+                            StartMenuscreenOptions();
+
+                            break;
+
+                        }
 
                     break;
 
@@ -1038,14 +1063,13 @@ namespace CDOrganiserProjectApp
 
         }
 
-        /*
-        private static void GuestMenuscreenOptions() // The Admin Menuscreen. 
-        {
+        private static void GuestMenuscreenOptions() // The Guest Menuscreen. 
+        {           
             string select; // Stores a selection from a listing that branches into multiple.
             string cmd; // Stores the users written modification command.
             bool invalid = true;
 
-            string input = view.DisplayGuestMenu(); // Calls the display.
+            string input = view.DisplayAdminMenu(); // Calls the display.
             view.DisplayMessage(""); 
 
             Thread.Sleep(wait);
@@ -1057,12 +1081,13 @@ namespace CDOrganiserProjectApp
                 {
 
                     case "bands":
+                        
                         List<Bands> bands = storageManager.GetAllBands();
                         view.DisplayBands(bands);
 
                         Thread.Sleep(wait);
 
-                        cmd = view.DisplayEditingOptions("bands", "default");
+                        cmd = view.DisplayEditingOptions("bands", "none");
                         view.DisplayMessage("");
 
                         Thread.Sleep(wait);
@@ -1074,39 +1099,6 @@ namespace CDOrganiserProjectApp
 
                             switch (cmd.ToLower())
                             {
-                                case "up":
-                                    UpdateBandName();
-
-                                    invalid = false;
-
-                                    GoBack();
-
-                                break;
-
-                                case "ins":
-                                    InsertNewBand();
-
-                                    invalid = false;
-
-                                    GoBack();
-
-                                break;
-
-                                case "del":
-                                    DeleteBandById();
-
-                                    invalid = false;
-
-                                    GoBack();
-
-                                break;
-
-                                case "reports":
-
-                                    invalid = false;
-
-                                break;
-
                                 case "back":
                                     GoBack();
 
@@ -1117,7 +1109,7 @@ namespace CDOrganiserProjectApp
                                 default:
                                     view.DisplayError(wait);
 
-                                    AdminMenuscreenOptions();
+                                    GuestMenuscreenOptions();
 
                                     invalid = true;
 
@@ -1134,7 +1126,7 @@ namespace CDOrganiserProjectApp
 
                         Thread.Sleep(wait);
 
-                        cmd = view.DisplayEditingOptions("artists", "default");
+                        cmd = view.DisplayEditingOptions("artists", "none");
                         view.DisplayMessage("");
 
                         Thread.Sleep(wait);
@@ -1146,34 +1138,7 @@ namespace CDOrganiserProjectApp
 
                             switch (cmd)
                             {
-                                case "up":
-                                    UpdateArtistName();
-
-                                    invalid = false;
-
-                                    GoBack();
-
-                                break;
-
-                                case "ins":
-                                    InsertNewArtist();
-
-                                    invalid = false;
-
-                                    GoBack();
-
-                                break;
-
-                                case "del":
-                                    DeleteArtistById();
-
-                                    invalid = false;
-
-                                    GoBack();
-
-                                break;
-
-                                case "back":                                   
+                                case "back":
                                     GoBack();
 
                                     invalid = false;
@@ -1183,7 +1148,7 @@ namespace CDOrganiserProjectApp
                                 default:
                                     view.DisplayError(wait);
 
-                                    AdminMenuscreenOptions();
+                                    GuestMenuscreenOptions();
 
                                     invalid = true;
 
@@ -1210,7 +1175,7 @@ namespace CDOrganiserProjectApp
                             switch (select)
                             {
                                 case "artists":
-                                    storageManager.GetAllArtistAlbums();
+                                    storageManager.GetAllArtistReviews(accountId);
 
                                     Thread.Sleep(wait);
 
@@ -1237,7 +1202,7 @@ namespace CDOrganiserProjectApp
                                             break;
 
                                             case "ins":
-                                                //Insert
+                                                InsertArtistAlbum();
 
                                                 invalid = false;
 
@@ -1246,7 +1211,16 @@ namespace CDOrganiserProjectApp
                                             break;
 
                                             case "del":
-                                                DeleteArtistById();
+                                                DeleteArtistAlbumById();
+
+                                                invalid = false;
+
+                                                GoBack();
+
+                                            break;
+
+                                            case "lost":
+                                                MarkArtistAsLost();
 
                                                 invalid = false;
 
@@ -1291,7 +1265,7 @@ namespace CDOrganiserProjectApp
                                         switch (cmd)
                                         {
                                             case "up":
-                                                UpdateArtistName();
+                                                UpdateBandAlbum();
 
                                                 invalid = false;
 
@@ -1300,7 +1274,7 @@ namespace CDOrganiserProjectApp
                                             break;
 
                                             case "ins":
-                                                UpdateArtistAlbum();
+                                                InsertBandAlbum();
 
                                                 invalid = false;
 
@@ -1309,7 +1283,196 @@ namespace CDOrganiserProjectApp
                                             break;
 
                                             case "del":
-                                                DeleteArtistById();
+                                                DeleteBandAlbumById();
+
+                                                invalid = false;
+
+                                                GoBack();
+
+                                            break;
+
+                                            case "lost":
+                                                MarkBandAsLost();
+
+                                                invalid = false;
+
+                                                GoBack();
+                                            break;
+
+                                            case "back":
+                                                GoBack();
+
+                                                invalid = false;
+
+                                            break;
+
+                                            default:
+                                                view.DisplayError(wait);
+
+                                                AdminMenuscreenOptions();
+
+                                            break;
+                                        }
+
+                                    } while (invalid);
+
+                                    break;
+
+                                case "back":                                   
+                                    GoBack();
+
+                                    invalid = false;
+
+                                break;
+
+                                default:
+                                    view.DisplayError(wait);
+
+                                    AdminMenuscreenOptions();
+
+                                    invalid = true;
+
+                                break;
+
+                            }
+
+                        } while (invalid);
+                    break;
+
+                    case "reviews":
+
+                        Thread.Sleep(wait);
+
+                        select = view.DisplayEditingOptions("reviews", "album~variants");
+
+                        Thread.Sleep(wait);
+                        Console.Clear();
+
+                        invalid = false;
+
+                        do
+                        {
+                            switch (select)
+                            {
+                                case "artists":
+                                    storageManager.GetAllArtistReviews(accountId);
+
+                                    Thread.Sleep(wait);
+
+                                    cmd = view.DisplayEditingOptions("artist-album-reviews", "review~extras");
+                                    view.DisplayMessage("");
+
+                                    Thread.Sleep(wait);
+                                    Console.Clear();
+
+                                    invalid = false;
+
+                                    do
+                                    {
+
+                                        switch (cmd)
+                                        {
+                                            case "up":
+                                                UpdateArtistReview();
+
+                                                invalid = false;
+
+                                                GoBack();
+
+                                            break;
+
+                                            case "ins":
+                                                InsertArtistReview();
+
+                                                invalid = false;
+
+                                                GoBack();
+
+                                            break;
+
+                                            case "del":
+                                                DeleteArtistReviewById();
+
+                                                invalid = false;
+
+                                                GoBack();
+
+                                            break;
+
+                                            case "favourite":
+                                                FavouriteArtistReview();
+
+                                                invalid = false;
+
+                                                GoBack();
+
+                                            break;
+
+                                            case "back":
+                                                GoBack();
+
+                                                invalid = false;
+
+                                            break;
+
+                                            default:
+                                                view.DisplayError(wait);
+
+                                                AdminMenuscreenOptions();
+
+                                            break;
+                                        }
+
+                                    } while (invalid);
+
+                                    break;
+
+                                case "bands":
+                                    storageManager.GetAllBandReviews(accountId);
+
+                                    Thread.Sleep(wait);
+
+                                    cmd = view.DisplayEditingOptions("band-album-reviews", "review~extras");
+                                    view.DisplayMessage("");
+
+                                    Thread.Sleep(wait);
+
+                                    invalid = false;
+
+                                    do
+                                    {
+
+                                        switch (cmd)
+                                        {
+                                            case "up":
+                                                UpdateBandReview();
+
+                                                invalid = false;
+
+                                                GoBack();
+
+                                            break;
+
+                                            case "ins":
+                                                InsertBandReview();
+
+                                                invalid = false;
+
+                                                GoBack();
+
+                                            break;
+
+                                            case "del":
+                                                DeleteBandReviewById();
+
+                                                invalid = false;
+
+                                                GoBack();
+
+                                            break;
+
+                                            case "favourite":
+                                                FavouriteBandReview();
 
                                                 invalid = false;
 
@@ -1467,7 +1630,7 @@ namespace CDOrganiserProjectApp
 
                         Thread.Sleep(wait);
 
-                        select = view.DisplayEditingOptions("albums", "account~variants");
+                        select = view.DisplayEditingOptions("accounts", "account~variants");
 
                         Thread.Sleep(wait);
                         Console.Clear();
@@ -1485,15 +1648,6 @@ namespace CDOrganiserProjectApp
 
                                 break;
 
-                                case "admin":
-                                    CreateAdmin();
-
-                                    GoBack();
-
-                                    invalid = false;
-
-                                break;
-
                                 case "back":
                                     GoBack();
 
@@ -1504,7 +1658,7 @@ namespace CDOrganiserProjectApp
                                 default:
                                     view.DisplayError(wait);
 
-                                    AdminMenuscreenOptions();
+                                    GuestMenuscreenOptions();
 
                                     invalid = true;
 
@@ -1552,7 +1706,6 @@ namespace CDOrganiserProjectApp
             } while (invalid);
 
         }
-        */
 
         private static void GoBack() 
         {
@@ -1576,7 +1729,7 @@ namespace CDOrganiserProjectApp
                         {
                             case 1:
 
-                                // GuestMenuscreenOptions();
+                                GuestMenuscreenOptions();
 
                             break;
 
