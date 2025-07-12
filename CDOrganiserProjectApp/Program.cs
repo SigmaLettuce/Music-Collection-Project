@@ -760,8 +760,6 @@ namespace CDOrganiserProjectApp
 
                     break;
 
-           
-
                     default:
                         view.DisplayError(wait);
 
