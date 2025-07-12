@@ -63,8 +63,8 @@ namespace CDOrganiserProjectApp.View
             Console.WriteLine("\tSETTINGS... ");
             Console.WriteLine("\tThese are your available settings, compiled into directories.");
 
-                Console.WriteLine("\n\t[/]  'accounts' - Manage account permissions");
-                Console.WriteLine("\t[/]  'help' - Takes you to the help page\n");
+                Console.WriteLine("\n\t[*]  'accounts' - Manage account permissions");
+                Console.WriteLine("\t[*]  'help' - Takes you to the help page\n");
 
                 Console.WriteLine("\n\t[*]  Log out - Press l + Enter\n");
             
@@ -112,7 +112,6 @@ namespace CDOrganiserProjectApp.View
             Console.WriteLine("\tThese are your available listings, compiled into directories.");
 
                 Console.WriteLine("\n\t[/]  'albums' - Albums of a compact disc; a CD");
-                Console.WriteLine("\n[/]  'reviews' - Reviews left by your friends");
                 Console.WriteLine("\t[/]  'artists' - All artists who have published an album you own");
                 Console.WriteLine("\t[/]  'bands' - All bands who have published an album you own");
                 Console.WriteLine("\t[/]  'genres' - All musical categories of your collection");
@@ -120,8 +119,8 @@ namespace CDOrganiserProjectApp.View
             Console.WriteLine("\tSETTINGS... ");
             Console.WriteLine("\tThese are your available settings, compiled into directories.");
 
-                Console.WriteLine("\n\t[/]  'accounts' - Manage account permissions");
-                Console.WriteLine("\t[/]  'help' - Takes you to the help page\n");
+                Console.WriteLine("\n\t[*]  'accounts' - Manage account permissions");
+                Console.WriteLine("\t[*]  'help' - Takes you to the help page\n");
 
                 Console.WriteLine("\n\t[*]  Log out - Press l + Enter\n");
             
