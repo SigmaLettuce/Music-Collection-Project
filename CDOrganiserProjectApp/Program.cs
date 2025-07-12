@@ -67,9 +67,7 @@ namespace CDOrganiserProjectApp
                     break;
 
                     default:
-                        view.DisplayMessage("I'm sorry, this isn't a valid selection. Can you try again? ");
-                        Thread.Sleep(wait);
-                        Console.Clear();
+                        view.DisplayError();
 
                         StartMenuscreenOptions();
 
@@ -229,9 +227,7 @@ namespace CDOrganiserProjectApp
                                 break;
 
                                 default:
-                                    view.DisplayMessage("I'm sorry, this isn't a valid selection. Can you try again? ");
-                                    Thread.Sleep(wait);
-                                    Console.Clear();
+                                    view.DisplayError();
 
                                 break;
                             }
@@ -386,9 +382,7 @@ namespace CDOrganiserProjectApp
            
 
                     default:
-                        view.DisplayMessage("I'm sorry, this isn't a valid selection. Can you try again? ");
-                        Thread.Sleep(wait);
-                        Console.Clear();
+                        view.DisplayError();
 
                         AdminMenuscreenOptions();
 
@@ -501,9 +495,7 @@ namespace CDOrganiserProjectApp
                     break;
 
                     default:
-                        view.DisplayMessage("I'm sorry, this isn't a valid selection. Can you try again? ");
-                        Thread.Sleep(wait);
-                        Console.Clear();
+                        view.DisplayError();
 
                         GoBack();
 
