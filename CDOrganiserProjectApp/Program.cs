@@ -31,6 +31,7 @@ namespace CDOrganiserProjectApp
             view = new ConsoleView();
 
             StartMenuscreenOptions();
+            //AdminMenuscreenOptions();
 
         }
 
@@ -262,7 +263,7 @@ namespace CDOrganiserProjectApp
                                 break;
 
                                 case "ins":
-                                    UpdateArtistAlbum();
+                                    InsertNewArtist();
 
                                     invalid = false;
 
@@ -296,9 +297,151 @@ namespace CDOrganiserProjectApp
 
                     break;
                                         
-                    case "genres":
+                    case "albums":
+
+                        string select;
+
+                        select = view.SelectAlbumVariant(" ");
+
+                        Thread.Sleep(wait);
+                        Console.Clear();
+
+                        switch (select)
+                        {
+                            case "artists":
+                                List<ArtistAlbums> Aalbums = storageManager.GetAllArtistAlbums(accountId);
+                                view.DisplayArtistAlbums(Aalbums);
+
+                                Thread.Sleep(wait);
+
+                                cmd = view.DisplayEditingOptions("artist-albums");
+                                view.DisplayMessage("");
+
+                                Thread.Sleep(wait);
+
+                                invalid = false;
+
+                                do
+                                {
+
+                                    switch (cmd)
+                                    {
+                                        case "up":
+                                            UpdateArtistAlbum();
+
+                                            invalid = false;
+
+                                            GoBack();
+
+                                        break;
+
+                                        case "ins":
+                                            //Insert
+
+                                            invalid = false;
+
+                                            GoBack();
+
+                                        break;
+
+                                        case "del":
+                                            DeleteArtistByName();
+
+                                            invalid = false;
+
+                                            GoBack();
+
+                                        break;
+
+                                        case "back":
+                                            GoBack();
+
+                                            invalid = false;
+
+                                        break;
+
+                                        default:
+                                            view.DisplayError(wait);
+
+                                        break;
+                                    }
+
+                                } while (invalid);
+
+                            break;
+
+                            case "bands":
+                                List<BandAlbums> Balbums = storageManager.GetAllBandAlbums(accountId);
+                                view.DisplayBandAlbums(Balbums);
+
+                                Thread.Sleep(wait);
+
+                                cmd = view.DisplayEditingOptions("band-albums");
+                                view.DisplayMessage("");
+
+                                Thread.Sleep(wait);
+
+                                invalid = false;
+
+                                do
+                                {
+
+                                    switch (cmd)
+                                    {
+                                        case "up":
+                                            UpdateArtistName();
+
+                                            invalid = false;
+
+                                            GoBack();
+
+                                        break;
+
+                                        case "ins":
+                                            UpdateArtistAlbum();
+
+                                            invalid = false;
+
+                                            GoBack();
+
+                                        break;
+
+                                        case "del":
+                                            DeleteArtistByName();
+
+                                            invalid = false;
+
+                                            GoBack();
+
+                                        break;
+
+                                        case "back":
+                                            GoBack();
+
+                                            invalid = false;
+
+                                        break;
+
+                                        default:
+                                            view.DisplayError(wait);
+
+                                        break;
+                                    }
+
+                                } while (invalid);
+
+                            break;
+
+                            default:
+                            break;
+
+                        }
+
+                    break;
+
+                        case "genres":
                         List<Genres> genres = storageManager.GetAllGenres();
-                        view.displaygenre(artists);
+                        view.DisplayGenres(genres);
 
                         Thread.Sleep(wait);
 

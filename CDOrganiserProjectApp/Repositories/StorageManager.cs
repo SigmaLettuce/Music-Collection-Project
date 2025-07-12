@@ -254,9 +254,11 @@ namespace CDOrganiserProjectApp
         public List<ArtistAlbums> GetAllArtistAlbums(int account)
         {
             List<ArtistAlbums> albums = new List<ArtistAlbums>();
-            string sqlStr = "SELECT albumID, albumName, genreName, dateOfRelease, formatName, artistName, shelfRow, username, tierTag, favourite, lost FROM Contents.tblGenres, Contents.tblArtistAlbums, Properties.tblFormat, Contents.tblArtists, Properties.tblRow, Properties.tblAccounts, Properties.tblTier WHERE tblArtistAlbums.genreID = tblGenres.genreID AND tblArtistAlbums.formatID = tblFormat.formatID AND tblArtistAlbums.artistID = tblArtists.artistID AND tblArtistAlbums.shelfRowID = tblRow.shelfRowID AND tblArtistAlbums.personID = tblAccounts.personID AND tblArtistAlbums.tierID = tblTier.tierID";
+            string sqlStr = "SELECT albumID, albumName, genreName, dateOfRelease, formatName, artistName, shelfRow, username, tierTag, favourite, lost FROM Contents.tblGenres, Contents.tblArtistAlbums, Properties.tblFormat, Contents.tblArtists, Properties.tblRow, Properties.tblAccounts, Properties.tblTier WHERE tblArtistAlbums.genreID = tblGenres.genreID AND tblArtistAlbums.formatID = tblFormat.formatID AND tblArtistAlbums.artistID = tblArtists.artistID AND tblArtistAlbums.shelfRowID = tblRow.shelfRowID AND tblArtistAlbums.personID = @account AND tblArtistAlbums.tierID = tblTier.tierID";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
+                cmd.Parameters.AddWithValue("@account", account);
+
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())
@@ -299,12 +301,14 @@ namespace CDOrganiserProjectApp
         }
 
 
-        public List<BandAlbums> GetAllBandAlbums()
+        public List<BandAlbums> GetAllBandAlbums(int account)
         {
             List<BandAlbums> albums = new List<BandAlbums>();
-            string sqlStr = "SELECT albumID, albumName, genreName, dateOfRelease, formatName, bandName, shelfRow, username, tierTag, favourite, lost FROM Contents.tblGenres, Contents.tlbBandAlbums, Properties.tblFormat, Contents.tblBands, Properties.tblRow, Properties.tblAccounts, Properties.tblTier WHERE tblBandAlbums.genreID = tblGenres.genreID AND tblBandAlbums.formatID = tblFormat.formatID AND tblBandAlbums.artistID = tblArtists.artistID AND tblBandAlbums.shelfRowID = tblRow.shelfRowID AND tblAccounts.personID = tblAccounts.personID AND tblBandAlbums.tierID = tblTier.tierID";
+            string sqlStr = "SELECT albumID, albumName, genreName, dateOfRelease, formatName, bandName, shelfRow, username, tierTag, favourite, lost FROM Contents.tblGenres, Contents.tlbBandAlbums, Properties.tblFormat, Contents.tblBands, Properties.tblRow, Properties.tblAccounts, Properties.tblTier WHERE tblBandAlbums.genreID = tblGenres.genreID AND tblBandAlbums.formatID = tblFormat.formatID AND tblBandAlbums.artistID = tblArtists.artistID AND tblBandAlbums.shelfRowID = tblRow.shelfRowID AND tblAccounts.personID = @account AND tblBandAlbums.tierID = tblTier.tierID";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
+                cmd.Parameters.AddWithValue("@account", account);
+
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())
