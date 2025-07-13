@@ -50,6 +50,8 @@ namespace CDOrganiserProjectApp
             string connectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=HomeMusicCollectionDatabase;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False";
             storageManager = new StorageManager(connectionString);
 
+
+
             bool invalid = true; // A variable that evaluates the continuation of a process.
 
 
@@ -1995,6 +1997,11 @@ namespace CDOrganiserProjectApp
 
 
         // The data-modifying commands for the accounts.
+
+        private static void UpdateRole()
+        {
+
+        }
         private static void CreateUser()
         {
             
@@ -2076,6 +2083,30 @@ namespace CDOrganiserProjectApp
             }
 
         }
+        private static void DeleteAccount()
+        {
+
+            try
+            {
+
+                view.DisplayMessage("\nEnter the identification number... ");
+                //List<Accounts> accounts = storageManager.Ge();
+                int shelfTagId = view.GetIntInput();
+
+                int rowsAffected = storageManager.DeleteShelfById(shelfTagId);
+                view.DisplayMessage($"\nDeleted {rowsAffected} row.");
+
+            }
+            catch (FormatException e)
+            {
+                Console.WriteLine("\n  Please use the proper formatting.");
+                Console.WriteLine(e.Message);
+
+                DeleteAccount();
+            }
+
+        }
+
 
 
         // The data-modifying commands for the Artist Albums table.

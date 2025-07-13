@@ -156,9 +156,9 @@ namespace CDOrganiserProjectApp.View
                 Console.WriteLine("\tVIEW... ");
                 Console.WriteLine("\tThese are the available report listings, compiled into directories.");
 
-                    Console.WriteLine("\n\t'reports' - Opens the reports\n");
+                    Console.WriteLine("\n\t[*]  'reports' - Opens the reports\n");
 
-                    Console.WriteLine("\n\t'back' - Return to homepage\n");
+                    Console.WriteLine("\n\t[*]  'back' - Return to homepage\n");
 
 
                 Console.WriteLine("Enter 'reports' to gain access... \n");
@@ -168,13 +168,34 @@ namespace CDOrganiserProjectApp.View
             {
                 Console.WriteLine($"\n\t [CD MANAGER / {d}]\n");
 
-                Console.WriteLine("\n\t'back' - Return to homepage\n");
+                Console.WriteLine("\n\t[*]  'back' - Return to homepage\n");
 
 
                 Console.WriteLine("You can't modify this listing. \n");
 
             }
 
+            if (type.Equals("search~extras"))
+            {
+                Console.WriteLine($"\n\t [CD MANAGER / {d}]\n");
+                Console.WriteLine("\tEDIT... ");
+                Console.WriteLine("\tYou can now modify this listing.");
+
+                    Console.WriteLine("\n\t[/]  'up' - Updates information");
+                    Console.WriteLine("\t[/]  'ins' - Adds new information");
+                    Console.WriteLine("\t[/]  'del' - Deletes unwanted information\n");
+
+                Console.WriteLine("\tVIEW... ");
+                Console.WriteLine("\tThese are the available report listings, compiled into directories.");
+
+                    Console.WriteLine("\n\t[*]  'reports' - Opens the reports");
+                    Console.WriteLine("\t[*]  'search' - Opens the search\n");
+
+                    Console.WriteLine("\n\t[*] 'back' - Return to homepage\n");
+
+
+                Console.WriteLine("Enter any of the listings above to gain access... \n");
+            }
 
             else if (type.Equals("album~extras"))
             {
@@ -265,7 +286,7 @@ namespace CDOrganiserProjectApp.View
             }
 
 
-                return Console.ReadLine();
+            return Console.ReadLine();
         }
 
         /* 
@@ -328,13 +349,11 @@ namespace CDOrganiserProjectApp.View
             return Console.ReadLine();
         }
 
-       /* public IList<Bands> BandPager(IList<Bands> bands, int pg, int pgsz)
-        {
-            
-
+       public IList<Bands> BandPager(IList<Bands> bands, int pg, int pgsz)
+       {
             return bands.Skip(pg - 1 * pgsz).Take(pgsz).ToList();
-        }
-       */
+       }
+       
 
         public void DisplayBands(List<Bands> bands)
         {
@@ -347,7 +366,6 @@ namespace CDOrganiserProjectApp.View
 
             }   
         }
-       
 
         public void DisplayGenres(List<Genres> genres)
         {
