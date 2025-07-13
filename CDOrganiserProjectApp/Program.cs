@@ -1012,6 +1012,71 @@ namespace CDOrganiserProjectApp
 
                     break;
 
+                    case "rows":
+                        storageManager.GetAllRows();
+
+                        Thread.Sleep(wait);
+
+                        cmd = view.DisplayEditingOptions("rows", "default");
+                        view.DisplayMessage("");
+
+                        Thread.Sleep(wait);
+
+                        invalid = false;
+
+                        do
+                        {
+
+                            switch (cmd)
+                            {
+                                case "up":
+                                    u();
+
+                                    invalid = false;
+
+                                    GoBack();
+
+                                break;
+
+                                case "ins":
+                                    InsertNewShelf();
+
+                                    invalid = false;
+
+                                    GoBack();
+
+                                break;
+
+                                case "del":
+                                    DeleteShelfById();
+
+                                    invalid = false;
+
+                                    GoBack();
+
+                                break;
+
+                                case "back":                                   
+                                    GoBack();
+
+                                    invalid = false;
+
+                                break;
+
+                                default:
+                                    view.DisplayError(wait);
+
+                                    AdminMenuscreenOptions();
+
+                                    invalid = true;
+
+                                break;
+                            }
+
+                        } while (invalid);
+
+                    break;
+
                     case "tiers":
                         List<Tiers> tiers = storageManager.GetAllTiers();
                         view.DisplayTiers(tiers);
@@ -1983,6 +2048,89 @@ namespace CDOrganiserProjectApp
                 int shelfTagId = view.GetIntInput();
 
                 int rowsAffected = storageManager.DeleteShelfById(shelfTagId);
+                view.DisplayMessage($"\nDeleted {rowsAffected} row.");
+            }
+            catch (FormatException e)
+            {
+                Console.WriteLine("\n  Please use the proper formatting.");
+                Console.WriteLine(e.Message);
+
+                DeleteShelfById();
+
+            }
+
+        }
+
+
+        // The data-modifying commands for the Shelves table.
+        private static void MoveRow()
+        {
+            
+
+            try
+            {
+                view.DisplayMessage("\nEnter the identification number... ");
+                List<Rows> rows = storageManager.GetAllRows();
+                int shelfRowId = view.GetIntInput();
+
+                view.DisplayMessage("\nEnter the identification number... ");
+                List<Shelves> shelves = storageManager.GetAllShelves();
+                int shelfTagId = view.GetIntInput();
+
+                int rowsAffected = storageManager.UpdateRowsShelfById(shelfRowId, shelfTagId);
+                view.DisplayMessage($"\nUpdated {rowsAffected} records.");
+            }
+            catch (FormatException e)
+            {
+                Console.WriteLine("\n  Please use the proper formatting.");
+                Console.WriteLine(e.Message);
+
+                MoveRow();
+
+            }
+
+        }
+
+        private static void InstallNewRow()
+        {
+            
+
+            try
+            {
+                view.DisplayMessage("\nEnter the new rows tag... ");
+                char shelfTag = view.GetCharInput();
+
+                view.DisplayMessage("\nEnter the new room... ");
+                int roomId = view.GetIntInput();
+                int shelfTagId = 0;
+
+                Shelves newShelf = new Shelves(shelfTagId, shelfTag, roomId);
+
+                int generatedId = storageManager.InsertShelf(newShelf);
+                view.DisplayMessage($"\nThe new shelves identification number is: {generatedId}");
+            }
+            catch (FormatException e)
+            {
+                Console.WriteLine("\n  Please use the proper formatting.");
+                Console.WriteLine(e.Message);
+
+                InsertNewShelf();
+
+            }
+
+        }
+
+        private static void DeleteRowById()
+        {
+            
+
+            try
+            {
+                view.DisplayMessage("\nEnter the identification number... ");
+                List<Rows> rows = storageManager.GetAllRows();
+                int shelfRowId = view.GetIntInput();
+
+                int rowsAffected = storageManager.DeleteRowById(shelfRowId);
                 view.DisplayMessage($"\nDeleted {rowsAffected} row.");
             }
             catch (FormatException e)

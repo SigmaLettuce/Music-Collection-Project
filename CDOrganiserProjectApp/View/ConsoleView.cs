@@ -68,6 +68,7 @@ namespace CDOrganiserProjectApp.View
                 Console.WriteLine("\t[/]  'bands' - All bands who have published an album you own");
                 Console.WriteLine("\t[/]  'genres' - All musical categories of your collection");
                 Console.WriteLine("\t[/]  'rooms' - All available rooms");
+                Console.WriteLine("\t[/]  'rows' - All available rows of a shelf");
                 Console.WriteLine("\t[/]  'shelves' - All available shelving units and their locations\n");
 
             Console.WriteLine("\tSETTINGS... ");
@@ -135,16 +136,16 @@ namespace CDOrganiserProjectApp.View
                 Console.WriteLine("\tEDIT... ");
                 Console.WriteLine("\tYou can now modify this listing.");
 
-                    Console.WriteLine("\n\t'up' - Updates information");
-                    Console.WriteLine("\t'ins' - Adds new information");
-                    Console.WriteLine("\t'del' - Deletes unwanted information\n");
+                    Console.WriteLine("\n\t[/]  'up' - Updates information");
+                    Console.WriteLine("\t[/]  'ins' - Adds new information");
+                    Console.WriteLine("\t[/]  'del' - Deletes unwanted information\n");
 
                 Console.WriteLine("\tVIEW... ");
                 Console.WriteLine("\tThese are the available report listings, compiled into directories.");
 
-                    Console.WriteLine("\n\t'reports' - Opens the reports\n");
+                    Console.WriteLine("\n\t[*]  'reports' - Opens the reports\n");
 
-                    Console.WriteLine("\n\t'back' - Return to homepage\n");
+                    Console.WriteLine("\n\t[*]  'back' - Return to homepage\n");
 
 
                 Console.WriteLine("Enter any of the listings above to gain access... \n");
@@ -203,17 +204,17 @@ namespace CDOrganiserProjectApp.View
                 Console.WriteLine("\tEDIT... ");
                 Console.WriteLine("\tYou can now modify this listing.");
 
-                    Console.WriteLine("\n\t'up' - Updates information");
-                    Console.WriteLine("\t'ins' - Adds new information");
-                    Console.WriteLine("\t'del' - Deletes unwanted information\n");
-                    Console.WriteLine("\t'lost' - Mark an album as lost\n");
+                    Console.WriteLine("\n\t[/]  'up' - Updates information");
+                    Console.WriteLine("\t[/]  'ins' - Adds new information");
+                    Console.WriteLine("\t[/]  'del' - Deletes unwanted information\n");
+                    Console.WriteLine("\t[/]  'lost' - Mark an album as lost\n");
 
                 Console.WriteLine("\tVIEW... ");
                 Console.WriteLine("\tThese are the available report listings, compiled into directories.");
 
-                    Console.WriteLine("\n\t'reports' - Opens the reports\n");
+                    Console.WriteLine("\n\t[*]  'reports' - Opens the reports\n");
 
-                    Console.WriteLine("\n\t'back' - Return to homepage\n");
+                    Console.WriteLine("\n\t[*]  'back' - Return to homepage\n");
 
 
                 Console.WriteLine("Enter any of the listings above to gain access... \n");
@@ -228,7 +229,7 @@ namespace CDOrganiserProjectApp.View
                     Console.WriteLine("\t[/]  'artists' - All the albums published by singular artists");
                     Console.WriteLine("\t[/]  'bands' - All the albums published by bands");
 
-                Console.WriteLine("\n\t'back' - Return to homepage\n");
+                Console.WriteLine("\n\t[*]  'back' - Return to homepage\n");
 
 
                 Console.WriteLine("Enter any of the listings above to gain access... \n");
@@ -240,17 +241,17 @@ namespace CDOrganiserProjectApp.View
                 Console.WriteLine("\tEDIT... ");
                 Console.WriteLine("\tYou can now modify this listing.");
 
-                    Console.WriteLine("\n\t'up' - Updates information");
-                    Console.WriteLine("\t'ins' - Adds new information");
-                    Console.WriteLine("\t'del' - Deletes unwanted information\n");
-                    Console.WriteLine("\t'favourite' - Mark your favourite album\n");
+                    Console.WriteLine("\n\t[/]  'up' - Updates information");
+                    Console.WriteLine("\t[/]  'ins' - Adds new information");
+                    Console.WriteLine("\t[/]  'del' - Deletes unwanted information\n");
+                    Console.WriteLine("\t[/]  'favourite' - Mark your favourite album\n");
                     
                 Console.WriteLine("\tVIEW... ");
                 Console.WriteLine("\tThese are the available report listings, compiled into directories.");
 
-                    Console.WriteLine("\n\t'reports' - Opens the reports\n");
+                    Console.WriteLine("\n\t[*]  'reports' - Opens the reports\n");
 
-                    Console.WriteLine("\n\t'back' - Return to homepage\n");
+                    Console.WriteLine("\n\t[*]  'back' - Return to homepage\n");
 
 
                 Console.WriteLine("Enter any of the listings above to gain access... \n");
@@ -265,7 +266,7 @@ namespace CDOrganiserProjectApp.View
                     Console.WriteLine("\t[/]  'default' - Creates a default account");
                     Console.WriteLine("\t[/]  'admin' - Creates an admin account");
 
-                Console.WriteLine("\n\t'back' - Return to homepage\n");
+                Console.WriteLine("\n\t[*]  'back' - Return to homepage\n");
 
 
                 Console.WriteLine("Enter any of the listings above to create ann account... \n");
@@ -279,7 +280,7 @@ namespace CDOrganiserProjectApp.View
 
                     Console.WriteLine("\t[/]  'default' - Creates a default account");
 
-                Console.WriteLine("\n\t'back' - Return to homepage\n");
+                Console.WriteLine("\n\t[*]  'back' - Return to homepage\n");
 
 
                 Console.WriteLine("Enter any of the listings above to create ann account... \n");
