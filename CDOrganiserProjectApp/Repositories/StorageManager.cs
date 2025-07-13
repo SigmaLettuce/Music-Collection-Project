@@ -357,7 +357,7 @@ namespace CDOrganiserProjectApp
             {
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
-                    Console.WriteLine("ID:  NAME:\tCATEGORY:\tRELEASE DATE:\tFORMAT:\tARTIST\tROW:\tFAVOURITE:\t");
+                    Console.WriteLine("ID:NAME:CATEGORY:RELEASE DATE:FORMAT:ARTIST:ROW:FAVOURITE:");
 
                     while (reader.Read())
                     {
@@ -459,7 +459,7 @@ namespace CDOrganiserProjectApp
         public List<BandAlbums> GetAllBandAlbums()
         {
             List<BandAlbums> albums = new List<BandAlbums>();
-            string sqlStr = "SELECT albumID, albumName, genreName, dateOfRelease, formatName, bandName, shelfRow, lost FROM Contents.tblGenres, Contents.tblBandAlbums, Properties.tblFormat, Contents.tblBands, Properties.tblRow WHERE tblBandAlbums.genreID = tblGenres.genreID AND tblBandAlbums.formatID = tblFormat.formatID AND tblBandAlbums.bandID = tblArtists.bandID AND tblBandAlbums.shelfRowId = tblRow.shelfRowId";
+            string sqlStr = "SELECT albumID, albumName, tblBandAlbums.genreID, genreName, dateOfRelease, tblBandAlbums.formatID, formatName, tblBandAlbums.bandID, bandName, tblBandAlbums.shelfRowID, shelfRow, lost FROM Contents.tblGenres, Contents.tblBandAlbums, Properties.tblFormat, Contents.tblBands, Properties.tblRow WHERE tblBandAlbums.genreID = tblGenres.genreID AND tblBandAlbums.formatID = tblFormat.formatID AND tblBandAlbums.bandID = tblBands.bandID AND tblBandAlbums.shelfRowId = tblRow.shelfRowId";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
                 using (SqlDataReader reader = cmd.ExecuteReader())
@@ -498,6 +498,7 @@ namespace CDOrganiserProjectApp
         {
             using (SqlCommand cmd = new SqlCommand($"INSERT INTO Contents.tblBandAlbums (albumName, genreID, dateOfRelease, formatID, bandID, shelfRowID) VALUES (@AlbumId, @GenreId, @DateOfRelease, @FormatId, @BandId, @ShelfRowId); SELECT SCOPE_IDENTITY();", conn))
             {
+                cmd.Parameters.AddWithValue("@AlbumId", albums.AlbumId);
                 cmd.Parameters.AddWithValue("@AlbumName", albums.AlbumName);
                 cmd.Parameters.AddWithValue("@GenreId", albums.GenreId);
                 cmd.Parameters.AddWithValue("@DateOfRelease", albums.DateOfRelease);
@@ -550,6 +551,29 @@ namespace CDOrganiserProjectApp
                 return cmd.ExecuteNonQuery();
             }
         }
+
+        public string SearchGenres(string search)
+        {
+
+            string sqlStr = $"SELECT genreName FROM Contents.tblGenres WHERE genreName = @search";
+            using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
+            {
+                cmd.Parameters.AddWithValue("@search", search);
+                Console.WriteLine("CATEGORY:");
+
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        search = reader["username"].ToString();
+
+                        Console.WriteLine($"{search}\n");
+                    }
+
+                    return search;
+                }
+            }
+        }
         
         public int DeleteBandAlbumById(int albumId)
         {
@@ -566,14 +590,14 @@ namespace CDOrganiserProjectApp
         public List<ArtistReviews> GetAllArtistReviews(int personId)
         {
             List<ArtistReviews> albums = new List<ArtistReviews>();
-            string sqlStr = "SELECT reviewID, albumName, fName, tierTag, favourite FROM Contents.tblArtistReviews, Contents.tblBandAlbums, Properties.tblAccounts, Properties.tblTier WHERE tblArtistReviews.albumID = tblArtistAlbums.albumID AND tblArtistReviews.personID = @currentPerson AND tblArtistReviews.tierID = tblTier.tierID";
+            string sqlStr = "SELECT reviewID, tblArtistReviews.albumID, albumName, tblArtistReviews.personID, fName, tblArtistReviews.tierID, tierTag, favourite FROM Contents.tblArtistReviews, Contents.tblArtistAlbums, Properties.tblAccounts, Properties.tblTier WHERE tblArtistReviews.albumID = tblArtistAlbums.albumID AND tblArtistReviews.personID = @currentPerson AND tblArtistReviews.tierID = tblTier.tierID";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
                 cmd.Parameters.AddWithValue("@currentPerson", personId);
 
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
-                    Console.WriteLine("ID: NAME: CATEGORY: FIRST NAME: RANK: FAVOURITE:");
+                    Console.WriteLine("ID: NAME: RANK: FAVOURITE:");
 
                     while (reader.Read())
                     {
@@ -586,7 +610,7 @@ namespace CDOrganiserProjectApp
                         string fName = reader["fName"].ToString();
                         char tierTag = Convert.ToChar(reader["tierTag"]);
 
-                        albums.Add(new ArtistReviews(albumId, albumId, personId, tierTag, favourite));
+                        albums.Add(new ArtistReviews(reviewId, albumId, personId, tierId, favourite));
 
 
 

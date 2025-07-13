@@ -1,2 +1,4 @@
-﻿SELECT *
-from Properties.tblAccounts
+﻿SELECT * 
+FROM Properties.tblRow
+
+

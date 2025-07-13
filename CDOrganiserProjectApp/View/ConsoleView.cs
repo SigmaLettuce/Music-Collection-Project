@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Channels;
 using System.Threading.Tasks;
 using System.Linq;
+using System.IO; // .txt file support.
 
 namespace CDOrganiserProjectApp.View
 {
@@ -95,27 +96,6 @@ namespace CDOrganiserProjectApp.View
 
         public string DisplayGuestMenu() 
         {
-            /*
-            Console.WriteLine("\n\tWelcome to your CD Manager! ");
-            Console.WriteLine("\tList of commands... \n"); 
-
-            Console.WriteLine("Prefixes · Commands to run on sets of data");
-            Console.WriteLine("\n\t'view' - Displays information\n");
-
-            Console.WriteLine("Suffixes · Data sets available to run commands on");
-            Console.WriteLine("\n\t'categories' - Categories of music\n");
-
-            Console.WriteLine("Extras · Commands irrelevant to your data");
-            Console.WriteLine("\n\tPrefixes · Commands to run on sets of data");
-            Console.WriteLine("\t'create' - Creates an account");
-            Console.WriteLine("\t'del' - Deletes an account\n");
-
-            Console.WriteLine("Suffixes · Data sets available to run commands on");
-            Console.WriteLine("\n\t'user' - A user account");
-            Console.WriteLine("\t'help' - A comprehensive guide to the appplication");
-            Console.WriteLine("\t'log out' - Exits the account; brings you back to 'Start Menu'\n");
-            */
-
             Console.WriteLine("\n\tWelcome to your CD Manager! \n");
             Console.WriteLine("\tVIEW... ");
             Console.WriteLine("\tThese are your available listings, compiled into directories.");
@@ -334,7 +314,8 @@ namespace CDOrganiserProjectApp.View
             Console.WriteLine("\tFAQ... ");
 
                 Console.WriteLine("\t[*]  'How can I login?' - Open the folder you installed, then open the .txt file 'account~list'.");
-                Console.WriteLine("\t[*]  'The connection isn't being established!' - Open the .sln in an IDE > Open the SQL Server Object Explorer. If that doesn't fix it, please open the repository .url.");
+                Console.WriteLine("\t[*]  'The connection isn't being established!' - Open the .sln in an IDE > Open the SQL Server Object Explorer > Look through the directory for 'HomeMusicCollectionDatabase'");
+                Console.WriteLine("\t\t[-] > Click on it and open the Properties window by entering F4 or Fn + F4 to copy the connection string >  If that doesn't fix it, please open the repository .url.\n");
                 Console.WriteLine("\t[*]  'Text from a record is clipping into the next line!' - Enter F11 or Alt + Enter.");
                 Console.WriteLine("\t[*]  'Why does failing a command input send me back to the menuscreen?' - It was taking up too much of my time, couldn't wrap my head around it.");
                 Console.WriteLine("\t[*]  'How do I view the listings?' - Exactly how you ended up here. Enter a listed keyword. This is not case-sensitive.");

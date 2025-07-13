@@ -1285,7 +1285,7 @@ namespace CDOrganiserProjectApp
                                             default:
                                                 view.DisplayError(wait);
 
-                                                AdminMenuscreenOptions();
+                                                GuestMenuscreenOptions();
 
                                             break;
                                         }
@@ -1630,54 +1630,106 @@ namespace CDOrganiserProjectApp
         // The data-modifying commands for the Artists table.
         private static void UpdateArtistName()
         {
-            view.DisplayMessage("\nEnter the identification number... ");
-            List<Artists> artists = storageManager.GetAllArtists();
-            int artistId = view.GetIntInput();
+            try
+            {
+                view.DisplayMessage("\nEnter the identification number... ");
+                List<Artists> artists = storageManager.GetAllArtists();
+                int artistId = view.GetIntInput();
 
-            view.DisplayMessage("\nRename the record... ");
-            string artistName = view.GetInput();
+                view.DisplayMessage("\nRename the record... ");
+                string artistName = view.GetInput();
 
-            int rowsAffected = storageManager.UpdateArtistById(artistId, artistName);
-            view.DisplayMessage($"\nUpdated {rowsAffected} records.");
+                int rowsAffected = storageManager.UpdateArtistById(artistId, artistName);
+                view.DisplayMessage($"\nUpdated {rowsAffected} records.");
+
+            }
+            catch (FormatException e)
+            {
+                Console.WriteLine("\n  Please use the proper formatting.");
+                Console.WriteLine(e.Message);
+
+                UpdateArtistName();
+                
+            }
+
+
 
         }
 
         private static void InsertNewArtist()
         {
-            view.DisplayMessage("\nEnter the new artist... ");
-            string artistName = view.GetInput();
-            int artistId = 0;
+            try
+            {
+                view.DisplayMessage("\nEnter the new artist... ");
+                string artistName = view.GetInput();
+                int artistId = 0;
 
-            Artists newArtist = new Artists(artistId, artistName);
+                Artists newArtist = new Artists(artistId, artistName);
 
-            int generatedId = storageManager.InsertArtist(newArtist);
-            view.DisplayMessage($"\nThe new artists identification number is: {generatedId}");
+                int generatedId = storageManager.InsertArtist(newArtist);
+                view.DisplayMessage($"\nThe new artists identification number is: {generatedId}");
+
+            }
+            catch (FormatException e)
+            {
+                Console.WriteLine("\n  Please use the proper formatting.");
+                Console.WriteLine(e.Message);
+
+                InsertNewArtist();
+                
+            }           
 
         }
 
         private static void DeleteArtistById()
         {
-            view.DisplayMessage("\nEnter the identification number... ");
-            List<Artists> artists = storageManager.GetAllArtists();
-            int artistId = view.GetIntInput();
+            try
+            {
+                view.DisplayMessage("\nEnter the identification number... ");
+                List<Artists> artists = storageManager.GetAllArtists();
+                int artistId = view.GetIntInput();
 
-            int rowsAffected = storageManager.DeleteArtistById(artistId);
-            view.DisplayMessage($"\nDeleted {rowsAffected} row.");
+                int rowsAffected = storageManager.DeleteArtistById(artistId);
+                view.DisplayMessage($"\nDeleted {rowsAffected} row.");
+
+
+            }
+            catch (FormatException e)
+            {
+                Console.WriteLine("\n  Please use the proper formatting.");
+                Console.WriteLine(e.Message);
+
+                DeleteArtistById();
+               
+            }
         }
 
 
         // The data-modifying commands for the Rooms table.
         private static void UpdateRoomName()
         {
-            view.DisplayMessage("\nEnter the identification number... ");
-            List<Rooms> rooms = storageManager.GetAllRooms();
-            int roomId = view.GetIntInput();
+            
 
-            view.DisplayMessage("\nRename the record... ");
-            string roomName = view.GetInput();
+            try
+            {
+                view.DisplayMessage("\nEnter the identification number... ");
+                List<Rooms> rooms = storageManager.GetAllRooms();
+                int roomId = view.GetIntInput();
 
-            int rowsAffected = storageManager.UpdateRoomById(roomId, roomName);
-            view.DisplayMessage($"\nUpdated {rowsAffected} records.");
+                view.DisplayMessage("\nRename the record... ");
+                string roomName = view.GetInput();
+
+                int rowsAffected = storageManager.UpdateRoomById(roomId, roomName);
+                view.DisplayMessage($"\nUpdated {rowsAffected} records.");
+            }
+            catch (FormatException e)
+            {
+                Console.WriteLine("\n  Please use the proper formatting.");
+                Console.WriteLine(e.Message);
+
+                UpdateArtistName();
+
+            }
 
         }
 
@@ -1832,8 +1884,8 @@ namespace CDOrganiserProjectApp
             int formatId = view.GetIntInput();
 
             view.DisplayMessage("\nEnter a new artist identification number... ");
-            List<Bands> bands = storageManager.GetAllBands();
-            view.DisplayBands(bands);
+            List<Artists> artists = storageManager.GetAllArtists();
+            view.DisplayArtists(artists);
 
             int artistId = view.GetIntInput();
 
@@ -1914,21 +1966,11 @@ namespace CDOrganiserProjectApp
         // The data-modifying commands for the Band Albums table.
         private static void UpdateBandAlbum()
         {
-            try
-            {
 
-            }
-            catch (FormatException f)
-            {
-
-                
-            }
             view.DisplayMessage("\nEnter an album identification number... ");
-            List<BandAlbums> albums = storageManager.GetAllBandAlbums();
             int albumId = view.GetIntInput();
             
             view.DisplayMessage("\nEnter the new album name... ");
-            albums = storageManager.GetAllBandAlbums();
             
             string albumName = view.GetInput();
 
