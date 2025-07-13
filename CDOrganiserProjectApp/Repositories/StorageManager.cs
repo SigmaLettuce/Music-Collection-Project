@@ -349,6 +349,68 @@ namespace CDOrganiserProjectApp
         }
 
 
+        public List<Rows> GetAllRows()
+        {
+            List<Rows> rows = new List<Rows>();
+            string sqlStr = "SELECT tblShelf.shelfTagID, tblShelf.shelfTag, tblShelf.roomID, tblStorageRoom.roomName FROM Properties.tblShelf, Properties.tblStorageRoom WHERE tblShelf.roomID = tblStorageRoom.roomID";
+            using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
+            {
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    Console.WriteLine("ID:  ROW:   TAG:");
+
+                    while (reader.Read())
+                    {
+                        int shelfRowId = Convert.ToInt32(reader["shelfRowID"]);
+                        int shelfRow = Convert.ToInt32(reader["shelfRow"]);
+                        int shelfTagId = Convert.ToInt32(reader["shelfTagID"]);
+
+                        char shelfTag = Convert.ToChar(reader["roomName"]);
+
+                        rows.Add(new Rows(shelfRowId, shelfTag, shelfTagId));
+
+                        Console.WriteLine($"{shelfRowId}, {shelfRow}, {shelfTag}\n");
+                        Thread.Sleep(wait);
+                    }
+                }
+            }
+            return rows;
+        }
+
+        public int InsertRow(Rows rows)
+        {
+            using (SqlCommand cmd = new SqlCommand($"INSERT INTO Properties.tblRow (shelfRow, shelfTagID) VALUES (@shelfRow, @shelfTagId); SELECT SCOPE_IDENTITY();", conn))
+            {
+                cmd.Parameters.AddWithValue("@shelfRow", rows.ShelfRow);
+                cmd.Parameters.AddWithValue("@shelfTagId", rows.ShelfTagId);
+                
+                return Convert.ToInt32(cmd.ExecuteScalar());
+            }
+        }
+
+        public int UpdateRowsShelfById(int shelfRowId, int shelfTagId)
+        {
+            string sqlStr = $"UPDATE Properties.tblRow SET shelfTagID = @shelfTagId WHERE shelfRowID = @shelfRowId";
+            using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
+            {
+                cmd.Parameters.AddWithValue("@shelfRowId", shelfRowId);
+                cmd.Parameters.AddWithValue("@shelfTagId", shelfTagId);
+                return cmd.ExecuteNonQuery();
+            }
+        }
+
+        public int DeleteRowById(int shelfRowId)
+        {
+            string sqlStr = "DELETE FROM Properties.tblRow WHERE shelfRowID = @shelfRowId";
+            using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
+            {
+                cmd.Parameters.AddWithValue("@shelfRowId", shelfRowId);
+                return cmd.ExecuteNonQuery();
+            }
+
+        }
+
+
         public List<ArtistAlbums> GetAllArtistAlbums()
         {
             List<ArtistAlbums> albums = new List<ArtistAlbums>();
@@ -949,6 +1011,8 @@ namespace CDOrganiserProjectApp
                 }
             }
         }
+
+
 
         // Advanced Query 5
         public void GetAToJArtists()

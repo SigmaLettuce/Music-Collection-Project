@@ -347,13 +347,7 @@ namespace CDOrganiserProjectApp.View
                 
 
             return Console.ReadLine();
-        }
-
-       public IList<Bands> BandPager(IList<Bands> bands, int pg, int pgsz)
-       {
-            return bands.Skip(pg - 1 * pgsz).Take(pgsz).ToList();
-       }
-       
+        }      
 
         public void DisplayBands(List<Bands> bands)
         {
