@@ -1474,7 +1474,7 @@ namespace CDOrganiserProjectApp
 
         }
 
-        private static void GoBack() 
+        private static void GoBack() // The Go Back function. 
         {
             bool carry = true;
 
@@ -1508,111 +1508,225 @@ namespace CDOrganiserProjectApp
       
             } while (carry);
 
-        } // The Go Back function.
+        } 
 
 
         // The data-modifying commands for the Bands table.
         private static void UpdateBandName()
         {
-            view.DisplayMessage("\nEnter the identification number... ");
-            int bandId = view.GetIntInput();
+            
 
-            view.DisplayMessage("\nRename the record... ");
-            string bandName = view.GetInput();
+            try
+            {
+                view.DisplayMessage("\nEnter the identification number... ");
+                int bandId = view.GetIntInput();
 
-            int rowsAffected = storageManager.UpdateBandById(bandId, bandName);
-            view.DisplayMessage($"\nUpdated {rowsAffected} records.");
+                view.DisplayMessage("\nRename the record... ");
+                string bandName = view.GetInput();
+
+                int rowsAffected = storageManager.UpdateBandById(bandId, bandName);
+                view.DisplayMessage($"\nUpdated {rowsAffected} records.");
+
+            }
+            catch (FormatException e)
+            {
+                Console.WriteLine("\n  Please use the proper formatting.");
+                Console.WriteLine(e.Message);
+
+                UpdateBandName();
+    
+            }
 
         }  
 
         private static void InsertNewBand()
         {
-            view.DisplayMessage("\nEnter the new band... ");
-            string bandName = view.GetInput();
-            int bandId = 0; 
+            
 
-            Bands newBand = new Bands(bandId, bandName);
+            try
+            {
+                view.DisplayMessage("\nEnter the new band... ");
+                string bandName = view.GetInput();
+                int bandId = 0; 
 
-            int generatedId = storageManager.InsertBand(newBand);
-            view.DisplayMessage($"\nThe new bands identification number is: {generatedId}");
+                Bands newBand = new Bands(bandId, bandName);
+
+                int generatedId = storageManager.InsertBand(newBand);
+                view.DisplayMessage($"\nThe new bands identification number is: {generatedId}");
+
+            }
+            catch (FormatException e)
+            {
+                Console.WriteLine("\n  Please use the proper formatting.");
+                Console.WriteLine(e.Message);
+
+                InsertNewBand();
+    
+            }
 
         }
 
         private static void DeleteBandById()
         {
-            view.DisplayMessage("\nEnter the identification number... ");
-            int bandId = view.GetIntInput();
+            
 
-            int rowsAffected = storageManager.DeleteBandById(bandId);
-            view.DisplayMessage($"\nDeleted {rowsAffected} row.");
+            try
+            {
+                view.DisplayMessage("\nEnter the identification number... ");
+                int bandId = view.GetIntInput();
+
+                int rowsAffected = storageManager.DeleteBandById(bandId);
+                view.DisplayMessage($"\nDeleted {rowsAffected} row.");
+
+            }
+            catch (FormatException e)
+            {
+                Console.WriteLine("\n  Please use the proper formatting.");
+                Console.WriteLine(e.Message);
+
+                DeleteBandById();
+    
+            }
+
         }
 
 
         // The data-modifying commands for the Genres table.
         private static void UpdateGenreName()
         {
-            view.DisplayMessage("\nEnter the identification number... ");
-            List<Genres> genres = storageManager.GetAllGenres();
-            int genreId = view.GetIntInput();
+            
 
-            view.DisplayMessage("\nRename the record... ");
-            string genreName = view.GetInput();
+            try
+            {
+                view.DisplayMessage("\nEnter the identification number... ");
+                List<Genres> genres = storageManager.GetAllGenres();
+                int genreId = view.GetIntInput();
 
-            int rowsAffected = storageManager.UpdateGenreById(genreId, genreName);
-            view.DisplayMessage($"\nUpdated {rowsAffected} records.");
+                view.DisplayMessage("\nRename the record... ");
+                string genreName = view.GetInput();
+
+                int rowsAffected = storageManager.UpdateGenreById(genreId, genreName);
+                view.DisplayMessage($"\nUpdated {rowsAffected} records.");
+
+            }
+            catch (FormatException e)
+            {
+                Console.WriteLine("\n  Please use the proper formatting.");
+                Console.WriteLine(e.Message);
+
+                UpdateGenreName();
+    
+            }
 
         }
 
         private static void InsertNewGenre()
         {
-            view.DisplayMessage("\nEnter the new genre... ");
-            string genreName = view.GetInput();
-            List<Genres> genres = storageManager.GetAllGenres();
-            int genreId = 0; 
+            
 
-            Genres newGenre = new Genres(genreId, genreName);
+            try
+            {
+                view.DisplayMessage("\nEnter the new genre... ");
+                string genreName = view.GetInput();
+                List<Genres> genres = storageManager.GetAllGenres();
+                int genreId = 0; 
 
-            int generatedId = storageManager.InsertGenre(newGenre);
-            view.DisplayMessage($"\nThe new genres identification number is: {generatedId}");
+                Genres newGenre = new Genres(genreId, genreName);
+
+                int generatedId = storageManager.InsertGenre(newGenre);
+                view.DisplayMessage($"\nThe new genres identification number is: {generatedId}");
+
+            }
+            catch (FormatException e)
+            {
+                Console.WriteLine("\n  Please use the proper formatting.");
+                Console.WriteLine(e.Message);
+
+                InsertNewGenre();
+    
+            }
 
         }
 
         private static void DeleteGenreById()
         {
-            view.DisplayMessage("\nEnter the identification number... ");
-            List<Genres> genres = storageManager.GetAllGenres();
-            int genreId = view.GetIntInput();
+            
 
-            int rowsAffected = storageManager.DeleteGenreById(genreId);
-            view.DisplayMessage($"\nDeleted {rowsAffected} rows.");
+            try
+            {
+                view.DisplayMessage("\nEnter the identification number... ");
+                List<Genres> genres = storageManager.GetAllGenres();
+                int genreId = view.GetIntInput();
+
+                int rowsAffected = storageManager.DeleteGenreById(genreId);
+                view.DisplayMessage($"\nDeleted {rowsAffected} rows.");
+
+            }
+            catch (FormatException e)
+            {
+                Console.WriteLine("\n  Please use the proper formatting.");
+                Console.WriteLine(e.Message);
+
+                DeleteGenreById();
+    
+            }
+
         }
 
 
         // The data-modifying commands for the Formats table.
         private static void UpdateFormatName()
         {
-            view.DisplayMessage("\nEnter the identification number... ");
-            List<Formats> formats = storageManager.GetAllFormats();
-            int formatId = view.GetIntInput();
+            
 
-            view.DisplayMessage("\nRename the record... ");
-            string formatName = view.GetInput();
+            try
+            {
+                view.DisplayMessage("\nEnter the identification number... ");
+                List<Formats> formats = storageManager.GetAllFormats();
+                int formatId = view.GetIntInput();
 
-            int rowsAffected = storageManager.UpdateFormatById(formatId, formatName);
-            view.DisplayMessage($"\nUpdated {rowsAffected} records.");
+                view.DisplayMessage("\nRename the record... ");
+                string formatName = view.GetInput();
+
+                int rowsAffected = storageManager.UpdateFormatById(formatId, formatName);
+                view.DisplayMessage($"\nUpdated {rowsAffected} records.");
+
+            }
+            catch (FormatException e)
+            {
+                Console.WriteLine("\n  Please use the proper formatting.");
+                Console.WriteLine(e.Message);
+
+                UpdateFormatName();
+    
+            }
 
         }
 
         private static void InsertNewFormat()
         {
-            view.DisplayMessage("\nEnter the new format... ");
-            string formatName = view.GetInput();
-            int formatId = 0; 
+            
 
-            Formats newFormat = new Formats(formatId, formatName);
+            try
+            {
+                view.DisplayMessage("\nEnter the new format... ");
+                string formatName = view.GetInput();
+                int formatId = 0; 
 
-            int generatedId = storageManager.InsertFormat(newFormat);
-            view.DisplayMessage($"\nThe new formats identification number is: {generatedId}");
+                Formats newFormat = new Formats(formatId, formatName);
+
+                int generatedId = storageManager.InsertFormat(newFormat);
+                view.DisplayMessage($"\nThe new formats identification number is: {generatedId}");
+
+            }
+            catch (FormatException e)
+            {
+                Console.WriteLine("\n  Please use the proper formatting.");
+                Console.WriteLine(e.Message);
+
+                InsertNewFormat();
+    
+            }
 
         }
 
