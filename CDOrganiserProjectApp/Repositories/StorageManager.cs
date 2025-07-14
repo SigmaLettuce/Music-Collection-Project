@@ -1046,7 +1046,79 @@ namespace CDOrganiserProjectApp
                 {
                     while (reader.Read())
                     {
-                        search = reader["username"].ToString();
+                        search = reader["genreName"].ToString();
+
+                        Console.WriteLine($"{search}\n");
+                    }
+
+                    return search;
+                }
+            }
+        }
+
+
+        public string SearchArtists(string search)
+        {
+
+            string sqlStr = $"SELECT artistName FROM Contents.tblArtistAlbums WHERE artistName = @search";
+            using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
+            {
+                cmd.Parameters.AddWithValue("@search", search);
+                Console.WriteLine("NAME:");
+
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        search = reader["artistName"].ToString();
+
+                        Console.WriteLine($"{search}\n");
+                    }
+
+                    return search;
+                }
+            }
+        }
+
+
+        public string SearchBands(string search)
+        {
+
+            string sqlStr = $"SELECT bandName FROM Contents.tblArtistAlbums WHERE bandName = @search";
+            using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
+            {
+                cmd.Parameters.AddWithValue("@search", search);
+                Console.WriteLine("NAME:");
+
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        search = reader["bandName"].ToString();
+
+                        Console.WriteLine($"{search}\n");
+                    }
+
+                    return search;
+                }
+            }
+        }
+
+
+        public string SearchBandReviews(string search)
+        {
+
+            string sqlStr = $"SELECT tblTier.tierTag FROM Contents.tblArtistReviews, Contents.tblArtistAlbums, Contents.tblArtists, Properties.tblTier WHERE tblArtists.artistName = @search AND tblArtistReviews.tierID = tblTier.tierID AND tblArtistReviews.albumID = tblArtistAlbums.albumID AND tblArtistAlbums.artistID = tblArtists.artistID";
+            using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
+            {
+                cmd.Parameters.AddWithValue("@search", search);
+                Console.WriteLine("NAME:");
+
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        search = reader["bandName"].ToString();
 
                         Console.WriteLine($"{search}\n");
                     }
