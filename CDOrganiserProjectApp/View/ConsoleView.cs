@@ -391,20 +391,6 @@ namespace CDOrganiserProjectApp.View
             return Convert.ToInt32(Console.ReadLine());
         }
 
-        /* 
-          
-         Configure Option.
-        A prompt used to confirm the users nature. 
-
-
-        */ 
-
-        public string ConfigureOption()
-        {
-            Console.WriteLine("Are you sure... ? Y/n");
-
-            return Console.ReadLine();
-        }
 
         /*
          

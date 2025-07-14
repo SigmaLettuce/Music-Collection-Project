@@ -990,6 +990,9 @@ namespace CDOrganiserProjectApp
                         Thread.Sleep(wait);
                     }
                 }
+
+                Console.WriteLine("\n\t[*]  Return to homepage - Press E + Enter\n");
+
             }
         }
 
@@ -1010,6 +1013,9 @@ namespace CDOrganiserProjectApp
                         Thread.Sleep(wait);
                     }
                 }
+
+                Console.WriteLine("\n\t[*]  Return to homepage - Press E + Enter\n");
+
             }
         }
 
@@ -1030,6 +1036,9 @@ namespace CDOrganiserProjectApp
                         Thread.Sleep(wait);
                     }
                 }
+
+                Console.WriteLine("\n\t[*]  Return to homepage - Press E + Enter\n");
+
             }
         }
 
@@ -1049,6 +1058,9 @@ namespace CDOrganiserProjectApp
                         Thread.Sleep(wait);
                     }
                 }
+
+                Console.WriteLine("\n\t[*]  Return to homepage - Press E + Enter\n");
+
             }
         }
 
@@ -1067,6 +1079,9 @@ namespace CDOrganiserProjectApp
                         Thread.Sleep(wait);
                     }
                 }
+
+                Console.WriteLine("\n\t[*]  Return to homepage - Press E + Enter\n");
+
             }
         }
 
@@ -1086,6 +1101,9 @@ namespace CDOrganiserProjectApp
                         Thread.Sleep(wait);
                     }
                 }
+
+                Console.WriteLine("\n\t[*]  Return to homepage - Press E + Enter\n");
+
             }
         }
 
@@ -1105,6 +1123,9 @@ namespace CDOrganiserProjectApp
                         Thread.Sleep(wait);
                     }
                 }
+
+                Console.WriteLine("\n\t[*]  Return to homepage - Press E + Enter\n");
+
             }
         }
 
@@ -1128,6 +1149,9 @@ namespace CDOrganiserProjectApp
                         Thread.Sleep(wait);
                     }
                 }
+
+                Console.WriteLine("\n\t[*]  Return to homepage - Press E + Enter\n");
+
             }
         }
 
@@ -1148,6 +1172,9 @@ namespace CDOrganiserProjectApp
                         Thread.Sleep(wait);
                     }
                 }
+
+                Console.WriteLine("\n\t[*]  Return to homepage - Press E + Enter\n");
+
             }
         }
 
@@ -1168,6 +1195,9 @@ namespace CDOrganiserProjectApp
                         Thread.Sleep(wait);
                     }
                 }
+
+                Console.WriteLine("\n\t[*]  Return to homepage - Press E + Enter\n");
+
             }
         }
 
@@ -1187,6 +1217,9 @@ namespace CDOrganiserProjectApp
                         Thread.Sleep(wait);
                     }
                 }
+
+                Console.WriteLine("\n\t[*]  Return to homepage - Press E + Enter\n");
+
             }
         }
 
@@ -1224,6 +1257,9 @@ namespace CDOrganiserProjectApp
                         Thread.Sleep(wait);
                     }
                 }
+
+                Console.WriteLine("\n\t[*]  Return to homepage - Press E + Enter\n");
+
             }
         }
 
@@ -1243,6 +1279,9 @@ namespace CDOrganiserProjectApp
                         Thread.Sleep(wait);
                     }
                 }
+
+                Console.WriteLine("\n\t[*]  Return to homepage - Press E + Enter\n");
+
             }
         }
 
@@ -1265,6 +1304,9 @@ namespace CDOrganiserProjectApp
                         Thread.Sleep(wait);
                     }
                 }
+
+                Console.WriteLine("\n\t[*]  Return to homepage - Press E + Enter\n");
+
             }
         }
 
@@ -1284,6 +1326,9 @@ namespace CDOrganiserProjectApp
                         Thread.Sleep(wait);
                     }
                 }
+
+                Console.WriteLine("\n\t[*]  Return to homepage - Press E + Enter\n");
+
             }
         }
 
@@ -1303,6 +1348,9 @@ namespace CDOrganiserProjectApp
                         Thread.Sleep(wait);
                     }
                 }
+
+                Console.WriteLine("\n\t[*]  Return to homepage - Press E + Enter\n");
+
             }
         }
 
@@ -1321,6 +1369,9 @@ namespace CDOrganiserProjectApp
                         Console.WriteLine($"{favourite}, {albumName}\n");
                         Thread.Sleep(wait);
                     }
+
+                    Console.WriteLine("\n\t[*]  Return to homepage - Press E + Enter\n");
+
                 }
             }
         }
@@ -1342,6 +1393,9 @@ namespace CDOrganiserProjectApp
                         Console.WriteLine($"{shelfTag}, {shelfRowID}\n");
                         Thread.Sleep(wait);
                     }
+
+                    Console.WriteLine("\n\t[*]  Return to homepage - Press E + Enter\n");
+
                 }
             }
         }
@@ -1367,6 +1421,8 @@ namespace CDOrganiserProjectApp
                         Console.WriteLine($"{search}\n");
                     }
 
+                    Console.WriteLine("\n\t[*]  Return to homepage - Press E + Enter\n");
+
                     return search;
                 }
             }
@@ -1390,6 +1446,8 @@ namespace CDOrganiserProjectApp
 
                         Console.WriteLine($"{search}\n");
                     }
+
+                    Console.WriteLine("\n\t[*]  Return to homepage - Press E + Enter\n");
 
                     return search;
                 }
@@ -1415,6 +1473,8 @@ namespace CDOrganiserProjectApp
                         Console.WriteLine($"{search}\n");
                     }
 
+                    Console.WriteLine("\n\t[*]  Return to homepage - Press E + Enter\n");
+
                     return search;
                 }
             }
@@ -1438,6 +1498,8 @@ namespace CDOrganiserProjectApp
 
                         Console.WriteLine($"{search}\n");
                     }
+
+                    Console.WriteLine("\n\t[*]  Return to homepage - Press E + Enter\n");
 
                     return search;
                 }
@@ -1463,6 +1525,8 @@ namespace CDOrganiserProjectApp
                         Console.WriteLine($"{search}\n");
                     }
 
+                    Console.WriteLine("\n\t[*]  Return to homepage - Press E + Enter\n");
+
                     return search;
                 }
             }
@@ -1487,6 +1551,8 @@ namespace CDOrganiserProjectApp
                         Console.WriteLine($"{search}\n");
                     }
 
+                    Console.WriteLine("\n\t[*]  Return to homepage - Press E + Enter\n");
+
                     return search;
                 }
             }
@@ -1510,6 +1576,8 @@ namespace CDOrganiserProjectApp
 
                         Console.WriteLine($"{search}\n");
                     }
+
+                    Console.WriteLine("\n\t[*]  Return to homepage - Press E + Enter\n");
 
                     return search;
                 }
