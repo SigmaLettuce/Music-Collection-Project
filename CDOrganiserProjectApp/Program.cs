@@ -3601,10 +3601,27 @@ namespace CDOrganiserProjectApp
                 List<ArtistReviews> reviews = storageManager.GetAllArtistReviews(accountId);
                 int reviewId = view.GetIntInput();
 
-                bool favourite = true;
+                
 
-                int rowsAffected = storageManager.FavouriteArtist(reviewId, favourite);
-                view.DisplayMessage($"\nMarked {rowsAffected} records as a favourite.");
+                if (accountId.Equals(storageManager.FetchAccountFromArtistReviews(reviewId)))
+                {
+                    view.DisplayMessage("\nYou cannot modify someone elses review. Booting you back to the menuscreen.");
+                    Thread.Sleep(wait);
+                    Console.Clear();
+
+                    AdminMenuscreenOptions();
+
+                }
+
+                else
+                {
+                    bool favourite = true;
+
+                    int rowsAffected = storageManager.FavouriteArtist(reviewId, favourite);
+                    view.DisplayMessage($"\nMarked {rowsAffected} records as a favourite.");
+
+
+                }
 
             }
             catch (FormatException e)
@@ -3764,10 +3781,27 @@ namespace CDOrganiserProjectApp
                 List<BandReviews> reviews = storageManager.GetAllBandReviews(accountId);
                 int reviewId = view.GetIntInput();
 
-                bool favourite = true;
 
-                int rowsAffected = storageManager.FavouriteBand(reviewId, favourite);
-                view.DisplayMessage($"\nMarked {rowsAffected} records as a favourite.");
+
+                if (accountId.Equals(storageManager.FetchAccountFromBandReviews(reviewId)))
+                {
+                    view.DisplayMessage("\nYou cannot modify someone elses review. Booting you back to the menuscreen.");
+                    Thread.Sleep(wait);
+                    Console.Clear();
+
+                    AdminMenuscreenOptions();
+
+                }
+
+                else
+                {   
+                    bool favourite = true;
+                    int rowsAffected = storageManager.FavouriteBand(reviewId, favourite);
+                    view.DisplayMessage($"\nMarked {rowsAffected} records as a favourite.");
+
+
+                }
+             
 
             }
             catch (FormatException e)
