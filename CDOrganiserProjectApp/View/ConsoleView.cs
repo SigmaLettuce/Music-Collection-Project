@@ -307,7 +307,7 @@ namespace CDOrganiserProjectApp.View
 
                     Console.WriteLine("\n\t[/]  'A-J Artists' - Enter 1\n");
                     Console.WriteLine("\n\t[/]  'Early 2000s Music' - Enter 2\n");
-                    Console.WriteLine("\n\t[/]  '' - Enter 3\n");
+                    Console.WriteLine("\n\t[/]  'All Artists' - Enter 3\n");
 
                     Console.WriteLine("\n\t[*]  'back' - Return to homepage\n");
 

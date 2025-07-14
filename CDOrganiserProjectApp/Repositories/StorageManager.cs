@@ -991,7 +991,28 @@ namespace CDOrganiserProjectApp
 
 
 
-        // Advanced Query 5
+        // Artist Queries
+
+        public void GetArtistReleaseDate()
+
+        {
+            string sqlStr = "SELECT albumName, dateOfRelease FROM Contents.tblArtistAlbums; ";
+            using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
+            {
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        string artistName = reader["artistName"].ToString();
+                        DateTime dateOfRelease = Convert.ToDateTime(reader["dateOfRelease"]);
+
+                        Console.WriteLine($"{artistName}, {dateOfRelease.ToString("d")}\n");
+                        Thread.Sleep(wait);
+                    }
+                }
+            }
+        }
+
         public void GetAToJArtists()
         {
             string sqlStr = "SELECT tblArtists.artistName, tblArtistAlbums.albumName, tblAlbums.genreName FROM Contents.tblArtists, Contents.tblAlbums WHERE tblArtistAlbums.artistID = tblArtists.artistID AND tblArtists.artistName LIKE '[A-J]%' ORDER BY tblArtists.artistName, tblAlbums.albumName, tblAlbums.genreName;";
@@ -1012,20 +1033,57 @@ namespace CDOrganiserProjectApp
             }
         }
 
-        public void GetEarly2000sMusic()
+        public void GetArtistsEarly2000sMusic()
         {
-            string sqlStr = "SELECT tblArtists.artistName, tblArtistAlbums.albumName, tblAlbums.genreName FROM Contents.tblArtists, Contents.tblAlbums WHERE tblArtistAlbums.artistID = tblArtists.artistID AND tblArtists.artistName LIKE '[A-J]%' ORDER BY tblArtists.artistName, tblAlbums.albumName, tblAlbums.genreName;";
+            string sqlStr = "SELECT tblArtistAlbums.albumName, tblGenres.genreName, tblArtists.artistName FROM Contents.tblArtistAlbums, Contents.tblGenres, Contents.tblArtists WHERE tblArtistAlbums.genreID = tblGenres.genreID AND tblArtistAlbums.artistID = tblArtists.artistID AND tblArtistAlbums.dateOfRelease BETWEEN '20000101' AND '20051231'";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())
                     {
-                        string artistName = reader["artistName"].ToString();
                         string albumName = reader["albumName"].ToString();
                         string genreName = reader["genreName"].ToString();
+                        string artistName = reader["artistName"].ToString();
 
-                        Console.WriteLine($"{artistName}, {albumName}, {genreName}\n");
+                        Console.WriteLine($"{albumName}, {genreName}, {artistName}\n");
+                        Thread.Sleep(wait);
+                    }
+                }
+            }
+        }
+
+        public void GetTotalArtistGenres()
+        {
+            string sqlStr = "SELECT COUNT(tblArtistAlbums.genreID) as Count, tblGenres.genreName FROM Contents.tblArtistAlbums, Contents.tblGenres WHERE tblArtistAlbums.genreID = tblGenres.genreID GROUP BY tblGenres.genreName ";
+            using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
+            {
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        string count = reader["Count"].ToString();
+                        string genreName = reader["genreName"].ToString();
+
+                        Console.WriteLine($"{count}, {genreName}\n");
+                        Thread.Sleep(wait);
+                    }
+                }
+            }
+        }
+
+        public void GetArtistsAsAWhole()
+        {
+            string sqlStr = "SELECT bandName as 'All Artists' FROM Contents.tblBands UNION SELECT artistName FROM Contents.tblArtists ORDER BY 'All Artists' asc";
+            using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
+            {
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        string allArtists = reader["All Artists"].ToString();
+
+                        Console.WriteLine($"{allArtists}\n");
                         Thread.Sleep(wait);
                     }
                 }

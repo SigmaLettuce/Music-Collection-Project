@@ -55,12 +55,12 @@ namespace CDOrganiserProjectApp
             bool invalid = true; // A variable that evaluates the continuation of a process.
 
 
-            string startInput = view.StartMenu(); // Calls the display, and returns a prompt for input.
+            string input = view.StartMenu(); // Calls the display, and returns a prompt for input.
             view.DisplayMessage("");
              
             do
             {
-                switch (startInput.ToUpper())
+                switch (input.ToUpper())
                 {
                     case "R":
 
@@ -284,6 +284,15 @@ namespace CDOrganiserProjectApp
                                 break;
 
                                 case "del":
+                                    DeleteBandById();
+
+                                    invalid = false;
+
+                                    GoBack();
+
+                                break;
+
+                                case "search":
                                     DeleteBandById();
 
                                     invalid = false;
@@ -2062,7 +2071,7 @@ namespace CDOrganiserProjectApp
         }
 
 
-        // The data-modifying commands for the Shelves table.
+        // The data-modifying commands for the Rows table.
         private static void UpdateRow()
         {
             
@@ -2817,6 +2826,12 @@ namespace CDOrganiserProjectApp
 
         }
 
+        // The search options.
+
+        private static void SearchGenres()
+        {
+
+        }
 
     }
 
