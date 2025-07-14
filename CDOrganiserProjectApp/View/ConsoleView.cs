@@ -207,6 +207,49 @@ namespace CDOrganiserProjectApp.View
                 Console.WriteLine("Enter any of the listings above to gain access... \n");
             }
 
+            else if (type.Equals("default~extras~search"))
+            {
+                Console.WriteLine($"\n\t [CD MANAGER / {d}]\n");
+                Console.WriteLine("\tEDIT... ");
+                Console.WriteLine("\tYou can now modify this listing.");
+
+                    Console.WriteLine("\n\t[/]  'up' - Updates information");
+                    Console.WriteLine("\t[/]  'ins' - Adds new information");
+                    Console.WriteLine("\t[/]  'del' - Deletes unwanted information\n");
+
+                Console.WriteLine("\tVIEW... ");
+                Console.WriteLine("\tThese are the available report listings, compiled into directories.");
+
+                    Console.WriteLine("\t[*]  'search' - Opens the search\n");
+
+                    Console.WriteLine("\n\t[*] 'back' - Return to homepage\n");
+
+
+                Console.WriteLine("Enter any of the listings above to gain access... \n");
+            }
+
+            else if (type.Equals("default~extras~view"))
+            {
+                Console.WriteLine($"\n\t [CD MANAGER / {d}]\n");
+                Console.WriteLine("\tEDIT... ");
+                Console.WriteLine("\tYou can now modify this listing.");
+
+                    Console.WriteLine("\n\t[/]  'up' - Updates information");
+                    Console.WriteLine("\t[/]  'ins' - Adds new information");
+                    Console.WriteLine("\t[/]  'del' - Deletes unwanted information\n");
+
+                Console.WriteLine("\tVIEW... ");
+                Console.WriteLine("\tThese are the available report listings, compiled into directories.");
+
+                    Console.WriteLine("\n\t[*]  'reports' - Opens the reports");
+                    Console.WriteLine("\t[*]  'search' - Opens the search\n");
+
+                    Console.WriteLine("\n\t[*] 'back' - Return to homepage\n");
+
+
+                Console.WriteLine("Enter any of the listings above to gain access... \n");
+            }
+
             else if (type.Equals("album~extras"))
             {
                 Console.WriteLine($"\n\t [CD MANAGER / {d}]\n");
@@ -351,22 +394,7 @@ namespace CDOrganiserProjectApp.View
                 Console.WriteLine("Enter any of the listings above to gain access... \n");
             }
 
-            if (type.Equals("artists~reviews"))
-            {
-                Console.WriteLine($"\n\t [CD MANAGER / {d}]\n");
-                Console.WriteLine("\tVIEW... ");
-                Console.WriteLine("\tThese are the available report listings, compiled into directories.");
-
-                    Console.WriteLine("\n\t[/]  'Highest ranked' - Enter 1\n");
-                    Console.WriteLine("\n\t[/]  'Three Favourites' - Enter 2\n");
-
-                    Console.WriteLine("\n\t[*]  Enter 3 - Return to homepage\n");
-
-
-                Console.WriteLine("Enter any of the listings above to gain access... \n");
-            }
-
-            else if (type.Equals("bands~reviews"))
+            if (type.Equals("reviews"))
             {
                 Console.WriteLine($"\n\t [CD MANAGER / {d}]\n");
                 Console.WriteLine("\tVIEW... ");

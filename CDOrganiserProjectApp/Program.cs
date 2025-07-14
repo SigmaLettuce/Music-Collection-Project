@@ -1094,6 +1094,97 @@ namespace CDOrganiserProjectApp
 
                                             break;
 
+                                            case "reports":
+
+                                                recordselect = view.DisplayRecordOptions("artists", "reviews");
+
+                                                Thread.Sleep(wait);
+                                                Console.Clear();
+
+                                                invalid = false;
+
+                                                do
+                                                {
+                                                    switch (recordselect)
+                                                    {
+                                                        case 1:
+                                                            storageManager.GetHighRankingArtistAlbums();
+
+                                                            cmd = view.GetInput();
+
+                                                            do
+                                                            {
+                                                                switch (cmd.ToLower())
+                                                                {
+                                                                    case "E":
+                                                                        GoBack();
+
+                                                                    break;
+
+                                                                    default:
+                                                                        view.AltDisplayError(wait);
+
+                                                                        GoBack();
+
+                                                                    break;
+
+                                                                }
+
+                                                            } while (true);
+                                                
+
+                                                        break;
+
+                                                        case 2:
+                                                            storageManager.GetTopThreeFavouriteArtistAlbums();
+
+                                                            cmd = view.GetInput();
+
+                                                            do
+                                                            {
+                                                                switch (cmd.ToLower())
+                                                                {
+                                                                    case "E":
+                                                                        GoBack();
+
+                                                                    break;
+
+                                                                    default:
+                                                                        view.AltDisplayError(wait);
+
+                                                                        GoBack();
+
+                                                                    break;
+
+                                                                }
+
+                                                            } while (true);
+                                                
+
+                                                        break;
+
+                                                        case 3:                                   
+                                                            GoBack();
+
+                                                            invalid = false;
+
+                                                        break;
+
+                                                        default:
+                                                            view.AltDisplayError(wait);
+
+                                                            GoBack();
+
+                                                            invalid = true;
+
+                                                        break;
+
+                                                    }
+
+                                                } while (invalid);
+
+                                            break;
+
                                             case "back":
                                                 GoBack();
 
@@ -1163,6 +1254,97 @@ namespace CDOrganiserProjectApp
                                                 invalid = false;
 
                                                 GoBack();
+
+                                            break;
+
+                                            case "reports":
+
+                                                recordselect = view.DisplayRecordOptions("bands", "reviews");
+
+                                                Thread.Sleep(wait);
+                                                Console.Clear();
+
+                                                invalid = false;
+
+                                                do
+                                                {
+                                                    switch (recordselect)
+                                                    {
+                                                        case 1:
+                                                            storageManager.GetHighRankingBandAlbums();
+
+                                                            cmd = view.GetInput();
+
+                                                            do
+                                                            {
+                                                                switch (cmd.ToLower())
+                                                                {
+                                                                    case "E":
+                                                                        GoBack();
+
+                                                                    break;
+
+                                                                    default:
+                                                                        view.AltDisplayError(wait);
+
+                                                                        GoBack();
+
+                                                                    break;
+
+                                                                }
+
+                                                            } while (true);
+                                                
+
+                                                        break;
+
+                                                        case 2:
+                                                            storageManager.GetTopThreeFavouriteBandAlbums();
+
+                                                            cmd = view.GetInput();
+
+                                                            do
+                                                            {
+                                                                switch (cmd.ToLower())
+                                                                {
+                                                                    case "E":
+                                                                        GoBack();
+
+                                                                    break;
+
+                                                                    default:
+                                                                        view.AltDisplayError(wait);
+
+                                                                        GoBack();
+
+                                                                    break;
+
+                                                                }
+
+                                                            } while (true);
+                                                
+
+                                                        break;
+
+                                                        case 3:                                   
+                                                            GoBack();
+
+                                                            invalid = false;
+
+                                                        break;
+
+                                                        default:
+                                                            view.AltDisplayError(wait);
+
+                                                            GoBack();
+
+                                                            invalid = true;
+
+                                                        break;
+
+                                                    }
+
+                                                } while (invalid);
 
                                             break;
 
@@ -1407,7 +1589,7 @@ namespace CDOrganiserProjectApp
 
                         Thread.Sleep(wait);
 
-                        cmd = view.DisplayEditingOptions("shelves", "default");
+                        cmd = view.DisplayEditingOptions("shelves", "default~extras~view");
                         view.DisplayMessage("");
 
                         Thread.Sleep(wait);
@@ -1446,6 +1628,69 @@ namespace CDOrganiserProjectApp
 
                                 break;
 
+                                case "reports":
+
+                                    recordselect = view.DisplayRecordOptions("shelves", "reviews");
+
+                                    Thread.Sleep(wait);
+                                    Console.Clear();
+
+                                    invalid = false;
+
+                                    do
+                                    {
+                                        switch (recordselect)
+                                        {
+                                            case 1:
+                                                storageManager.GetTotalOfRowOccupancyPerShelf();
+
+                                                cmd = view.GetInput();
+
+                                                do
+                                                {
+                                                    switch (cmd.ToLower())
+                                                    {
+                                                        case "E":
+                                                            GoBack();
+
+                                                        break;
+
+                                                        default:
+                                                            view.AltDisplayError(wait);
+
+                                                            GoBack();
+
+                                                        break;
+
+                                                    }
+
+                                                } while (true);
+    
+
+                                            break;
+
+                                            case 2:                                   
+                                                GoBack();
+
+                                                invalid = false;
+
+                                            break;
+
+                                            default:
+                                                view.AltDisplayError(wait);
+
+                                                GoBack();
+
+                                                invalid = true;
+
+                                            break;
+
+                                        }
+
+                                    } while (invalid);
+
+                                break;
+                                
                                 case "back":                                   
                                     GoBack();
 
@@ -1472,7 +1717,7 @@ namespace CDOrganiserProjectApp
 
                         Thread.Sleep(wait);
 
-                        cmd = view.DisplayEditingOptions("rows", "default");
+                        cmd = view.DisplayEditingOptions("rows", "default~extras~view");
                         view.DisplayMessage("");
 
                         Thread.Sleep(wait);
@@ -1508,6 +1753,69 @@ namespace CDOrganiserProjectApp
                                     invalid = false;
 
                                     GoBack();
+
+                                break;
+
+                                case "reports":
+
+                                    recordselect = view.DisplayRecordOptions("rows", "reviews");
+
+                                    Thread.Sleep(wait);
+                                    Console.Clear();
+
+                                    invalid = false;
+
+                                    do
+                                    {
+                                        switch (recordselect)
+                                        {
+                                            case 1:
+                                                storageManager.GetTotalOfRowOccupancyPerShelf();
+
+                                                cmd = view.GetInput();
+
+                                                do
+                                                {
+                                                    switch (cmd.ToLower())
+                                                    {
+                                                        case "E":
+                                                            GoBack();
+
+                                                        break;
+
+                                                        default:
+                                                            view.AltDisplayError(wait);
+
+                                                            GoBack();
+
+                                                        break;
+
+                                                    }
+
+                                                } while (true);
+    
+
+                                            break;
+
+                                            case 2:                                   
+                                                GoBack();
+
+                                                invalid = false;
+
+                                            break;
+
+                                            default:
+                                                view.AltDisplayError(wait);
+
+                                                GoBack();
+
+                                                invalid = true;
+
+                                            break;
+
+                                        }
+
+                                    } while (invalid);
 
                                 break;
 
