@@ -3895,6 +3895,11 @@ namespace CDOrganiserProjectApp
 
                 else
                 {
+                    switch ()
+                    {
+                        default:
+                    }
+
                     bool favourite = true;
 
                     int rowsAffected = storageManager.FavouriteArtist(reviewId, favourite);

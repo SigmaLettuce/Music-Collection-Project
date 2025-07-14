@@ -479,7 +479,7 @@ namespace CDOrganiserProjectApp
 
         public int FavouriteArtist(int reviewId, bool favourite)
         {
-            string sqlStr = $"UPDATE Contents.tblArtistReviews SET (favourite = @favourite) WHERE reviewID = @reviewId";
+            string sqlStr = $"UPDATE Contents.tblArtistReviews SET favourite = @favourite WHERE reviewID = @reviewId";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
                 cmd.Parameters.AddWithValue("@reviewId", reviewId);
@@ -578,7 +578,7 @@ namespace CDOrganiserProjectApp
 
         public int FavouriteBand(int reviewId, bool favourite)
         {
-            string sqlStr = $"UPDATE Contents.tblBandReviews SET (favourite = @favourite) WHERE reviewID = @reviewId";
+            string sqlStr = $"UPDATE Contents.tblBandReviews SET favourite = @favourite WHERE reviewID = @reviewId";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
                 cmd.Parameters.AddWithValue("@reviewId", reviewId);
@@ -851,7 +851,7 @@ namespace CDOrganiserProjectApp
             }
         }
 
-        // These two checks if there is a match for a person who has left a review under a specified identification number.
+        // These two check if there is a match for a person who has left a review under a specified identification number.
         public int FetchAccountFromArtistReviews(int reviewId)
         {
 
@@ -864,7 +864,7 @@ namespace CDOrganiserProjectApp
                 {
                     while (reader.Read())
                     {
-                        reviewId = Convert.ToInt32(reader["reviewID"]);
+                        int personId = Convert.ToInt32(reader["personID"]);
                     }
                 }
 
@@ -884,11 +884,93 @@ namespace CDOrganiserProjectApp
                 {
                     while (reader.Read())
                     {
-                        reviewId = Convert.ToInt32(reader["reviewID"]);
+                        int personId = Convert.ToInt32(reader["personID"]);
                     }
                 }
 
                 return reviewId;
+            }
+        }
+
+        // These four check if an album is already marked as a favourite, or lost.
+
+        public bool FetchFavouriteFromArtistReviews(bool favourite)
+        {
+
+            string sqlStr = $"SELECT personID FROM Contents.tblArtistReviews WHERE favourite = @favourite";
+            using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
+            {
+                cmd.Parameters.AddWithValue("@favourite", favourite);
+
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        int personId = Convert.ToInt32(reader["personID"]);
+                    }
+                }
+
+                return favourite;
+            }
+        }
+
+        public bool FetchFavouriteFromBandReviews(bool favourite)
+        {
+
+            string sqlStr = $"SELECT personID FROM Contents.tblBandReviews WHERE favourite = @favourite";
+            using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
+            {
+                cmd.Parameters.AddWithValue("@favourite", favourite);
+
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        int personId = Convert.ToInt32(reader["personID"]);
+                    }
+                }
+
+                return favourite;
+            }
+        }
+
+        public bool FetchLostFromArtistAlbums(bool lost)
+        {
+
+            string sqlStr = $"SELECT albumID FROM Contents.tblArtistAlbums WHERE lost = @lost";
+            using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
+            {
+                cmd.Parameters.AddWithValue("@favourite", lost);
+
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        int albumId = Convert.ToInt32(reader["albumID"]);
+                    }
+                }
+
+                return lost;
+            }
+        }
+
+        public bool FetchFavouriteFromBandAlbums(bool lost)
+        {
+
+            string sqlStr = $"SELECT albumID FROM Contents.tblBandAlbums WHERE lost = @lost";
+            using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
+            {
+                cmd.Parameters.AddWithValue("@favourite", lost);
+
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        int albumId = Convert.ToInt32(reader["albumID"]);
+                    }
+                }
+
+                return lost;
             }
         }
 
