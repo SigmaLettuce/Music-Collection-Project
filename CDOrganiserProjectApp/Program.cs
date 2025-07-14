@@ -1492,8 +1492,6 @@ namespace CDOrganiserProjectApp
 
                                     invalid = false;
 
-                                    GoBack();
-
                                 break;
 
                                 case "back":                                   

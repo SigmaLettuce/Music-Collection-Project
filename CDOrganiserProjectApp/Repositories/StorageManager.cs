@@ -977,10 +977,10 @@ namespace CDOrganiserProjectApp
                 {
                     while (reader.Read())
                     {
-                        string artistName = reader["artistName"].ToString();
+                        string albumName = reader["albumName"].ToString();
                         DateTime dateOfRelease = Convert.ToDateTime(reader["dateOfRelease"]);
 
-                        Console.WriteLine($"{artistName}, {dateOfRelease.ToString("d")}\n");
+                        Console.WriteLine($"{albumName}, {dateOfRelease.ToString("d")}\n");
                         Thread.Sleep(wait);
                     }
                 }
@@ -1136,10 +1136,10 @@ namespace CDOrganiserProjectApp
                 {
                     while (reader.Read())
                     {
-                        string bandName = reader["bandName"].ToString();
+                        string albumName = reader["albumName"].ToString();
                         DateTime dateOfRelease = Convert.ToDateTime(reader["dateOfRelease"]);
 
-                        Console.WriteLine($"{bandName}, {dateOfRelease.ToString("d")}\n");
+                        Console.WriteLine($"{albumName}, {dateOfRelease.ToString("d")}\n");
                         Thread.Sleep(wait);
                     }
                 }
@@ -1404,7 +1404,7 @@ namespace CDOrganiserProjectApp
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
                 cmd.Parameters.AddWithValue("@search", search);
-                Console.WriteLine("CATEGORY:");
+                Console.WriteLine("CATEGORY:\n");
 
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
@@ -1430,7 +1430,7 @@ namespace CDOrganiserProjectApp
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
                 cmd.Parameters.AddWithValue("@search", search);
-                Console.WriteLine("NAME:");
+                Console.WriteLine("NAME:\n");
 
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
@@ -1456,7 +1456,7 @@ namespace CDOrganiserProjectApp
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
                 cmd.Parameters.AddWithValue("@search", search);
-                Console.WriteLine("NAME:");
+                Console.WriteLine("NAME:\n");
 
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
@@ -1482,7 +1482,7 @@ namespace CDOrganiserProjectApp
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
                 cmd.Parameters.AddWithValue("@search", search);
-                Console.WriteLine("NAME:");
+                Console.WriteLine("NAME:\n");
 
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
@@ -1508,7 +1508,7 @@ namespace CDOrganiserProjectApp
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
                 cmd.Parameters.AddWithValue("@search", search);
-                Console.WriteLine("NAME:");
+                Console.WriteLine("NAME:\n");
 
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
@@ -1534,7 +1534,7 @@ namespace CDOrganiserProjectApp
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
                 cmd.Parameters.AddWithValue("@search", search);
-                Console.WriteLine("NAME:");
+                Console.WriteLine("NAME:\n");
 
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
@@ -1560,7 +1560,7 @@ namespace CDOrganiserProjectApp
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
                 cmd.Parameters.AddWithValue("@search", search);
-                Console.WriteLine("NAME:");
+                Console.WriteLine("NAME:\n");
 
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
