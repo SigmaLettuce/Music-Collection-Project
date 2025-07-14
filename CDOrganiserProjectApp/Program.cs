@@ -12,6 +12,7 @@ using System.Reflection.Metadata.Ecma335;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Security;
+using System.Text.Json;
 
 namespace CDOrganiserProjectApp
 {
@@ -485,6 +486,8 @@ namespace CDOrganiserProjectApp
                                                                     case "E":
                                                                         GoBack();
 
+                                                                        invalid = false;
+
                                                                     break;
 
                                                                     default:
@@ -492,11 +495,13 @@ namespace CDOrganiserProjectApp
 
                                                                         GoBack();
 
+                                                                        invalid = true;
+
                                                                     break;
 
                                                                 }
 
-                                                            } while (true);
+                                                            } while (invalid);
                                                 
 
                                                         break;
@@ -513,6 +518,8 @@ namespace CDOrganiserProjectApp
                                                                     case "E":
                                                                         GoBack();
 
+                                                                        invalid = false;
+
                                                                     break;
 
                                                                     default:
@@ -520,11 +527,13 @@ namespace CDOrganiserProjectApp
 
                                                                         GoBack();
 
+                                                                        invalid = true;
+
                                                                     break;
 
                                                                 }
 
-                                                            } while (true);
+                                                            } while (invalid);
                                                 
 
                                                         break;
@@ -541,6 +550,8 @@ namespace CDOrganiserProjectApp
                                                                     case "E":
                                                                         GoBack();
 
+                                                                        invalid = false;
+
                                                                     break;
 
                                                                     default:
@@ -548,11 +559,13 @@ namespace CDOrganiserProjectApp
 
                                                                         GoBack();
 
+                                                                        invalid = true;
+
                                                                     break;
 
                                                                 }
 
-                                                            } while (true);
+                                                            } while (invalid);
                                                 
 
                                                         break;
@@ -569,6 +582,8 @@ namespace CDOrganiserProjectApp
                                                                     case "E":
                                                                         GoBack();
 
+                                                                        invalid = false;
+
                                                                     break;
 
                                                                     default:
@@ -576,11 +591,13 @@ namespace CDOrganiserProjectApp
 
                                                                         GoBack();
 
+                                                                        invalid = true;
+
                                                                     break;
 
                                                                 }
 
-                                                            } while (true);
+                                                            } while (invalid);
                                                 
 
                                                         break;
@@ -597,6 +614,8 @@ namespace CDOrganiserProjectApp
                                                                     case "E":
                                                                         GoBack();
 
+                                                                        invalid = false;
+
                                                                     break;
 
                                                                     default:
@@ -604,11 +623,13 @@ namespace CDOrganiserProjectApp
 
                                                                         GoBack();
 
+                                                                        invalid = true;
+
                                                                     break;
 
                                                                 }
 
-                                                            } while (true);
+                                                            } while (invalid);
                                                 
 
                                                         break;
@@ -625,6 +646,8 @@ namespace CDOrganiserProjectApp
                                                                     case "E":
                                                                         GoBack();
 
+                                                                        invalid = false;
+
                                                                     break;
 
                                                                     default:
@@ -632,11 +655,13 @@ namespace CDOrganiserProjectApp
 
                                                                         GoBack();
 
+                                                                        invalid = true;
+
                                                                     break;
 
                                                                 }
 
-                                                            } while (true);
+                                                            } while (invalid);
                                                 
 
                                                         break;
@@ -653,6 +678,8 @@ namespace CDOrganiserProjectApp
                                                                     case "E":
                                                                         GoBack();
 
+                                                                        invalid = false;
+
                                                                     break;
 
                                                                     default:
@@ -660,11 +687,13 @@ namespace CDOrganiserProjectApp
 
                                                                         GoBack();
 
+                                                                        invalid = true;
+
                                                                     break;
 
                                                                 }
 
-                                                            } while (true);
+                                                            } while (invalid);
                                                 
 
                                                         break;
@@ -696,7 +725,10 @@ namespace CDOrganiserProjectApp
 
                                                 invalid = false;
 
-                                                GoBack();
+                                                do
+                                                {
+
+                                                } while ();
 
                                             break;
 
@@ -797,6 +829,8 @@ namespace CDOrganiserProjectApp
                                                                     case "E":
                                                                         GoBack();
 
+                                                                        invalid = false;
+
                                                                     break;
 
                                                                     default:
@@ -804,11 +838,13 @@ namespace CDOrganiserProjectApp
 
                                                                         GoBack();
 
+                                                                        invalid = true;
+
                                                                     break;
 
                                                                 }
 
-                                                            } while (true);
+                                                            } while (invalid);
                                                 
 
                                                         break;
@@ -825,6 +861,8 @@ namespace CDOrganiserProjectApp
                                                                     case "E":
                                                                         GoBack();
 
+                                                                        invalid = false;
+
                                                                     break;
 
                                                                     default:
@@ -832,11 +870,13 @@ namespace CDOrganiserProjectApp
 
                                                                         GoBack();
 
+                                                                        invalid = true;
+
                                                                     break;
 
                                                                 }
 
-                                                            } while (true);
+                                                            } while (invalid);
                                                 
 
                                                         break;
@@ -853,6 +893,8 @@ namespace CDOrganiserProjectApp
                                                                     case "E":
                                                                         GoBack();
 
+                                                                        invalid = false;
+
                                                                     break;
 
                                                                     default:
@@ -860,11 +902,13 @@ namespace CDOrganiserProjectApp
 
                                                                         GoBack();
 
+                                                                        invalid = true;
+
                                                                     break;
 
                                                                 }
 
-                                                            } while (true);
+                                                            } while (invalid);
                                                 
 
                                                         break;
@@ -881,6 +925,8 @@ namespace CDOrganiserProjectApp
                                                                     case "E":
                                                                         GoBack();
 
+                                                                        invalid = false;
+
                                                                     break;
 
                                                                     default:
@@ -888,11 +934,13 @@ namespace CDOrganiserProjectApp
 
                                                                         GoBack();
 
+                                                                        invalid = true;
+
                                                                     break;
 
                                                                 }
 
-                                                            } while (true);
+                                                            } while (invalid);
                                                 
 
                                                         break;
@@ -902,12 +950,14 @@ namespace CDOrganiserProjectApp
 
                                                             cmd = view.GetInput();
 
-                                                            do
+                                                           do
                                                             {
                                                                 switch (cmd.ToLower())
                                                                 {
                                                                     case "E":
                                                                         GoBack();
+
+                                                                        invalid = false;
 
                                                                     break;
 
@@ -916,11 +966,13 @@ namespace CDOrganiserProjectApp
 
                                                                         GoBack();
 
+                                                                        invalid = true;
+
                                                                     break;
 
                                                                 }
 
-                                                            } while (true);
+                                                            } while (invalid);
                                                 
 
                                                         break;
@@ -937,6 +989,8 @@ namespace CDOrganiserProjectApp
                                                                     case "E":
                                                                         GoBack();
 
+                                                                        invalid = false;
+
                                                                     break;
 
                                                                     default:
@@ -944,11 +998,13 @@ namespace CDOrganiserProjectApp
 
                                                                         GoBack();
 
+                                                                        invalid = true;
+
                                                                     break;
 
                                                                 }
 
-                                                            } while (true);
+                                                            } while (invalid);
                                                 
 
                                                         break;
@@ -965,6 +1021,8 @@ namespace CDOrganiserProjectApp
                                                                     case "E":
                                                                         GoBack();
 
+                                                                        invalid = false;
+
                                                                     break;
 
                                                                     default:
@@ -972,11 +1030,13 @@ namespace CDOrganiserProjectApp
 
                                                                         GoBack();
 
+                                                                        invalid = true;
+
                                                                     break;
 
                                                                 }
 
-                                                            } while (true);
+                                                            } while (invalid);
                                                 
 
                                                         break;
@@ -1155,6 +1215,8 @@ namespace CDOrganiserProjectApp
                                                                     case "E":
                                                                         GoBack();
 
+                                                                        invalid = false;
+
                                                                     break;
 
                                                                     default:
@@ -1162,11 +1224,13 @@ namespace CDOrganiserProjectApp
 
                                                                         GoBack();
 
+                                                                        invalid = true;
+
                                                                     break;
 
                                                                 }
 
-                                                            } while (true);
+                                                            } while (invalid);
                                                 
 
                                                         break;
@@ -1183,6 +1247,8 @@ namespace CDOrganiserProjectApp
                                                                     case "E":
                                                                         GoBack();
 
+                                                                        invalid = false;
+
                                                                     break;
 
                                                                     default:
@@ -1190,11 +1256,13 @@ namespace CDOrganiserProjectApp
 
                                                                         GoBack();
 
+                                                                        invalid = true;
+
                                                                     break;
 
                                                                 }
 
-                                                            } while (true);
+                                                            } while (invalid);
                                                 
 
                                                         break;
@@ -1327,6 +1395,8 @@ namespace CDOrganiserProjectApp
                                                                     case "E":
                                                                         GoBack();
 
+                                                                        invalid = false;
+
                                                                     break;
 
                                                                     default:
@@ -1334,11 +1404,13 @@ namespace CDOrganiserProjectApp
 
                                                                         GoBack();
 
+                                                                        invalid = true;
+
                                                                     break;
 
                                                                 }
 
-                                                            } while (true);
+                                                            } while (invalid);
                                                 
 
                                                         break;
@@ -1355,6 +1427,8 @@ namespace CDOrganiserProjectApp
                                                                     case "E":
                                                                         GoBack();
 
+                                                                        invalid = false;
+
                                                                     break;
 
                                                                     default:
@@ -1362,11 +1436,13 @@ namespace CDOrganiserProjectApp
 
                                                                         GoBack();
 
+                                                                        invalid = true;
+
                                                                     break;
 
                                                                 }
 
-                                                            } while (true);
+                                                            } while (invalid);
                                                 
 
                                                         break;
@@ -1714,6 +1790,8 @@ namespace CDOrganiserProjectApp
                                                         case "E":
                                                             GoBack();
 
+                                                            invalid = false;
+
                                                         break;
 
                                                         default:
@@ -1721,11 +1799,13 @@ namespace CDOrganiserProjectApp
 
                                                             GoBack();
 
+                                                            invalid = true;
+
                                                         break;
 
                                                     }
 
-                                                } while (true);
+                                                } while (invalid);
     
 
                                             break;
@@ -1842,6 +1922,8 @@ namespace CDOrganiserProjectApp
                                                         case "E":
                                                             GoBack();
 
+                                                            invalid = false;
+
                                                         break;
 
                                                         default:
@@ -1849,11 +1931,13 @@ namespace CDOrganiserProjectApp
 
                                                             GoBack();
 
+                                                            invalid = true;
+
                                                         break;
 
                                                     }
 
-                                                } while (true);
+                                                } while (invalid);
     
 
                                             break;
