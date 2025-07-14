@@ -442,6 +442,237 @@ namespace CDOrganiserProjectApp
 
                                             break;
 
+                                            case "reports":
+
+                                                recordselect = view.DisplayRecordOptions("artists", "artists");
+
+                                                Thread.Sleep(wait);
+                                                Console.Clear();
+
+                                                invalid = false;
+
+                                                do
+                                                {
+                                                    switch (recordselect)
+                                                    {
+                                                        case 1:
+                                                            storageManager.GetArtistReleaseDate();
+
+                                                            cmd = view.GetInput();
+
+                                                            do
+                                                            {
+                                                                switch (cmd.ToLower())
+                                                                {
+                                                                    case "E":
+                                                                        GoBack();
+
+                                                                    break;
+
+                                                                    default:
+                                                                        view.AltDisplayError(wait);
+
+                                                                        GoBack();
+
+                                                                    break;
+
+                                                                }
+
+                                                            } while (true);
+                                                
+
+                                                        break;
+
+                                                        case 2:
+                                                            storageManager.GetAToJArtists();
+
+                                                            cmd = view.GetInput();
+
+                                                            do
+                                                            {
+                                                                switch (cmd.ToLower())
+                                                                {
+                                                                    case "E":
+                                                                        GoBack();
+
+                                                                    break;
+
+                                                                    default:
+                                                                        view.AltDisplayError(wait);
+
+                                                                        GoBack();
+
+                                                                    break;
+
+                                                                }
+
+                                                            } while (true);
+                                                
+
+                                                        break;
+
+                                                        case 3:
+                                                            storageManager.GetAToJArtists();
+
+                                                            cmd = view.GetInput();
+
+                                                            do
+                                                            {
+                                                                switch (cmd.ToLower())
+                                                                {
+                                                                    case "E":
+                                                                        GoBack();
+
+                                                                    break;
+
+                                                                    default:
+                                                                        view.AltDisplayError(wait);
+
+                                                                        GoBack();
+
+                                                                    break;
+
+                                                                }
+
+                                                            } while (true);
+                                                
+
+                                                        break;
+
+                                                        case 4:
+                                                            storageManager.GetAToJArtists();
+
+                                                            cmd = view.GetInput();
+
+                                                            do
+                                                            {
+                                                                switch (cmd.ToLower())
+                                                                {
+                                                                    case "E":
+                                                                        GoBack();
+
+                                                                    break;
+
+                                                                    default:
+                                                                        view.AltDisplayError(wait);
+
+                                                                        GoBack();
+
+                                                                    break;
+
+                                                                }
+
+                                                            } while (true);
+                                                
+
+                                                        break;
+
+                                                        case 5:
+                                                            storageManager.GetAToJArtists();
+
+                                                            cmd = view.GetInput();
+
+                                                            do
+                                                            {
+                                                                switch (cmd.ToLower())
+                                                                {
+                                                                    case "E":
+                                                                        GoBack();
+
+                                                                    break;
+
+                                                                    default:
+                                                                        view.AltDisplayError(wait);
+
+                                                                        GoBack();
+
+                                                                    break;
+
+                                                                }
+
+                                                            } while (true);
+                                                
+
+                                                        break;
+
+                                                        case 6:
+                                                            storageManager.GetAToJArtists();
+
+                                                            cmd = view.GetInput();
+
+                                                            do
+                                                            {
+                                                                switch (cmd.ToLower())
+                                                                {
+                                                                    case "E":
+                                                                        GoBack();
+
+                                                                    break;
+
+                                                                    default:
+                                                                        view.AltDisplayError(wait);
+
+                                                                        GoBack();
+
+                                                                    break;
+
+                                                                }
+
+                                                            } while (true);
+                                                
+
+                                                        break;
+
+                                                        case 7:
+                                                            storageManager.GetAToJArtists();
+
+                                                            cmd = view.GetInput();
+
+                                                            do
+                                                            {
+                                                                switch (cmd.ToLower())
+                                                                {
+                                                                    case "E":
+                                                                        GoBack();
+
+                                                                    break;
+
+                                                                    default:
+                                                                        view.AltDisplayError(wait);
+
+                                                                        GoBack();
+
+                                                                    break;
+
+                                                                }
+
+                                                            } while (true);
+                                                
+
+                                                        break;
+
+                                                        case 8:                                   
+                                                            GoBack();
+
+                                                            invalid = false;
+
+                                                        break;
+
+                                                        default:
+                                                            view.AltDisplayError(wait);
+
+                                                            GoBack();
+
+                                                            invalid = true;
+
+                                                        break;
+
+                                                    }
+
+                                                } while (invalid);
+
+                                            break;
+
                                             case "lost":
                                                 MarkArtistAsLost();
 
