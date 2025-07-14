@@ -212,7 +212,7 @@ namespace CDOrganiserProjectApp
                             break;
 
                             case false:
-                            StartMenuscreenOptions();
+                                StartMenuscreenOptions();
 
                             break;
 
@@ -320,7 +320,7 @@ namespace CDOrganiserProjectApp
                                 default:
                                     view.DisplayError(wait);
 
-                                    AdminMenuscreenOptions();
+                                    GoBack();
 
                                     invalid = true;
 
@@ -376,121 +376,6 @@ namespace CDOrganiserProjectApp
 
                                 break;
 
-                                case "reports":
-
-                                    recordselect = view.DisplayRecordOptions("artists", "artists");
-
-                                    Thread.Sleep(wait);
-                                    Console.Clear();
-
-                                    invalid = false;
-
-                                    do
-                                    {
-                                        switch (recordselect)
-                                        {
-                                            case 1:
-                                                storageManager.
-
-                  
-
-                                     
-
-                                            break;
-
-                                            case 2:
-                                                storageManager.GetAllBandAlbums();
-
-                                                Thread.Sleep(wait);
-
-                                                cmd = view.DisplayEditingOptions("band-albums", "album~extras");
-                                                view.DisplayMessage("");
-
-                                                Thread.Sleep(wait);
-
-                                                invalid = false;
-
-                                                do
-                                                {
-
-                                                    switch (cmd)
-                                                    {
-                                                        case "up":
-                                                            UpdateBandAlbum();
-
-                                                            invalid = false;
-
-                                                            GoBack();
-
-                                                        break;
-
-                                                        case "ins":
-                                                            InsertBandAlbum();
-
-                                                            invalid = false;
-
-                                                            GoBack();
-
-                                                        break;
-
-                                                        case "del":
-                                                            DeleteBandAlbumById();
-
-                                                            invalid = false;
-
-                                                            GoBack();
-
-                                                        break;
-
-                                                        case "lost":
-                                                            MarkBandAsLost();
-
-                                                            invalid = false;
-
-                                                            GoBack();
-                                                        break;
-
-                                                        case "back":
-                                                            GoBack();
-
-                                                            invalid = false;
-
-                                                        break;
-
-                                                        default:
-                                                            view.DisplayError(wait);
-
-                                                            AdminMenuscreenOptions();
-
-                                                        break;
-                                                    }
-
-                                                } while (invalid);
-
-                                                break;
-
-                                            case 9:                                   
-                                                GoBack();
-
-                                                invalid = false;
-
-                                            break;
-
-                                            default:
-                                                view.DisplayError(wait);
-
-                                                AdminMenuscreenOptions();
-
-                                                invalid = true;
-
-                                            break;
-
-                                        }
-
-                                    } while (invalid);
-
-                                break;
-
                                 case "back":                                   
                                     GoBack();
 
@@ -501,7 +386,7 @@ namespace CDOrganiserProjectApp
                                 default:
                                     view.DisplayError(wait);
 
-                                    AdminMenuscreenOptions();
+                                    GoBack();
 
                                     invalid = true;
 
@@ -591,7 +476,7 @@ namespace CDOrganiserProjectApp
                                             default:
                                                 view.DisplayError(wait);
 
-                                                AdminMenuscreenOptions();
+                                                GoBack();
 
                                             break;
                                         }
@@ -662,7 +547,7 @@ namespace CDOrganiserProjectApp
                                             default:
                                                 view.DisplayError(wait);
 
-                                                AdminMenuscreenOptions();
+                                                GoBack();
 
                                             break;
                                         }
@@ -681,7 +566,7 @@ namespace CDOrganiserProjectApp
                                 default:
                                     view.DisplayError(wait);
 
-                                    AdminMenuscreenOptions();
+                                    GoBack();
 
                                     invalid = true;
 
@@ -772,7 +657,7 @@ namespace CDOrganiserProjectApp
                                             default:
                                                 view.DisplayError(wait);
 
-                                                AdminMenuscreenOptions();
+                                                GoBack();
 
                                             break;
                                         }
@@ -844,7 +729,7 @@ namespace CDOrganiserProjectApp
                                             default:
                                                 view.DisplayError(wait);
 
-                                                AdminMenuscreenOptions();
+                                                GoBack();
 
                                             break;
                                         }
@@ -863,7 +748,7 @@ namespace CDOrganiserProjectApp
                                 default:
                                     view.DisplayError(wait);
 
-                                    AdminMenuscreenOptions();
+                                    GoBack();
 
                                     invalid = true;
 
@@ -929,7 +814,7 @@ namespace CDOrganiserProjectApp
                                 default:
                                     view.DisplayError(wait);
 
-                                    AdminMenuscreenOptions();
+                                    GoBack();
 
                                     invalid = true;
 
@@ -994,7 +879,7 @@ namespace CDOrganiserProjectApp
                                 default:
                                     view.DisplayError(wait);
 
-                                    AdminMenuscreenOptions();
+                                    GoBack();
 
                                     invalid = true;
 
@@ -1059,7 +944,7 @@ namespace CDOrganiserProjectApp
                                 default:
                                     view.DisplayError(wait);
 
-                                    AdminMenuscreenOptions();
+                                    GoBack();
 
                                     invalid = true;
 
@@ -1124,7 +1009,7 @@ namespace CDOrganiserProjectApp
                                 default:
                                     view.DisplayError(wait);
 
-                                    AdminMenuscreenOptions();
+                                    GoBack();
 
                                     invalid = true;
 
@@ -1189,7 +1074,7 @@ namespace CDOrganiserProjectApp
                                 default:
                                     view.DisplayError(wait);
 
-                                    AdminMenuscreenOptions();
+                                    GoBack();
 
                                     invalid = true;
 
@@ -1229,7 +1114,7 @@ namespace CDOrganiserProjectApp
                                 default:
                                     view.DisplayError(wait);
 
-                                    AdminMenuscreenOptions();
+                                    GoBack();
 
                                     invalid = true;
 
@@ -1281,7 +1166,7 @@ namespace CDOrganiserProjectApp
                                 default:
                                     view.DisplayError(wait);
 
-                                    AdminMenuscreenOptions();
+                                    GoBack();
 
                                     invalid = true;
 
@@ -1324,7 +1209,7 @@ namespace CDOrganiserProjectApp
                     default:
                         view.DisplayError(wait);
 
-                        AdminMenuscreenOptions();
+                        GoBack();
 
                         invalid = true;
 

@@ -394,7 +394,7 @@ namespace CDOrganiserProjectApp.View
 
         /*
          
-         Display Error.
+         Display Errors.
         A generic error prompt to avoid rewriting lines of code. Like many others, I can just call it in the defaults: of switch cases.
          
         */
@@ -403,6 +403,14 @@ namespace CDOrganiserProjectApp.View
         {
             Console.WriteLine("I'm sorry, this isn't a valid selection. Can you try again? ");
             Thread.Sleep(delay);
+            Console.Clear();
+
+        }
+
+        public void AltDisplayError(int delay)
+        {
+            Console.WriteLine("The input was invalid. Sending you back to homepage... ");
+            Thread.Sleep(wait);
             Console.Clear();
 
         }
