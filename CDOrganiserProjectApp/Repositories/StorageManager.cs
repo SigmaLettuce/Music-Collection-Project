@@ -348,7 +348,7 @@ namespace CDOrganiserProjectApp
         public List<Rows> GetAllRows()
         {
             List<Rows> rows = new List<Rows>();
-            string sqlStr = "SELECT shelfRowID, shelfRow, shelfTag FROM Properties.tblShelf, Properties.tblStorageRoom WHERE tblShelf.roomID = tblStorageRoom.roomID";
+            string sqlStr = "SELECT shelfRowID, shelfRow, shelfTag FROM Properties.tblRow, Properties.tblShelf WHERE tblRow.shelfTagID = tblShelf.shelfTagID";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
                 using (SqlDataReader reader = cmd.ExecuteReader())

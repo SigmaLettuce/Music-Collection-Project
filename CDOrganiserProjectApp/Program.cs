@@ -3552,6 +3552,7 @@ namespace CDOrganiserProjectApp
             try
             {
                 view.DisplayMessage("\nEnter the identification number... ");
+                List<ArtistAlbums> artists = storageManager.GetAllArtistAlbums();
                 int artistId = view.GetIntInput();
 
                 bool lost = true;
@@ -3728,6 +3729,7 @@ namespace CDOrganiserProjectApp
             try
             {
                 view.DisplayMessage("\nEnter the identification number... ");
+                List<BandAlbums> bands = storageManager.GetAllBandAlbums();
                 int bandId = view.GetIntInput();
 
                 bool lost = true;
@@ -3746,7 +3748,7 @@ namespace CDOrganiserProjectApp
                     }
 
                 int rowsAffected = storageManager.LostBand(bandId, lost);
-                view.DisplayMessage($"\nMarked {rowsAffected} records as lost.");
+                view.DisplayMessage($"\nMarked/unmarked {rowsAffected} records as lost.");
 
             }
             catch (FormatException e)
@@ -3938,7 +3940,7 @@ namespace CDOrganiserProjectApp
                     }
 
                     int rowsAffected = storageManager.FavouriteArtist(reviewId, favourite);
-                    view.DisplayMessage($"\nMarked {rowsAffected} records as a favourite.");
+                    view.DisplayMessage($"\nMarked/unmarked {rowsAffected} records as a favourite.");
 
 
                 }
@@ -4132,7 +4134,7 @@ namespace CDOrganiserProjectApp
                     }
 
                     int rowsAffected = storageManager.FavouriteBand(reviewId, favourite);
-                    view.DisplayMessage($"\nMarked {rowsAffected} records as a favourite.");
+                    view.DisplayMessage($"\nMarked/unmarked {rowsAffected} records as a favourite.");
 
 
                 }
