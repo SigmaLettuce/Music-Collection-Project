@@ -1118,7 +1118,7 @@ namespace CDOrganiserProjectApp
                 {
                     while (reader.Read())
                     {
-                        search = reader["bandName"].ToString();
+                        search = reader["tierTag"].ToString();
 
                         Console.WriteLine($"{search}\n");
                     }
@@ -1142,7 +1142,55 @@ namespace CDOrganiserProjectApp
                 {
                     while (reader.Read())
                     {
+                        search = reader["tierTag"].ToString();
+
+                        Console.WriteLine($"{search}\n");
+                    }
+
+                    return search;
+                }
+            }
+        }
+
+
+        public string SearchArtistAlbums(string search)
+        {
+
+            string sqlStr = $"SELECT tblArtists.artistName FROM Contents.tblArtistAlbums, Contents.tblArtists WHERE tblArtists.artistName = @search AND tblArtistAlbums.artistID = tblArtists.artistID";
+            using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
+            {
+                cmd.Parameters.AddWithValue("@search", search);
+                Console.WriteLine("NAME:");
+
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
                         search = reader["artistName"].ToString();
+
+                        Console.WriteLine($"{search}\n");
+                    }
+
+                    return search;
+                }
+            }
+        }
+
+
+        public string SearchBandAlbums(string search)
+        {
+
+            string sqlStr = $"SELECT tblBands.bandName FROM Contents.tblBandAlbums, Contents.tblBandsWHERE tblBands.bandName = @search AND tblBandAlbums.bandID = tblBands.bandID";
+            using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
+            {
+                cmd.Parameters.AddWithValue("@search", search);
+                Console.WriteLine("NAME:");
+
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        search = reader["bandName"].ToString();
 
                         Console.WriteLine($"{search}\n");
                     }
