@@ -2187,6 +2187,10 @@ namespace CDOrganiserProjectApp
 
                 int generatedId = storageManager.CreateAccount(newUser);
 
+                Thread.Sleep(wait);
+                Console.Clear();
+                StartMenuscreenOptions();
+
             }
             catch (FormatException e)
             {
@@ -2227,6 +2231,10 @@ namespace CDOrganiserProjectApp
 
 
                 int generatedId = storageManager.CreateAccount(newAdmin);
+
+                Thread.Sleep(wait);
+                Console.Clear();
+                StartMenuscreenOptions();
 
             }
             catch (FormatException e)

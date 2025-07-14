@@ -262,6 +262,7 @@ namespace CDOrganiserProjectApp.View
                 Console.WriteLine($"\n\t [CD MANAGER / {d}]\n");
                 Console.WriteLine("\tEDIT... ");
                 Console.WriteLine("\tThese are the creatable account-type listings, compiled into directories.");
+                Console.WriteLine("\t[x] WARNING: CREATING AN ACCOUNT BOOTS YOU TO THE LOGIN/REGISTER.");
 
                     Console.WriteLine("\t[/]  'default' - Creates a default account");
                     Console.WriteLine("\t[/]  'admin' - Creates an admin account");
@@ -392,7 +393,7 @@ namespace CDOrganiserProjectApp.View
 
                 Console.WriteLine("\t[*]  'How can I login?' - Open the folder you installed, then open the .txt file 'account~list'.");
                 Console.WriteLine("\t[*]  'The connection isn't being established!' - Open the .sln in an IDE > Open the SQL Server Object Explorer > Look through the directory for 'HomeMusicCollectionDatabase'");
-                Console.WriteLine("\t\t[-] > Click on it and open the Properties window by entering F4 or Fn + F4 to copy the connection string >  If that doesn't fix it, please open the repository .url.\n");
+                Console.WriteLine("\t\t[-] > Click on it and open the Properties window by entering F4 or Fn + F4 to copy the connection string > Copy it to the connection string >  If that doesn't fix it, please open the repository .url.\n");
                 Console.WriteLine("\t[*]  'Text from a record is clipping into the next line!' - Enter F11 or Alt + Enter.");
                 Console.WriteLine("\t[*]  'Why does failing a command input send me back to the menuscreen?' - It was taking up too much of my time, couldn't wrap my head around it.");
                 Console.WriteLine("\t[*]  'How do I view the listings?' - Exactly how you ended up here. Enter a listed keyword. This is not case-sensitive.");
