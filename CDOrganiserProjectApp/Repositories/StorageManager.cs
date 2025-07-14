@@ -1129,6 +1129,30 @@ namespace CDOrganiserProjectApp
         }
 
 
+        public string SearchArtistReviews(string search)
+        {
+
+            string sqlStr = $"SELECT tblTier.tierTag FROM Contents.tblBandReviews, Contents.tblBandAlbums, Contents.tblBands, Properties.tblTier WHERE tblBands.bandName = @search AND tblBandReviews.tierID = tblTier.tierID  AND tblBandReviews.albumID = tblBandAlbums.albumID AND tblBandAlbums.bandID = tblBands.bandID";
+            using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
+            {
+                cmd.Parameters.AddWithValue("@search", search);
+                Console.WriteLine("NAME:");
+
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        search = reader["artistName"].ToString();
+
+                        Console.WriteLine($"{search}\n");
+                    }
+
+                    return search;
+                }
+            }
+        }
+
+
         // Closes the connection; Evaluates whether to based on if the connection is null, or if the state says its open. If the first is returned as false, the second isn't evaluated.
         public void CloseConnection()
         {
