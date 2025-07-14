@@ -1,1 +1,2 @@
-﻿SELECT reviewID, albumName, fName, tierTag, favourite FROM Contents.tblArtistReviews, Contents.tblArtistAlbums, Properties.tblAccounts, Properties.tblTier WHERE tblArtistReviews.personID = 2 AND tblArtistReviews.albumID = tblArtistAlbums.albumID AND tblArtistReviews.tierID = tblTier.tierID AND tblArtistReviews.personID = tblAccounts.personID
+﻿SELECT * FROM Properties.tblAccounts
+

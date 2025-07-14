@@ -106,7 +106,7 @@ namespace CDOrganiserProjectApp.View
                 Console.WriteLine("\t[/]  'bands' - All bands who have published an album you own");
                 Console.WriteLine("\t[/]  'genres' - All musical categories of your collection");
 
-            Console.WriteLine("\tSETTINGS... ");
+            Console.WriteLine("\n\tSETTINGS... ");
             Console.WriteLine("\tThese are your available settings, compiled into directories.");
 
                 Console.WriteLine("\n\t[*]  'accounts' - Manage account permissions");
@@ -316,7 +316,7 @@ namespace CDOrganiserProjectApp.View
                 Console.WriteLine($"\n\t [CD MANAGER / {d}]\n");
                 Console.WriteLine("\tEDIT... ");
                 Console.WriteLine("\tThese are the creatable account-type listings, compiled into directories.");
-                Console.WriteLine("\t[x] WARNING: CREATING AN ACCOUNT BOOTS YOU TO THE LOGIN/REGISTER.");
+                Console.WriteLine("\t[x] WARNING: CREATING AN ACCOUNT BOOTS YOU TO THE LOGIN/REGISTER.\n");
 
                     Console.WriteLine("\t[/]  'default' - Creates a default account");
                     Console.WriteLine("\t[/]  'admin' - Creates an admin account");
@@ -332,7 +332,7 @@ namespace CDOrganiserProjectApp.View
                 Console.WriteLine($"\n\t [CD MANAGER / {d}]\n");
                 Console.WriteLine("\tEDIT... ");
                 Console.WriteLine("\tThese are the creatable account-type listings, compiled into directories.");
-                Console.WriteLine("\t[x] WARNING: CREATING AN ACCOUNT BOOTS YOU TO THE LOGIN/REGISTER.");
+                Console.WriteLine("\t[x] WARNING: CREATING AN ACCOUNT BOOTS YOU TO THE LOGIN/REGISTER.\n");
 
                     Console.WriteLine("\t[/]  'default' - Creates a default account");
 

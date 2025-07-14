@@ -24,14 +24,15 @@ namespace CDOrganiserProjectApp
          
         \*                   */
 
-        private static StorageManager storageManager;
+        private static StorageManager storageManager; 
         private static ConsoleView view;
 
         static int accountId;
         static int roleId;
         static bool logStatus;
-
+        
         const int wait = 1000; 
+
 
         static void Main(string[] args)
         {
@@ -110,7 +111,6 @@ namespace CDOrganiserProjectApp
             CreateUser();
             Thread.Sleep(wait);
             Console.Clear();
-            // GuestMenuscreenOptions();
 
 
         }
@@ -167,7 +167,7 @@ namespace CDOrganiserProjectApp
                 Thread.Sleep(wait);
                 Console.Clear();
 
-                Login();
+                StartMenuscreenOptions();
             }
 
         }
@@ -2980,6 +2980,10 @@ namespace CDOrganiserProjectApp
 
             try
             {
+                logStatus = true;
+
+                view.DisplayMessage("[x] WARNING: CREATING AN ACCOUNT BOOTS YOU TO THE LOGIN/REGISTER.\n");
+
                 view.DisplayMessage("\nEnter your first name... ");
                 view.DisplayMessage(" ");
                 string fName = view.GetInput();
@@ -2998,17 +3002,44 @@ namespace CDOrganiserProjectApp
                 view.DisplayMessage(" ");
                 string newpw = view.GetInput();
 
-                Accounts newUser = new Accounts(personId, fName, sName, newuser, newpw, roleId);
+                if (newuser.Equals(storageManager.FetchUsername(newuser, newpw)))
+                {
+                    view.DisplayMessage("\nThat username is already taken. Choose a different username. ");
+                    Thread.Sleep(wait);
+                    Console.Clear();
+
+                    switch (logStatus)
+                    {
+                        case true:
+                             GuestMenuscreenOptions();
+                            
+                        break;
+
+                        case false:
+                            StartMenuscreenOptions();
+
+                        break;
+                    }
+                }
+
+                else
+                {
+                    Accounts newUser = new Accounts(personId, fName, sName, newuser, newpw, roleId);
 
 
-                int generatedId = storageManager.CreateAccount(newUser);
+                    int generatedId = storageManager.CreateAccount(newUser);
 
-                view.DisplayMessage("\n  Successful. Booting you to the login/register.");
-                Thread.Sleep(wait);
-                Console.Clear();
-                StartMenuscreenOptions();
+                    view.DisplayMessage("\n  Successful. Booting you to the login/register.");
+                    Thread.Sleep(wait);
+                    Console.Clear();
+                    StartMenuscreenOptions();
+
+                }
+
+                
 
             }
+
             catch (FormatException e)
             {
                 Console.WriteLine("\n  Please use the proper formatting.");
@@ -3026,6 +3057,10 @@ namespace CDOrganiserProjectApp
 
             try
             {
+                logStatus = true;
+
+                view.DisplayMessage("[x] WARNING: CREATING AN ACCOUNT BOOTS YOU TO THE LOGIN/REGISTER.\n");
+
                 view.DisplayMessage("\nEnter your first name... ");
                 view.DisplayMessage(" ");
                 string fName = view.GetInput();
@@ -3044,17 +3079,44 @@ namespace CDOrganiserProjectApp
                 view.DisplayMessage(" ");
                 string newpw = view.GetInput();
 
-                Accounts newAdmin = new Accounts(personId, fName, sName, newuser, newpw, roleId);
+                if (newuser.Equals(storageManager.FetchUsername(newuser, newpw)))
+                {
+                    view.DisplayMessage("\nThat username is already taken. Choose a different username. ");
+                    Thread.Sleep(wait);
+                    Console.Clear();
+
+                    switch (logStatus)
+                    {
+                        case true:
+                             AdminMenuscreenOptions();
+                            
+                        break;
+
+                        case false:
+                            StartMenuscreenOptions();
+
+                        break;
+                    }
+                }
+
+                else
+                {
+                    Accounts newUser = new Accounts(personId, fName, sName, newuser, newpw, roleId);
 
 
-                int generatedId = storageManager.CreateAccount(newAdmin);
+                    int generatedId = storageManager.CreateAccount(newUser);
 
-                view.DisplayMessage("\n  Successful. Booting you to login/register.");
-                Thread.Sleep(wait);
-                Console.Clear();
-                StartMenuscreenOptions();
+                    view.DisplayMessage("\n  Successful. Booting you to the login/register.");
+                    Thread.Sleep(wait);
+                    Console.Clear();
+                    StartMenuscreenOptions();
+
+                }
+
+                
 
             }
+
             catch (FormatException e)
             {
                 Console.WriteLine("\n  Please use the proper formatting.");
@@ -3549,6 +3611,7 @@ namespace CDOrganiserProjectApp
   
                 bool favourite = false;
 
+
                 int rowsAffected = storageManager.UpdateBandReviewById(reviewId, albumId, personId, tierId, favourite);
                 view.DisplayMessage($"\nUpdated {rowsAffected} records.");
 
@@ -3727,7 +3790,7 @@ namespace CDOrganiserProjectApp
 
             try
             {
-                view.DisplayMessage("\nEnter the name... ");
+                view.DisplayMessage("\nEnter the ranking... ");
                 string search = view.GetInput();
 
                 storageManager.SearchBandReviews(search);
@@ -3749,7 +3812,7 @@ namespace CDOrganiserProjectApp
 
             try
             {
-                view.DisplayMessage("\nEnter the name... ");
+                view.DisplayMessage("\nEnter the ranking... ");
                 string search = view.GetInput();
 
                 storageManager.SearchArtistReviews(search);
