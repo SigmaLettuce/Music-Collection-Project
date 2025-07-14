@@ -641,17 +641,10 @@ namespace CDOrganiserProjectApp
                     while (reader.Read())
                     {
                         int reviewId = Convert.ToInt32(reader["reviewID"]);
-                        int albumId = Convert.ToInt32(reader["albumID"]);
-                        int tierId = Convert.ToInt32(reader["tierID"]);
-                        bool favourite = Convert.ToBoolean(reader["favourite"]);
-
                         string albumName = reader["albumName"].ToString();
                         string fName = reader["fName"].ToString();
                         char tierTag = Convert.ToChar(reader["tierTag"]);
-
-                        albums.Add(new ArtistReviews(reviewId, albumId, personId, tierId, favourite));
-
-
+                        bool favourite = Convert.ToBoolean(reader["favourite"]);
 
                         Console.WriteLine($"{reviewId}\t{albumName}\t{tierTag}\t{favourite}\n");
                         Thread.Sleep(wait);
