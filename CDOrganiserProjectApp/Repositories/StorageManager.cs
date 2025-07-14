@@ -894,6 +894,46 @@ namespace CDOrganiserProjectApp
         }
 
 
+        public int FetchAccountFromArtistReviews(int reviewId)
+        {
+
+            string sqlStr = $"SELECT personID FROM Contents.tblArtistReviews WHERE reviewID = @reviewId";
+            using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
+            {
+                cmd.Parameters.AddWithValue("@reviewId", reviewId);
+
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        reviewId = Convert.ToInt32(reader["reviewID"]);
+                    }
+                }
+
+                return reviewId;
+            }
+        }
+
+        public int FetchAccountFromBandReviews(int reviewId)
+        {
+
+            string sqlStr = $"SELECT personID FROM Contents.tblBandReviews WHERE reviewID = @reviewId";
+            using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
+            {
+                cmd.Parameters.AddWithValue("@reviewId", reviewId);
+
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        reviewId = Convert.ToInt32(reader["reviewID"]);
+                    }
+                }
+
+                return reviewId;
+            }
+        }
+
         
         // Pulls data from the Formats table using the reader, and returns a list.
         public List<Formats> GetAllFormats()

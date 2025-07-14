@@ -3480,8 +3480,25 @@ namespace CDOrganiserProjectApp
   
                 bool favourite = false;
 
-                int rowsAffected = storageManager.UpdateArtistReviewById(reviewId, albumId, personId, tierId, favourite);
-                view.DisplayMessage($"\nUpdated {rowsAffected} records.");
+                
+
+                if (personId.Equals(storageManager.FetchAccountFromArtistReviews(reviewId)))
+                {
+                    view.DisplayMessage("\nYou cannot modify someone elses review. Booting you back to the menuscreen.");
+                    Thread.Sleep(wait);
+                    Console.Clear();
+
+                    AdminMenuscreenOptions();
+
+                }
+
+                else
+                {
+                    int rowsAffected = storageManager.UpdateArtistReviewById(reviewId, albumId, personId, tierId, favourite);
+                    view.DisplayMessage($"\nUpdated {rowsAffected} records.");
+
+
+                }
 
             }
             catch (FormatException e)
@@ -3543,8 +3560,24 @@ namespace CDOrganiserProjectApp
                 List<ArtistReviews> reviews = storageManager.GetAllArtistReviews(accountId);
                 int reviewId = view.GetIntInput();
 
-                int rowsAffected = storageManager.DeleteArtistReviewById(reviewId);
-                view.DisplayMessage($"\nDeleted {rowsAffected} row.");
+
+
+                if (accountId.Equals(storageManager.FetchAccountFromArtistReviews(reviewId)))
+                {
+                    view.DisplayMessage("\nYou cannot modify someone elses review. Booting you back to the menuscreen.");
+                    Thread.Sleep(wait);
+                    Console.Clear();
+
+                    AdminMenuscreenOptions();
+
+                }
+
+                else
+                {
+                    int rowsAffected = storageManager.DeleteArtistReviewById(reviewId);
+                    view.DisplayMessage($"\nDeleted {rowsAffected} row.");
+
+                }
 
             }
             catch (FormatException e)
@@ -3611,9 +3644,23 @@ namespace CDOrganiserProjectApp
   
                 bool favourite = false;
 
+                if (personId.Equals(storageManager.FetchAccountFromBandReviews(reviewId)))
+                {
+                    view.DisplayMessage("\nYou cannot modify someone elses review. Booting you back to the menuscreen.");
+                    Thread.Sleep(wait);
+                    Console.Clear();
 
-                int rowsAffected = storageManager.UpdateBandReviewById(reviewId, albumId, personId, tierId, favourite);
-                view.DisplayMessage($"\nUpdated {rowsAffected} records.");
+                    AdminMenuscreenOptions();
+
+                }
+
+                else
+                {
+                    int rowsAffected = storageManager.UpdateBandReviewById(reviewId, albumId, personId, tierId, favourite);
+                    view.DisplayMessage($"\nUpdated {rowsAffected} records.");
+
+
+                }
 
             }
             catch (FormatException e)
@@ -3675,8 +3722,25 @@ namespace CDOrganiserProjectApp
                 List<BandReviews> reviews = storageManager.GetAllBandReviews(accountId);
                 int reviewId = view.GetIntInput();
 
-                int rowsAffected = storageManager.DeleteBandReviewById(reviewId);
-                view.DisplayMessage($"\nDeleted {rowsAffected} row.");
+
+
+                if (accountId.Equals(storageManager.FetchAccountFromBandReviews(reviewId)))
+                {
+                    view.DisplayMessage("\nYou cannot modify someone elses review. Booting you back to the menuscreen.");
+                    Thread.Sleep(wait);
+                    Console.Clear();
+
+                    AdminMenuscreenOptions();
+
+                }
+
+                else
+                {
+                    int rowsAffected = storageManager.DeleteBandReviewById(reviewId);
+                    view.DisplayMessage($"Deleted {rowsAffected} records.");
+
+
+                }
 
             }
             catch (FormatException e)

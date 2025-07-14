@@ -1,2 +1,1 @@
-﻿SELECT * FROM Properties.tblAccounts
-
+﻿SELECT personID FROM Contents.tblArtistReviews WHERE reviewID = 1
