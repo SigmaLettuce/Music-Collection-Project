@@ -299,7 +299,7 @@ namespace CDOrganiserProjectApp.View
 
         */
 
-        public string DisplayRecordOptions(string d, string type)
+        public int DisplayRecordOptions(string d, string type)
         {
             if (type.Equals("artists"))
             {
@@ -344,7 +344,7 @@ namespace CDOrganiserProjectApp.View
 
 
 
-            return Console.ReadLine();
+            return Convert.ToInt32(Console.ReadLine());
         }
 
         /* 
