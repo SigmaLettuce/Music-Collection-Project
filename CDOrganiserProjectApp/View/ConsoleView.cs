@@ -160,6 +160,20 @@ namespace CDOrganiserProjectApp.View
                 Console.WriteLine("Enter 'reports' to gain access... \n");
             }
 
+            else if (type.Equals("search~only"))
+            {
+                Console.WriteLine($"\n\t [CD MANAGER / {d}]\n");
+                Console.WriteLine("\tVIEW... ");
+                Console.WriteLine("\tThese are the available report listings, compiled into directories.");
+
+                    Console.WriteLine("\n\t[*]  'search' - Opens the search\n");
+
+                    Console.WriteLine("\n\t[*]  'back' - Return to homepage\n");
+
+
+                Console.WriteLine("Enter 'reports' to gain access... \n");
+            }
+
             else if (type.Equals("none"))
             {
                 Console.WriteLine($"\n\t [CD MANAGER / {d}]\n");
@@ -171,7 +185,7 @@ namespace CDOrganiserProjectApp.View
 
             }
 
-            if (type.Equals("default~extras"))
+            else if (type.Equals("default~extras"))
             {
                 Console.WriteLine($"\n\t [CD MANAGER / {d}]\n");
                 Console.WriteLine("\tEDIT... ");

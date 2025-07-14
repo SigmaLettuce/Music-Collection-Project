@@ -512,7 +512,7 @@ namespace CDOrganiserProjectApp
                                                         break;
 
                                                         case 3:
-                                                            storageManager.GetAToJArtists();
+                                                            storageManager.GetArtistsEarly2000sMusic();
 
                                                             cmd = view.GetInput();
 
@@ -540,7 +540,7 @@ namespace CDOrganiserProjectApp
                                                         break;
 
                                                         case 4:
-                                                            storageManager.GetAToJArtists();
+                                                            storageManager.GetTotalArtistGenres();
 
                                                             cmd = view.GetInput();
 
@@ -568,7 +568,7 @@ namespace CDOrganiserProjectApp
                                                         break;
 
                                                         case 5:
-                                                            storageManager.GetAToJArtists();
+                                                            storageManager.GetArtistsAsAWhole();
 
                                                             cmd = view.GetInput();
 
@@ -596,7 +596,7 @@ namespace CDOrganiserProjectApp
                                                         break;
 
                                                         case 6:
-                                                            storageManager.GetAToJArtists();
+                                                            storageManager.GetTotalAlbumsPublishedByArtists();
 
                                                             cmd = view.GetInput();
 
@@ -624,7 +624,7 @@ namespace CDOrganiserProjectApp
                                                         break;
 
                                                         case 7:
-                                                            storageManager.GetAToJArtists();
+                                                            storageManager.GetTotalPublishingsOfAllArtistsPerYear();
 
                                                             cmd = view.GetInput();
 
@@ -742,6 +742,237 @@ namespace CDOrganiserProjectApp
                                                 invalid = false;
 
                                                 GoBack();
+
+                                            break;
+
+                                            case "reports":
+
+                                                recordselect = view.DisplayRecordOptions("bands", "bands");
+
+                                                Thread.Sleep(wait);
+                                                Console.Clear();
+
+                                                invalid = false;
+
+                                                do
+                                                {
+                                                    switch (recordselect)
+                                                    {
+                                                        case 1:
+                                                            storageManager.GetBandReleaseDate();
+
+                                                            cmd = view.GetInput();
+
+                                                            do
+                                                            {
+                                                                switch (cmd.ToLower())
+                                                                {
+                                                                    case "E":
+                                                                        GoBack();
+
+                                                                    break;
+
+                                                                    default:
+                                                                        view.AltDisplayError(wait);
+
+                                                                        GoBack();
+
+                                                                    break;
+
+                                                                }
+
+                                                            } while (true);
+                                                
+
+                                                        break;
+
+                                                        case 2:
+                                                            storageManager.GetAToJBands();
+
+                                                            cmd = view.GetInput();
+
+                                                            do
+                                                            {
+                                                                switch (cmd.ToLower())
+                                                                {
+                                                                    case "E":
+                                                                        GoBack();
+
+                                                                    break;
+
+                                                                    default:
+                                                                        view.AltDisplayError(wait);
+
+                                                                        GoBack();
+
+                                                                    break;
+
+                                                                }
+
+                                                            } while (true);
+                                                
+
+                                                        break;
+
+                                                        case 3:
+                                                            storageManager.GetBandsEarly2000sMusic();
+
+                                                            cmd = view.GetInput();
+
+                                                            do
+                                                            {
+                                                                switch (cmd.ToLower())
+                                                                {
+                                                                    case "E":
+                                                                        GoBack();
+
+                                                                    break;
+
+                                                                    default:
+                                                                        view.AltDisplayError(wait);
+
+                                                                        GoBack();
+
+                                                                    break;
+
+                                                                }
+
+                                                            } while (true);
+                                                
+
+                                                        break;
+
+                                                        case 4:
+                                                            storageManager.GetTotalBandGenres();
+
+                                                            cmd = view.GetInput();
+
+                                                            do
+                                                            {
+                                                                switch (cmd.ToLower())
+                                                                {
+                                                                    case "E":
+                                                                        GoBack();
+
+                                                                    break;
+
+                                                                    default:
+                                                                        view.AltDisplayError(wait);
+
+                                                                        GoBack();
+
+                                                                    break;
+
+                                                                }
+
+                                                            } while (true);
+                                                
+
+                                                        break;
+
+                                                        case 5:
+                                                            storageManager.GetBandsAsAWhole();
+
+                                                            cmd = view.GetInput();
+
+                                                            do
+                                                            {
+                                                                switch (cmd.ToLower())
+                                                                {
+                                                                    case "E":
+                                                                        GoBack();
+
+                                                                    break;
+
+                                                                    default:
+                                                                        view.AltDisplayError(wait);
+
+                                                                        GoBack();
+
+                                                                    break;
+
+                                                                }
+
+                                                            } while (true);
+                                                
+
+                                                        break;
+
+                                                        case 6:
+                                                            storageManager.GetTotalAlbumsPublishedByBands();
+
+                                                            cmd = view.GetInput();
+
+                                                            do
+                                                            {
+                                                                switch (cmd.ToLower())
+                                                                {
+                                                                    case "E":
+                                                                        GoBack();
+
+                                                                    break;
+
+                                                                    default:
+                                                                        view.AltDisplayError(wait);
+
+                                                                        GoBack();
+
+                                                                    break;
+
+                                                                }
+
+                                                            } while (true);
+                                                
+
+                                                        break;
+
+                                                        case 7:
+                                                            storageManager.GetTotalPublishingsOfAllBandsPerYear();
+
+                                                            cmd = view.GetInput();
+
+                                                            do
+                                                            {
+                                                                switch (cmd.ToLower())
+                                                                {
+                                                                    case "E":
+                                                                        GoBack();
+
+                                                                    break;
+
+                                                                    default:
+                                                                        view.AltDisplayError(wait);
+
+                                                                        GoBack();
+
+                                                                    break;
+
+                                                                }
+
+                                                            } while (true);
+                                                
+
+                                                        break;
+
+                                                        case 8:                                   
+                                                            GoBack();
+
+                                                            invalid = false;
+
+                                                        break;
+
+                                                        default:
+                                                            view.AltDisplayError(wait);
+
+                                                            GoBack();
+
+                                                            invalid = true;
+
+                                                        break;
+
+                                                    }
+
+                                                } while (invalid);
 
                                             break;
 
