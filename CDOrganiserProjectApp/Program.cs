@@ -3556,6 +3556,19 @@ namespace CDOrganiserProjectApp
 
                 bool lost = true;
 
+                    switch (storageManager.FetchLostFromArtistAlbums(lost))
+                    {
+                        case true:
+                            lost = false;
+
+                        break;
+
+                        case false:
+                            lost = true;
+
+                        break;
+                    }
+
                 int rowsAffected = storageManager.LostArtist(artistId, lost);
                 view.DisplayMessage($"\nMarked {rowsAffected} records as lost.");
 
@@ -3718,6 +3731,19 @@ namespace CDOrganiserProjectApp
                 int bandId = view.GetIntInput();
 
                 bool lost = true;
+
+                    switch (storageManager.FetchLostFromBandAlbums(lost))
+                    {
+                        case true:
+                            lost = false;
+
+                        break;
+
+                        case false:
+                            lost = true;
+
+                        break;
+                    }
 
                 int rowsAffected = storageManager.LostBand(bandId, lost);
                 view.DisplayMessage($"\nMarked {rowsAffected} records as lost.");

@@ -297,7 +297,7 @@ namespace CDOrganiserProjectApp.View
                     Console.WriteLine("\n\t[/]  'up' - Updates information");
                     Console.WriteLine("\t[/]  'ins' - Adds new information");
                     Console.WriteLine("\t[/]  'del' - Deletes unwanted information");
-                    Console.WriteLine("\t[/]  'favourite' - Mark your favourite album\n");
+                    Console.WriteLine("\t[/]  'favourite' - Mark/unmark your favourite album\n");
                     
                 Console.WriteLine("\tVIEW... ");
                 Console.WriteLine("\tThese are the available report listings, compiled into directories.");
