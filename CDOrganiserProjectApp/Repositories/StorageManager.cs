@@ -1091,6 +1091,108 @@ namespace CDOrganiserProjectApp
         }
 
 
+                // Band Queries
+
+        public void GetBandReleaseDate()
+
+        {
+            string sqlStr = "SELECT albumName, dateOfRelease FROM Contents.tblBandAlbums; ";
+            using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
+            {
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        string bandName = reader["bandName"].ToString();
+                        DateTime dateOfRelease = Convert.ToDateTime(reader["dateOfRelease"]);
+
+                        Console.WriteLine($"{bandName}, {dateOfRelease.ToString("d")}\n");
+                        Thread.Sleep(wait);
+                    }
+                }
+            }
+        }
+
+        public void GetAToJBands()
+        {
+            string sqlStr = "SELECT tblBands.bandName, tblBandAlbums.albumName, tblAlbums.genreName FROM Contents.tblBands, Contents.tblAlbums WHERE tblBandAlbums.bandID = tblBands.bandID AND tblBands.bandName LIKE '[A-J]%' ORDER BY tblBands.bandName asc, tblAlbums.albumName, tblAlbums.genreName;";
+            using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
+            {
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        string bandName = reader["bandName"].ToString();
+                        string albumName = reader["albumName"].ToString();
+                        string genreName = reader["genreName"].ToString();
+
+                        Console.WriteLine($"{bandName}, {albumName}, {genreName}\n");
+                        Thread.Sleep(wait);
+                    }
+                }
+            }
+        }
+
+        public void GetBandsEarly2000sMusic()
+        {
+            string sqlStr = "SELECT tblBandAlbums.albumName, tblGenres.genreName, tblBands.bandName FROM Contents.tblBandAlbums, Contents.tblGenres, Contents.tblBands WHERE tblBandAlbums.genreID = tblGenres.genreID AND tblBandAlbums.bandID = tblBands.bandID AND tblBandAlbums.dateOfRelease BETWEEN '20000101' AND '20051231'";
+            using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
+            {
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        string albumName = reader["albumName"].ToString();
+                        string genreName = reader["genreName"].ToString();
+                        string bandName = reader["bandName"].ToString();
+
+                        Console.WriteLine($"{albumName}, {genreName}, {bandName}\n");
+                        Thread.Sleep(wait);
+                    }
+                }
+            }
+        }
+
+        public void GetTotalBandGenres()
+        {
+            string sqlStr = "SELECT COUNT(tblBandAlbums.genreID) as Count, tblGenres.genreName FROM Contents.tblBandAlbums, Contents.tblGenres WHERE tblBandAlbums.genreID = tblGenres.genreID GROUP BY tblGenres.genreName ";
+            using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
+            {
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        string count = reader["Count"].ToString();
+                        string genreName = reader["genreName"].ToString();
+
+                        Console.WriteLine($"{count}, {genreName}\n");
+                        Thread.Sleep(wait);
+                    }
+                }
+            }
+        }
+
+        public void GetBandsAsAWhole()
+        {
+            string sqlStr = "SELECT bandName as 'All Bands' FROM Contents.tblBands UNION SELECT artistName FROM Contents.tblArtists ORDER BY 'All Artists' asc";
+            using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
+            {
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        string allBands = reader["All Bands"].ToString();
+
+                        Console.WriteLine($"{allBands}\n");
+                        Thread.Sleep(wait);
+                    }
+                }
+            }
+        }
+
+
+        // Search options
+
         public string SearchGenres(string search)
         {
 
