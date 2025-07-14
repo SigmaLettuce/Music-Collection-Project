@@ -236,7 +236,7 @@ namespace CDOrganiserProjectApp
             string sqlStr = "SELECT * FROM Properties.tblStorageRoom";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
-                Console.WriteLine("ID:  ROOM:");
+                Console.WriteLine("ID:\tROOM:");
 
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
@@ -247,7 +247,7 @@ namespace CDOrganiserProjectApp
 
                         rooms.Add(new Rooms(roomId, roomName));
 
-                        Console.WriteLine($"{roomId}, {roomName}\n");
+                        Console.WriteLine($"{roomId}\t{roomName}\n");
                         Thread.Sleep(wait);
                     }
                 }
@@ -295,7 +295,7 @@ namespace CDOrganiserProjectApp
             {
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
-                    Console.WriteLine("ID:  TAG:   ROOM:");
+                    Console.WriteLine("ID:\tTAG:\tROOM:");
 
                     while (reader.Read())
                     {
@@ -307,7 +307,7 @@ namespace CDOrganiserProjectApp
 
                         shelves.Add(new Shelves(shelfTagId, shelfTag, roomId));
 
-                        Console.WriteLine($"{shelfTagId}, {shelfTag}, {roomName}\n");
+                        Console.WriteLine($"{shelfTagId}\t{shelfTag}\t{roomName}\n");
                         Thread.Sleep(wait);
                     }
                 }
@@ -357,7 +357,7 @@ namespace CDOrganiserProjectApp
             {
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
-                    Console.WriteLine("ID:  ROW:   TAG:");
+                    Console.WriteLine("ID:\tROW:\tTAG:\n");
 
                     while (reader.Read())
                     {
@@ -369,7 +369,7 @@ namespace CDOrganiserProjectApp
 
                         rows.Add(new Rows(shelfRowId, shelfTag, shelfTagId));
 
-                        Console.WriteLine($"{shelfRowId}, {shelfRow}, {shelfTag}\n");
+                        Console.WriteLine($"{shelfRowId}\t{shelfRow}\t{shelfTag}\n");
                         Thread.Sleep(wait);
                     }
                 }
@@ -419,7 +419,7 @@ namespace CDOrganiserProjectApp
             {
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
-                    Console.WriteLine("ID:NAME:CATEGORY:RELEASE DATE:FORMAT:ARTIST:ROW:FAVOURITE:");
+                    Console.WriteLine("ID:\tNAME:\tCATEGORY:\tRELEASE DATE:\tFORMAT:\tARTIST:\tROW:\tFAVOURITE:\n");
 
                     while (reader.Read())
                     {
@@ -441,7 +441,7 @@ namespace CDOrganiserProjectApp
 
                         
             
-                        Console.WriteLine($"{albumId}, {albumName}, {genreName}, \t\t\t\t{dateOfRelease.ToString("d")}, {formatName}, {artistName}, {shelfRow}, {lost}\n");
+                        Console.WriteLine($"{albumId}\t{albumName}\t{genreName}\t{dateOfRelease.ToString("d")}\t{formatName}\t{artistName}\t{shelfRow}\t{lost}\n");
                         Thread.Sleep(wait);
                     }
                 }
@@ -526,7 +526,7 @@ namespace CDOrganiserProjectApp
             {
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
-                    Console.WriteLine("ID:NAME:CATEGORY:RELEASE DATE:FORMAT:ARTIST:ROW:FAVOURITE:");
+                    Console.WriteLine("ID:\tNAME:\tCATEGORY:\tRELEASE DATE:\tFORMAT:\tARTIST:\tROW:\tFAVOURITE:\n");
 
                     while (reader.Read())
                     {
@@ -548,7 +548,7 @@ namespace CDOrganiserProjectApp
 
 
 
-                        Console.WriteLine($"{albumId}, {albumName}, {genreName}, {dateOfRelease.ToString("d")}, {formatName}, {bandName}, {shelfRow}, {lost}\n");
+                        Console.WriteLine($"{albumId}\t{albumName}\t{genreName}\t{dateOfRelease.ToString("d")}\t{formatName}\t{bandName}\t{shelfRow}\t{lost}\n");
                         Thread.Sleep(wait);
                     }
                 }
@@ -629,14 +629,14 @@ namespace CDOrganiserProjectApp
         public List<ArtistReviews> GetAllArtistReviews(int personId)
         {
             List<ArtistReviews> albums = new List<ArtistReviews>();
-            string sqlStr = "SELECT reviewID, tblArtistReviews.albumID, albumName, tblArtistReviews.personID, fName, tblArtistReviews.tierID, tierTag, favourite FROM Contents.tblArtistReviews, Contents.tblArtistAlbums, Properties.tblAccounts, Properties.tblTier WHERE tblArtistReviews.albumID = tblArtistAlbums.albumID AND tblArtistReviews.personID = @currentPerson AND tblArtistReviews.tierID = tblTier.tierID";
+            string sqlStr = "SELECT reviewID, albumName, fName, tierTag, favourite FROM Contents.tblArtistReviews, Contents.tblArtistAlbums, Properties.tblAccounts, Properties.tblTier WHERE tblArtistReviews.personID = @currentPerson AND tblArtistReviews.albumID = tblArtistAlbums.albumID AND tblArtistReviews.tierID = tblTier.tierID AND tblArtistReviews.personID = tblAccounts.personID";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
                 cmd.Parameters.AddWithValue("@currentPerson", personId);
 
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
-                    Console.WriteLine("ID: NAME: RANK: FAVOURITE:");
+                    Console.WriteLine("ID:\tNAME:\tRANK:\tFAVOURITE:\n");
 
                     while (reader.Read())
                     {
@@ -653,7 +653,7 @@ namespace CDOrganiserProjectApp
 
 
 
-                        Console.WriteLine($"{reviewId}, {albumName}, {tierTag}, {favourite}\n");
+                        Console.WriteLine($"{reviewId}\t{albumName}\t{tierTag}\t{favourite}\n");
                         Thread.Sleep(wait);
                     }
                 }
@@ -704,14 +704,14 @@ namespace CDOrganiserProjectApp
         public List<BandReviews> GetAllBandReviews(int personId)
         {
             List<BandReviews> albums = new List<BandReviews>();
-            string sqlStr = "SELECT reviewID, albumName, fName, tierTag, favourite FROM Contents.tblBandReviews, Contents.tblBandAlbums, Properties.tblAccounts, Properties.tblTier WHERE tblBandReviews.albumID = tblBandAlbums.albumID AND tblBandReviews.personID = @currentPerson AND tblBandReviews.tierID = tblTier.tierID";
+            string sqlStr = "SELECT reviewID, albumName, fName, tierTag, favourite FROM Contents.tblBandReviews, Contents.tblBandAlbums, Properties.tblAccounts, Properties.tblTier WHERE tblBandReviews.personID = @currentPerson AND tblBandReviews.albumID = tblBandAlbums.albumID AND tblBandReviews.tierID = tblTier.tierID AND tblBandReviews.personID = tblAccounts.personID";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
                 cmd.Parameters.AddWithValue("@currentPerson", personId);
 
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
-                    Console.WriteLine("ID: NAME: CATEGORY: FIRST NAME: RANK: FAVOURITE:");
+                    Console.WriteLine("ID:\tNAME:\tRANK:\tFAVOURITE:\n");
 
                     while (reader.Read())
                     {
@@ -728,7 +728,7 @@ namespace CDOrganiserProjectApp
 
 
 
-                        Console.WriteLine($"{reviewId}, {albumName}, {tierTag}, {favourite}\n");
+                        Console.WriteLine($"{reviewId}\t{albumName}\t{tierTag}\t{favourite}\n");
                         Thread.Sleep(wait);
                     }
                 }
@@ -776,8 +776,6 @@ namespace CDOrganiserProjectApp
         }
 
 
-        public List<Accounts> GetAllAccounts;
-
         public int CreateAccount(Accounts account)
         {
             string sqlStr = $"INSERT INTO Properties.tblAccounts (fName, sName, username, pw, roleID) VALUES (@FirstName, @LastName, @Username, @Password, @RoleId); SELECT SCOPE_IDENTITY();";
@@ -794,18 +792,7 @@ namespace CDOrganiserProjectApp
 
         }
 
-        public int DeleteAccountById(int personId)
-        {
-            string sqlStr = "DELETE FROM Properties.tblAccounts WHERE personID = @personId";
-            using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
-            {
-                cmd.Parameters.AddWithValue("@personId", personId);
-                return cmd.ExecuteNonQuery();
-            }
 
-        }
-
-        
         // Checks the username and password against themselves, then returns a match for a persons identification number in the database.
         public int FetchAccount(string un, string pw)
         {
