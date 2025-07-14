@@ -140,11 +140,6 @@ namespace CDOrganiserProjectApp.View
                     Console.WriteLine("\t[/]  'ins' - Adds new information");
                     Console.WriteLine("\t[/]  'del' - Deletes unwanted information\n");
 
-                Console.WriteLine("\tVIEW... ");
-                Console.WriteLine("\tThese are the available report listings, compiled into directories.");
-
-                    Console.WriteLine("\n\t[*]  'reports' - Opens the reports\n");
-
                     Console.WriteLine("\n\t[*]  'back' - Return to homepage\n");
 
 
@@ -176,7 +171,7 @@ namespace CDOrganiserProjectApp.View
 
             }
 
-            if (type.Equals("search~extras"))
+            if (type.Equals("default~extras"))
             {
                 Console.WriteLine($"\n\t [CD MANAGER / {d}]\n");
                 Console.WriteLine("\tEDIT... ");
@@ -213,6 +208,7 @@ namespace CDOrganiserProjectApp.View
                 Console.WriteLine("\tThese are the available report listings, compiled into directories.");
 
                     Console.WriteLine("\n\t[*]  'reports' - Opens the reports\n");
+                    Console.WriteLine("\t[*]  'search' - Opens the search\n");
 
                     Console.WriteLine("\n\t[*]  'back' - Return to homepage\n");
 

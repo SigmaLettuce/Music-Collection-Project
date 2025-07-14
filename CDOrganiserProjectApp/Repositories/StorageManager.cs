@@ -1432,7 +1432,7 @@ namespace CDOrganiserProjectApp
         public string SearchArtists(string search)
         {
 
-            string sqlStr = $"SELECT artistName FROM Contents.tblArtistAlbums WHERE artistName = @search";
+            string sqlStr = $"SELECT artistName FROM Contents.tblArtists WHERE artistName = @search";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
                 cmd.Parameters.AddWithValue("@search", search);
@@ -1458,7 +1458,7 @@ namespace CDOrganiserProjectApp
         public string SearchBands(string search)
         {
 
-            string sqlStr = $"SELECT bandName FROM Contents.tblArtistAlbums WHERE bandName = @search";
+            string sqlStr = $"SELECT bandName FROM Contents.tblBands WHERE bandName = @search";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
                 cmd.Parameters.AddWithValue("@search", search);

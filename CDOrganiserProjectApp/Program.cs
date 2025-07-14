@@ -295,21 +295,6 @@ namespace CDOrganiserProjectApp
 
                                 break;
 
-                                case "search":
-                                    DeleteBandById();
-
-                                    invalid = false;
-
-                                    GoBack();
-
-                                break;
-
-                                case "reports":
-
-                                    invalid = false;
-
-                                break;
-
                                 case "back":
                                     GoBack();
 
