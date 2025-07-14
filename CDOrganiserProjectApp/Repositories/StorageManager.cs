@@ -861,7 +861,7 @@ namespace CDOrganiserProjectApp
             }
         }
 
-
+        // These two checks if there is a match for a person who has left a review under a specified identification number.
         public int FetchAccountFromArtistReviews(int reviewId)
         {
 
@@ -964,6 +964,15 @@ namespace CDOrganiserProjectApp
             }
 
         }
+
+
+        /* 
+        
+        All functions follow the the format modifiers functions example; 
+        All these functions are used as a bridge between the database and the application 
+        to send signals and recieve signals from. The comments left for these functions apply to all else regarding functions here. 
+        
+        */
 
 
         // Artist Queries
