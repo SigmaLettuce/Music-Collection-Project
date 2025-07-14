@@ -933,7 +933,7 @@ namespace CDOrganiserProjectApp
         }
 
 
-        // Associates all the listed with the insert; basically adds a new  
+        // Inserts a new record into the table.
         public int InsertFormat(Formats formats)
         {
             string sqlStr = $"INSERT INTO Properties.tblFormat (formatName) VALUES (@FormatName); SELECT SCOPE_IDENTITY();";
@@ -945,7 +945,7 @@ namespace CDOrganiserProjectApp
         }
 
         
-        // Associates the variables in the SQL with the string parameters, and returns the identification number. 
+        // Updates through the formats identification number. 
         public int UpdateFormatById(int formatId, string formatName)
         {
             string sqlStr = $"UPDATE Properties.tblFormat SET formatName = @formatName WHERE formatID = @formatId";
@@ -958,7 +958,7 @@ namespace CDOrganiserProjectApp
         }
 
 
-        // Pulls data from the Formats table using the reader, and returns a list.
+        // Deletes the format through the identification number.
         public int DeleteFormatById(int formatId)
         {
             string sqlStr = "DELETE FROM Properties.tblFormat WHERE formatID = @formatId";
@@ -969,26 +969,6 @@ namespace CDOrganiserProjectApp
             }
 
         }
-
-        // Simple Query 1
-        public void GetAllArtistsAndBands()
-        {
-            string sqlStr = "SELECT bandName as 'All Artists' FROM Contents.tblBands UNION SELECT artistName FROM Contents.tblArtists;";
-            using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
-            {
-                using (SqlDataReader reader = cmd.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        string allArtists = reader["All Artists"].ToString();
-
-                        Console.WriteLine($"{allArtists}\n");
-                        Thread.Sleep(wait);
-                    }
-                }
-            }
-        }
-
 
 
         // Artist Queries
@@ -1091,7 +1071,7 @@ namespace CDOrganiserProjectApp
         }
 
 
-                // Band Queries
+        // Band Queries
 
         public void GetBandReleaseDate()
 
@@ -1184,6 +1164,28 @@ namespace CDOrganiserProjectApp
                         string allBands = reader["All Bands"].ToString();
 
                         Console.WriteLine($"{allBands}\n");
+                        Thread.Sleep(wait);
+                    }
+                }
+            }
+        }
+
+
+        // Shelf and Row Queries
+
+        public void GetTotalOfRowOccupancyPerShelf()
+        {
+            string sqlStr = "SELECT COUNT(tblRow.shelfRowID), tblShelf.shelfTag FROM Properties.tblRow, Properties.tblShelf WHERE tblRow.shelfTagID = tblShelf.shelfTagID GROUP BY tblShelf.shelfTag";
+            using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
+            {
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        int shelfRowID = Convert.ToInt32(reader["shelfRowID"]);
+                        char shelfTag = Convert.ToChar(reader["shelfTag"]);
+
+                        Console.WriteLine($"{shelfTag}, {shelfRowID}\n");
                         Thread.Sleep(wait);
                     }
                 }

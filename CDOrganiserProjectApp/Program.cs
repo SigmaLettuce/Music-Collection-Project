@@ -130,6 +130,7 @@ namespace CDOrganiserProjectApp
             view.DisplayMessage(" ");
             string pw = view.GetInput();
 
+            // Searches for matches for credentials in the database, stacks them against each other to make sure the credentials can be validated.
 
             string fetchUsername = storageManager.FetchUsername(user, pw);
             string fetchPassword = storageManager.FetchPassword(user, pw);
@@ -137,8 +138,9 @@ namespace CDOrganiserProjectApp
             roleId = storageManager.FetchRole(user, pw);
 
 
+            // If the given credentials matches with any searches, the user is granted permission, depending on their role for how much can be visible.
 
-            if (user.Equals(fetchUsername) & pw.Equals(fetchPassword))
+            if (user.Equals(fetchUsername) && pw.Equals(fetchPassword))
             {
                 switch (roleId)
                 {
