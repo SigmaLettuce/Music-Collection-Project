@@ -484,9 +484,16 @@ namespace CDOrganiserProjectApp.View
             return Console.ReadLine();
         }      
 
+        /*
+        
+         The displays.
+        These iterate through the database records being read and prints them.
+
+        */
+
         public void DisplayBands(List<Bands> bands)
         {
-            Console.WriteLine("ID:  NAME:");
+            Console.WriteLine("ID:\tNAME:\n");
 
             foreach (Bands band in bands)
             {
@@ -498,11 +505,11 @@ namespace CDOrganiserProjectApp.View
 
         public void DisplayGenres(List<Genres> genres)
         {
-            Console.WriteLine("ID:  NAME:");
+            Console.WriteLine("ID:\tNAME:");
 
             foreach (Genres genre in genres)
             {
-                Console.WriteLine($"{genre.GenreId}, {genre.GenreName}\n");
+                Console.WriteLine($"{genre.GenreId}\t{genre.GenreName}\n");
                 Thread.Sleep(wait);
 
             }
@@ -511,11 +518,11 @@ namespace CDOrganiserProjectApp.View
 
         public void DisplayTiers(List<Tiers> tiers)
         {
-            Console.WriteLine("ID:  CLASS:   VALUE:");
+            Console.WriteLine("ID:\tCLASS:\tVALUE:\n");
 
             foreach (Tiers tier in tiers)
             {
-                Console.WriteLine($"{tier.TierId}, {tier.TierTag}, {tier.TierNumericalValue}\n");
+                Console.WriteLine($"{tier.TierId}\t{tier.TierTag}\t{tier.TierNumericalValue}\n");
                 Thread.Sleep(wait);
 
             }
@@ -524,11 +531,11 @@ namespace CDOrganiserProjectApp.View
 
         public void DisplayArtists(List<Artists> artists)
         {
-            Console.WriteLine("ID:  NAME:");
+            Console.WriteLine("ID:\tNAME:\n");
 
             foreach (Artists artist in artists)
             {
-                Console.WriteLine($"{artist.ArtistId}, {artist.ArtistName}\n");
+                Console.WriteLine($"{artist.ArtistId}\t{artist.ArtistName}\n");
                 Thread.Sleep(wait);
 
             }
@@ -542,6 +549,9 @@ namespace CDOrganiserProjectApp.View
 
         /*
           
+         The Input Getters.
+        Rather than retyping the readline, I can easily convert inputs.
+
         */ 
 
         public string GetInput()

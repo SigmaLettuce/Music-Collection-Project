@@ -40,7 +40,6 @@ namespace CDOrganiserProjectApp
             view = new ConsoleView();
 
             StartMenuscreenOptions();
-            //AdminMenuscreenOptions();
 
         }
 
@@ -229,7 +228,8 @@ namespace CDOrganiserProjectApp
                 }
             } while (invalid);
             
-        }
+        } // The Help method. Calls the support page display.
+
 
         private static void AdminMenuscreenOptions() // The Admin Menuscreen. 
         {           
@@ -2367,6 +2367,7 @@ namespace CDOrganiserProjectApp
 
         }
 
+
         private static void GoBack() // The Go Back function. 
         {
             bool carry = true;
@@ -3002,6 +3003,7 @@ namespace CDOrganiserProjectApp
 
                 int generatedId = storageManager.CreateAccount(newUser);
 
+                view.DisplayMessage("\n  Successful. Booting you to the login/register.");
                 Thread.Sleep(wait);
                 Console.Clear();
                 StartMenuscreenOptions();
@@ -3047,6 +3049,7 @@ namespace CDOrganiserProjectApp
 
                 int generatedId = storageManager.CreateAccount(newAdmin);
 
+                view.DisplayMessage("\n  Successful. Booting you to login/register.");
                 Thread.Sleep(wait);
                 Console.Clear();
                 StartMenuscreenOptions();
@@ -3651,8 +3654,8 @@ namespace CDOrganiserProjectApp
 
         }
 
-        // The search options.
 
+        // The search options.
         private static void SearchGenres()
         {
 
