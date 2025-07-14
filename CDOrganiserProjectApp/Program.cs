@@ -3895,12 +3895,21 @@ namespace CDOrganiserProjectApp
 
                 else
                 {
-                    switch ()
-                    {
-                        default:
-                    }
-
+                    
                     bool favourite = true;
+
+                    switch (storageManager.FetchFavouriteFromArtistReviews(favourite))
+                    {
+                        case true:
+                            favourite = false;
+
+                        break;
+
+                        case false:
+                            favourite = true;
+
+                        break;
+                    }
 
                     int rowsAffected = storageManager.FavouriteArtist(reviewId, favourite);
                     view.DisplayMessage($"\nMarked {rowsAffected} records as a favourite.");
@@ -4081,6 +4090,21 @@ namespace CDOrganiserProjectApp
                 else
                 {   
                     bool favourite = true;
+
+
+                    switch (storageManager.FetchFavouriteFromBandReviews(favourite))
+                    {
+                        case true:
+                            favourite = false;
+
+                        break;
+
+                        case false:
+                            favourite = true;
+
+                        break;
+                    }
+
                     int rowsAffected = storageManager.FavouriteBand(reviewId, favourite);
                     view.DisplayMessage($"\nMarked {rowsAffected} records as a favourite.");
 

@@ -940,7 +940,7 @@ namespace CDOrganiserProjectApp
             string sqlStr = $"SELECT albumID FROM Contents.tblArtistAlbums WHERE lost = @lost";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
-                cmd.Parameters.AddWithValue("@favourite", lost);
+                cmd.Parameters.AddWithValue("@lost", lost);
 
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
@@ -954,13 +954,13 @@ namespace CDOrganiserProjectApp
             }
         }
 
-        public bool FetchFavouriteFromBandAlbums(bool lost)
+        public bool FetchLostFromBandAlbums(bool lost)
         {
 
             string sqlStr = $"SELECT albumID FROM Contents.tblBandAlbums WHERE lost = @lost";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
-                cmd.Parameters.AddWithValue("@favourite", lost);
+                cmd.Parameters.AddWithValue("@lost", lost);
 
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
