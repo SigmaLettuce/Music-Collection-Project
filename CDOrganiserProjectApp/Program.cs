@@ -299,6 +299,35 @@ namespace CDOrganiserProjectApp
                                 case "search":
                                     SearchBands();
 
+                                    cmd = view.GetInput();
+                                    view.DisplayMessage("");
+
+                                    Thread.Sleep(wait);
+
+                                    do
+                                    {
+                                        switch (cmd.ToLower())
+                                        {
+                                            case "E":
+                                                GoBack();
+
+                                                invalid = false;
+
+                                            break;
+
+                                            default:
+                                                view.AltDisplayError(wait);
+
+                                                GoBack();
+
+                                                invalid = true;
+
+                                            break;
+
+                                        }
+
+                                    }  while (invalid);
+
                                     invalid = false;
 
                                     GoBack();
@@ -373,6 +402,35 @@ namespace CDOrganiserProjectApp
 
                                 case "search":
                                     SearchArtists();
+
+                                    cmd = view.GetInput();
+                                    view.DisplayMessage("");
+
+                                    Thread.Sleep(wait);
+
+                                    do
+                                    {
+                                        switch (cmd.ToLower())
+                                        {
+                                            case "E":
+                                                GoBack();
+
+                                                invalid = false;
+
+                                            break;
+
+                                            default:
+                                                view.AltDisplayError(wait);
+
+                                                GoBack();
+
+                                                invalid = true;
+
+                                            break;
+
+                                        }
+
+                                    }  while (invalid);
 
                                     invalid = false;
 
@@ -723,12 +781,36 @@ namespace CDOrganiserProjectApp
                                             case "search":
                                                 SearchArtistAlbums();
 
-                                                invalid = false;
+                                                cmd = view.GetInput();
+                                                view.DisplayMessage("");
+
+                                                Thread.Sleep(wait);
 
                                                 do
                                                 {
+                                                    switch (cmd.ToLower())
+                                                    {
+                                                        case "E":
+                                                            GoBack();
 
-                                                } while ();
+                                                            invalid = false;
+
+                                                        break;
+
+                                                        default:
+                                                            view.AltDisplayError(wait);
+
+                                                            GoBack();
+
+                                                            invalid = true;
+
+                                                        break;
+
+                                                    }
+
+                                                }  while (invalid);
+
+                                                invalid = false;
 
                                             break;
 
@@ -1066,6 +1148,35 @@ namespace CDOrganiserProjectApp
                                             case "search":
                                                 SearchBandAlbums();
 
+                                                cmd = view.GetInput();
+                                                view.DisplayMessage("");
+
+                                                Thread.Sleep(wait);
+
+                                                do
+                                                {
+                                                    switch (cmd.ToLower())
+                                                    {
+                                                        case "E":
+                                                            GoBack();
+
+                                                            invalid = false;
+
+                                                        break;
+
+                                                        default:
+                                                            view.AltDisplayError(wait);
+
+                                                            GoBack();
+
+                                                            invalid = true;
+
+                                                        break;
+
+                                                    }
+
+                                                }  while (invalid);
+
                                                 invalid = false;
 
                                                 GoBack();
@@ -1292,6 +1403,35 @@ namespace CDOrganiserProjectApp
                                             case "search":
                                                 SearchArtistReviews();
 
+                                                cmd = view.GetInput();
+                                                view.DisplayMessage("");
+
+                                                Thread.Sleep(wait);
+
+                                                do
+                                                {
+                                                    switch (cmd.ToLower())
+                                                    {
+                                                        case "E":
+                                                            GoBack();
+
+                                                            invalid = false;
+
+                                                        break;
+
+                                                        default:
+                                                            view.AltDisplayError(wait);
+
+                                                            GoBack();
+
+                                                            invalid = true;
+
+                                                        break;
+
+                                                    }
+
+                                                }  while (invalid);
+
                                                 invalid = false;
 
                                                 GoBack();
@@ -1472,6 +1612,35 @@ namespace CDOrganiserProjectApp
                                             case "search":
                                                 SearchBandReviews();
 
+                                                cmd = view.GetInput();
+                                                view.DisplayMessage("");
+
+                                                Thread.Sleep(wait);
+
+                                                do
+                                                {
+                                                    switch (cmd.ToLower())
+                                                    {
+                                                        case "E":
+                                                            GoBack();
+
+                                                            invalid = false;
+
+                                                        break;
+
+                                                        default:
+                                                            view.AltDisplayError(wait);
+
+                                                            GoBack();
+
+                                                            invalid = true;
+
+                                                        break;
+
+                                                    }
+
+                                                }  while (invalid);
+
                                                 invalid = false;
 
                                                 GoBack();
@@ -1565,6 +1734,35 @@ namespace CDOrganiserProjectApp
 
                                 case "search":
                                     SearchGenres();
+
+                                    cmd = view.GetInput();
+                                    view.DisplayMessage("");
+
+                                    Thread.Sleep(wait);
+
+                                    do
+                                    {
+                                        switch (cmd.ToLower())
+                                        {
+                                            case "E":
+                                                GoBack();
+
+                                                invalid = false;
+
+                                            break;
+
+                                            default:
+                                                view.AltDisplayError(wait);
+
+                                                GoBack();
+
+                                                invalid = true;
+
+                                            break;
+
+                                        }
+
+                                    }  while (invalid);
 
                                     invalid = false;
 
