@@ -1394,7 +1394,7 @@ namespace CDOrganiserProjectApp
 
                         Thread.Sleep(wait);
 
-                        cmd = view.DisplayEditingOptions("genres", "default");
+                        cmd = view.DisplayEditingOptions("genres", "default~extras~search");
                         view.DisplayMessage("");
 
                         Thread.Sleep(wait);
@@ -1426,6 +1426,15 @@ namespace CDOrganiserProjectApp
 
                                 case "del":
                                     DeleteArtistById();
+
+                                    invalid = false;
+
+                                    GoBack();
+
+                                break;
+
+                                case "search":
+                                    SearchGenres();
 
                                     invalid = false;
 
@@ -3592,6 +3601,67 @@ namespace CDOrganiserProjectApp
 
         private static void SearchGenres()
         {
+
+            try
+            {
+                view.DisplayMessage("\nEnter the name... ");
+                string search = view.GetInput();
+
+                storageManager.SearchGenres(search);
+
+            }
+            catch (FormatException e)
+            {
+                Console.WriteLine("\n  Please use the proper formatting.");
+                Console.WriteLine(e.Message);
+
+                SearchGenres();
+    
+            }
+
+        }
+
+        private static void SearchArtists()
+        {
+
+            try
+            {
+                view.DisplayMessage("\nEnter the name... ");
+                string search = view.GetInput();
+
+                storageManager.SearchArtists(search);
+
+            }
+            catch (FormatException e)
+            {
+                Console.WriteLine("\n  Please use the proper formatting.");
+                Console.WriteLine(e.Message);
+
+                SearchArtists();
+    
+            }
+
+        }
+
+        private static void SearchBands()
+        {
+
+            try
+            {
+                view.DisplayMessage("\nEnter the name... ");
+                string search = view.GetInput();
+
+                storageManager.SearchBands(search);
+
+            }
+            catch (FormatException e)
+            {
+                Console.WriteLine("\n  Please use the proper formatting.");
+                Console.WriteLine(e.Message);
+
+                SearchBands();
+    
+            }
 
         }
 
