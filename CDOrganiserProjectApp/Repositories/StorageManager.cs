@@ -613,29 +613,6 @@ namespace CDOrganiserProjectApp
                 return cmd.ExecuteNonQuery();
             }
         }
-
-        public string SearchGenres(string search)
-        {
-
-            string sqlStr = $"SELECT genreName FROM Contents.tblGenres WHERE genreName = @search";
-            using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
-            {
-                cmd.Parameters.AddWithValue("@search", search);
-                Console.WriteLine("CATEGORY:");
-
-                using (SqlDataReader reader = cmd.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        search = reader["username"].ToString();
-
-                        Console.WriteLine($"{search}\n");
-                    }
-
-                    return search;
-                }
-            }
-        }
         
         public int DeleteBandAlbumById(int albumId)
         {
@@ -1034,6 +1011,51 @@ namespace CDOrganiserProjectApp
                 }
             }
         }
+
+        public void GetEarly2000sMusic()
+        {
+            string sqlStr = "SELECT tblArtists.artistName, tblArtistAlbums.albumName, tblAlbums.genreName FROM Contents.tblArtists, Contents.tblAlbums WHERE tblArtistAlbums.artistID = tblArtists.artistID AND tblArtists.artistName LIKE '[A-J]%' ORDER BY tblArtists.artistName, tblAlbums.albumName, tblAlbums.genreName;";
+            using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
+            {
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        string artistName = reader["artistName"].ToString();
+                        string albumName = reader["albumName"].ToString();
+                        string genreName = reader["genreName"].ToString();
+
+                        Console.WriteLine($"{artistName}, {albumName}, {genreName}\n");
+                        Thread.Sleep(wait);
+                    }
+                }
+            }
+        }
+
+
+        public string SearchGenres(string search)
+        {
+
+            string sqlStr = $"SELECT genreName FROM Contents.tblGenres WHERE genreName = @search";
+            using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
+            {
+                cmd.Parameters.AddWithValue("@search", search);
+                Console.WriteLine("CATEGORY:");
+
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        search = reader["username"].ToString();
+
+                        Console.WriteLine($"{search}\n");
+                    }
+
+                    return search;
+                }
+            }
+        }
+
 
         // Closes the connection; Evaluates whether to based on if the connection is null, or if the state says its open. If the first is returned as false, the second isn't evaluated.
         public void CloseConnection()

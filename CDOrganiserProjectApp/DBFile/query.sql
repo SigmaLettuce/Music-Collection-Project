@@ -1,1 +1,1 @@
-﻿SELECT tblRow.shelfRowID, tblRow.shelfRow, tblShelf.shelfTag FROM Properties.tblRow, Contents.tbl
+﻿

@@ -1030,7 +1030,7 @@ namespace CDOrganiserProjectApp
                             switch (cmd)
                             {
                                 case "up":
-                                    u();
+                                    UpdateRow();
 
                                     invalid = false;
 
@@ -1039,7 +1039,7 @@ namespace CDOrganiserProjectApp
                                 break;
 
                                 case "ins":
-                                    InsertNewShelf();
+                                    InsertNewRow();
 
                                     invalid = false;
 
@@ -1048,7 +1048,7 @@ namespace CDOrganiserProjectApp
                                 break;
 
                                 case "del":
-                                    DeleteShelfById();
+                                    DeleteRowById();
 
                                     invalid = false;
 
@@ -2063,7 +2063,7 @@ namespace CDOrganiserProjectApp
 
 
         // The data-modifying commands for the Shelves table.
-        private static void MoveRow()
+        private static void UpdateRow()
         {
             
 
@@ -2085,28 +2085,29 @@ namespace CDOrganiserProjectApp
                 Console.WriteLine("\n  Please use the proper formatting.");
                 Console.WriteLine(e.Message);
 
-                MoveRow();
+                UpdateRow();
 
             }
 
         }
 
-        private static void InstallNewRow()
+        private static void InsertNewRow()
         {
             
 
             try
             {
-                view.DisplayMessage("\nEnter the new rows tag... ");
-                char shelfTag = view.GetCharInput();
+                view.DisplayMessage("\nEnter the new rows number... ");
+                int shelfRow = view.GetIntInput();
 
-                view.DisplayMessage("\nEnter the new room... ");
-                int roomId = view.GetIntInput();
-                int shelfTagId = 0;
+                view.DisplayMessage("\nEnter the shelf it belongs on... ");
+                List<Shelves> shelves = storageManager.GetAllShelves();
+                int shelfTagId = view.GetIntInput();
+                int shelfRowId = 0;
 
-                Shelves newShelf = new Shelves(shelfTagId, shelfTag, roomId);
+                Rows newRow = new Rows(shelfRowId, shelfRow, shelfTagId);
 
-                int generatedId = storageManager.InsertShelf(newShelf);
+                int generatedId = storageManager.InsertRow(newRow);
                 view.DisplayMessage($"\nThe new shelves identification number is: {generatedId}");
             }
             catch (FormatException e)
@@ -2114,7 +2115,7 @@ namespace CDOrganiserProjectApp
                 Console.WriteLine("\n  Please use the proper formatting.");
                 Console.WriteLine(e.Message);
 
-                InsertNewShelf();
+                InsertNewRow();
 
             }
 
@@ -2138,7 +2139,7 @@ namespace CDOrganiserProjectApp
                 Console.WriteLine("\n  Please use the proper formatting.");
                 Console.WriteLine(e.Message);
 
-                DeleteShelfById();
+                DeleteRowById();
 
             }
 

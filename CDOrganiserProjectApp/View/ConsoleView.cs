@@ -290,6 +290,61 @@ namespace CDOrganiserProjectApp.View
             return Console.ReadLine();
         }
 
+        /*
+
+         Display Record Options.
+        These are the record options. This method is parameterized to evaluate which version of options a user gets, similar to Display Editing.
+
+        */
+
+        public string DisplayRecordOptions(string d, string type)
+        {
+            if (type.Equals("artists"))
+            {
+                Console.WriteLine($"\n\t [CD MANAGER / {d}]\n");
+                Console.WriteLine("\tVIEW... ");
+                Console.WriteLine("\tThese are the available report listings, compiled into directories.");
+
+                    Console.WriteLine("\n\t[/]  'A-J Artists' - Enter 1\n");
+                    Console.WriteLine("\n\t[/]  'Early 2000s Music' - Enter 2\n");
+                    Console.WriteLine("\n\t[/]  '' - Enter 3\n");
+
+                    Console.WriteLine("\n\t[*]  'back' - Return to homepage\n");
+
+
+                Console.WriteLine("Enter any of the listings above to gain access... \n");
+            }
+
+            else if (type.Equals("bands"))
+            {
+                Console.WriteLine($"\n\t [CD MANAGER / {d}]\n");
+                Console.WriteLine("\tVIEW... ");
+                Console.WriteLine("\tThese are the available report listings, compiled into directories.");
+
+                    Console.WriteLine("\n\t[*]  'reports' - Opens the reports\n");
+
+                    Console.WriteLine("\n\t[*]  'back' - Return to homepage\n");
+
+
+                Console.WriteLine("Enter 'reports' to gain access... \n");
+            }
+
+            else if (type.Equals("artist~reviews"))
+            {
+                Console.WriteLine($"\n\t [CD MANAGER / {d}]\n");
+
+                Console.WriteLine("\n\t[*]  'back' - Return to homepage\n");
+
+
+                Console.WriteLine("You can't modify this listing. \n");
+
+            }
+
+
+
+            return Console.ReadLine();
+        }
+
         /* 
           
          Configure Option.
