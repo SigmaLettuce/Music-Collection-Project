@@ -1070,6 +1070,44 @@ namespace CDOrganiserProjectApp
             }
         }
 
+        public void GetTotalAlbumsPublishedByArtists()
+        {
+            string sqlStr = "SELECT COUNT(tblArtistAlbums.albumID), tblArtists.artistName FROM Contents.tblArtistAlbums, Contents.tblArtists WHERE tblArtistAlbums.artistID = tblArtists.artistID GROUP BY tblArtists.artistName ORDER BY tblArtists.artistName;";
+            using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
+            {
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        int albumId = Convert.ToInt32(reader["albumID"]);
+                        string artistName = reader ["artistName"].ToString();
+
+                        Console.WriteLine($"{albumId}, {artistName}\n");
+                        Thread.Sleep(wait);
+                    }
+                }
+            }
+        }
+
+        public void GetTotalPublishingsOfAllArtistsPerYear()
+        {
+            string sqlStr = "SELECT COUNT(tblArtistAlbums.albumID), YEAR(tblArtistAlbums.dateOfRelease) as 'dateOfRelease' FROM Contents.tblArtistAlbums GROUP BY YEAR(tblArtistAlbums.dateOfRelease) ORDER BY 'dateOfRelease'";
+            using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
+            {
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        int albumId = Convert.ToInt32(reader["albumID"]);
+                        DateTime dateOfRelease = Convert.ToDateTime(reader["dateOfRelease"]);
+
+                        Console.WriteLine($"{albumId}, {dateOfRelease.ToString("d")}\n");
+                        Thread.Sleep(wait);
+                    }
+                }
+            }
+        }
+
 
         // Band Queries
 
@@ -1161,7 +1199,7 @@ namespace CDOrganiserProjectApp
                 {
                     while (reader.Read())
                     {
-                        string allBands = reader["All Bands"].ToString();
+                        string allBands = reader["All Artists"].ToString();
 
                         Console.WriteLine($"{allBands}\n");
                         Thread.Sleep(wait);
@@ -1170,6 +1208,122 @@ namespace CDOrganiserProjectApp
             }
         }
 
+        public void GetTotalAlbumsPublishedByBands()
+        {
+            string sqlStr = "SELECT COUNT(tblBandAlbums.albumID), tblBands.bandName FROM Contents.tblBandAlbums, Contents.tblBands WHERE tblBandAlbums.bandID = tblBands.bandID GROUP BY tblBands.bandName ORDER BY tblBands.bandName;";
+            using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
+            {
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        int albumId = Convert.ToInt32(reader["albumID"]);
+                        string bandName = reader ["bandName"].ToString();
+
+                        Console.WriteLine($"{albumId}, {bandName}\n");
+                        Thread.Sleep(wait);
+                    }
+                }
+            }
+        }
+
+        public void GetTotalPublishingsOfAllBandsPerYear()
+        {
+            string sqlStr = "SELECT COUNT(tblBandAlbums.albumID), YEAR(tblBandAlbums.dateOfRelease) as 'dateOfRelease' FROM Contents.tblBandAlbums GROUP BY YEAR(tblBandAlbums.dateOfRelease) ORDER BY 'dateOfRelease'";
+            using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
+            {
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        int albumId = Convert.ToInt32(reader["albumID"]);
+                        DateTime dateOfRelease = Convert.ToDateTime(reader["dateOfRelease"]);
+
+                        Console.WriteLine($"{albumId}, {dateOfRelease.ToString("d")}\n");
+                        Thread.Sleep(wait);
+                    }
+                }
+            }
+        }
+
+
+        // Review Queries
+
+        public void GetHighRankingArtistAlbums()
+        {
+            string sqlStr = "SELECT tblArtistAlbums.albumName, tblTier.tierTag FROM Contents.tblArtistReviews, Contents.tblArtistAlbums, Properties.tblTier WHERE tblTier.tierTag = 'S' AND tblArtistReviews.albumID = tblArtistAlbums.albumID AND tblArtistReviews.tierID = tblTier.tierID";
+            using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
+            {
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        string albumName = reader["albumName"].ToString();
+                        char tierTag = Convert.ToChar(reader["tierTag"]);
+
+                        Console.WriteLine($"{albumName}, {tierTag}\n");
+                        Thread.Sleep(wait);
+                    }
+                }
+            }
+        }
+
+        public void GetHighRankingBandAlbums()
+        {
+            string sqlStr = "SELECT tblBandAlbums.albumName, tblTier.tierTag FROM Contents.tblBandReviews, Contents.tblBandAlbums, Properties.tblTier WHERE tblTier.tierTag = 'S' AND tblBandReviews.albumID = tblBandAlbums.albumID AND tblBandReviews.tierID = tblTier.tierID";
+            using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
+            {
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        string albumName = reader["albumName"].ToString();
+                        char tierTag = Convert.ToChar(reader["tierTag"]);
+
+                        Console.WriteLine($"{albumName}, {tierTag}\n");
+                        Thread.Sleep(wait);
+                    }
+                }
+            }
+        }
+
+        public void GetTopThreeFavouriteArtistAlbums()
+        {
+            string sqlStr = "SELECT TOP 3 COUNT(tblArtistReviews.favourite), tblArtistAlbums.albumName FROM Contents.tblArtistReviews, Contents.tblArtistAlbums WHERE tblArtistReviews.albumID = tblArtistAlbums.albumID AND favourite = 'true' GROUP BY tblArtistAlbums.albumName";
+            using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
+            {
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        bool favourite = Convert.ToBoolean(reader["favourite"]);
+                        string albumName = reader["albumName"].ToString();
+
+                        Console.WriteLine($"{favourite}, {albumName}\n");
+                        Thread.Sleep(wait);
+                    }
+                }
+            }
+        }
+
+        public void GetTopThreeFavouriteBandAlbums()
+        {
+            string sqlStr = "SELECT TOP 3 COUNT(tblBandReviews.favourite), tblBandAlbums.albumName FROM Contents.tblBandReviews, Contents.tblBandAlbums WHERE tblBandReviews.albumID = tblBandAlbums.albumID AND favourite = 'true' GROUP BY tblBandAlbums.albumName";
+            using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
+            {
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        bool favourite = Convert.ToBoolean(reader["favourite"]);
+                        string albumName = reader["albumName"].ToString();
+
+                        Console.WriteLine($"{favourite}, {albumName}\n");
+                        Thread.Sleep(wait);
+                    }
+                }
+            }
+        }
 
         // Shelf and Row Queries
 

@@ -1,1 +1,1 @@
-﻿SELECT COUNT(tblRow.shelfRowID), tblShelf.shelfTag FROM Properties.tblRow, Properties.tblShelf WHERE tblRow.shelfTagID = tblShelf.shelfTagID GROUP BY tblShelf.shelfTag
+﻿SELECT TOP 3 COUNT(tblArtistReviews.favourite), tblArtistAlbums.albumName FROM Contents.tblArtistReviews, Contents.tblArtistAlbums WHERE tblArtistReviews.albumID = tblArtistAlbums.albumID AND favourite = 'true' GROUP BY tblArtistAlbums.albumName 

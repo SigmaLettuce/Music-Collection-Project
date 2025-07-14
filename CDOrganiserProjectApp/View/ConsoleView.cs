@@ -278,6 +278,7 @@ namespace CDOrganiserProjectApp.View
                 Console.WriteLine($"\n\t [CD MANAGER / {d}]\n");
                 Console.WriteLine("\tEDIT... ");
                 Console.WriteLine("\tThese are the creatable account-type listings, compiled into directories.");
+                Console.WriteLine("\t[x] WARNING: CREATING AN ACCOUNT BOOTS YOU TO THE LOGIN/REGISTER.");
 
                     Console.WriteLine("\t[/]  'default' - Creates a default account");
 
