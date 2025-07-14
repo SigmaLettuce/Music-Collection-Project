@@ -256,7 +256,7 @@ namespace CDOrganiserProjectApp
 
                         Thread.Sleep(wait);
 
-                        cmd = view.DisplayEditingOptions("bands", "default");
+                        cmd = view.DisplayEditingOptions("bands", "default~extras~search");
                         view.DisplayMessage("");
 
                         Thread.Sleep(wait);
@@ -295,6 +295,15 @@ namespace CDOrganiserProjectApp
 
                                 break;
 
+                                case "search":
+                                    SearchBands();
+
+                                    invalid = false;
+
+                                    GoBack();
+
+                                break;
+
                                 case "back":
                                     GoBack();
 
@@ -322,7 +331,7 @@ namespace CDOrganiserProjectApp
 
                         Thread.Sleep(wait);
 
-                        cmd = view.DisplayEditingOptions("artists", "default");
+                        cmd = view.DisplayEditingOptions("artists", "default~extras~search");
                         view.DisplayMessage("");
 
                         Thread.Sleep(wait);
@@ -354,6 +363,15 @@ namespace CDOrganiserProjectApp
 
                                 case "del":
                                     DeleteArtistById();
+
+                                    invalid = false;
+
+                                    GoBack();
+
+                                break;
+
+                                case "search":
+                                    SearchArtists();
 
                                     invalid = false;
 
@@ -673,6 +691,15 @@ namespace CDOrganiserProjectApp
 
                                             break;
 
+                                            case "search":
+                                                SearchArtistAlbums();
+
+                                                invalid = false;
+
+                                                GoBack();
+
+                                            break;
+
                                             case "lost":
                                                 MarkArtistAsLost();
 
@@ -976,6 +1003,15 @@ namespace CDOrganiserProjectApp
 
                                             break;
 
+                                            case "search":
+                                                SearchBandAlbums();
+
+                                                invalid = false;
+
+                                                GoBack();
+
+                                            break;
+
                                             case "lost":
                                                 MarkBandAsLost();
 
@@ -1185,6 +1221,15 @@ namespace CDOrganiserProjectApp
 
                                             break;
 
+                                            case "search":
+                                                SearchArtistReviews();
+
+                                                invalid = false;
+
+                                                GoBack();
+
+                                            break;
+
                                             case "back":
                                                 GoBack();
 
@@ -1345,6 +1390,15 @@ namespace CDOrganiserProjectApp
                                                     }
 
                                                 } while (invalid);
+
+                                            break;
+
+                                            case "search":
+                                                SearchBandReviews();
+
+                                                invalid = false;
+
+                                                GoBack();
 
                                             break;
 
