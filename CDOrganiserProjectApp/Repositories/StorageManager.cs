@@ -19,7 +19,7 @@ namespace CDOrganiserProjectApp
 
 
         // A generically shared integer for delays.
-        int wait = 100; 
+        const int wait = 100; 
 
         // A private connection string that acts as a bridge to the database.
         private SqlConnection conn; 
@@ -290,7 +290,7 @@ namespace CDOrganiserProjectApp
         public List<Shelves> GetAllShelves()
         {
             List<Shelves> shelves = new List<Shelves>();
-            string sqlStr = "SELECT tblShelf.shelfTagID, tblShelf.shelfTag, tblShelf.roomID, tblStorageRoom.roomName FROM Properties.tblShelf, Properties.tblStorageRoom WHERE tblShelf.roomID = tblStorageRoom.roomID";
+            string sqlStr = "SELECT tblShelf.shelfTagID, tblShelf.shelfTag, tblStorageRoom.roomName FROM Properties.tblShelf, Properties.tblStorageRoom WHERE tblShelf.roomID = tblStorageRoom.roomID";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
                 using (SqlDataReader reader = cmd.ExecuteReader())
@@ -301,11 +301,7 @@ namespace CDOrganiserProjectApp
                     {
                         int shelfTagId = Convert.ToInt32(reader["shelfTagID"]);
                         char shelfTag = Convert.ToChar(reader["shelfTag"]);
-                        int roomId = Convert.ToInt32(reader["roomID"]);
-
                         string roomName = reader["roomName"].ToString();
-
-                        shelves.Add(new Shelves(shelfTagId, shelfTag, roomId));
 
                         Console.WriteLine($"{shelfTagId}\t{shelfTag}\t{roomName}\n");
                         Thread.Sleep(wait);
@@ -352,7 +348,7 @@ namespace CDOrganiserProjectApp
         public List<Rows> GetAllRows()
         {
             List<Rows> rows = new List<Rows>();
-            string sqlStr = "SELECT tblShelf.shelfTagID, tblShelf.shelfTag, tblShelf.roomID, tblStorageRoom.roomName FROM Properties.tblShelf, Properties.tblStorageRoom WHERE tblShelf.roomID = tblStorageRoom.roomID";
+            string sqlStr = "SELECT shelfRowID, shelfRow, shelfTag FROM Properties.tblShelf, Properties.tblStorageRoom WHERE tblShelf.roomID = tblStorageRoom.roomID";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
                 using (SqlDataReader reader = cmd.ExecuteReader())
@@ -363,11 +359,7 @@ namespace CDOrganiserProjectApp
                     {
                         int shelfRowId = Convert.ToInt32(reader["shelfRowID"]);
                         int shelfRow = Convert.ToInt32(reader["shelfRow"]);
-                        int shelfTagId = Convert.ToInt32(reader["shelfTagID"]);
-
-                        char shelfTag = Convert.ToChar(reader["roomName"]);
-
-                        rows.Add(new Rows(shelfRowId, shelfTag, shelfTagId));
+                        char shelfTag = Convert.ToChar(reader["shelfTag"]);
 
                         Console.WriteLine($"{shelfRowId}\t{shelfRow}\t{shelfTag}\n");
                         Thread.Sleep(wait);
@@ -414,7 +406,7 @@ namespace CDOrganiserProjectApp
         public List<ArtistAlbums> GetAllArtistAlbums()
         {
             List<ArtistAlbums> albums = new List<ArtistAlbums>();
-            string sqlStr = "SELECT albumID, albumName, tblArtistAlbums.genreID, genreName, dateOfRelease, tblArtistAlbums.formatID, formatName, tblArtistAlbums.artistID, artistName, tblArtistAlbums.shelfRowID, shelfRow, lost FROM Contents.tblGenres, Contents.tblArtistAlbums, Properties.tblFormat, Contents.tblArtists, Properties.tblRow WHERE tblArtistAlbums.genreID = tblGenres.genreID AND tblArtistAlbums.formatID = tblFormat.formatID AND tblArtistAlbums.artistID = tblArtists.artistID AND tblArtistAlbums.shelfRowID = tblRow.shelfRowID";
+            string sqlStr = "SELECT albumID, albumName, genreName, dateOfRelease, formatName, artistName, shelfRow, lost FROM Contents.tblGenres, Contents.tblArtistAlbums, Properties.tblFormat, Contents.tblArtists, Properties.tblRow WHERE tblArtistAlbums.genreID = tblGenres.genreID AND tblArtistAlbums.formatID = tblFormat.formatID AND tblArtistAlbums.artistID = tblArtists.artistID AND tblArtistAlbums.shelfRowID = tblRow.shelfRowID";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
                 using (SqlDataReader reader = cmd.ExecuteReader())
@@ -512,7 +504,7 @@ namespace CDOrganiserProjectApp
         public List<BandAlbums> GetAllBandAlbums()
         {
             List<BandAlbums> albums = new List<BandAlbums>();
-            string sqlStr = "SELECT albumID, albumName, tblBandAlbums.genreID, genreName, dateOfRelease, tblBandAlbums.formatID, formatName, tblBandAlbums.bandID, bandName, tblBandAlbums.shelfRowID, shelfRow, lost FROM Contents.tblGenres, Contents.tblBandAlbums, Properties.tblFormat, Contents.tblBands, Properties.tblRow WHERE tblBandAlbums.genreID = tblGenres.genreID AND tblBandAlbums.formatID = tblFormat.formatID AND tblBandAlbums.bandID = tblBands.bandID AND tblBandAlbums.shelfRowId = tblRow.shelfRowId";
+            string sqlStr = "SELECT albumID, albumName, genreName, dateOfRelease, formatName, bandName, shelfRow, lost FROM Contents.tblGenres, Contents.tblBandAlbums, Properties.tblFormat, Contents.tblBands, Properties.tblRow WHERE tblBandAlbums.genreID = tblGenres.genreID AND tblBandAlbums.formatID = tblFormat.formatID AND tblBandAlbums.bandID = tblBands.bandID AND tblBandAlbums.shelfRowId = tblRow.shelfRowId";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
                 using (SqlDataReader reader = cmd.ExecuteReader())
@@ -611,7 +603,7 @@ namespace CDOrganiserProjectApp
         public List<ArtistReviews> GetAllArtistReviews(int personId)
         {
             List<ArtistReviews> albums = new List<ArtistReviews>();
-            string sqlStr = "SELECT reviewID, albumName, f tierTag, favourite FROM Contents.tblArtistReviews, Contents.tblArtistAlbums, Properties.tblAccounts, Properties.tblTier WHERE tblArtistReviews.personID = @currentPerson AND tblArtistReviews.albumID = tblArtistAlbums.albumID AND tblArtistReviews.tierID = tblTier.tierID AND tblArtistReviews.personID = tblAccounts.personID";
+            string sqlStr = "SELECT reviewID, albumName, tierTag, favourite FROM Contents.tblArtistReviews, Contents.tblArtistAlbums, Properties.tblAccounts, Properties.tblTier WHERE tblArtistReviews.personID = @currentPerson AND tblArtistReviews.albumID = tblArtistAlbums.albumID AND tblArtistReviews.tierID = tblTier.tierID AND tblArtistReviews.personID = tblAccounts.personID";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
                 cmd.Parameters.AddWithValue("@currentPerson", personId);
@@ -693,8 +685,6 @@ namespace CDOrganiserProjectApp
                         string albumName = reader["albumName"].ToString();
                         char tierTag = Convert.ToChar(reader["tierTag"]);
                         bool favourite = Convert.ToBoolean(reader["favourite"]);
-
-                        
 
                         Console.WriteLine($"{reviewId}\t{albumName}\t{tierTag}\t{favourite}\n");
                         Thread.Sleep(wait);
