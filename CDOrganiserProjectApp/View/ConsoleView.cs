@@ -307,11 +307,15 @@ namespace CDOrganiserProjectApp.View
                 Console.WriteLine("\tVIEW... ");
                 Console.WriteLine("\tThese are the available report listings, compiled into directories.");
 
-                    Console.WriteLine("\n\t[/]  'A-J Artists' - Enter 1\n");
-                    Console.WriteLine("\n\t[/]  'Early 2000s Music' - Enter 2\n");
-                    Console.WriteLine("\n\t[/]  'All Artists' - Enter 3\n");
+                    Console.WriteLine("\n\t[/]  'Release dates' - Enter 1\n");
+                    Console.WriteLine("\n\t[/]  'A-J Artists' - Enter 2\n");
+                    Console.WriteLine("\n\t[/]  'Early 2000s Music' - Enter 3\n");
+                    Console.WriteLine("\n\t[/]  'All Albums Of A Genre' - Enter 4\n");
+                    Console.WriteLine("\n\t[/]  'Both Artists And Bands' - Enter 5\n");
+                    Console.WriteLine("\n\t[/]  'Total Albums Published By An An Artist' - Enter 6\n");
+                    Console.WriteLine("\n\t[/]  'Total Publishes Per Year' - Enter 7\n");
 
-                    Console.WriteLine("\n\t[*]  'back' - Return to homepage\n");
+                    Console.WriteLine("\n\t[*]  Enter 8 - Return to homepage\n");
 
 
                 Console.WriteLine("Enter any of the listings above to gain access... \n");
@@ -323,19 +327,59 @@ namespace CDOrganiserProjectApp.View
                 Console.WriteLine("\tVIEW... ");
                 Console.WriteLine("\tThese are the available report listings, compiled into directories.");
 
-                    Console.WriteLine("\n\t[*]  'reports' - Opens the reports\n");
+                    Console.WriteLine("\n\t[/]  'Release dates' - Enter 1\n");
+                    Console.WriteLine("\n\t[/]  'A-J Bands' - Enter 2\n");
+                    Console.WriteLine("\n\t[/]  'Early 2000s Music' - Enter 3\n");
+                    Console.WriteLine("\n\t[/]  'All Albums Of A Genre' - Enter 4\n");
+                    Console.WriteLine("\n\t[/]  'Both Artists And Bands' - Enter 5\n");
+                    Console.WriteLine("\n\t[/]  'Total Albums Published By An An Band' - Enter 6\n");
+                    Console.WriteLine("\n\t[/]  'Total Publishes Per Year' - Enter 7\n");
 
-                    Console.WriteLine("\n\t[*]  'back' - Return to homepage\n");
+                    Console.WriteLine("\n\t[*]  Enter 8 - Return to homepage\n");
 
 
-                Console.WriteLine("Enter 'reports' to gain access... \n");
+                Console.WriteLine("Enter any of the listings above to gain access... \n");
             }
 
-            else if (type.Equals("artist~reviews"))
+            if (type.Equals("artists~reviews"))
             {
                 Console.WriteLine($"\n\t [CD MANAGER / {d}]\n");
+                Console.WriteLine("\tVIEW... ");
+                Console.WriteLine("\tThese are the available report listings, compiled into directories.");
 
-                Console.WriteLine("\n\t[*]  'back' - Return to homepage\n");
+                    Console.WriteLine("\n\t[/]  'Highest ranked' - Enter 1\n");
+                    Console.WriteLine("\n\t[/]  'Three Favourites' - Enter 2\n");
+
+                    Console.WriteLine("\n\t[*]  Enter 3 - Return to homepage\n");
+
+
+                Console.WriteLine("Enter any of the listings above to gain access... \n");
+            }
+
+            else if (type.Equals("bands~reviews"))
+            {
+                Console.WriteLine($"\n\t [CD MANAGER / {d}]\n");
+                Console.WriteLine("\tVIEW... ");
+                Console.WriteLine("\tThese are the available report listings, compiled into directories.");
+
+                    Console.WriteLine("\n\t[/]  'Highest ranked' - Enter 1\n");
+                    Console.WriteLine("\n\t[/]  'Three Favourites' - Enter 2\n");
+
+                    Console.WriteLine("\n\t[*]  Enter 3 - Return to homepage\n");
+
+
+                Console.WriteLine("Enter any of the listings above to gain access... \n");
+            }
+
+            else if (type.Equals("rows~shelves"))
+            {
+                Console.WriteLine($"\n\t [CD MANAGER / {d}]\n");
+                Console.WriteLine("\tVIEW... ");
+                Console.WriteLine("\tThese are the available report listings, compiled into directories.");
+
+                    Console.WriteLine("\n\t[/]  'Total row occupancy' - Enter 1\n");
+
+                Console.WriteLine("\n\t[*]  Enter 2 - Return to homepage\n");
 
 
                 Console.WriteLine("You can't modify this listing. \n");
