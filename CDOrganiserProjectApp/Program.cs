@@ -3665,6 +3665,94 @@ namespace CDOrganiserProjectApp
 
         }
 
+        private static void SearchBandReviews()
+        {
+
+            try
+            {
+                view.DisplayMessage("\nEnter the name... ");
+                string search = view.GetInput();
+
+                storageManager.SearchBandReviews(search);
+
+            }
+            catch (FormatException e)
+            {
+                Console.WriteLine("\n  Please use the proper formatting.");
+                Console.WriteLine(e.Message);
+
+                SearchBandReviews();
+    
+            }
+
+        }
+
+        private static void SearchArtistReviews()
+        {
+
+            try
+            {
+                view.DisplayMessage("\nEnter the name... ");
+                string search = view.GetInput();
+
+                storageManager.SearchArtistReviews(search);
+
+            }
+            catch (FormatException e)
+            {
+                Console.WriteLine("\n  Please use the proper formatting.");
+                Console.WriteLine(e.Message);
+
+                SearchArtistReviews();
+    
+            }
+
+        }
+
+        private static void SearchArtistAlbums()
+        {
+
+            try
+            {
+                view.DisplayMessage("\nEnter the name... ");
+                string search = view.GetInput();
+
+                storageManager.SearchArtistAlbums(search);
+
+            }
+            catch (FormatException e)
+            {
+                Console.WriteLine("\n  Please use the proper formatting.");
+                Console.WriteLine(e.Message);
+
+                SearchArtistAlbums();
+    
+            }
+
+        }
+
+        private static void SearchBandAlbums()
+        {
+
+            try
+            {
+                view.DisplayMessage("\nEnter the name... ");
+                string search = view.GetInput();
+
+                storageManager.SearchBandAlbums(search);
+
+            }
+            catch (FormatException e)
+            {
+                Console.WriteLine("\n  Please use the proper formatting.");
+                Console.WriteLine(e.Message);
+
+                SearchBandAlbums();
+    
+            }
+
+        }
+
     }
 
 }
