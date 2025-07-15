@@ -242,7 +242,6 @@ namespace CDOrganiserProjectApp.View
                 Console.WriteLine("\tThese are the available report listings, compiled into directories.");
 
                     Console.WriteLine("\n\t[*]  'reports' - Opens the reports");
-                    Console.WriteLine("\t[*]  'search' - Opens the search\n");
 
                     Console.WriteLine("\n\t[*] 'back' - Return to homepage\n");
 
