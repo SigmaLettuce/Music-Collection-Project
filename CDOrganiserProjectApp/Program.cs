@@ -109,6 +109,7 @@ namespace CDOrganiserProjectApp
             Thread.Sleep(wait);
             Console.Clear();
 
+            logStatus = false;
             CreateUser();
             Thread.Sleep(wait);
             Console.Clear();
