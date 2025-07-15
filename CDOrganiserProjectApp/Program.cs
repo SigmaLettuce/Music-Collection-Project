@@ -307,7 +307,7 @@ namespace CDOrganiserProjectApp
 
                                     do
                                     {
-                                        switch (cmd.ToLower())
+                                        switch (cmd.ToUpper())
                                         {
                                             case "E":
                                                 GoBack();
@@ -372,7 +372,7 @@ namespace CDOrganiserProjectApp
                         do
                         {
 
-                            switch (cmd)
+                            switch (cmd.ToLower())
                             {
                                 case "up":
                                     UpdateArtistName();
@@ -411,7 +411,7 @@ namespace CDOrganiserProjectApp
 
                                     do
                                     {
-                                        switch (cmd.ToLower())
+                                        switch (cmd.ToUpper())
                                         {
                                             case "E":
                                                 GoBack();
@@ -491,7 +491,7 @@ namespace CDOrganiserProjectApp
                                     do
                                     {
 
-                                        switch (cmd)
+                                        switch (cmd.ToLower())
                                         {
                                             case "up":
                                                 UpdateArtistAlbum();
@@ -540,7 +540,7 @@ namespace CDOrganiserProjectApp
 
                                                             do
                                                             {
-                                                                switch (cmd.ToLower())
+                                                                switch (cmd.ToUpper())
                                                                 {
                                                                     case "E":
                                                                         GoBack();
@@ -572,7 +572,7 @@ namespace CDOrganiserProjectApp
 
                                                             do
                                                             {
-                                                                switch (cmd.ToLower())
+                                                                switch (cmd.ToUpper())
                                                                 {
                                                                     case "E":
                                                                         GoBack();
@@ -604,7 +604,7 @@ namespace CDOrganiserProjectApp
 
                                                             do
                                                             {
-                                                                switch (cmd.ToLower())
+                                                                switch (cmd.ToUpper())
                                                                 {
                                                                     case "E":
                                                                         GoBack();
@@ -636,7 +636,7 @@ namespace CDOrganiserProjectApp
 
                                                             do
                                                             {
-                                                                switch (cmd.ToLower())
+                                                                switch (cmd.ToUpper())
                                                                 {
                                                                     case "E":
                                                                         GoBack();
@@ -668,7 +668,7 @@ namespace CDOrganiserProjectApp
 
                                                             do
                                                             {
-                                                                switch (cmd.ToLower())
+                                                                switch (cmd.ToUpper())
                                                                 {
                                                                     case "E":
                                                                         GoBack();
@@ -700,7 +700,7 @@ namespace CDOrganiserProjectApp
 
                                                             do
                                                             {
-                                                                switch (cmd.ToLower())
+                                                                switch (cmd.ToUpper())
                                                                 {
                                                                     case "E":
                                                                         GoBack();
@@ -732,7 +732,7 @@ namespace CDOrganiserProjectApp
 
                                                             do
                                                             {
-                                                                switch (cmd.ToLower())
+                                                                switch (cmd.ToUpper())
                                                                 {
                                                                     case "E":
                                                                         GoBack();
@@ -789,7 +789,7 @@ namespace CDOrganiserProjectApp
 
                                                 do
                                                 {
-                                                    switch (cmd.ToLower())
+                                                    switch (cmd.ToUpper())
                                                     {
                                                         case "E":
                                                             GoBack();
@@ -907,7 +907,7 @@ namespace CDOrganiserProjectApp
 
                                                             do
                                                             {
-                                                                switch (cmd.ToLower())
+                                                                switch (cmd.ToUpper())
                                                                 {
                                                                     case "E":
                                                                         GoBack();
@@ -939,7 +939,7 @@ namespace CDOrganiserProjectApp
 
                                                             do
                                                             {
-                                                                switch (cmd.ToLower())
+                                                                switch (cmd.ToUpper())
                                                                 {
                                                                     case "E":
                                                                         GoBack();
@@ -971,7 +971,7 @@ namespace CDOrganiserProjectApp
 
                                                             do
                                                             {
-                                                                switch (cmd.ToLower())
+                                                                switch (cmd.ToUpper())
                                                                 {
                                                                     case "E":
                                                                         GoBack();
@@ -1003,7 +1003,7 @@ namespace CDOrganiserProjectApp
 
                                                             do
                                                             {
-                                                                switch (cmd.ToLower())
+                                                                switch (cmd.ToUpper())
                                                                 {
                                                                     case "E":
                                                                         GoBack();
@@ -1035,7 +1035,7 @@ namespace CDOrganiserProjectApp
 
                                                            do
                                                             {
-                                                                switch (cmd.ToLower())
+                                                                switch (cmd.ToUpper())
                                                                 {
                                                                     case "E":
                                                                         GoBack();
@@ -1067,7 +1067,7 @@ namespace CDOrganiserProjectApp
 
                                                             do
                                                             {
-                                                                switch (cmd.ToLower())
+                                                                switch (cmd.ToUpper())
                                                                 {
                                                                     case "E":
                                                                         GoBack();
@@ -1099,7 +1099,7 @@ namespace CDOrganiserProjectApp
 
                                                             do
                                                             {
-                                                                switch (cmd.ToLower())
+                                                                switch (cmd.ToUpper())
                                                                 {
                                                                     case "E":
                                                                         GoBack();
@@ -1156,7 +1156,7 @@ namespace CDOrganiserProjectApp
 
                                                 do
                                                 {
-                                                    switch (cmd.ToLower())
+                                                    switch (cmd.ToUpper())
                                                     {
                                                         case "E":
                                                             GoBack();
@@ -1322,7 +1322,7 @@ namespace CDOrganiserProjectApp
 
                                                             do
                                                             {
-                                                                switch (cmd.ToLower())
+                                                                switch (cmd.ToUpper())
                                                                 {
                                                                     case "E":
                                                                         GoBack();
@@ -1354,7 +1354,7 @@ namespace CDOrganiserProjectApp
 
                                                             do
                                                             {
-                                                                switch (cmd.ToLower())
+                                                                switch (cmd.ToUpper())
                                                                 {
                                                                     case "E":
                                                                         GoBack();
@@ -1411,7 +1411,7 @@ namespace CDOrganiserProjectApp
 
                                                 do
                                                 {
-                                                    switch (cmd.ToLower())
+                                                    switch (cmd.ToUpper())
                                                     {
                                                         case "E":
                                                             GoBack();
@@ -1531,7 +1531,7 @@ namespace CDOrganiserProjectApp
 
                                                             do
                                                             {
-                                                                switch (cmd.ToLower())
+                                                                switch (cmd.ToUpper())
                                                                 {
                                                                     case "E":
                                                                         GoBack();
@@ -1563,7 +1563,7 @@ namespace CDOrganiserProjectApp
 
                                                             do
                                                             {
-                                                                switch (cmd.ToLower())
+                                                                switch (cmd.ToUpper())
                                                                 {
                                                                     case "E":
                                                                         GoBack();
@@ -1620,7 +1620,7 @@ namespace CDOrganiserProjectApp
 
                                                 do
                                                 {
-                                                    switch (cmd.ToLower())
+                                                    switch (cmd.ToUpper())
                                                     {
                                                         case "E":
                                                             GoBack();
@@ -1704,7 +1704,7 @@ namespace CDOrganiserProjectApp
                         do
                         {
 
-                            switch (cmd)
+                            switch (cmd.ToLower())
                             {
                                 case "up":
                                     UpdateArtistName();
@@ -1743,7 +1743,7 @@ namespace CDOrganiserProjectApp
 
                                     do
                                     {
-                                        switch (cmd.ToLower())
+                                        switch (cmd.ToUpper())
                                         {
                                             case "E":
                                                 GoBack();
@@ -1805,7 +1805,7 @@ namespace CDOrganiserProjectApp
                         do
                         {
 
-                            switch (cmd)
+                            switch (cmd.ToLower())
                             {
                                 case "up":
                                     UpdateFormatName();
@@ -1870,7 +1870,7 @@ namespace CDOrganiserProjectApp
                         do
                         {
 
-                            switch (cmd)
+                            switch (cmd.ToLower())
                             {
                                 case "up":
                                     UpdateRoomName();
@@ -1935,7 +1935,7 @@ namespace CDOrganiserProjectApp
                         do
                         {
 
-                            switch (cmd)
+                            switch (cmd.ToLower())
                             {
                                 case "up":
                                     UpdateShelfRoom();
@@ -1984,7 +1984,7 @@ namespace CDOrganiserProjectApp
 
                                                 do
                                                 {
-                                                    switch (cmd.ToLower())
+                                                    switch (cmd.ToUpper())
                                                     {
                                                         case "E":
                                                             GoBack();
@@ -2067,7 +2067,7 @@ namespace CDOrganiserProjectApp
                         do
                         {
 
-                            switch (cmd)
+                            switch (cmd.ToLower())
                             {
                                 case "up":
                                     UpdateRow();
@@ -2116,7 +2116,7 @@ namespace CDOrganiserProjectApp
 
                                                 do
                                                 {
-                                                    switch (cmd.ToLower())
+                                                    switch (cmd.ToUpper())
                                                     {
                                                         case "E":
                                                             GoBack();
@@ -2200,7 +2200,7 @@ namespace CDOrganiserProjectApp
                         do
                         {
 
-                            switch (cmd.ToLower())
+                            switch (cmd.ToUpper())
                             {
 
                                 case "back":                                   
@@ -2393,7 +2393,7 @@ namespace CDOrganiserProjectApp
                         do
                         {
 
-                            switch (cmd)
+                            switch (cmd.ToLower())
                             {
                                 case "back":
                                     GoBack();
@@ -2447,7 +2447,7 @@ namespace CDOrganiserProjectApp
                                     do
                                     {
 
-                                        switch (cmd)
+                                        switch (cmd.ToLower())
                                         {
                                             case "back":
                                                 GoBack();
@@ -2483,7 +2483,7 @@ namespace CDOrganiserProjectApp
                                     do
                                     {
 
-                                        switch (cmd)
+                                        switch (cmd.ToLower())
                                         { 
                                             case "back":
                                                 GoBack();
@@ -2541,7 +2541,7 @@ namespace CDOrganiserProjectApp
                         do
                         {
 
-                            switch (cmd)
+                            switch (cmd.ToLower())
                             {
                                 case "back":                                   
                                     GoBack();

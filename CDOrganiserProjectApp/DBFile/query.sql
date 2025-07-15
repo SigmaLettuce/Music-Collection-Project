@@ -1,1 +1,1 @@
-﻿
+﻿SELECT * FROM Properties.tblAccounts
