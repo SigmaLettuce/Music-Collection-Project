@@ -10,7 +10,6 @@ using System.Text;
 using System.Threading.Channels;
 using System.Threading.Tasks;
 using System.Linq;
-using System.IO; // .txt file support.
 
 namespace CDOrganiserProjectApp.View
 {

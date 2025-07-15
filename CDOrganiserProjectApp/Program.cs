@@ -13,6 +13,7 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Security;
 using System.Text.Json;
+using System.Linq;
 
 namespace CDOrganiserProjectApp
 {
@@ -37,7 +38,7 @@ namespace CDOrganiserProjectApp
 
         static void Main(string[] args)
         {
-            // Console.WriteLine("Hello, World!");
+            // view.DisplayMessage("Hello, World!");
 
             view = new ConsoleView();
 
@@ -2298,7 +2299,7 @@ namespace CDOrganiserProjectApp
 
                         roleId = 0;
                         accountId = 0;
-                        storageManager.CloseConnection(); // Closes the connection upon signing out.
+                        storageManager.CloseConnection(); // Closes the connection upon signing out. 
                         StartMenuscreenOptions();
 
                         invalid = false;
@@ -2315,6 +2316,7 @@ namespace CDOrganiserProjectApp
                     break;
 
                 }
+
 
             } while (invalid);
 
@@ -2705,8 +2707,8 @@ namespace CDOrganiserProjectApp
             }
             catch (FormatException e)
             {
-                Console.WriteLine("\n  Please use the proper formatting.");
-                Console.WriteLine(e.Message);
+                view.DisplayMessage("\n  Please use the proper formatting.");
+                view.DisplayMessage(e.Message);
 
                 UpdateBandName();
     
@@ -2732,8 +2734,8 @@ namespace CDOrganiserProjectApp
             }
             catch (FormatException e)
             {
-                Console.WriteLine("\n  Please use the proper formatting.");
-                Console.WriteLine(e.Message);
+                view.DisplayMessage("\n  Please use the proper formatting.");
+                view.DisplayMessage(e.Message);
 
                 InsertNewBand();
     
@@ -2756,8 +2758,8 @@ namespace CDOrganiserProjectApp
             }
             catch (FormatException e)
             {
-                Console.WriteLine("\n  Please use the proper formatting.");
-                Console.WriteLine(e.Message);
+                view.DisplayMessage("\n  Please use the proper formatting.");
+                view.DisplayMessage(e.Message);
 
                 DeleteBandById();
     
@@ -2786,8 +2788,8 @@ namespace CDOrganiserProjectApp
             }
             catch (FormatException e)
             {
-                Console.WriteLine("\n  Please use the proper formatting.");
-                Console.WriteLine(e.Message);
+                view.DisplayMessage("\n  Please use the proper formatting.");
+                view.DisplayMessage(e.Message);
 
                 UpdateGenreName();
     
@@ -2814,8 +2816,8 @@ namespace CDOrganiserProjectApp
             }
             catch (FormatException e)
             {
-                Console.WriteLine("\n  Please use the proper formatting.");
-                Console.WriteLine(e.Message);
+                view.DisplayMessage("\n  Please use the proper formatting.");
+                view.DisplayMessage(e.Message);
 
                 InsertNewGenre();
     
@@ -2839,8 +2841,8 @@ namespace CDOrganiserProjectApp
             }
             catch (FormatException e)
             {
-                Console.WriteLine("\n  Please use the proper formatting.");
-                Console.WriteLine(e.Message);
+                view.DisplayMessage("\n  Please use the proper formatting.");
+                view.DisplayMessage(e.Message);
 
                 DeleteGenreById();
     
@@ -2869,8 +2871,8 @@ namespace CDOrganiserProjectApp
             }
             catch (FormatException e)
             {
-                Console.WriteLine("\n  Please use the proper formatting.");
-                Console.WriteLine(e.Message);
+                view.DisplayMessage("\n  Please use the proper formatting.");
+                view.DisplayMessage(e.Message);
 
                 UpdateFormatName();
     
@@ -2896,8 +2898,8 @@ namespace CDOrganiserProjectApp
             }
             catch (FormatException e)
             {
-                Console.WriteLine("\n  Please use the proper formatting.");
-                Console.WriteLine(e.Message);
+                view.DisplayMessage("\n  Please use the proper formatting.");
+                view.DisplayMessage(e.Message);
 
                 InsertNewFormat();
     
@@ -2921,8 +2923,8 @@ namespace CDOrganiserProjectApp
             }
             catch (FormatException e)
             {
-                Console.WriteLine("\n  Please use the proper formatting.");
-                Console.WriteLine(e.Message);
+                view.DisplayMessage("\n  Please use the proper formatting.");
+                view.DisplayMessage(e.Message);
 
                 DeleteFormatById();
     
@@ -2948,8 +2950,8 @@ namespace CDOrganiserProjectApp
             }
             catch (FormatException e)
             {
-                Console.WriteLine("\n  Please use the proper formatting.");
-                Console.WriteLine(e.Message);
+                view.DisplayMessage("\n  Please use the proper formatting.");
+                view.DisplayMessage(e.Message);
 
                 UpdateArtistName();
                 
@@ -2975,8 +2977,8 @@ namespace CDOrganiserProjectApp
             }
             catch (FormatException e)
             {
-                Console.WriteLine("\n  Please use the proper formatting.");
-                Console.WriteLine(e.Message);
+                view.DisplayMessage("\n  Please use the proper formatting.");
+                view.DisplayMessage(e.Message);
 
                 InsertNewArtist();
                 
@@ -2999,8 +3001,8 @@ namespace CDOrganiserProjectApp
             }
             catch (FormatException e)
             {
-                Console.WriteLine("\n  Please use the proper formatting.");
-                Console.WriteLine(e.Message);
+                view.DisplayMessage("\n  Please use the proper formatting.");
+                view.DisplayMessage(e.Message);
 
                 DeleteArtistById();
                
@@ -3027,8 +3029,8 @@ namespace CDOrganiserProjectApp
             }
             catch (FormatException e)
             {
-                Console.WriteLine("\n  Please use the proper formatting.");
-                Console.WriteLine(e.Message);
+                view.DisplayMessage("\n  Please use the proper formatting.");
+                view.DisplayMessage(e.Message);
 
                 UpdateRoomName();
 
@@ -3053,8 +3055,8 @@ namespace CDOrganiserProjectApp
             }
             catch (FormatException e)
             {
-                Console.WriteLine("\n  Please use the proper formatting.");
-                Console.WriteLine(e.Message);
+                view.DisplayMessage("\n  Please use the proper formatting.");
+                view.DisplayMessage(e.Message);
 
                 InsertNewRoom();
 
@@ -3077,8 +3079,8 @@ namespace CDOrganiserProjectApp
             }
             catch (FormatException e)
             {
-                Console.WriteLine("\n  Please use the proper formatting.");
-                Console.WriteLine(e.Message);
+                view.DisplayMessage("\n  Please use the proper formatting.");
+                view.DisplayMessage(e.Message);
 
                 DeleteRoomById();
 
@@ -3107,8 +3109,8 @@ namespace CDOrganiserProjectApp
             }
             catch (FormatException e)
             {
-                Console.WriteLine("\n  Please use the proper formatting.");
-                Console.WriteLine(e.Message);
+                view.DisplayMessage("\n  Please use the proper formatting.");
+                view.DisplayMessage(e.Message);
 
                 UpdateShelfRoom();
 
@@ -3136,8 +3138,8 @@ namespace CDOrganiserProjectApp
             }
             catch (FormatException e)
             {
-                Console.WriteLine("\n  Please use the proper formatting.");
-                Console.WriteLine(e.Message);
+                view.DisplayMessage("\n  Please use the proper formatting.");
+                view.DisplayMessage(e.Message);
 
                 InsertNewShelf();
 
@@ -3160,8 +3162,8 @@ namespace CDOrganiserProjectApp
             }
             catch (FormatException e)
             {
-                Console.WriteLine("\n  Please use the proper formatting.");
-                Console.WriteLine(e.Message);
+                view.DisplayMessage("\n  Please use the proper formatting.");
+                view.DisplayMessage(e.Message);
 
                 DeleteShelfById();
 
@@ -3190,8 +3192,8 @@ namespace CDOrganiserProjectApp
             }
             catch (FormatException e)
             {
-                Console.WriteLine("\n  Please use the proper formatting.");
-                Console.WriteLine(e.Message);
+                view.DisplayMessage("\n  Please use the proper formatting.");
+                view.DisplayMessage(e.Message);
 
                 UpdateRow();
 
@@ -3220,8 +3222,8 @@ namespace CDOrganiserProjectApp
             }
             catch (FormatException e)
             {
-                Console.WriteLine("\n  Please use the proper formatting.");
-                Console.WriteLine(e.Message);
+                view.DisplayMessage("\n  Please use the proper formatting.");
+                view.DisplayMessage(e.Message);
 
                 InsertNewRow();
 
@@ -3244,8 +3246,8 @@ namespace CDOrganiserProjectApp
             }
             catch (FormatException e)
             {
-                Console.WriteLine("\n  Please use the proper formatting.");
-                Console.WriteLine(e.Message);
+                view.DisplayMessage("\n  Please use the proper formatting.");
+                view.DisplayMessage(e.Message);
 
                 DeleteRowById();
 
@@ -3323,8 +3325,8 @@ namespace CDOrganiserProjectApp
 
             catch (FormatException e)
             {
-                Console.WriteLine("\n  Please use the proper formatting.");
-                Console.WriteLine(e.Message);
+                view.DisplayMessage("\n  Please use the proper formatting.");
+                view.DisplayMessage(e.Message);
 
                 CreateUser();
 
@@ -3400,8 +3402,8 @@ namespace CDOrganiserProjectApp
 
             catch (FormatException e)
             {
-                Console.WriteLine("\n  Please use the proper formatting.");
-                Console.WriteLine(e.Message);
+                view.DisplayMessage("\n  Please use the proper formatting.");
+                view.DisplayMessage(e.Message);
 
                 CreateAdmin();
 
@@ -3459,8 +3461,8 @@ namespace CDOrganiserProjectApp
             }
             catch (FormatException e)
             {
-                Console.WriteLine("\n  Please use the proper formatting.");
-                Console.WriteLine(e.Message);
+                view.DisplayMessage("\n  Please use the proper formatting.");
+                view.DisplayMessage(e.Message);
 
                 UpdateArtistAlbum();
 
@@ -3513,8 +3515,8 @@ namespace CDOrganiserProjectApp
             }
             catch (FormatException e)
             {
-                Console.WriteLine("\n  Please use the proper formatting.");
-                Console.WriteLine(e.Message);
+                view.DisplayMessage("\n  Please use the proper formatting.");
+                view.DisplayMessage(e.Message);
 
                 InsertArtistAlbum();
 
@@ -3537,8 +3539,8 @@ namespace CDOrganiserProjectApp
             }
             catch (FormatException e)
             {
-                Console.WriteLine("\n  Please use the proper formatting.");
-                Console.WriteLine(e.Message);
+                view.DisplayMessage("\n  Please use the proper formatting.");
+                view.DisplayMessage(e.Message);
 
                 DeleteArtistAlbumById();
 
@@ -3577,8 +3579,8 @@ namespace CDOrganiserProjectApp
             }
             catch (FormatException e)
             {
-                Console.WriteLine("\n  Please use the proper formatting.");
-                Console.WriteLine(e.Message);
+                view.DisplayMessage("\n  Please use the proper formatting.");
+                view.DisplayMessage(e.Message);
 
                 MarkArtistAsLost();
 
@@ -3636,8 +3638,8 @@ namespace CDOrganiserProjectApp
             }
             catch (FormatException e)
             {
-                Console.WriteLine("\n  Please use the proper formatting.");
-                Console.WriteLine(e.Message);
+                view.DisplayMessage("\n  Please use the proper formatting.");
+                view.DisplayMessage(e.Message);
 
                 UpdateBandAlbum();
 
@@ -3690,8 +3692,8 @@ namespace CDOrganiserProjectApp
             }
             catch (FormatException e)
             {
-                Console.WriteLine("\n  Please use the proper formatting.");
-                Console.WriteLine(e.Message);
+                view.DisplayMessage("\n  Please use the proper formatting.");
+                view.DisplayMessage(e.Message);
 
                 InsertBandAlbum();
 
@@ -3714,8 +3716,8 @@ namespace CDOrganiserProjectApp
             }
             catch (FormatException e)
             {
-                Console.WriteLine("\n  Please use the proper formatting.");
-                Console.WriteLine(e.Message);
+                view.DisplayMessage("\n  Please use the proper formatting.");
+                view.DisplayMessage(e.Message);
 
                 DeleteBandAlbumById();
 
@@ -3754,8 +3756,8 @@ namespace CDOrganiserProjectApp
             }
             catch (FormatException e)
             {
-                Console.WriteLine("\n  Please use the proper formatting.");
-                Console.WriteLine(e.Message);
+                view.DisplayMessage("\n  Please use the proper formatting.");
+                view.DisplayMessage(e.Message);
 
                 MarkBandAsLost();
 
@@ -3812,8 +3814,8 @@ namespace CDOrganiserProjectApp
             }
             catch (FormatException e)
             {
-                Console.WriteLine("\n  Please use the proper formatting.");
-                Console.WriteLine(e.Message);
+                view.DisplayMessage("\n  Please use the proper formatting.");
+                view.DisplayMessage(e.Message);
 
                 UpdateArtistReview();
 
@@ -3850,8 +3852,8 @@ namespace CDOrganiserProjectApp
             }
             catch (FormatException e)
             {
-                Console.WriteLine("\n  Please use the proper formatting.");
-                Console.WriteLine(e.Message);
+                view.DisplayMessage("\n  Please use the proper formatting.");
+                view.DisplayMessage(e.Message);
 
                 InsertArtistReview();
                 
@@ -3891,8 +3893,8 @@ namespace CDOrganiserProjectApp
             }
             catch (FormatException e)
             {
-                Console.WriteLine("\n  Please use the proper formatting.");
-                Console.WriteLine(e.Message);
+                view.DisplayMessage("\n  Please use the proper formatting.");
+                view.DisplayMessage(e.Message);
 
                 DeleteArtistReviewById();
                 
@@ -3949,8 +3951,8 @@ namespace CDOrganiserProjectApp
             }
             catch (FormatException e)
             {
-                Console.WriteLine("\n  Please use the proper formatting.");
-                Console.WriteLine(e.Message);
+                view.DisplayMessage("\n  Please use the proper formatting.");
+                view.DisplayMessage(e.Message);
 
                 FavouriteArtistReview();
                 
@@ -4005,8 +4007,8 @@ namespace CDOrganiserProjectApp
             }
             catch (FormatException e)
             {
-                Console.WriteLine("\n  Please use the proper formatting.");
-                Console.WriteLine(e.Message);
+                view.DisplayMessage("\n  Please use the proper formatting.");
+                view.DisplayMessage(e.Message);
 
                 UpdateBandReview();
 
@@ -4043,8 +4045,8 @@ namespace CDOrganiserProjectApp
             }
             catch (FormatException e)
             {
-                Console.WriteLine("\n  Please use the proper formatting.");
-                Console.WriteLine(e.Message);
+                view.DisplayMessage("\n  Please use the proper formatting.");
+                view.DisplayMessage(e.Message);
 
                 InsertBandReview();
                 
@@ -4085,8 +4087,8 @@ namespace CDOrganiserProjectApp
             }
             catch (FormatException e)
             {
-                Console.WriteLine("\n  Please use the proper formatting.");
-                Console.WriteLine(e.Message);
+                view.DisplayMessage("\n  Please use the proper formatting.");
+                view.DisplayMessage(e.Message);
 
                 DeleteBandReviewById();
                 
@@ -4144,8 +4146,8 @@ namespace CDOrganiserProjectApp
             }
             catch (FormatException e)
             {
-                Console.WriteLine("\n  Please use the proper formatting.");
-                Console.WriteLine(e.Message);
+                view.DisplayMessage("\n  Please use the proper formatting.");
+                view.DisplayMessage(e.Message);
 
                 FavouriteBandReview();
                 
@@ -4168,8 +4170,8 @@ namespace CDOrganiserProjectApp
             }
             catch (FormatException e)
             {
-                Console.WriteLine("\n  Please use the proper formatting.");
-                Console.WriteLine(e.Message);
+                view.DisplayMessage("\n  Please use the proper formatting.");
+                view.DisplayMessage(e.Message);
 
                 SearchGenres();
     
@@ -4190,8 +4192,8 @@ namespace CDOrganiserProjectApp
             }
             catch (FormatException e)
             {
-                Console.WriteLine("\n  Please use the proper formatting.");
-                Console.WriteLine(e.Message);
+                view.DisplayMessage("\n  Please use the proper formatting.");
+                view.DisplayMessage(e.Message);
 
                 SearchArtists();
     
@@ -4212,8 +4214,8 @@ namespace CDOrganiserProjectApp
             }
             catch (FormatException e)
             {
-                Console.WriteLine("\n  Please use the proper formatting.");
-                Console.WriteLine(e.Message);
+                view.DisplayMessage("\n  Please use the proper formatting.");
+                view.DisplayMessage(e.Message);
 
                 SearchBands();
     
@@ -4234,8 +4236,8 @@ namespace CDOrganiserProjectApp
             }
             catch (FormatException e)
             {
-                Console.WriteLine("\n  Please use the proper formatting.");
-                Console.WriteLine(e.Message);
+                view.DisplayMessage("\n  Please use the proper formatting.");
+                view.DisplayMessage(e.Message);
 
                 SearchBandReviews();
     
@@ -4256,8 +4258,8 @@ namespace CDOrganiserProjectApp
             }
             catch (FormatException e)
             {
-                Console.WriteLine("\n  Please use the proper formatting.");
-                Console.WriteLine(e.Message);
+                view.DisplayMessage("\n  Please use the proper formatting.");
+                view.DisplayMessage(e.Message);
 
                 SearchArtistReviews();
     
@@ -4278,8 +4280,8 @@ namespace CDOrganiserProjectApp
             }
             catch (FormatException e)
             {
-                Console.WriteLine("\n  Please use the proper formatting.");
-                Console.WriteLine(e.Message);
+                view.DisplayMessage("\n  Please use the proper formatting.");
+                view.DisplayMessage(e.Message);
 
                 SearchArtistAlbums();
     
@@ -4300,8 +4302,8 @@ namespace CDOrganiserProjectApp
             }
             catch (FormatException e)
             {
-                Console.WriteLine("\n  Please use the proper formatting.");
-                Console.WriteLine(e.Message);
+                view.DisplayMessage("\n  Please use the proper formatting.");
+                view.DisplayMessage(e.Message);
 
                 SearchBandAlbums();
     

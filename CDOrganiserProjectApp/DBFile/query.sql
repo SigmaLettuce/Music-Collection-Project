@@ -1,1 +1,1 @@
-﻿SELECT * FROM Properties.tblAccounts
+﻿SELECT albumID, albumName, genreName, dateOfRelease, formatName, bandName,  shelfRow, shelfTag, lost FROM Contents.tblGenres, Contents.tblBandAlbums, Properties.tblFormat, Contents.tblBands, Properties.tblShelf, Properties.tblRow WHERE tblBandAlbums.genreID = tblGenres.genreID AND tblBandAlbums.formatID = tblFormat.formatID AND tblBandAlbums.bandID = tblBands.bandID AND tblRow.shelfTagID = tblShelf.shelfTagID AND tblBandAlbums.shelfRowID = tblRow.shelfRowID

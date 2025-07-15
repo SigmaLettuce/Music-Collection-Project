@@ -24,7 +24,7 @@ namespace CDOrganiserProjectApp
         // A private connection string that acts as a bridge to the database.
         private SqlConnection conn; 
 
-        // A constructor with a connection string parameter to handle any connection related exceptions using exception handling. Displays the respective exception message as well as the handwritten. Any exceptions that are caught terminate the program.
+        // A  with a connection string parameter to handle any connection related exceptions using exception handling. Displays the respective exception message as well as the handwritten. Any exceptions that are caught terminate the program.
         public StorageManager(string connectionStr)
         {
 
