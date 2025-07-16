@@ -601,12 +601,39 @@ namespace CDOrganiserProjectApp
         public List<ArtistReviews> GetAllArtistReviews()
         {
             List<ArtistReviews> albums = new List<ArtistReviews>();
-            string sqlStr = "SELECT reviewID, albumName, tierTag, favourite FROM Contents.tblArtistReviews, Contents.tblArtistAlbums, Properties.tblAccounts, Properties.tblTier WHERE tblArtistReviews.albumID = tblArtistAlbums.albumID AND tblArtistReviews.tierID = tblTier.tierID AND tblArtistReviews.personID = tblAccounts.personID";
+            string sqlStr = "SELECT reviewID, albumName, tierTag, fName, favourite FROM Contents.tblArtistReviews, Contents.tblArtistAlbums, Properties.tblAccounts, Properties.tblTier WHERE tblArtistReviews.albumID = tblArtistAlbums.albumID AND tblArtistReviews.tierID = tblTier.tierID AND tblArtistReviews.personID = tblAccounts.personID";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
-                    Console.WriteLine("ID:\tNAME:\tRANK:\tFAVOURITE:\n");
+                    Console.WriteLine("ID:\tNAME:\tNAME:\tRANK:\tFAVOURITE:\n");
+
+                    while (reader.Read())
+                    {
+                        int reviewId = Convert.ToInt32(reader["reviewID"]);
+                        string albumName = reader["albumName"].ToString();
+                        char tierTag = Convert.ToChar(reader["tierTag"]);
+                        string fName = reader["fName"].ToString();
+                        bool favourite = Convert.ToBoolean(reader["favourite"]);
+
+                        Console.WriteLine($"{reviewId}\t{albumName}\t{tierTag}\t{fName}\t{favourite}\n");
+                        Thread.Sleep(wait);
+                    }
+                }
+            }
+            return albums;
+        }
+
+        public void GetUsersArtistReviews(int personId)
+        {
+            string sqlStr = "SELECT reviewID, albumName, tierTag, favourite FROM Contents.tblArtistReviews, Contents.tblArtistAlbums, Properties.tblAccounts, Properties.tblTier WHERE tblAccounts.personID = @currentPerson AND tblArtistReviews.albumID = tblArtistAlbums.albumID AND tblArtistReviews.tierID = tblTier.tierID AND tblArtistReviews.personID = tblAccounts.personID";
+            using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
+            {
+                cmd.Parameters.AddWithValue("@currentPerson", personId);
+
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    Console.WriteLine("ID:\tNAME:\tRANK:\tFAVOURITE\n");
 
                     while (reader.Read())
                     {
@@ -617,10 +644,12 @@ namespace CDOrganiserProjectApp
 
                         Console.WriteLine($"{reviewId}\t{albumName}\t{tierTag}\t{favourite}\n");
                         Thread.Sleep(wait);
+
                     }
+
                 }
             }
-            return albums;
+
         }
         
         public int InsertArtistReview(ArtistReviews albums)
@@ -666,7 +695,7 @@ namespace CDOrganiserProjectApp
         public List<BandReviews> GetAllBandReviews()
         {
             List<BandReviews> albums = new List<BandReviews>();
-            string sqlStr = "SELECT reviewID, albumName, tierTag, favourite FROM Contents.tblBandReviews, Contents.tblBandAlbums, Properties.tblAccounts, Properties.tblTier WHERE tblBandReviews.albumID = tblBandAlbums.albumID AND tblBandReviews.tierID = tblTier.tierID AND tblBandReviews.personID = tblAccounts.personID";
+            string sqlStr = "SELECT reviewID, albumName, tierTag, fName, favourite FROM Contents.tblBandReviews, Contents.tblBandAlbums, Properties.tblAccounts, Properties.tblTier WHERE tblBandReviews.albumID = tblBandAlbums.albumID AND tblBandReviews.tierID = tblTier.tierID AND tblBandReviews.personID = tblAccounts.personID";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
                 using (SqlDataReader reader = cmd.ExecuteReader())
@@ -678,9 +707,10 @@ namespace CDOrganiserProjectApp
                         int reviewId = Convert.ToInt32(reader["reviewID"]);
                         string albumName = reader["albumName"].ToString();
                         char tierTag = Convert.ToChar(reader["tierTag"]);
+                        string fName = reader["fName"].ToString();
                         bool favourite = Convert.ToBoolean(reader["favourite"]);
 
-                        Console.WriteLine($"{reviewId}\t{albumName}\t{tierTag}\t{favourite}\n");
+                        Console.WriteLine($"{reviewId}\t{albumName}\t{tierTag}\t{fName}\t{favourite}\n");
                         Thread.Sleep(wait);
                     }
                 }
