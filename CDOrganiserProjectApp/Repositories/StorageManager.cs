@@ -434,7 +434,7 @@ namespace CDOrganiserProjectApp
 
         public int InsertArtistAlbum(ArtistAlbums albums)
         {
-            using (SqlCommand cmd = new SqlCommand($"INSERT INTO Contents.tblArtistAlbums (albumName, genreID, dateOfRelease, formatID, artistID, shelfRowID) VALUES (@albumName, @GenreId, @DateOfRelease, @FormatId, @ArtistName, @ShelfRowId); SELECT SCOPE_IDENTITY();", conn))
+            using (SqlCommand cmd = new SqlCommand($"INSERT INTO Contents.tblArtistAlbums (albumName, genreID, dateOfRelease, formatID, artistID, shelfRowID) VALUES (@AlbumName, @GenreId, @DateOfRelease, @FormatId, @ArtistId, @ShelfRowId); SELECT SCOPE_IDENTITY();", conn))
             {
                 cmd.Parameters.AddWithValue("@AlbumName", albums.AlbumName);
                 cmd.Parameters.AddWithValue("@GenreId", albums.GenreId);
