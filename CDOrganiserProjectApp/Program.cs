@@ -3415,17 +3415,17 @@ namespace CDOrganiserProjectApp
         // The data-modifying commands for the Artist Albums table.
         private static void UpdateArtistAlbum()
         {
-            
+
 
             try
             {
                 view.DisplayMessage("\nEnter an album identification number... ");
                 List<ArtistAlbums> albums = storageManager.GetAllArtistAlbums();
                 int albumId = view.GetIntInput();
-            
+
                 view.DisplayMessage("\nEnter the new album name... ");
                 albums = storageManager.GetAllArtistAlbums();
-            
+
                 string albumName = view.GetInput();
 
                 view.DisplayMessage("\nEnter a new genre identification number...");
@@ -3452,11 +3452,19 @@ namespace CDOrganiserProjectApp
                 List<Shelves> shelves = storageManager.GetAllShelves();
 
                 int shelfRowId = view.GetIntInput();
-  
+
                 bool lost = false;
 
                 int rowsAffected = storageManager.UpdateArtistAlbumById(albumId, albumName, genreId, dateOfRelease, formatId, artistId, shelfRowId, lost);
                 view.DisplayMessage($"\nUpdated {rowsAffected} records.");
+
+            }
+            catch (IndexOutOfRangeException e)
+            { 
+                view.DisplayMessage("\n  Please enter a valid parameter listed. If you want to create a new listing, please navigate to such.");
+                view.DisplayMessage(e.Message);
+
+                UpdateArtistAlbum();
 
             }
             catch (FormatException e)
@@ -3467,6 +3475,8 @@ namespace CDOrganiserProjectApp
                 UpdateArtistAlbum();
 
             }
+
+
 
         }
         
