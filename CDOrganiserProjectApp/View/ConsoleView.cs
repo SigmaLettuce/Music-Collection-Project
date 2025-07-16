@@ -1,15 +1,4 @@
-﻿using Azure;
-using CDOrganiserProjectApp.Model;
-using Microsoft.Identity.Client;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Security;
-using System.Text;
-using System.Threading.Channels;
-using System.Threading.Tasks;
-using System.Linq;
+﻿using CDOrganiserProjectApp.Model;
 
 namespace CDOrganiserProjectApp.View
 {
@@ -485,7 +474,7 @@ namespace CDOrganiserProjectApp.View
 
         /*
         
-         The displays.
+         The Displays.
         These iterate through the database records being read and prints them.
 
         */
@@ -541,6 +530,7 @@ namespace CDOrganiserProjectApp.View
 
         }
 
+
         public void DisplayMessage(string msg)
         {
             Console.WriteLine(msg);
@@ -572,6 +562,7 @@ namespace CDOrganiserProjectApp.View
         {
             return Convert.ToChar(Console.ReadLine());
         }
+
 
     }
 }

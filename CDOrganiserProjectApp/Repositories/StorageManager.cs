@@ -1,8 +1,6 @@
 ﻿using CDOrganiserProjectApp.Model;
 using Microsoft.Data.SqlClient;
-using Microsoft.Identity.Client;
-using System.Collections;
-using System.Reflection.Metadata.Ecma335;
+
 
 namespace CDOrganiserProjectApp
 {
@@ -600,14 +598,12 @@ namespace CDOrganiserProjectApp
         }
 
 
-        public List<ArtistReviews> GetAllArtistReviews(int personId)
+        public List<ArtistReviews> GetAllArtistReviews()
         {
             List<ArtistReviews> albums = new List<ArtistReviews>();
-            string sqlStr = "SELECT reviewID, albumName, tierTag, favourite FROM Contents.tblArtistReviews, Contents.tblArtistAlbums, Properties.tblAccounts, Properties.tblTier WHERE tblArtistReviews.personID = @currentPerson AND tblArtistReviews.albumID = tblArtistAlbums.albumID AND tblArtistReviews.tierID = tblTier.tierID AND tblArtistReviews.personID = tblAccounts.personID";
+            string sqlStr = "SELECT reviewID, albumName, tierTag, favourite FROM Contents.tblArtistReviews, Contents.tblArtistAlbums, Properties.tblAccounts, Properties.tblTier WHERE tblArtistReviews.albumID = tblArtistAlbums.albumID AND tblArtistReviews.tierID = tblTier.tierID AND tblArtistReviews.personID = tblAccounts.personID";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
-                cmd.Parameters.AddWithValue("@currentPerson", personId);
-
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
                     Console.WriteLine("ID:\tNAME:\tRANK:\tFAVOURITE:\n");
@@ -667,14 +663,12 @@ namespace CDOrganiserProjectApp
         }
 
 
-        public List<BandReviews> GetAllBandReviews(int personId)
+        public List<BandReviews> GetAllBandReviews()
         {
             List<BandReviews> albums = new List<BandReviews>();
-            string sqlStr = "SELECT reviewID, albumName, tierTag, favourite FROM Contents.tblBandReviews, Contents.tblBandAlbums, Properties.tblAccounts, Properties.tblTier WHERE tblBandReviews.personID = @currentPerson AND tblBandReviews.albumID = tblBandAlbums.albumID AND tblBandReviews.tierID = tblTier.tierID AND tblBandReviews.personID = tblAccounts.personID";
+            string sqlStr = "SELECT reviewID, albumName, tierTag, favourite FROM Contents.tblBandReviews, Contents.tblBandAlbums, Properties.tblAccounts, Properties.tblTier WHERE tblBandReviews.albumID = tblBandAlbums.albumID AND tblBandReviews.tierID = tblTier.tierID AND tblBandReviews.personID = tblAccounts.personID";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
-                cmd.Parameters.AddWithValue("@currentPerson", personId);
-
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
                     Console.WriteLine("ID:\tNAME:\tRANK:\tFAVOURITE:\n");

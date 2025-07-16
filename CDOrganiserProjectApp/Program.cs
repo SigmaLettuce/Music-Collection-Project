@@ -1,19 +1,6 @@
-﻿using CDOrganiserProjectApp;
-using CDOrganiserProjectApp.Model;
+﻿using CDOrganiserProjectApp.Model;
 using CDOrganiserProjectApp.View;
-using Microsoft.Identity.Client;
-using Microsoft.IdentityModel.Tokens;
-using Microsoft.VisualBasic;
-using System.ComponentModel.DataAnnotations;
-using System.Dynamic;
-using System.Globalization;
-using System.Net.Http.Headers;
-using System.Reflection.Metadata.Ecma335;
-using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices;
-using System.Security;
-using System.Text.Json;
-using System.Linq;
+
 
 namespace CDOrganiserProjectApp
 {
@@ -52,7 +39,7 @@ namespace CDOrganiserProjectApp
             string connectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=HomeMusicCollectionDatabase;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False";
             storageManager = new StorageManager(connectionString);
 
-
+            
 
             bool invalid = true; // A variable that evaluates the continuation of a process.
 
@@ -4381,7 +4368,7 @@ namespace CDOrganiserProjectApp
 
         }
 
-
+        
         // The search options.
         private static void SearchGenres()
         {
