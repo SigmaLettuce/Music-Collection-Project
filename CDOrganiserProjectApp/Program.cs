@@ -1447,7 +1447,7 @@ namespace CDOrganiserProjectApp
                                     break;
 
                                 case "bands":
-                                    storageManager.GetAllBandReviews(accountId);
+                                    storageManager.GetAllBandReviews();
 
                                     Thread.Sleep(wait);
 
@@ -2458,7 +2458,7 @@ namespace CDOrganiserProjectApp
                                     break;
 
                                 case "bands":
-                                    storageManager.GetAllBandReviews(accountId);
+                                    storageManager.GetAllBandReviews();
 
                                     Thread.Sleep(wait);
 
@@ -4098,7 +4098,7 @@ namespace CDOrganiserProjectApp
             try
             {
                 view.DisplayMessage("\nEnter the identification number... ");
-                List<ArtistReviews> reviews = storageManager.GetAllArtistReviews(accountId);
+                int reviews = storageManager.GetUsersArtistReviews(accountId);
                 int reviewId = view.GetIntInput();
 
                 
@@ -4158,7 +4158,7 @@ namespace CDOrganiserProjectApp
             try
             {
                 view.DisplayMessage("\nEnter a review identification number... ");
-                List<BandReviews> reviews = storageManager.GetAllBandReviews(accountId);
+                int reviews = storageManager.GetUsersBandReviews(accountId);
 
                 int reviewId = view.GetIntInput();
 
@@ -4266,7 +4266,7 @@ namespace CDOrganiserProjectApp
             try
             {
                 view.DisplayMessage("\nEnter the identification number... ");
-                List<BandReviews> reviews = storageManager.GetAllBandReviews(accountId);
+                int reviews = storageManager.GetUsersBandReviews(accountId);
                 int reviewId = view.GetIntInput();
 
 
@@ -4316,7 +4316,7 @@ namespace CDOrganiserProjectApp
             try
             {
                 view.DisplayMessage("\nEnter the identification number... ");
-                List<BandReviews> reviews = storageManager.GetAllBandReviews(accountId);
+                int reviews = storageManager.GetUsersBandReviews(accountId);
                 int reviewId = view.GetIntInput();
 
 
