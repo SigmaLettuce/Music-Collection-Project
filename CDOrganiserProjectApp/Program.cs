@@ -1237,7 +1237,7 @@ namespace CDOrganiserProjectApp
                             switch (select)
                             {
                                 case "artists":
-                                    storageManager.GetAllArtistReviews(accountId);
+                                    storageManager.GetAllArtistReviews();
 
                                     Thread.Sleep(wait);
 
@@ -2421,7 +2421,7 @@ namespace CDOrganiserProjectApp
                             switch (select)
                             {
                                 case "artists":
-                                    storageManager.GetAllArtistReviews(accountId);
+                                    storageManager.GetAllArtistAlbums();
 
                                     Thread.Sleep(wait);
 
@@ -2458,7 +2458,7 @@ namespace CDOrganiserProjectApp
                                     break;
 
                                 case "bands":
-                                    storageManager.GetAllBandReviews();
+                                    storageManager.GetAllBandAlbums();
 
                                     Thread.Sleep(wait);
 
@@ -3939,7 +3939,7 @@ namespace CDOrganiserProjectApp
             try
             {
                 view.DisplayMessage("\nEnter a review identification number... ");
-                List<ArtistReviews> reviews = storageManager.GetAllArtistReviews(accountId);
+                int reviews = storageManager.GetUsersArtistReviews(accountId);
 
                 int reviewId = view.GetIntInput();
 
@@ -4049,7 +4049,7 @@ namespace CDOrganiserProjectApp
             try
             {
                 view.DisplayMessage("\nEnter the identification number... ");
-                List<ArtistReviews> reviews = storageManager.GetAllArtistReviews(accountId);
+                int reviews = storageManager.GetUsersArtistReviews(accountId);
                 int reviewId = view.GetIntInput();
 
 
