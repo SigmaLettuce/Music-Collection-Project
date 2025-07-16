@@ -1,16 +1,15 @@
-johnk	jigsaw123	1
+johnk	jigsaw123			1
 agstarling	securepass456	1
-alicej	alicepwd789	1
+alicej	alicepwd789			1
 hanlecter	hansecure321	1
 charlieb	charliepass654	1
-dianae	dianapass987	1
-edwardh	edwardpass234	1
-fionac	fionapass567	1
-georgel	georgepass890	1
-hannahw	hannahpass345	1
-jackr	jackpass901	1
-isaacw	isaacpass678	2
-skbibitl12	sapdpkasd	1
+dianae	dianapass987		1
+edwardh	edwardpass234		1
+fionac	fionapass567		1
+georgel	georgepass890		1
+hannahw	hannahpass345		1
+jackr	jackpass901			1
+isaacw	isaacpass678		2
 
 # 1 
 Default account.

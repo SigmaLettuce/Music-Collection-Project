@@ -25,7 +25,7 @@ namespace CDOrganiserProjectApp
                [PROGRAM]
          
         \*                   */
-
+        
         private static StorageManager storageManager; 
         private static ConsoleView view;
 
