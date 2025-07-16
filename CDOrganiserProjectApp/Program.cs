@@ -2863,6 +2863,14 @@ namespace CDOrganiserProjectApp
                 view.DisplayMessage($"\nDeleted {rowsAffected} rows.");
 
             }
+            catch (IndexOutOfRangeException e)
+            { 
+                view.DisplayMessage("\n  Please enter a valid parameter listed. If you want to create a new listing, please navigate to such.");
+                view.DisplayMessage(e.Message);
+
+                DeleteGenreById();
+
+            }
             catch (FormatException e)
             {
                 view.DisplayMessage("\n  Please use the proper formatting.");
@@ -3141,6 +3149,14 @@ namespace CDOrganiserProjectApp
                 int rowsAffected = storageManager.DeleteRoomById(roomId);
                 view.DisplayMessage($"\nDeleted {rowsAffected} row.");
             }
+            catch (IndexOutOfRangeException e)
+            { 
+                view.DisplayMessage("\n  Please enter a valid parameter listed. If you want to create a new listing, please navigate to such.");
+                view.DisplayMessage(e.Message);
+
+                DeleteRoomById();
+
+            }
             catch (FormatException e)
             {
                 view.DisplayMessage("\n  Please use the proper formatting.");
@@ -3171,6 +3187,14 @@ namespace CDOrganiserProjectApp
                 int rowsAffected = storageManager.UpdateShelfRoomById(shelfTagId, roomId);
                 view.DisplayMessage($"\nUpdated {rowsAffected} records.");
             }
+            catch (IndexOutOfRangeException e)
+            { 
+                view.DisplayMessage("\n  Please enter a valid parameter listed. If you want to create a new listing, please navigate to such.");
+                view.DisplayMessage(e.Message);
+
+                UpdateShelfRoom();
+
+            }
             catch (FormatException e)
             {
                 view.DisplayMessage("\n  Please use the proper formatting.");
@@ -3200,6 +3224,14 @@ namespace CDOrganiserProjectApp
                 int generatedId = storageManager.InsertShelf(newShelf);
                 view.DisplayMessage($"\nThe new shelves identification number is: {generatedId}");
             }
+            catch (IndexOutOfRangeException e)
+            { 
+                view.DisplayMessage("\n  Please enter a valid parameter listed. If you want to create a new listing, please navigate to such.");
+                view.DisplayMessage(e.Message);
+
+                InsertNewShelf();
+
+            }
             catch (FormatException e)
             {
                 view.DisplayMessage("\n  Please use the proper formatting.");
@@ -3223,6 +3255,14 @@ namespace CDOrganiserProjectApp
 
                 int rowsAffected = storageManager.DeleteShelfById(shelfTagId);
                 view.DisplayMessage($"\nDeleted {rowsAffected} row.");
+            }
+            catch (IndexOutOfRangeException e)
+            { 
+                view.DisplayMessage("\n  Please enter a valid parameter listed. If you want to create a new listing, please navigate to such.");
+                view.DisplayMessage(e.Message);
+
+                DeleteShelfById();
+
             }
             catch (FormatException e)
             {
@@ -3254,6 +3294,14 @@ namespace CDOrganiserProjectApp
                 int rowsAffected = storageManager.UpdateRowsShelfById(shelfRowId, shelfTagId);
                 view.DisplayMessage($"\nUpdated {rowsAffected} records.");
             }
+            catch (IndexOutOfRangeException e)
+            { 
+                view.DisplayMessage("\n  Please enter a valid parameter listed. If you want to create a new listing, please navigate to such.");
+                view.DisplayMessage(e.Message);
+
+                UpdateRow();
+
+            }
             catch (FormatException e)
             {
                 view.DisplayMessage("\n  Please use the proper formatting.");
@@ -3284,6 +3332,14 @@ namespace CDOrganiserProjectApp
                 int generatedId = storageManager.InsertRow(newRow);
                 view.DisplayMessage($"\nThe new shelves identification number is: {generatedId}");
             }
+            catch (IndexOutOfRangeException e)
+            { 
+                view.DisplayMessage("\n  Please enter a valid parameter listed. If you want to create a new listing, please navigate to such.");
+                view.DisplayMessage(e.Message);
+
+                InsertNewRow();
+
+            }
             catch (FormatException e)
             {
                 view.DisplayMessage("\n  Please use the proper formatting.");
@@ -3307,6 +3363,14 @@ namespace CDOrganiserProjectApp
 
                 int rowsAffected = storageManager.DeleteRowById(shelfRowId);
                 view.DisplayMessage($"\nDeleted {rowsAffected} row.");
+            }
+            catch (IndexOutOfRangeException e)
+            { 
+                view.DisplayMessage("\n  Please enter a valid parameter listed. If you want to create a new listing, please navigate to such.");
+                view.DisplayMessage(e.Message);
+
+                DeleteRowById();
+
             }
             catch (FormatException e)
             {
@@ -3587,6 +3651,14 @@ namespace CDOrganiserProjectApp
                 view.DisplayMessage($"\nThe new albums identification number is: {generatedId}");
 
             }
+            catch (IndexOutOfRangeException e)
+            { 
+                view.DisplayMessage("\n  Please enter a valid parameter listed. If you want to create a new listing, please navigate to such.");
+                view.DisplayMessage(e.Message);
+
+                InsertArtistAlbum();
+
+            }
             catch (FormatException e)
             {
                 view.DisplayMessage("\n  Please use the proper formatting.");
@@ -3609,6 +3681,14 @@ namespace CDOrganiserProjectApp
 
                 int rowsAffected = storageManager.DeleteArtistAlbumById(albumId);
                 view.DisplayMessage($"\nDeleted {rowsAffected} row.");
+
+            }
+            catch (IndexOutOfRangeException e)
+            { 
+                view.DisplayMessage("\n  Please enter a valid parameter listed. If you want to create a new listing, please navigate to such.");
+                view.DisplayMessage(e.Message);
+
+                DeleteArtistAlbumById();
 
             }
             catch (FormatException e)
@@ -3710,6 +3790,14 @@ namespace CDOrganiserProjectApp
                 view.DisplayMessage($"\nUpdated {rowsAffected} records.");
 
             }
+            catch (IndexOutOfRangeException e)
+            { 
+                view.DisplayMessage("\n  Please enter a valid parameter listed. If you want to create a new listing, please navigate to such.");
+                view.DisplayMessage(e.Message);
+
+                UpdateBandAlbum();
+
+            }
             catch (FormatException e)
             {
                 view.DisplayMessage("\n  Please use the proper formatting.");
@@ -3764,6 +3852,14 @@ namespace CDOrganiserProjectApp
                 view.DisplayMessage($"\nThe new albums identification number is: {generatedId}");
 
             }
+            catch (IndexOutOfRangeException e)
+            { 
+                view.DisplayMessage("\n  Please enter a valid parameter listed. If you want to create a new listing, please navigate to such.");
+                view.DisplayMessage(e.Message);
+
+                InsertBandAlbum();
+
+            }
             catch (FormatException e)
             {
                 view.DisplayMessage("\n  Please use the proper formatting.");
@@ -3786,6 +3882,14 @@ namespace CDOrganiserProjectApp
 
                 int rowsAffected = storageManager.DeleteBandAlbumById(albumId);
                 view.DisplayMessage($"\nDeleted {rowsAffected} row.");
+
+            }
+            catch (IndexOutOfRangeException e)
+            { 
+                view.DisplayMessage("\n  Please enter a valid parameter listed. If you want to create a new listing, please navigate to such.");
+                view.DisplayMessage(e.Message);
+
+                DeleteBandAlbumById();
 
             }
             catch (FormatException e)
@@ -3886,6 +3990,14 @@ namespace CDOrganiserProjectApp
                 }
 
             }
+            catch (IndexOutOfRangeException e)
+            { 
+                view.DisplayMessage("\n  Please enter a valid parameter listed. If you want to create a new listing, please navigate to such.");
+                view.DisplayMessage(e.Message);
+
+                UpdateArtistReview();
+
+            }
             catch (FormatException e)
             {
                 view.DisplayMessage("\n  Please use the proper formatting.");
@@ -3922,6 +4034,14 @@ namespace CDOrganiserProjectApp
 
                 int generatedId = storageManager.InsertArtistReview(newReviews);
                 view.DisplayMessage($"\nThe new albums identification number is: {generatedId}");
+
+            }
+            catch (IndexOutOfRangeException e)
+            { 
+                view.DisplayMessage("\n  Please enter a valid parameter listed. If you want to create a new listing, please navigate to such.");
+                view.DisplayMessage(e.Message);
+
+                InsertArtistReview();
 
             }
             catch (FormatException e)
@@ -3963,6 +4083,14 @@ namespace CDOrganiserProjectApp
                     view.DisplayMessage($"\nDeleted {rowsAffected} row.");
 
                 }
+
+            }
+            catch (IndexOutOfRangeException e)
+            { 
+                view.DisplayMessage("\n  Please enter a valid parameter listed. If you want to create a new listing, please navigate to such.");
+                view.DisplayMessage(e.Message);
+
+                DeleteArtistReviewById();
 
             }
             catch (FormatException e)
@@ -4079,6 +4207,14 @@ namespace CDOrganiserProjectApp
                 }
 
             }
+            catch (IndexOutOfRangeException e)
+            { 
+                view.DisplayMessage("\n  Please enter a valid parameter listed. If you want to create a new listing, please navigate to such.");
+                view.DisplayMessage(e.Message);
+
+                UpdateBandReview();
+
+            }
             catch (FormatException e)
             {
                 view.DisplayMessage("\n  Please use the proper formatting.");
@@ -4115,6 +4251,14 @@ namespace CDOrganiserProjectApp
 
                 int generatedId = storageManager.InsertBandReview(newReviews);
                 view.DisplayMessage($"\nThe new albums identification number is: {generatedId}");
+
+            }
+            catch (IndexOutOfRangeException e)
+            { 
+                view.DisplayMessage("\n  Please enter a valid parameter listed. If you want to create a new listing, please navigate to such.");
+                view.DisplayMessage(e.Message);
+
+                InsertBandReview();
 
             }
             catch (FormatException e)
@@ -4157,6 +4301,14 @@ namespace CDOrganiserProjectApp
 
 
                 }
+
+            }
+            catch (IndexOutOfRangeException e)
+            { 
+                view.DisplayMessage("\n  Please enter a valid parameter listed. If you want to create a new listing, please navigate to such.");
+                view.DisplayMessage(e.Message);
+
+                DeleteBandReviewById();
 
             }
             catch (FormatException e)
