@@ -119,7 +119,7 @@ namespace CDOrganiserProjectApp
             view.DisplayMessage(" ");
             string pw = view.GetInput();
 
-            // Searches for matches for credentials in the database, stacks them against each other to make sure the credentials can be validated.
+            // Searches for matches for credentials in the database, the 
 
             string fetchUsername = storageManager.FetchUsername(user, pw);
             string fetchPassword = storageManager.FetchPassword(user, pw);
@@ -148,6 +148,15 @@ namespace CDOrganiserProjectApp
                         AdminMenuscreenOptions();
 
                     break;
+
+                    case 3:
+                        Thread.Sleep(wait);
+                        Console.Clear();
+
+                        TrueAdminMenuscreenOptions();
+
+                    break;
+
                 }
             }
 
@@ -220,7 +229,7 @@ namespace CDOrganiserProjectApp
             
         } // The Help method. Calls the support page display.
          
-        private static void AdminMenuscreenOptions() // The True Admin Menuscreen. 
+        private static void TrueAdminMenuscreenOptions() // The True Admin Menuscreen. 
         {           
             string select; // Stores a selection from a listing that branches into multiple.
             int recordselect; // Stores a selection of a record.
@@ -4727,11 +4736,8 @@ namespace CDOrganiserProjectApp
 
         private static void GoBack() // The Go Back function. 
         {
-            bool carry = true;
+            // This is the 'go back' function; or method. It passes the role of the account that is currently logged on through a switch; the switch cases then go on to determine which menuscreen the user is booted to depending on their role.
 
-
-            do
-            { 
                 Thread.Sleep(wait);
                  Console.Clear();
                
@@ -4739,25 +4745,31 @@ namespace CDOrganiserProjectApp
                  switch (roleId)
                  {
                      case 1:
+                    // If the user is simply a guest, the user gets sent back to the guest menu.
 
                          GuestMenuscreenOptions();
 
-                            carry = false;
 
                      break;
 
                      case 2:
+                    // If the user, however, is an admin, the user gets sent back to the admin menu instead.
 
                          AdminMenuscreenOptions();
 
-                            carry = false;
 
                      break;
 
+                    case 3:
+                    // If the user is the very first person who installed the application, they get sent back to the 'true' admin menu.
+
+                        TrueAdminMenuscreenOptions();
+
+
+                    break;
+
                  }
 
-      
-            } while (carry);
 
         } 
 
