@@ -828,14 +828,14 @@ namespace CDOrganiserProjectApp
 
         
         // Checks the username and password against themselves, then returns a match for a username in the database.
-        public string FetchUsername(int personId)
+        public string FetchUsername(string password)
         {
             string username = " ";
 
-            string sqlStr = $"SELECT username FROM Properties.tblAccounts WHERE personID = @personId";
+            string sqlStr = $"SELECT username FROM Properties.tblAccounts WHERE pw = @password";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
-                cmd.Parameters.AddWithValue("@personId", personId);
+                cmd.Parameters.AddWithValue("@password", password);
 
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
@@ -852,14 +852,14 @@ namespace CDOrganiserProjectApp
 
 
         // Checks the username and password against themselves, then returns a match for a password in the database.
-        public string FetchPassword(int personId)
+        public string FetchPassword(string username)
         {
             string password = " ";
 
-            string sqlStr = $"SELECT pw FROM Properties.tblAccounts WHERE personID = @personId";
+            string sqlStr = $"SELECT pw FROM Properties.tblAccounts WHERE username = @username";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
-                cmd.Parameters.AddWithValue("@personId", personId);
+                cmd.Parameters.AddWithValue("@username", username);
 
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
@@ -1529,7 +1529,7 @@ namespace CDOrganiserProjectApp
 
         // Search options
 
-        public string SearchGenres(string search)
+        public void SearchGenres(string search)
         {
 
             string sqlStr = $"SELECT genreName FROM Contents.tblGenres WHERE genreName = @search";
@@ -1549,13 +1549,12 @@ namespace CDOrganiserProjectApp
 
                     Console.WriteLine("\n\t[*]  Return to homepage - Press E + Enter\n");
 
-                    return search;
                 }
             }
         }
 
 
-        public string SearchArtists(string search)
+        public void SearchArtists(string search)
         {
 
             string sqlStr = $"SELECT artistName FROM Contents.tblArtists WHERE artistName = @search";
@@ -1581,7 +1580,7 @@ namespace CDOrganiserProjectApp
         }
 
 
-        public string SearchBands(string search)
+        public void SearchBands(string search)
         {
 
             string sqlStr = $"SELECT bandName FROM Contents.tblBands WHERE bandName = @search";
@@ -1601,13 +1600,12 @@ namespace CDOrganiserProjectApp
 
                     Console.WriteLine("\n\t[*]  Return to homepage - Press E + Enter\n");
 
-                    return search;
                 }
             }
         }
 
 
-        public string SearchBandReviews(string search)
+        public void SearchBandReviews(string search)
         {
 
             string sqlStr = $"SELECT tblTier.tierTag FROM Contents.tblArtistReviews, Contents.tblArtistAlbums, Contents.tblArtists, Properties.tblTier WHERE tblArtists.artistName = @search AND tblArtistReviews.tierID = tblTier.tierID AND tblArtistReviews.albumID = tblArtistAlbums.albumID AND tblArtistAlbums.artistID = tblArtists.artistID";
@@ -1627,13 +1625,12 @@ namespace CDOrganiserProjectApp
 
                     Console.WriteLine("\n\t[*]  Return to homepage - Press E + Enter\n");
 
-                    return search;
                 }
             }
         }
 
 
-        public string SearchArtistReviews(string search)
+        public void SearchArtistReviews(string search)
         {
 
             string sqlStr = $"SELECT tblTier.tierTag FROM Contents.tblBandReviews, Contents.tblBandAlbums, Contents.tblBands, Properties.tblTier WHERE tblBands.bandName = @search AND tblBandReviews.tierID = tblTier.tierID  AND tblBandReviews.albumID = tblBandAlbums.albumID AND tblBandAlbums.bandID = tblBands.bandID";
@@ -1653,13 +1650,12 @@ namespace CDOrganiserProjectApp
 
                     Console.WriteLine("\n\t[*]  Return to homepage - Press E + Enter\n");
 
-                    return search;
                 }
             }
         }
 
 
-        public string SearchArtistAlbums(string search)
+        public void SearchArtistAlbums(string search)
         {
 
             string sqlStr = $"SELECT tblArtists.artistName FROM Contents.tblArtistAlbums, Contents.tblArtists WHERE tblArtists.artistName = @search AND tblArtistAlbums.artistID = tblArtists.artistID";
@@ -1679,13 +1675,12 @@ namespace CDOrganiserProjectApp
 
                     Console.WriteLine("\n\t[*]  Return to homepage - Press E + Enter\n");
 
-                    return search;
                 }
             }
         }
 
 
-        public string SearchBandAlbums(string search)
+        public void SearchBandAlbums(string search)
         {
 
             string sqlStr = $"SELECT tblBands.bandName FROM Contents.tblBandAlbums, Contents.tblBandsWHERE tblBands.bandName = @search AND tblBandAlbums.bandID = tblBands.bandID";
@@ -1705,7 +1700,6 @@ namespace CDOrganiserProjectApp
 
                     Console.WriteLine("\n\t[*]  Return to homepage - Press E + Enter\n");
 
-                    return search;
                 }
             }
         }

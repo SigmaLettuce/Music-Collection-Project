@@ -16,7 +16,7 @@ namespace CDOrganiserProjectApp
         private static StorageManager storageManager; 
         private static ConsoleView view;
         
-        static int accountId; // This is the variable of the Account ID; Declared as a static variable so it is accessible across all instances
+        static int accountId; // This is the variable that stores an Account ID; Declared as a static variable so it is accessible across all instances
         static int roleId;
         static bool logStatus;
         
@@ -121,8 +121,8 @@ namespace CDOrganiserProjectApp
 
             // Searches for matches for credentials in the database, the 
 
-            string fetchUsername = storageManager.FetchUsername(roleId);
-            string fetchPassword = storageManager.FetchPassword(roleId);
+            string fetchUsername = storageManager.FetchUsername(pw);
+            string fetchPassword = storageManager.FetchPassword(user);
             accountId = storageManager.FetchAccount(roleId);
             roleId = storageManager.FetchRole(roleId);
 
@@ -5499,7 +5499,7 @@ namespace CDOrganiserProjectApp
                 view.DisplayMessage(" ");
                 string newpw = view.GetInput();
 
-                if (newuser.Equals(storageManager.FetchUsername(roleId)))
+                if (newuser.Equals(storageManager.FetchUsername()))
                 {
                     view.DisplayMessage("\nThat username is already taken. Choose a different username. ");
                     Thread.Sleep(wait);
