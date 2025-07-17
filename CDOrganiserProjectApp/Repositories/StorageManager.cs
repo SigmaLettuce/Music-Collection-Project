@@ -804,14 +804,14 @@ namespace CDOrganiserProjectApp
 
 
         // Checks the role and username against themselves, then returns a match for a persons identification number in the database.
-        public int FetchAccount(string username)
+        public int FetchAccount(int personId)
         {
-            int personId = 0;
+            personId = 0;
 
-            string sqlStr = $"SELECT personID FROM Properties.tblAccounts WHERE username = @username";
+            string sqlStr = $"SELECT personID FROM Properties.tblAccounts WHERE personID = @personId";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
-                cmd.Parameters.AddWithValue("@un", username);
+                cmd.Parameters.AddWithValue("@personId", personId);
 
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
@@ -828,14 +828,14 @@ namespace CDOrganiserProjectApp
 
         
         // Checks the username and password against themselves, then returns a match for a username in the database.
-        public string FetchUsername(string password)
+        public string FetchUsername(int personId)
         {
             string username = " ";
 
-            string sqlStr = $"SELECT username FROM Properties.tblAccounts WHERE pw = @password";
+            string sqlStr = $"SELECT username FROM Properties.tblAccounts WHERE personID = @personId";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
-                cmd.Parameters.AddWithValue("@password", password);
+                cmd.Parameters.AddWithValue("@personId", personId);
 
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
@@ -852,14 +852,14 @@ namespace CDOrganiserProjectApp
 
 
         // Checks the username and password against themselves, then returns a match for a password in the database.
-        public string FetchPassword(string username)
+        public string FetchPassword(int personId)
         {
             string password = " ";
 
-            string sqlStr = $"SELECT pw FROM Properties.tblAccounts WHERE username = @username";
+            string sqlStr = $"SELECT pw FROM Properties.tblAccounts WHERE personID = @personId";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
-                cmd.Parameters.AddWithValue("@username", username);
+                cmd.Parameters.AddWithValue("@personId", personId);
 
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
@@ -876,15 +876,15 @@ namespace CDOrganiserProjectApp
 
         
         // Checks the role and username against themselves, then returns a match for a role in the database.
-        public int FetchRole(string username)
+        public int FetchRole(int personId)
         {
 
             int roleId = 0;
 
-            string sqlStr = $"SELECT roleID FROM Properties.tblAccounts WHERE username = @username";
+            string sqlStr = $"SELECT roleID FROM Properties.tblAccounts WHERE personId = @personID";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
-                cmd.Parameters.AddWithValue("@username", username);
+                cmd.Parameters.AddWithValue("@personId", personId);
 
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {

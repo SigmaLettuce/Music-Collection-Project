@@ -15,14 +15,14 @@ namespace CDOrganiserProjectApp
         
         private static StorageManager storageManager; 
         private static ConsoleView view;
-
-        static int accountId; // This is the variable of the Account ID 
+        
+        static int accountId; // This is the variable of the Account ID; Declared as a static variable so it is accessible across all instances
         static int roleId;
         static bool logStatus;
         
         const int wait = 1000; 
 
-
+        
         static void Main(string[] args)
         {
             // view.DisplayMessage("Hello, World!");
@@ -121,10 +121,10 @@ namespace CDOrganiserProjectApp
 
             // Searches for matches for credentials in the database, the 
 
-            string fetchUsername = storageManager.FetchUsername(pw);
-            string fetchPassword = storageManager.FetchPassword(user);
-            accountId = storageManager.FetchAccount(user);
-            roleId = storageManager.FetchRole(user);
+            string fetchUsername = storageManager.FetchUsername(roleId);
+            string fetchPassword = storageManager.FetchPassword(roleId);
+            accountId = storageManager.FetchAccount(roleId);
+            roleId = storageManager.FetchRole(roleId);
 
 
             // If the given credentials matches with any searches, the user is granted permission, depending on their role for how much can be visible.
@@ -5499,7 +5499,7 @@ namespace CDOrganiserProjectApp
                 view.DisplayMessage(" ");
                 string newpw = view.GetInput();
 
-                if (newuser.Equals(storageManager.FetchUsername(newuser, newpw)))
+                if (newuser.Equals(storageManager.FetchUsername(roleId)))
                 {
                     view.DisplayMessage("\nThat username is already taken. Choose a different username. ");
                     Thread.Sleep(wait);
@@ -5558,6 +5558,7 @@ namespace CDOrganiserProjectApp
 
                 view.DisplayMessage("[x] WARNING: CREATING AN ACCOUNT BOOTS YOU TO THE LOGIN/REGISTER.\n");
 
+               
                 view.DisplayMessage("\nEnter your first name... ");
                 view.DisplayMessage(" ");
                 string fName = view.GetInput();
@@ -5570,13 +5571,13 @@ namespace CDOrganiserProjectApp
                 view.DisplayMessage("\nCreate a username... ");
                 view.DisplayMessage(" ");
                 string newuser = view.GetInput();
-                roleId = 2;
+                roleId = 2; // Assigns the Admninistrator role
 
                 view.DisplayMessage("\nCreate a password... ");
                 view.DisplayMessage(" ");
                 string newpw = view.GetInput();
 
-                if (newuser.Equals(storageManager.FetchUsername(newuser, newpw)))
+                if (newuser.Equals(storageManager.FetchUsername(roleId)))
                 {
                     view.DisplayMessage("\nThat username is already taken. Choose a different username. ");
                     Thread.Sleep(wait);
