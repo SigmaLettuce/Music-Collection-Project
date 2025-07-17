@@ -71,7 +71,7 @@ namespace CDOrganiserProjectApp.View
 
             Console.WriteLine("Enter any of the listings above to gain access... \n");
 
-
+            
             
                 
             return Console.ReadLine();

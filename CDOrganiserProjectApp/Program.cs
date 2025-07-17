@@ -220,6 +220,2093 @@ namespace CDOrganiserProjectApp
             
         } // The Help method. Calls the support page display.
 
+        private static void AdminMenuscreenOptions() // The True Admin Menuscreen. 
+        {           
+            string select; // Stores a selection from a listing that branches into multiple.
+            int recordselect; // Stores a selection of a record.
+            string cmd; // Stores the users written modification command.
+            bool invalid = true;
+
+            string input = view.DisplayAdminMenu(); // Calls the display.
+            view.DisplayMessage(""); 
+
+            Thread.Sleep(wait);
+            Console.Clear();
+
+            do
+            {
+                switch (input.ToLower())
+                {
+
+                    case "bands":
+                        
+                        List<Bands> bands = storageManager.GetAllBands();
+                        view.DisplayBands(bands);
+
+                        Thread.Sleep(wait);
+
+                        cmd = view.DisplayEditingOptions("bands", "default~extras~search");
+                        view.DisplayMessage("");
+
+                        Thread.Sleep(wait);
+
+                        invalid = false;
+
+                        do
+                        {
+
+                            switch (cmd.ToLower())
+                            {
+                                case "up":
+                                    UpdateBandName();
+
+                                    invalid = false;
+
+                                    GoBack();
+
+                                break;
+
+                                case "ins":
+                                    InsertNewBand();
+
+                                    invalid = false;
+
+                                    GoBack();
+
+                                break;
+
+                                case "del":
+                                    DeleteBandById();
+
+                                    invalid = false;
+
+                                    GoBack();
+
+                                break;
+
+                                case "search":
+                                    SearchBands();
+
+                                    cmd = view.GetInput();
+                                    view.DisplayMessage("");
+
+                                    Thread.Sleep(wait);
+
+                                    do
+                                    {
+                                        switch (cmd.ToUpper())
+                                        {
+                                            case "E":
+                                                GoBack();
+
+                                                invalid = false;
+
+                                            break;
+
+                                            default:
+                                                view.AltDisplayError(wait);
+
+                                                GoBack();
+
+                                                invalid = true;
+
+                                            break;
+
+                                        }
+
+                                    }  while (invalid);
+
+                                    invalid = false;
+
+                                    GoBack();
+
+                                break;
+
+                                case "back":
+                                    GoBack();
+
+                                    invalid = false;
+
+                                break;
+
+                                default:
+                                    view.DisplayError(wait);
+
+                                    GoBack();
+
+                                    invalid = true;
+
+                                break;
+                            }
+
+                        } while (invalid);
+
+                    break;
+                  
+                    case "artists":
+                        List<Artists> artists = storageManager.GetAllArtists();
+                        view.DisplayArtists(artists);
+
+                        Thread.Sleep(wait);
+
+                        cmd = view.DisplayEditingOptions("artists", "default~extras~search");
+                        view.DisplayMessage("");
+
+                        Thread.Sleep(wait);
+
+                        invalid = false;
+
+                        do
+                        {
+
+                            switch (cmd.ToLower())
+                            {
+                                case "up":
+                                    UpdateArtistName();
+
+                                    invalid = false;
+
+                                    GoBack();
+
+                                break;
+
+                                case "ins":
+                                    InsertNewArtist();
+
+                                    invalid = false;
+
+                                    GoBack();
+
+                                break;
+
+                                case "del":
+                                    DeleteArtistById();
+
+                                    invalid = false;
+
+                                    GoBack();
+
+                                break;
+
+                                case "search":
+                                    SearchArtists();
+
+                                    cmd = view.GetInput();
+                                    view.DisplayMessage("");
+
+                                    Thread.Sleep(wait);
+
+                                    do
+                                    {
+                                        switch (cmd.ToUpper())
+                                        {
+                                            case "E":
+                                                GoBack();
+
+                                                invalid = false;
+
+                                            break;
+
+                                            default:
+                                                view.AltDisplayError(wait);
+
+                                                GoBack();
+
+                                                invalid = true;
+
+                                            break;
+
+                                        }
+
+                                    }  while (invalid);
+
+                                    invalid = false;
+
+                                    GoBack();
+
+                                break;
+
+                                case "back":                                   
+                                    GoBack();
+
+                                    invalid = false;
+
+                                break;
+
+                                default:
+                                    view.DisplayError(wait);
+
+                                    GoBack();
+
+                                    invalid = true;
+
+                                break;
+                            }
+
+                        } while (invalid);
+
+                    break;
+                                        
+                    case "albums":
+
+                        Thread.Sleep(wait);
+
+                        select = view.DisplayEditingOptions("albums", "album~variants");
+
+                        Thread.Sleep(wait);
+                        Console.Clear();
+
+                        invalid = false;
+
+                        do
+                        {
+                            switch (select)
+                            {
+                                case "artists":
+                                    storageManager.GetAllArtistAlbums();
+                                    
+                                    Thread.Sleep(wait);
+
+                                    cmd = view.DisplayEditingOptions("artist-albums", "album~extras");
+                                    view.DisplayMessage("");
+
+                                    Thread.Sleep(wait);
+                                    Console.Clear();
+
+                                    invalid = false;
+
+                                    do
+                                    {
+
+                                        switch (cmd.ToLower())
+                                        {
+                                            case "up":
+                                                UpdateArtistAlbum();
+
+                                                invalid = false;
+
+                                                GoBack();
+
+                                            break;
+
+                                            case "ins":
+                                                InsertArtistAlbum();
+
+                                                invalid = false;
+
+                                                GoBack();
+
+                                            break;
+
+                                            case "del":
+                                                DeleteArtistAlbumById();
+
+                                                invalid = false;
+
+                                                GoBack();
+
+                                            break;
+
+                                            case "reports":
+
+                                                recordselect = view.DisplayRecordOptions("artists", "artists");
+
+                                                Thread.Sleep(wait);
+                                                Console.Clear();
+
+                                                invalid = false;
+
+                                                do
+                                                {
+                                                    switch (recordselect)
+                                                    {
+                                                        case 1:
+                                                            storageManager.GetArtistReleaseDate();
+
+                                                            cmd = view.GetInput();
+
+                                                            do
+                                                            {
+                                                                switch (cmd.ToUpper())
+                                                                {
+                                                                    case "E":
+                                                                        GoBack();
+
+                                                                        invalid = false;
+
+                                                                    break;
+
+                                                                    default:
+                                                                        view.AltDisplayError(wait);
+
+                                                                        GoBack();
+
+                                                                        invalid = true;
+
+                                                                    break;
+
+                                                                }
+
+                                                            } while (invalid);
+                                                
+
+                                                        break;
+
+                                                        case 2:
+                                                            storageManager.GetAToJArtists();
+
+                                                            cmd = view.GetInput();
+
+                                                            do
+                                                            {
+                                                                switch (cmd.ToUpper())
+                                                                {
+                                                                    case "E":
+                                                                        GoBack();
+
+                                                                        invalid = false;
+
+                                                                    break;
+
+                                                                    default:
+                                                                        view.AltDisplayError(wait);
+
+                                                                        GoBack();
+
+                                                                        invalid = true;
+
+                                                                    break;
+
+                                                                }
+
+                                                            } while (invalid);
+                                                
+
+                                                        break;
+
+                                                        case 3:
+                                                            storageManager.GetArtistsEarly2000sMusic();
+
+                                                            cmd = view.GetInput();
+
+                                                            do
+                                                            {
+                                                                switch (cmd.ToUpper())
+                                                                {
+                                                                    case "E":
+                                                                        GoBack();
+
+                                                                        invalid = false;
+
+                                                                    break;
+
+                                                                    default:
+                                                                        view.AltDisplayError(wait);
+
+                                                                        GoBack();
+
+                                                                        invalid = true;
+
+                                                                    break;
+
+                                                                }
+
+                                                            } while (invalid);
+                                                
+
+                                                        break;
+
+                                                        case 4:
+                                                            storageManager.GetTotalArtistGenres();
+
+                                                            cmd = view.GetInput();
+
+                                                            do
+                                                            {
+                                                                switch (cmd.ToUpper())
+                                                                {
+                                                                    case "E":
+                                                                        GoBack();
+
+                                                                        invalid = false;
+
+                                                                    break;
+
+                                                                    default:
+                                                                        view.AltDisplayError(wait);
+
+                                                                        GoBack();
+
+                                                                        invalid = true;
+
+                                                                    break;
+
+                                                                }
+
+                                                            } while (invalid);
+                                                
+
+                                                        break;
+
+                                                        case 5:
+                                                            storageManager.GetArtistsAsAWhole();
+
+                                                            cmd = view.GetInput();
+
+                                                            do
+                                                            {
+                                                                switch (cmd.ToUpper())
+                                                                {
+                                                                    case "E":
+                                                                        GoBack();
+
+                                                                        invalid = false;
+
+                                                                    break;
+
+                                                                    default:
+                                                                        view.AltDisplayError(wait);
+
+                                                                        GoBack();
+
+                                                                        invalid = true;
+
+                                                                    break;
+
+                                                                }
+
+                                                            } while (invalid);
+                                                
+
+                                                        break;
+
+                                                        case 6:
+                                                            storageManager.GetTotalAlbumsPublishedByArtists();
+
+                                                            cmd = view.GetInput();
+
+                                                            do
+                                                            {
+                                                                switch (cmd.ToUpper())
+                                                                {
+                                                                    case "E":
+                                                                        GoBack();
+
+                                                                        invalid = false;
+
+                                                                    break;
+
+                                                                    default:
+                                                                        view.AltDisplayError(wait);
+
+                                                                        GoBack();
+
+                                                                        invalid = true;
+
+                                                                    break;
+
+                                                                }
+
+                                                            } while (invalid);
+                                                
+
+                                                        break;
+
+                                                        case 7:
+                                                            storageManager.GetTotalPublishingsOfAllArtistsPerYear();
+
+                                                            cmd = view.GetInput();
+
+                                                            do
+                                                            {
+                                                                switch (cmd.ToUpper())
+                                                                {
+                                                                    case "E":
+                                                                        GoBack();
+
+                                                                        invalid = false;
+
+                                                                    break;
+
+                                                                    default:
+                                                                        view.AltDisplayError(wait);
+
+                                                                        GoBack();
+
+                                                                        invalid = true;
+
+                                                                    break;
+
+                                                                }
+
+                                                            } while (invalid);
+                                                
+
+                                                        break;
+
+                                                        case 8:                                   
+                                                            GoBack();
+
+                                                            invalid = false;
+
+                                                        break;
+
+                                                        default:
+                                                            view.AltDisplayError(wait);
+
+                                                            GoBack();
+
+                                                            invalid = true;
+
+                                                        break;
+
+                                                    }
+
+                                                } while (invalid);
+
+                                            break;
+
+                                            case "search":
+                                                SearchArtistAlbums();
+
+                                                cmd = view.GetInput();
+                                                view.DisplayMessage("");
+
+                                                Thread.Sleep(wait);
+
+                                                do
+                                                {
+                                                    switch (cmd.ToUpper())
+                                                    {
+                                                        case "E":
+                                                            GoBack();
+
+                                                            invalid = false;
+
+                                                        break;
+
+                                                        default:
+                                                            view.AltDisplayError(wait);
+
+                                                            GoBack();
+
+                                                            invalid = true;
+
+                                                        break;
+
+                                                    }
+
+                                                }  while (invalid);
+
+                                                invalid = false;
+
+                                            break;
+
+                                            case "lost":
+                                                MarkArtistAsLost();
+
+                                                invalid = false;
+
+                                                GoBack();
+
+                                            break;
+
+                                            case "back":
+                                                GoBack();
+
+                                                invalid = false;
+
+                                            break;
+
+                                            default:
+                                                view.DisplayError(wait);
+
+                                                GoBack();
+
+                                            break;
+                                        }
+
+                                    } while (invalid);
+
+                                break;
+
+                                case "bands":
+                                    storageManager.GetAllBandAlbums();
+
+                                    Thread.Sleep(wait);
+
+                                    cmd = view.DisplayEditingOptions("band-albums", "album~extras");
+                                    view.DisplayMessage("");
+
+                                    Thread.Sleep(wait);
+
+                                    invalid = false;
+
+                                    do
+                                    {
+
+                                        switch (cmd)
+                                        {
+                                            case "up":
+                                                UpdateBandAlbum();
+
+                                                invalid = false;
+
+                                                GoBack();
+
+                                            break;
+
+                                            case "ins":
+                                                InsertBandAlbum();
+
+                                                invalid = false;
+
+                                                GoBack();
+
+                                            break;
+
+                                            case "del":
+                                                DeleteBandAlbumById();
+
+                                                invalid = false;
+
+                                                GoBack();
+
+                                            break;
+
+                                            case "reports":
+
+                                                recordselect = view.DisplayRecordOptions("bands", "bands");
+
+                                                Thread.Sleep(wait);
+                                                Console.Clear();
+
+                                                invalid = false;
+
+                                                do
+                                                {
+                                                    switch (recordselect)
+                                                    {
+                                                        case 1:
+                                                            storageManager.GetBandReleaseDate();
+
+                                                            cmd = view.GetInput();
+
+                                                            do
+                                                            {
+                                                                switch (cmd.ToUpper())
+                                                                {
+                                                                    case "E":
+                                                                        GoBack();
+
+                                                                        invalid = false;
+
+                                                                    break;
+
+                                                                    default:
+                                                                        view.AltDisplayError(wait);
+
+                                                                        GoBack();
+
+                                                                        invalid = true;
+
+                                                                    break;
+
+                                                                }
+
+                                                            } while (invalid);
+                                                
+
+                                                        break;
+
+                                                        case 2:
+                                                            storageManager.GetAToJBands();
+
+                                                            cmd = view.GetInput();
+
+                                                            do
+                                                            {
+                                                                switch (cmd.ToUpper())
+                                                                {
+                                                                    case "E":
+                                                                        GoBack();
+
+                                                                        invalid = false;
+
+                                                                    break;
+
+                                                                    default:
+                                                                        view.AltDisplayError(wait);
+
+                                                                        GoBack();
+
+                                                                        invalid = true;
+
+                                                                    break;
+
+                                                                }
+
+                                                            } while (invalid);
+                                                
+
+                                                        break;
+
+                                                        case 3:
+                                                            storageManager.GetBandsEarly2000sMusic();
+
+                                                            cmd = view.GetInput();
+
+                                                            do
+                                                            {
+                                                                switch (cmd.ToUpper())
+                                                                {
+                                                                    case "E":
+                                                                        GoBack();
+
+                                                                        invalid = false;
+
+                                                                    break;
+
+                                                                    default:
+                                                                        view.AltDisplayError(wait);
+
+                                                                        GoBack();
+
+                                                                        invalid = true;
+
+                                                                    break;
+
+                                                                }
+
+                                                            } while (invalid);
+                                                
+
+                                                        break;
+
+                                                        case 4:
+                                                            storageManager.GetTotalBandGenres();
+
+                                                            cmd = view.GetInput();
+
+                                                            do
+                                                            {
+                                                                switch (cmd.ToUpper())
+                                                                {
+                                                                    case "E":
+                                                                        GoBack();
+
+                                                                        invalid = false;
+
+                                                                    break;
+
+                                                                    default:
+                                                                        view.AltDisplayError(wait);
+
+                                                                        GoBack();
+
+                                                                        invalid = true;
+
+                                                                    break;
+
+                                                                }
+
+                                                            } while (invalid);
+                                                
+
+                                                        break;
+
+                                                        case 5:
+                                                            storageManager.GetBandsAsAWhole();
+
+                                                            cmd = view.GetInput();
+
+                                                           do
+                                                            {
+                                                                switch (cmd.ToUpper())
+                                                                {
+                                                                    case "E":
+                                                                        GoBack();
+
+                                                                        invalid = false;
+
+                                                                    break;
+
+                                                                    default:
+                                                                        view.AltDisplayError(wait);
+
+                                                                        GoBack();
+
+                                                                        invalid = true;
+
+                                                                    break;
+
+                                                                }
+
+                                                            } while (invalid);
+                                                
+
+                                                        break;
+
+                                                        case 6:
+                                                            storageManager.GetTotalAlbumsPublishedByBands();
+
+                                                            cmd = view.GetInput();
+
+                                                            do
+                                                            {
+                                                                switch (cmd.ToUpper())
+                                                                {
+                                                                    case "E":
+                                                                        GoBack();
+
+                                                                        invalid = false;
+
+                                                                    break;
+
+                                                                    default:
+                                                                        view.AltDisplayError(wait);
+
+                                                                        GoBack();
+
+                                                                        invalid = true;
+
+                                                                    break;
+
+                                                                }
+
+                                                            } while (invalid);
+                                                
+
+                                                        break;
+
+                                                        case 7:
+                                                            storageManager.GetTotalPublishingsOfAllBandsPerYear();
+
+                                                            cmd = view.GetInput();
+
+                                                            do
+                                                            {
+                                                                switch (cmd.ToUpper())
+                                                                {
+                                                                    case "E":
+                                                                        GoBack();
+
+                                                                        invalid = false;
+
+                                                                    break;
+
+                                                                    default:
+                                                                        view.AltDisplayError(wait);
+
+                                                                        GoBack();
+
+                                                                        invalid = true;
+
+                                                                    break;
+
+                                                                }
+
+                                                            } while (invalid);
+                                                
+
+                                                        break;
+
+                                                        case 8:                                   
+                                                            GoBack();
+
+                                                            invalid = false;
+
+                                                        break;
+
+                                                        default:
+                                                            view.AltDisplayError(wait);
+
+                                                            GoBack();
+
+                                                            invalid = true;
+
+                                                        break;
+
+                                                    }
+
+                                                } while (invalid);
+
+                                            break;
+
+                                            case "search":
+                                                SearchBandAlbums();
+
+                                                cmd = view.GetInput();
+                                                view.DisplayMessage("");
+
+                                                Thread.Sleep(wait);
+
+                                                do
+                                                {
+                                                    switch (cmd.ToUpper())
+                                                    {
+                                                        case "E":
+                                                            GoBack();
+
+                                                            invalid = false;
+
+                                                        break;
+
+                                                        default:
+                                                            view.AltDisplayError(wait);
+
+                                                            GoBack();
+
+                                                            invalid = true;
+
+                                                        break;
+
+                                                    }
+
+                                                }  while (invalid);
+
+                                                invalid = false;
+
+                                                GoBack();
+
+                                            break;
+
+                                            case "lost":
+                                                MarkBandAsLost();
+
+                                                invalid = false;
+
+                                                GoBack();
+                                            break;
+
+                                            case "back":
+                                                GoBack();
+
+                                                invalid = false;
+
+                                            break;
+
+                                            default:
+                                                view.DisplayError(wait);
+
+                                                GoBack();
+
+                                            break;
+                                        }
+
+                                    } while (invalid);
+
+                                    break;
+
+                                case "back":                                   
+                                    GoBack();
+
+                                    invalid = false;
+
+                                break;
+
+                                default:
+                                    view.DisplayError(wait);
+
+                                    GoBack();
+
+                                    invalid = true;
+
+                                break;
+
+                            }
+
+                        } while (invalid);
+
+                    break;
+
+                    case "reviews":
+
+                        Thread.Sleep(wait);
+
+                        select = view.DisplayEditingOptions("reviews", "album~variants");
+
+                        Thread.Sleep(wait);
+                        Console.Clear();
+
+                        invalid = false;
+
+                        do
+                        {
+                            switch (select)
+                            {
+                                case "artists":
+                                    storageManager.GetAllArtistReviews();
+
+                                    Thread.Sleep(wait);
+
+                                    cmd = view.DisplayEditingOptions("artist-album-reviews", "review~extras");
+                                    view.DisplayMessage("");
+
+                                    Thread.Sleep(wait);
+                                    Console.Clear();
+
+                                    invalid = false;
+
+                                    do
+                                    {
+
+                                        switch (cmd)
+                                        {
+                                            case "up":
+                                                UpdateArtistReview();
+
+                                                invalid = false;
+
+                                                GoBack();
+
+                                            break;
+
+                                            case "ins":
+                                                InsertArtistReview();
+
+                                                invalid = false;
+
+                                                GoBack();
+
+                                            break;
+
+                                            case "del":
+                                                DeleteArtistReviewById();
+
+                                                invalid = false;
+
+                                                GoBack();
+
+                                            break;
+
+                                            case "favourite":
+                                                FavouriteArtistReview();
+
+                                                invalid = false;
+
+                                                GoBack();
+
+                                            break;
+
+                                            case "reports":
+
+                                                recordselect = view.DisplayRecordOptions("artists", "reviews");
+
+                                                Thread.Sleep(wait);
+                                                Console.Clear();
+
+                                                invalid = false;
+
+                                                do
+                                                {
+                                                    switch (recordselect)
+                                                    {
+                                                        case 1:
+                                                            storageManager.GetHighRankingArtistAlbums();
+
+                                                            cmd = view.GetInput();
+
+                                                            do
+                                                            {
+                                                                switch (cmd.ToUpper())
+                                                                {
+                                                                    case "E":
+                                                                        GoBack();
+
+                                                                        invalid = false;
+
+                                                                    break;
+
+                                                                    default:
+                                                                        view.AltDisplayError(wait);
+
+                                                                        GoBack();
+
+                                                                        invalid = true;
+
+                                                                    break;
+
+                                                                }
+
+                                                            } while (invalid);
+                                                
+
+                                                        break;
+
+                                                        case 2:
+                                                            storageManager.GetTopThreeFavouriteArtistAlbums();
+
+                                                            cmd = view.GetInput();
+
+                                                            do
+                                                            {
+                                                                switch (cmd.ToUpper())
+                                                                {
+                                                                    case "E":
+                                                                        GoBack();
+
+                                                                        invalid = false;
+
+                                                                    break;
+
+                                                                    default:
+                                                                        view.AltDisplayError(wait);
+
+                                                                        GoBack();
+
+                                                                        invalid = true;
+
+                                                                    break;
+
+                                                                }
+
+                                                            } while (invalid);
+                                                
+
+                                                        break;
+
+                                                        case 3:                                   
+                                                            GoBack();
+
+                                                            invalid = false;
+
+                                                        break;
+
+                                                        default:
+                                                            view.AltDisplayError(wait);
+
+                                                            GoBack();
+
+                                                            invalid = true;
+
+                                                        break;
+
+                                                    }
+
+                                                } while (invalid);
+
+                                            break;
+
+                                            case "search":
+                                                SearchArtistReviews();
+
+                                                cmd = view.GetInput();
+                                                view.DisplayMessage("");
+
+                                                Thread.Sleep(wait);
+
+                                                do
+                                                {
+                                                    switch (cmd.ToUpper())
+                                                    {
+                                                        case "E":
+                                                            GoBack();
+
+                                                            invalid = false;
+
+                                                        break;
+
+                                                        default:
+                                                            view.AltDisplayError(wait);
+
+                                                            GoBack();
+
+                                                            invalid = true;
+
+                                                        break;
+
+                                                    }
+
+                                                }  while (invalid);
+
+                                                invalid = false;
+
+                                                GoBack();
+
+                                            break;
+
+                                            case "back":
+                                                GoBack();
+
+                                                invalid = false;
+
+                                            break;
+
+                                            default:
+                                                view.DisplayError(wait);
+
+                                                GoBack();
+
+                                            break;
+                                        }
+
+                                    } while (invalid);
+
+                                    break;
+
+                                case "bands":
+                                    storageManager.GetAllBandReviews();
+
+                                    Thread.Sleep(wait);
+
+                                    cmd = view.DisplayEditingOptions("band-album-reviews", "review~extras");
+                                    view.DisplayMessage("");
+
+                                    Thread.Sleep(wait);
+
+                                    invalid = false;
+
+                                    do
+                                    {
+
+                                        switch (cmd)
+                                        {
+                                            case "up":
+                                                UpdateBandReview();
+
+                                                invalid = false;
+
+                                                GoBack();
+
+                                            break;
+
+                                            case "ins":
+                                                InsertBandReview();
+
+                                                invalid = false;
+
+                                                GoBack();
+
+                                            break;
+
+                                            case "del":
+                                                DeleteBandReviewById();
+
+                                                invalid = false;
+
+                                                GoBack();
+
+                                            break;
+
+                                            case "favourite":
+                                                FavouriteBandReview();
+
+                                                invalid = false;
+
+                                                GoBack();
+
+                                            break;
+
+                                            case "reports":
+
+                                                recordselect = view.DisplayRecordOptions("bands", "reviews");
+
+                                                Thread.Sleep(wait);
+                                                Console.Clear();
+
+                                                invalid = false;
+
+                                                do
+                                                {
+                                                    switch (recordselect)
+                                                    {
+                                                        case 1:
+                                                            storageManager.GetHighRankingBandAlbums();
+
+                                                            cmd = view.GetInput();
+
+                                                            do
+                                                            {
+                                                                switch (cmd.ToUpper())
+                                                                {
+                                                                    case "E":
+                                                                        GoBack();
+
+                                                                        invalid = false;
+
+                                                                    break;
+
+                                                                    default:
+                                                                        view.AltDisplayError(wait);
+
+                                                                        GoBack();
+
+                                                                        invalid = true;
+
+                                                                    break;
+
+                                                                }
+
+                                                            } while (invalid);
+                                                
+
+                                                        break;
+
+                                                        case 2:
+                                                            storageManager.GetTopThreeFavouriteBandAlbums();
+
+                                                            cmd = view.GetInput();
+
+                                                            do
+                                                            {
+                                                                switch (cmd.ToUpper())
+                                                                {
+                                                                    case "E":
+                                                                        GoBack();
+
+                                                                        invalid = false;
+
+                                                                    break;
+
+                                                                    default:
+                                                                        view.AltDisplayError(wait);
+
+                                                                        GoBack();
+
+                                                                        invalid = true;
+
+                                                                    break;
+
+                                                                }
+
+                                                            } while (invalid);
+                                                
+
+                                                        break;
+
+                                                        case 3:                                   
+                                                            GoBack();
+
+                                                            invalid = false;
+
+                                                        break;
+
+                                                        default:
+                                                            view.AltDisplayError(wait);
+
+                                                            GoBack();
+
+                                                            invalid = true;
+
+                                                        break;
+
+                                                    }
+
+                                                } while (invalid);
+
+                                            break;
+
+                                            case "search":
+                                                SearchBandReviews();
+
+                                                cmd = view.GetInput();
+                                                view.DisplayMessage("");
+
+                                                Thread.Sleep(wait);
+
+                                                do
+                                                {
+                                                    switch (cmd.ToUpper())
+                                                    {
+                                                        case "E":
+                                                            GoBack();
+
+                                                            invalid = false;
+
+                                                        break;
+
+                                                        default:
+                                                            view.AltDisplayError(wait);
+
+                                                            GoBack();
+
+                                                            invalid = true;
+
+                                                        break;
+
+                                                    }
+
+                                                }  while (invalid);
+
+                                                invalid = false;
+
+                                                GoBack();
+
+                                            break;
+
+                                            case "back":
+                                                GoBack();
+
+                                                invalid = false;
+
+                                            break;
+
+                                            default:
+                                                view.DisplayError(wait);
+
+                                                GoBack();
+
+                                            break;
+                                        }
+
+                                    } while (invalid);
+
+                                    break;
+
+                                case "back":                                   
+                                    GoBack();
+
+                                    invalid = false;
+
+                                break;
+
+                                default:
+                                    view.DisplayError(wait);
+
+                                    GoBack();
+
+                                    invalid = true;
+
+                                break;
+
+                            }
+
+                        } while (invalid);
+                    break;
+
+                    case "genres":
+                        List<Genres> genres = storageManager.GetAllGenres();
+                        view.DisplayGenres(genres);
+
+                        Thread.Sleep(wait);
+
+                        cmd = view.DisplayEditingOptions("genres", "default~extras~search");
+                        view.DisplayMessage("");
+
+                        Thread.Sleep(wait);
+
+                        invalid = false;
+
+                        do
+                        {
+
+                            switch (cmd.ToLower())
+                            {
+                                case "up":
+                                    UpdateArtistName();
+
+                                    invalid = false;
+
+                                    GoBack();
+
+                                break;
+
+                                case "ins":
+                                    UpdateArtistAlbum();
+
+                                    invalid = false;
+
+                                    GoBack();
+
+                                break;
+
+                                case "del":
+                                    DeleteArtistById();
+
+                                    invalid = false;
+
+                                    GoBack();
+
+                                break;
+
+                                case "search":
+                                    SearchGenres();
+
+                                    cmd = view.GetInput();
+                                    view.DisplayMessage("");
+
+                                    Thread.Sleep(wait);
+
+                                    do
+                                    {
+                                        switch (cmd.ToUpper())
+                                        {
+                                            case "E":
+                                                GoBack();
+
+                                                invalid = false;
+
+                                            break;
+
+                                            default:
+                                                view.AltDisplayError(wait);
+
+                                                GoBack();
+
+                                                invalid = true;
+
+                                            break;
+
+                                        }
+
+                                    }  while (invalid);
+
+                                    invalid = false;
+
+                                break;
+
+                                case "back":                                   
+                                    GoBack();
+
+                                    invalid = false;
+
+                                break;
+
+                                default:
+                                    view.DisplayError(wait);
+
+                                    GoBack();
+
+                                    invalid = true;
+
+                                break;
+                            }
+
+                        } while (invalid);
+
+                    break;
+
+                    case "formats":
+                        List<Formats> formats = storageManager.GetAllFormats();
+
+                        Thread.Sleep(wait);
+
+                        cmd = view.DisplayEditingOptions("formats", "default");
+                        view.DisplayMessage("");
+
+                        Thread.Sleep(wait);
+
+                        invalid = false;
+
+                        do
+                        {
+
+                            switch (cmd.ToLower())
+                            {
+                                case "up":
+                                    UpdateFormatName();
+
+                                    invalid = false;
+
+                                    GoBack();
+
+                                break;
+
+                                case "ins":
+                                    InsertNewFormat();
+
+                                    invalid = false;
+
+                                    GoBack();
+
+                                break;
+
+                                case "del":
+                                    DeleteFormatById();
+
+                                    invalid = false;
+
+                                    GoBack();
+
+                                break;
+
+                                case "back":                                   
+                                    GoBack();
+
+                                    invalid = false;
+
+                                break;
+
+                                default:
+                                    view.DisplayError(wait);
+
+                                    GoBack();
+
+                                    invalid = true;
+
+                                break;
+                            }
+
+                        } while (invalid);
+
+                    break;
+
+                    case "rooms":
+                        storageManager.GetAllRooms();
+
+                        Thread.Sleep(wait);
+
+                        cmd = view.DisplayEditingOptions("rooms", "default");
+                        view.DisplayMessage("");
+
+                        Thread.Sleep(wait);
+
+                        invalid = false;
+
+                        do
+                        {
+
+                            switch (cmd.ToLower())
+                            {
+                                case "up":
+                                    UpdateRoomName();
+
+                                    invalid = false;
+
+                                    GoBack();
+
+                                break;
+
+                                case "ins":
+                                    InsertNewRoom();
+
+                                    invalid = false;
+
+                                    GoBack();
+
+                                break;
+
+                                case "del":
+                                    DeleteRoomById();
+
+                                    invalid = false;
+
+                                    GoBack();
+
+                                break;
+
+                                case "back":                                   
+                                    GoBack();
+
+                                    invalid = false;
+
+                                break;
+
+                                default:
+                                    view.DisplayError(wait);
+
+                                    GoBack();
+
+                                    invalid = true;
+
+                                break;
+                            }
+
+                        } while (invalid);
+
+                    break;
+
+                    case "shelves":
+                        storageManager.GetAllShelves();
+
+                        Thread.Sleep(wait);
+
+                        cmd = view.DisplayEditingOptions("shelves", "default~extras~view");
+                        view.DisplayMessage("");
+
+                        Thread.Sleep(wait);
+
+                        invalid = false;
+
+                        do
+                        {
+
+                            switch (cmd.ToLower())
+                            {
+                                case "up":
+                                    UpdateShelfRoom();
+
+                                    invalid = false;
+
+                                    GoBack();
+
+                                break;
+
+                                case "ins":
+                                    InsertNewShelf();
+
+                                    invalid = false;
+
+                                    GoBack();
+
+                                break;
+
+                                case "del":
+                                    DeleteShelfById();
+
+                                    invalid = false;
+
+                                    GoBack();
+
+                                break;
+
+                                case "reports":
+
+                                    recordselect = view.DisplayRecordOptions("shelves", "reviews");
+
+                                    Thread.Sleep(wait);
+                                    Console.Clear();
+
+                                    invalid = false;
+
+                                    do
+                                    {
+                                        switch (recordselect)
+                                        {
+                                            case 1:
+                                                storageManager.GetTotalOfRowOccupancyPerShelf();
+
+                                                cmd = view.GetInput();
+
+                                                do
+                                                {
+                                                    switch (cmd.ToUpper())
+                                                    {
+                                                        case "E":
+                                                            GoBack();
+
+                                                            invalid = false;
+
+                                                        break;
+
+                                                        default:
+                                                            view.AltDisplayError(wait);
+
+                                                            GoBack();
+
+                                                            invalid = true;
+
+                                                        break;
+
+                                                    }
+
+                                                } while (invalid);
+    
+
+                                            break;
+
+                                            case 2:                                   
+                                                GoBack();
+
+                                                invalid = false;
+
+                                            break;
+
+                                            default:
+                                                view.AltDisplayError(wait);
+
+                                                GoBack();
+
+                                                invalid = true;
+
+                                            break;
+
+                                        }
+
+                                    } while (invalid);
+
+                                break;
+                                
+                                case "back":                                   
+                                    GoBack();
+
+                                    invalid = false;
+
+                                break;
+
+                                default:
+                                    view.DisplayError(wait);
+
+                                    GoBack();
+
+                                    invalid = true;
+
+                                break;
+                            }
+
+                        } while (invalid);
+
+                    break;
+
+                    case "rows":
+                        storageManager.GetAllRows();
+
+                        Thread.Sleep(wait);
+
+                        cmd = view.DisplayEditingOptions("rows", "default~extras~view");
+                        view.DisplayMessage("");
+
+                        Thread.Sleep(wait);
+
+                        invalid = false;
+
+                        do
+                        {
+
+                            switch (cmd.ToLower())
+                            {
+                                case "up":
+                                    UpdateRow();
+
+                                    invalid = false;
+
+                                    GoBack();
+
+                                break;
+
+                                case "ins":
+                                    InsertNewRow();
+
+                                    invalid = false;
+
+                                    GoBack();
+
+                                break;
+
+                                case "del":
+                                    DeleteRowById();
+
+                                    invalid = false;
+
+                                    GoBack();
+
+                                break;
+
+                                case "reports":
+
+                                    recordselect = view.DisplayRecordOptions("rows", "reviews");
+
+                                    Thread.Sleep(wait);
+                                    Console.Clear();
+
+                                    invalid = false;
+
+                                    do
+                                    {
+                                        switch (recordselect)
+                                        {
+                                            case 1:
+                                                storageManager.GetTotalOfRowOccupancyPerShelf();
+
+                                                cmd = view.GetInput();
+
+                                                do
+                                                {
+                                                    switch (cmd.ToUpper())
+                                                    {
+                                                        case "E":
+                                                            GoBack();
+
+                                                            invalid = false;
+
+                                                        break;
+
+                                                        default:
+                                                            view.AltDisplayError(wait);
+
+                                                            GoBack();
+
+                                                            invalid = true;
+
+                                                        break;
+
+                                                    }
+
+                                                } while (invalid);
+    
+
+                                            break;
+
+                                            case 2:                                   
+                                                GoBack();
+
+                                                invalid = false;
+
+                                            break;
+
+                                            default:
+                                                view.AltDisplayError(wait);
+
+                                                GoBack();
+
+                                                invalid = true;
+
+                                            break;
+
+                                        }
+
+                                    } while (invalid);
+
+                                break;
+
+                                case "back":                                   
+                                    GoBack();
+
+                                    invalid = false;
+
+                                break;
+
+                                default:
+                                    view.DisplayError(wait);
+
+                                    GoBack();
+
+                                    invalid = true;
+
+                                break;
+                            }
+
+                        } while (invalid);
+
+                    break;
+
+                    case "tiers":
+                        List<Tiers> tiers = storageManager.GetAllTiers();
+                        view.DisplayTiers(tiers);
+
+                        Thread.Sleep(wait);
+
+                        cmd = view.DisplayEditingOptions("tiers", "none");
+                        view.DisplayMessage("");
+
+                        Thread.Sleep(wait);
+
+                        invalid = false;
+
+                        do
+                        {
+
+                            switch (cmd.ToLower())
+                            {
+
+                                case "back":                                   
+                                    GoBack();
+
+                                    invalid = false;
+
+                                break;
+
+                                default:
+                                    view.DisplayError(wait);
+
+                                    GoBack();
+
+                                    invalid = true;
+
+                                break;
+                            }
+
+                        } while (invalid);
+
+                    break;
+
+                    case "accounts":
+
+                        Thread.Sleep(wait);
+
+                        select = view.DisplayEditingOptions("accounts", "account~variants");
+
+                        Thread.Sleep(wait);
+                        Console.Clear();
+
+                        do
+                        {
+                            switch (select.ToLower())
+                            {
+                                case "default":
+                                    CreateUser();
+
+                                    GoBack();
+
+                                    invalid = false;
+
+                                break;
+
+                                case "admin":
+                                    CreateAdmin();
+
+                                    GoBack();
+
+                                    invalid = false;
+
+                                break;
+
+                                case "back":
+                                    GoBack();
+
+                                    invalid = false;
+
+                                break;
+
+                                default:
+                                    view.DisplayError(wait);
+
+                                    GoBack();
+
+                                    invalid = true;
+
+                                break;
+
+                            }
+
+                        } while (invalid);
+
+                    break;
+
+                    case "help":
+
+                        logStatus = true;
+                        Thread.Sleep(wait);
+
+                        Help(); // This calls the support page.
+
+                        Thread.Sleep(wait);
+
+                        invalid = false;
+
+                    break;
+
+                    case "l":
+                        Thread.Sleep(wait);
+                        Console.Clear();
+
+                        // Resets the accounts credentials.
+
+                        roleId = 0;
+                        accountId = 0;
+                        storageManager.CloseConnection(); // Closes the connection upon signing out. 
+                        StartMenuscreenOptions();
+
+                        invalid = false;
+
+                    break;
+
+                    default:
+                        view.DisplayError(wait);
+
+                        GoBack();
+
+                        invalid = true;
+
+                    break;
+
+                }
+
+
+            } while (invalid);
+
+        }
 
         private static void AdminMenuscreenOptions() // The Admin Menuscreen. 
         {           
@@ -2188,7 +4275,7 @@ namespace CDOrganiserProjectApp
                         do
                         {
 
-                            switch (cmd.ToUpper())
+                            switch (cmd.ToLower())
                             {
 
                                 case "back":                                   
@@ -2223,7 +4310,7 @@ namespace CDOrganiserProjectApp
 
                         do
                         {
-                            switch (select)
+                            switch (select.ToLower())
                             {
                                 case "default":
                                     CreateUser();
