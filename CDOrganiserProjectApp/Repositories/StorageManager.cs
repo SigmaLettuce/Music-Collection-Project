@@ -803,16 +803,15 @@ namespace CDOrganiserProjectApp
         }
 
 
-        // Checks the username and password against themselves, then returns a match for a persons identification number in the database.
-        public int FetchAccount(string un, string pw)
+        // Checks the role and username against themselves, then returns a match for a persons identification number in the database.
+        public int FetchAccount(string username)
         {
             int personId = 0;
 
-            string sqlStr = $"SELECT personID FROM Properties.tblAccounts WHERE username = @un OR pw = @pw";
+            string sqlStr = $"SELECT personID FROM Properties.tblAccounts WHERE username = @username";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
-                cmd.Parameters.AddWithValue("@un", un);
-                cmd.Parameters.AddWithValue("@pw", pw);
+                cmd.Parameters.AddWithValue("@un", username);
 
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
@@ -829,14 +828,13 @@ namespace CDOrganiserProjectApp
 
         
         // Checks the username and password against themselves, then returns a match for a username in the database.
-        public string FetchUsername(string un, string password)
+        public string FetchUsername(string password)
         {
             string username = " ";
 
-            string sqlStr = $"SELECT username FROM Properties.tblAccounts WHERE pw = @password OR username = @un";
+            string sqlStr = $"SELECT username FROM Properties.tblAccounts WHERE pw = @password";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
-                cmd.Parameters.AddWithValue("@un", un);
                 cmd.Parameters.AddWithValue("@password", password);
 
                 using (SqlDataReader reader = cmd.ExecuteReader())
@@ -854,15 +852,14 @@ namespace CDOrganiserProjectApp
 
 
         // Checks the username and password against themselves, then returns a match for a password in the database.
-        public string FetchPassword(string username, string pw)
+        public string FetchPassword(string username)
         {
             string password = " ";
 
-            string sqlStr = $"SELECT pw FROM Properties.tblAccounts WHERE username = @username OR pw = @pw";
+            string sqlStr = $"SELECT pw FROM Properties.tblAccounts WHERE username = @username";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
                 cmd.Parameters.AddWithValue("@username", username);
-                cmd.Parameters.AddWithValue("@pw", pw);
 
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
@@ -878,17 +875,16 @@ namespace CDOrganiserProjectApp
         }
 
         
-        // Checks the username and password against themselves, then returns a match for a role in the database.
-        public int FetchRole(string un, string pw)
+        // Checks the role and username against themselves, then returns a match for a role in the database.
+        public int FetchRole(string username)
         {
 
             int roleId = 0;
 
-            string sqlStr = $"SELECT roleID FROM Properties.tblAccounts WHERE username = @un OR pw = @pw";
+            string sqlStr = $"SELECT roleID FROM Properties.tblAccounts WHERE username = @username";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
-                cmd.Parameters.AddWithValue("@un", un);
-                cmd.Parameters.AddWithValue("@pw", pw);
+                cmd.Parameters.AddWithValue("@username", username);
 
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
@@ -907,6 +903,8 @@ namespace CDOrganiserProjectApp
         public int FetchAccountFromArtistReviews(int reviewId)
         {
 
+            int personId = 0;
+
             string sqlStr = $"SELECT personID FROM Contents.tblArtistReviews WHERE reviewID = @reviewId";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
@@ -916,11 +914,11 @@ namespace CDOrganiserProjectApp
                 {
                     while (reader.Read())
                     {
-                        int personId = Convert.ToInt32(reader["personID"]);
+                        personId = Convert.ToInt32(reader["personID"]);
                     }
                 }
 
-                return reviewId;
+                return personId;
             }
         }
 

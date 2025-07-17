@@ -16,7 +16,7 @@ namespace CDOrganiserProjectApp
         private static StorageManager storageManager; 
         private static ConsoleView view;
 
-        static int accountId;
+        static int accountId; // This is the variable of the Account ID 
         static int roleId;
         static bool logStatus;
         
@@ -121,10 +121,10 @@ namespace CDOrganiserProjectApp
 
             // Searches for matches for credentials in the database, the 
 
-            string fetchUsername = storageManager.FetchUsername(user, pw);
-            string fetchPassword = storageManager.FetchPassword(user, pw);
-            accountId = storageManager.FetchAccount(user, pw);
-            roleId = storageManager.FetchRole(user, pw);
+            string fetchUsername = storageManager.FetchUsername(pw);
+            string fetchPassword = storageManager.FetchPassword(user);
+            accountId = storageManager.FetchAccount(user);
+            roleId = storageManager.FetchRole(user);
 
 
             // If the given credentials matches with any searches, the user is granted permission, depending on their role for how much can be visible.
@@ -6466,6 +6466,21 @@ namespace CDOrganiserProjectApp
             }
 
         }
+
+
+        /*                                              *\  
+         
+               [UPDATES, INSERTS, DELETES AND MORE]
+         
+        \*                                              */
+
+        /*
+        
+        UPDATE:
+
+        All methods used to update a field
+          
+        */
 
         
         // The search options.

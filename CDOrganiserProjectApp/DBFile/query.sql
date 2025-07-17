@@ -1,2 +1,2 @@
-﻿SELECT * FROM Properties.tblRole
+﻿SELECT * FROM Properties.tblAccounts
 
