@@ -1574,7 +1574,6 @@ namespace CDOrganiserProjectApp
 
                     Console.WriteLine("\n\t[*]  Return to homepage - Press E + Enter\n");
 
-                    return search;
                 }
             }
         }

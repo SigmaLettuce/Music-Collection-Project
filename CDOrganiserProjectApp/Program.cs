@@ -5499,7 +5499,7 @@ namespace CDOrganiserProjectApp
                 view.DisplayMessage(" ");
                 string newpw = view.GetInput();
 
-                if (newuser.Equals(storageManager.FetchUsername()))
+                if (newuser.Equals(storageManager.FetchUsername(newpw)))
                 {
                     view.DisplayMessage("\nThat username is already taken. Choose a different username. ");
                     Thread.Sleep(wait);
@@ -5577,7 +5577,7 @@ namespace CDOrganiserProjectApp
                 view.DisplayMessage(" ");
                 string newpw = view.GetInput();
 
-                if (newuser.Equals(storageManager.FetchUsername(roleId)))
+                if (newuser.Equals(storageManager.FetchUsername(newpw)))
                 {
                     view.DisplayMessage("\nThat username is already taken. Choose a different username. ");
                     Thread.Sleep(wait);
