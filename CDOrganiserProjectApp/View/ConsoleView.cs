@@ -14,7 +14,7 @@ namespace CDOrganiserProjectApp.View
 
         // Global variable for the threadsleep.
 
-        const int wait = 100;
+        int wait = 100;
 
         /*
          

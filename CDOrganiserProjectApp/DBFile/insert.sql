@@ -40,8 +40,7 @@ SET IDENTITY_INSERT Properties.tblRole ON;
 INSERT INTO Properties.tblRole(roleID, roleName)
 VALUES 
 (1, 'Visitor'),
-(2, 'Administrator'),
-(3, 'T-Administrator');
+(2, 'Administrator');
 
 SET IDENTITY_INSERT Properties.tblRole OFF;
 
@@ -50,7 +49,7 @@ SET IDENTITY_INSERT Properties.tblAccounts ON;
 
 INSERT INTO Properties.tblAccounts(personID, fName, sName, username, pw, roleID)
 VALUES 
-(1, 'John', 'Kramer', 'johnk', 'jigsaw123', 3),
+(1, 'John', 'Kramer', 'johnk', 'jigsaw123', 1),
 (2, 'Clarice', 'Starling', 'agstarling', 'securepass456', 1),
 (3, 'Alice', 'Johnson', 'alicej', 'alicepwd789', 1),
 (4, 'Hannibal', 'Lecter', 'hanlecter', 'hansecure321', 1),

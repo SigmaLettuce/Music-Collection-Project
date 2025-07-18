@@ -18,7 +18,7 @@ namespace CDOrganiserProjectApp
         
 
         // A generically shared integer for delays.
-        const int wait = 100; 
+        int wait = 100; 
 
         // A private connection string that acts as a bridge to the database.
         private SqlConnection conn; 
