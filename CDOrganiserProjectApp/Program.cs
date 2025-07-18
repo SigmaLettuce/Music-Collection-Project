@@ -4785,6 +4785,8 @@ namespace CDOrganiserProjectApp
 
 
         // The data-modifying commands for the Bands table.
+        
+
         private static void UpdateBandName()
         {
             
