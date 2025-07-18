@@ -433,7 +433,7 @@ namespace CDOrganiserProjectApp
 
         public int InsertArtistAlbum(ArtistAlbums albums)
         {
-            using (SqlCommand cmd = new SqlCommand($"INSERT INTO Contents.tblArtistAlbums (albumName, genreID, dateOfRelease, formatID, artistID, shelfRowID) VALUES (@AlbumName, @GenreId, @DateOfRelease, @FormatId, @ArtistId, @ShelfRowId); SELECT SCOPE_IDENTITY();", conn))
+            using (SqlCommand cmd = new SqlCommand($"INSERT INTO Contents.tblArtistAlbums (albumName, genreID, dateOfRelease, formatID, artistID, shelfRowID, lost) VALUES (@AlbumName, @GenreId, @DateOfRelease, @FormatId, @ArtistId, @ShelfRowId, @Lost); SELECT SCOPE_IDENTITY();", conn))
             {
                 cmd.Parameters.AddWithValue("@AlbumName", albums.AlbumName);
                 cmd.Parameters.AddWithValue("@GenreId", albums.GenreId);
@@ -441,6 +441,7 @@ namespace CDOrganiserProjectApp
                 cmd.Parameters.AddWithValue("@FormatId", albums.FormatId);
                 cmd.Parameters.AddWithValue("@ArtistId", albums.ArtistId);
                 cmd.Parameters.AddWithValue("@ShelfRowId", albums.ShelfRowId);
+                cmd.Parameters.AddWithValue("@Lost", albums.Lost);
 
                 return Convert.ToInt32(cmd.ExecuteScalar());
             }
@@ -531,7 +532,7 @@ namespace CDOrganiserProjectApp
         
         public int InsertBandAlbum(BandAlbums albums)
         {
-            using (SqlCommand cmd = new SqlCommand($"INSERT INTO Contents.tblBandAlbums (albumName, genreID, dateOfRelease, formatID, bandID, shelfRowID) VALUES (@AlbumId, @GenreId, @DateOfRelease, @FormatId, @BandId, @ShelfRowId); SELECT SCOPE_IDENTITY();", conn))
+            using (SqlCommand cmd = new SqlCommand($"INSERT INTO Contents.tblBandAlbums (albumName, genreID, dateOfRelease, formatID, bandID, shelfRowID, lost) VALUES (@AlbumId, @GenreId, @DateOfRelease, @FormatId, @BandId, @ShelfRowId, @Lost); SELECT SCOPE_IDENTITY();", conn))
             {
                 cmd.Parameters.AddWithValue("@AlbumId", albums.AlbumId);
                 cmd.Parameters.AddWithValue("@AlbumName", albums.AlbumName);
@@ -540,6 +541,7 @@ namespace CDOrganiserProjectApp
                 cmd.Parameters.AddWithValue("@FormatId", albums.FormatId);
                 cmd.Parameters.AddWithValue("@BandId", albums.BandId);
                 cmd.Parameters.AddWithValue("@ShelfRowId", albums.ShelfRowId);
+                cmd.Parameters.AddWithValue("@Lost", albums.Lost);
 
                 return Convert.ToInt32(cmd.ExecuteScalar());
             }
@@ -655,10 +657,12 @@ namespace CDOrganiserProjectApp
         
         public int InsertArtistReview(ArtistReviews albums)
         {
-            using (SqlCommand cmd = new SqlCommand($"INSERT INTO Contents.ArtistReviews (albumID, tierID) VALUES (@AlbumId, @TierId); SELECT SCOPE_IDENTITY();", conn))
+            using (SqlCommand cmd = new SqlCommand($"INSERT INTO Contents.ArtistReviews (albumID, personID, tierID, favourite) VALUES (@AlbumId, @PersonId, @TierId, @Favourite); SELECT SCOPE_IDENTITY();", conn))
             {
                 cmd.Parameters.AddWithValue("@AlbumId", albums.AlbumId);
+                cmd.Parameters.AddWithValue("@PersonId", albums.PersonId);
                 cmd.Parameters.AddWithValue("@TierId", albums.TierId);
+                cmd.Parameters.AddWithValue("@Favourite", albums.Favourite);
                 
 
                 return Convert.ToInt32(cmd.ExecuteScalar());
@@ -749,10 +753,12 @@ namespace CDOrganiserProjectApp
         
         public int InsertBandReview(BandReviews albums)
         {
-            using (SqlCommand cmd = new SqlCommand($"INSERT INTO Contents.tblBandReviews (albumID, tierID) VALUES (@AlbumId, @TierId); SELECT SCOPE_IDENTITY();", conn))
+            using (SqlCommand cmd = new SqlCommand($"INSERT INTO Contents.BandReviews (albumID, personID, tierID, favourite) VALUES (@AlbumId, @PersonId, @TierId, @Favourite); SELECT SCOPE_IDENTITY();", conn))
             {
                 cmd.Parameters.AddWithValue("@AlbumId", albums.AlbumId);
+                cmd.Parameters.AddWithValue("@PersonId", albums.PersonId);
                 cmd.Parameters.AddWithValue("@TierId", albums.TierId);
+                cmd.Parameters.AddWithValue("@Favourite", albums.Favourite);
                 
 
                 return Convert.ToInt32(cmd.ExecuteScalar());

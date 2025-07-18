@@ -1,2 +1,2 @@
-﻿SELECT * FROM Properties.tblAccounts
+﻿SELECT * FROM Contents.tblArtistReviews
 
