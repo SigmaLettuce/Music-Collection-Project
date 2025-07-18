@@ -39,7 +39,7 @@ namespace CDOrganiserProjectApp
             string connectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=HomeMusicCollectionDatabase;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False";
             storageManager = new StorageManager(connectionString);
 
-            
+            logStatus = false;
 
             bool invalid = true; // A variable that evaluates the continuation of a process.
 
@@ -53,7 +53,7 @@ namespace CDOrganiserProjectApp
                 {
                     case "R":
 
-                        logStatus = false;
+
                         Register(); // This calls the register. 
 
                         invalid = false; // Overwrites the boolean so that the Register can proceed.

@@ -943,12 +943,14 @@ namespace CDOrganiserProjectApp
             }
         }
 
-        public string FetchUsername(string username)
+        public string FetchUsername(string match)
         {
-            string sqlStr = $"SELECT username FROM Properties.tblAccounts WHERE username = @username";
+            string username = "";
+
+            string sqlStr = $"SELECT username FROM Properties.tblAccounts WHERE username = @match";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
-                cmd.Parameters.AddWithValue("@username", username);
+                cmd.Parameters.AddWithValue("@match", match);
 
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
