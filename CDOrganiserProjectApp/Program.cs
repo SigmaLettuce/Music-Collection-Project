@@ -232,7 +232,7 @@ namespace CDOrganiserProjectApp
         private static void TrueAdminMenuscreenOptions() // The True Admin Menuscreen. 
         {           
             string select; // Stores a selection from a listing that branches into multiple.
-            int recordselect; // Stores a selection of a record.
+            int reportselect; // Stores a selection of a record.
             string cmd; // Stores the users written modification command.
             bool invalid = true;
 
@@ -518,260 +518,273 @@ namespace CDOrganiserProjectApp
 
                                             case "reports":
 
-                                                recordselect = view.DisplayRecordOptions("artists", "artists");
-
-                                                Thread.Sleep(wait);
-                                                Console.Clear();
-
-                                                invalid = false;
-
-                                                do
+                                                try
                                                 {
-                                                    switch (recordselect)
+                                                    reportselect = view.DisplayRecordOptions("artists", "artists");
+
+                                                    Thread.Sleep(wait);
+                                                    Console.Clear();
+
+                                                    invalid = false;
+
+                                                    do
                                                     {
-                                                        case 1:
-                                                            storageManager.GetArtistReleaseDate();
+                                                        switch (reportselect)
+                                                        {
+                                                            case 1:
+                                                                storageManager.GetArtistReleaseDate();
 
-                                                            cmd = view.GetInput();
+                                                                cmd = view.GetInput();
 
-                                                            do
-                                                            {
-                                                                switch (cmd.ToUpper())
+                                                                do
                                                                 {
-                                                                    case "E":
-                                                                        GoBack();
+                                                                    switch (cmd.ToUpper())
+                                                                    {
+                                                                        case "E":
+                                                                            GoBack();
 
-                                                                        invalid = false;
+                                                                            invalid = false;
 
-                                                                    break;
+                                                                        break;
 
-                                                                    default:
-                                                                        view.AltDisplayError(wait);
+                                                                        default:
+                                                                            view.AltDisplayError(wait);
 
-                                                                        GoBack();
+                                                                            GoBack();
 
-                                                                        invalid = true;
+                                                                            invalid = true;
 
-                                                                    break;
+                                                                        break;
 
-                                                                }
+                                                                    }
 
-                                                            } while (invalid);
+                                                                } while (invalid);
                                                 
 
-                                                        break;
+                                                            break;
 
-                                                        case 2:
-                                                            storageManager.GetAToJArtists();
+                                                            case 2:
+                                                                storageManager.GetAToJArtists();
 
-                                                            cmd = view.GetInput();
+                                                                cmd = view.GetInput();
 
-                                                            do
-                                                            {
-                                                                switch (cmd.ToUpper())
+                                                                do
                                                                 {
-                                                                    case "E":
-                                                                        GoBack();
+                                                                    switch (cmd.ToUpper())
+                                                                    {
+                                                                        case "E":
+                                                                            GoBack();
 
-                                                                        invalid = false;
+                                                                            invalid = false;
 
-                                                                    break;
+                                                                        break;
 
-                                                                    default:
-                                                                        view.AltDisplayError(wait);
+                                                                        default:
+                                                                            view.AltDisplayError(wait);
 
-                                                                        GoBack();
+                                                                            GoBack();
 
-                                                                        invalid = true;
+                                                                            invalid = true;
 
-                                                                    break;
+                                                                        break;
 
-                                                                }
+                                                                    }
 
-                                                            } while (invalid);
+                                                                } while (invalid);
                                                 
 
-                                                        break;
+                                                            break;
 
-                                                        case 3:
-                                                            storageManager.GetArtistsEarly2000sMusic();
+                                                            case 3:
+                                                                storageManager.GetArtistsEarly2000sMusic();
 
-                                                            cmd = view.GetInput();
+                                                                cmd = view.GetInput();
 
-                                                            do
-                                                            {
-                                                                switch (cmd.ToUpper())
+                                                                do
                                                                 {
-                                                                    case "E":
-                                                                        GoBack();
+                                                                    switch (cmd.ToUpper())
+                                                                    {
+                                                                        case "E":
+                                                                            GoBack();
 
-                                                                        invalid = false;
+                                                                            invalid = false;
 
-                                                                    break;
+                                                                        break;
 
-                                                                    default:
-                                                                        view.AltDisplayError(wait);
+                                                                        default:
+                                                                            view.AltDisplayError(wait);
 
-                                                                        GoBack();
+                                                                            GoBack();
 
-                                                                        invalid = true;
+                                                                            invalid = true;
 
-                                                                    break;
+                                                                        break;
 
-                                                                }
+                                                                    }
 
-                                                            } while (invalid);
+                                                                } while (invalid);
                                                 
 
-                                                        break;
+                                                            break;
 
-                                                        case 4:
-                                                            storageManager.GetTotalArtistGenres();
+                                                            case 4:
+                                                                storageManager.GetTotalArtistGenres();
 
-                                                            cmd = view.GetInput();
+                                                                cmd = view.GetInput();
 
-                                                            do
-                                                            {
-                                                                switch (cmd.ToUpper())
+                                                                do
                                                                 {
-                                                                    case "E":
-                                                                        GoBack();
+                                                                    switch (cmd.ToUpper())
+                                                                    {
+                                                                        case "E":
+                                                                            GoBack();
 
-                                                                        invalid = false;
+                                                                            invalid = false;
 
-                                                                    break;
+                                                                        break;
 
-                                                                    default:
-                                                                        view.AltDisplayError(wait);
+                                                                        default:
+                                                                            view.AltDisplayError(wait);
 
-                                                                        GoBack();
+                                                                            GoBack();
 
-                                                                        invalid = true;
+                                                                            invalid = true;
 
-                                                                    break;
+                                                                        break;
 
-                                                                }
+                                                                    }
 
-                                                            } while (invalid);
+                                                                } while (invalid);
                                                 
 
-                                                        break;
+                                                            break;
 
-                                                        case 5:
-                                                            storageManager.GetArtistsAsAWhole();
+                                                            case 5:
+                                                                storageManager.GetArtistsAsAWhole();
 
-                                                            cmd = view.GetInput();
+                                                                cmd = view.GetInput();
 
-                                                            do
-                                                            {
-                                                                switch (cmd.ToUpper())
+                                                                do
                                                                 {
-                                                                    case "E":
-                                                                        GoBack();
+                                                                    switch (cmd.ToUpper())
+                                                                    {
+                                                                        case "E":
+                                                                            GoBack();
 
-                                                                        invalid = false;
+                                                                            invalid = false;
 
-                                                                    break;
+                                                                        break;
 
-                                                                    default:
-                                                                        view.AltDisplayError(wait);
+                                                                        default:
+                                                                            view.AltDisplayError(wait);
 
-                                                                        GoBack();
+                                                                            GoBack();
 
-                                                                        invalid = true;
+                                                                            invalid = true;
 
-                                                                    break;
+                                                                        break;
 
-                                                                }
+                                                                    }
 
-                                                            } while (invalid);
+                                                                } while (invalid);
                                                 
 
-                                                        break;
+                                                            break;
 
-                                                        case 6:
-                                                            storageManager.GetTotalAlbumsPublishedByArtists();
+                                                            case 6:
+                                                                storageManager.GetTotalAlbumsPublishedByArtists();
 
-                                                            cmd = view.GetInput();
+                                                                cmd = view.GetInput();
 
-                                                            do
-                                                            {
-                                                                switch (cmd.ToUpper())
+                                                                do
                                                                 {
-                                                                    case "E":
-                                                                        GoBack();
+                                                                    switch (cmd.ToUpper())
+                                                                    {
+                                                                        case "E":
+                                                                            GoBack();
 
-                                                                        invalid = false;
+                                                                            invalid = false;
 
-                                                                    break;
+                                                                        break;
 
-                                                                    default:
-                                                                        view.AltDisplayError(wait);
+                                                                        default:
+                                                                            view.AltDisplayError(wait);
 
-                                                                        GoBack();
+                                                                            GoBack();
 
-                                                                        invalid = true;
+                                                                            invalid = true;
 
-                                                                    break;
+                                                                        break;
 
-                                                                }
+                                                                    }
 
-                                                            } while (invalid);
+                                                                } while (invalid);
                                                 
 
-                                                        break;
+                                                            break;
 
-                                                        case 7:
-                                                            storageManager.GetTotalPublishingsOfAllArtistsPerYear();
+                                                            case 7:
+                                                                storageManager.GetTotalPublishingsOfAllArtistsPerYear();
 
-                                                            cmd = view.GetInput();
+                                                                cmd = view.GetInput();
 
-                                                            do
-                                                            {
-                                                                switch (cmd.ToUpper())
+                                                                do
                                                                 {
-                                                                    case "E":
-                                                                        GoBack();
+                                                                    switch (cmd.ToUpper())
+                                                                    {
+                                                                        case "E":
+                                                                            GoBack();
 
-                                                                        invalid = false;
+                                                                            invalid = false;
 
-                                                                    break;
+                                                                        break;
 
-                                                                    default:
-                                                                        view.AltDisplayError(wait);
+                                                                        default:
+                                                                            view.AltDisplayError(wait);
 
-                                                                        GoBack();
+                                                                            GoBack();
 
-                                                                        invalid = true;
+                                                                            invalid = true;
 
-                                                                    break;
+                                                                        break;
 
-                                                                }
+                                                                    }
 
-                                                            } while (invalid);
+                                                                } while (invalid);
                                                 
 
-                                                        break;
+                                                            break;
 
-                                                        case 8:                                   
-                                                            GoBack();
+                                                            case 8:                                   
+                                                                GoBack();
 
-                                                            invalid = false;
+                                                                invalid = false;
 
-                                                        break;
+                                                            break;
 
-                                                        default:
-                                                            view.AltDisplayError(wait);
+                                                            default:
+                                                                view.AltDisplayError(wait);
 
-                                                            GoBack();
+                                                                GoBack();
 
-                                                            invalid = true;
+                                                                invalid = true;
 
-                                                        break;
+                                                            break;
 
-                                                    }
+                                                        }
 
-                                                } while (invalid);
+                                                    } while (invalid);
+
+                                                }
+                                                catch (FormatException e)
+                                                {
+                                                    view.DisplayMessage("\n  Please use the proper formatting.");
+                                                    view.DisplayMessage(e.Message);
+
+                                                    TrueAdminMenuscreenOptions();
+                                                    
+                                                }
+                                                
 
                                             break;
 
@@ -885,7 +898,7 @@ namespace CDOrganiserProjectApp
 
                                             case "reports":
 
-                                                recordselect = view.DisplayRecordOptions("bands", "bands");
+                                                reportselect = view.DisplayRecordOptions("bands", "bands");
 
                                                 Thread.Sleep(wait);
                                                 Console.Clear();
@@ -894,7 +907,7 @@ namespace CDOrganiserProjectApp
 
                                                 do
                                                 {
-                                                    switch (recordselect)
+                                                    switch (reportselect)
                                                     {
                                                         case 1:
                                                             storageManager.GetBandReleaseDate();
@@ -1300,7 +1313,7 @@ namespace CDOrganiserProjectApp
 
                                             case "reports":
 
-                                                recordselect = view.DisplayRecordOptions("artists", "reviews");
+                                                reportselect = view.DisplayRecordOptions("artists", "reviews");
 
                                                 Thread.Sleep(wait);
                                                 Console.Clear();
@@ -1309,7 +1322,7 @@ namespace CDOrganiserProjectApp
 
                                                 do
                                                 {
-                                                    switch (recordselect)
+                                                    switch (reportselect)
                                                     {
                                                         case 1:
                                                             storageManager.GetHighRankingArtistAlbums();
@@ -1509,7 +1522,7 @@ namespace CDOrganiserProjectApp
 
                                             case "reports":
 
-                                                recordselect = view.DisplayRecordOptions("bands", "reviews");
+                                                reportselect = view.DisplayRecordOptions("bands", "reviews");
 
                                                 Thread.Sleep(wait);
                                                 Console.Clear();
@@ -1518,7 +1531,7 @@ namespace CDOrganiserProjectApp
 
                                                 do
                                                 {
-                                                    switch (recordselect)
+                                                    switch (reportselect)
                                                     {
                                                         case 1:
                                                             storageManager.GetHighRankingBandAlbums();
@@ -1962,7 +1975,7 @@ namespace CDOrganiserProjectApp
 
                                 case "reports":
 
-                                    recordselect = view.DisplayRecordOptions("shelves", "reviews");
+                                    reportselect = view.DisplayRecordOptions("shelves", "reviews");
 
                                     Thread.Sleep(wait);
                                     Console.Clear();
@@ -1971,7 +1984,7 @@ namespace CDOrganiserProjectApp
 
                                     do
                                     {
-                                        switch (recordselect)
+                                        switch (reportselect)
                                         {
                                             case 1:
                                                 storageManager.GetTotalOfRowOccupancyPerShelf();
@@ -2094,7 +2107,7 @@ namespace CDOrganiserProjectApp
 
                                 case "reports":
 
-                                    recordselect = view.DisplayRecordOptions("rows", "reviews");
+                                    reportselect = view.DisplayRecordOptions("rows", "reviews");
 
                                     Thread.Sleep(wait);
                                     Console.Clear();
@@ -2103,7 +2116,7 @@ namespace CDOrganiserProjectApp
 
                                     do
                                     {
-                                        switch (recordselect)
+                                        switch (reportselect)
                                         {
                                             case 1:
                                                 storageManager.GetTotalOfRowOccupancyPerShelf();
@@ -2324,8 +2337,9 @@ namespace CDOrganiserProjectApp
         private static void AdminMenuscreenOptions() // The Admin Menuscreen. 
         {           
             string select; // Stores a selection from a listing that branches into multiple.
-            int recordselect; // Stores a selection of a record.
+            int reportselect; // Stores a selection of a record, which is done through numbers.
             string cmd; // Stores the users written modification command.
+
             bool invalid = true;
 
             string input = view.DisplayAdminMenu(); // Calls the display.
@@ -2610,7 +2624,7 @@ namespace CDOrganiserProjectApp
 
                                             case "reports":
 
-                                                recordselect = view.DisplayRecordOptions("artists", "artists");
+                                                reportselect = view.DisplayRecordOptions("artists", "artists");
 
                                                 Thread.Sleep(wait);
                                                 Console.Clear();
@@ -2619,7 +2633,7 @@ namespace CDOrganiserProjectApp
 
                                                 do
                                                 {
-                                                    switch (recordselect)
+                                                    switch (reportselect)
                                                     {
                                                         case 1:
                                                             storageManager.GetArtistReleaseDate();
@@ -2977,7 +2991,7 @@ namespace CDOrganiserProjectApp
 
                                             case "reports":
 
-                                                recordselect = view.DisplayRecordOptions("bands", "bands");
+                                                reportselect = view.DisplayRecordOptions("bands", "bands");
 
                                                 Thread.Sleep(wait);
                                                 Console.Clear();
@@ -2986,7 +3000,7 @@ namespace CDOrganiserProjectApp
 
                                                 do
                                                 {
-                                                    switch (recordselect)
+                                                    switch (reportselect)
                                                     {
                                                         case 1:
                                                             storageManager.GetBandReleaseDate();
@@ -3392,7 +3406,7 @@ namespace CDOrganiserProjectApp
 
                                             case "reports":
 
-                                                recordselect = view.DisplayRecordOptions("artists", "reviews");
+                                                reportselect = view.DisplayRecordOptions("artists", "reviews");
 
                                                 Thread.Sleep(wait);
                                                 Console.Clear();
@@ -3401,7 +3415,7 @@ namespace CDOrganiserProjectApp
 
                                                 do
                                                 {
-                                                    switch (recordselect)
+                                                    switch (reportselect)
                                                     {
                                                         case 1:
                                                             storageManager.GetHighRankingArtistAlbums();
@@ -3601,7 +3615,7 @@ namespace CDOrganiserProjectApp
 
                                             case "reports":
 
-                                                recordselect = view.DisplayRecordOptions("bands", "reviews");
+                                                reportselect = view.DisplayRecordOptions("bands", "reviews");
 
                                                 Thread.Sleep(wait);
                                                 Console.Clear();
@@ -3610,7 +3624,7 @@ namespace CDOrganiserProjectApp
 
                                                 do
                                                 {
-                                                    switch (recordselect)
+                                                    switch (reportselect)
                                                     {
                                                         case 1:
                                                             storageManager.GetHighRankingBandAlbums();
@@ -4054,7 +4068,7 @@ namespace CDOrganiserProjectApp
 
                                 case "reports":
 
-                                    recordselect = view.DisplayRecordOptions("shelves", "reviews");
+                                    reportselect = view.DisplayRecordOptions("shelves", "reviews");
 
                                     Thread.Sleep(wait);
                                     Console.Clear();
@@ -4063,7 +4077,7 @@ namespace CDOrganiserProjectApp
 
                                     do
                                     {
-                                        switch (recordselect)
+                                        switch (reportselect)
                                         {
                                             case 1:
                                                 storageManager.GetTotalOfRowOccupancyPerShelf();
@@ -4186,7 +4200,7 @@ namespace CDOrganiserProjectApp
 
                                 case "reports":
 
-                                    recordselect = view.DisplayRecordOptions("rows", "reviews");
+                                    reportselect = view.DisplayRecordOptions("rows", "reviews");
 
                                     Thread.Sleep(wait);
                                     Console.Clear();
@@ -4195,7 +4209,7 @@ namespace CDOrganiserProjectApp
 
                                     do
                                     {
-                                        switch (recordselect)
+                                        switch (reportselect)
                                         {
                                             case 1:
                                                 storageManager.GetTotalOfRowOccupancyPerShelf();
@@ -4784,8 +4798,11 @@ namespace CDOrganiserProjectApp
         } 
 
 
-        // The data-modifying commands for the Bands table.
-        
+        // The data-modifying commands for the Bands table.   
+        private static void BandPanel()
+        {
+
+        }
 
         private static void UpdateBandName()
         {
@@ -4883,6 +4900,11 @@ namespace CDOrganiserProjectApp
 
 
         // The data-modifying commands for the Genres table.
+        private static void GenrePanel()
+        {
+
+        }
+
         private static void UpdateGenreName()
         {
             
@@ -4982,6 +5004,11 @@ namespace CDOrganiserProjectApp
 
 
         // The data-modifying commands for the Formats table.
+        private static void FormatPanel()
+        {
+
+        }
+
         private static void UpdateFormatName()
         {
             
@@ -5079,6 +5106,11 @@ namespace CDOrganiserProjectApp
 
 
         // The data-modifying commands for the Artists table.
+        private static void ArtistPanel()
+        {
+
+        }
+
         private static void UpdateArtistName()
         {
             try
@@ -5173,6 +5205,11 @@ namespace CDOrganiserProjectApp
 
 
         // The data-modifying commands for the Rooms table.
+        private static void RoomPanel()
+        {
+
+        }
+
         private static void UpdateRoomName()
         {
             
@@ -5268,6 +5305,11 @@ namespace CDOrganiserProjectApp
 
 
         // The data-modifying commands for the Shelves table.
+        private static void ShelfPanel()
+        {
+
+        }
+
         private static void UpdateShelfRoom()
         {
             
@@ -5375,6 +5417,11 @@ namespace CDOrganiserProjectApp
 
 
         // The data-modifying commands for the Rows table.
+        private static void RowPanel()
+        {
+
+        }
+
         private static void UpdateRow()
         {
             
@@ -5483,6 +5530,11 @@ namespace CDOrganiserProjectApp
 
 
         // The data-modifying commands for the accounts.
+        private static void AccountPanel()
+        {
+
+        }
+
         private static void CreateUser()
         {
             
@@ -5662,7 +5714,18 @@ namespace CDOrganiserProjectApp
         }
 
 
+        private static void AlbumPanel()
+        {
+
+        }
+
+
         // The data-modifying commands for the Artist Albums table.
+        private static void ArtistAlbumPanel()
+        {
+
+        }
+
         private static void UpdateArtistAlbum()
         {
 
@@ -5866,6 +5929,11 @@ namespace CDOrganiserProjectApp
 
 
         // The data-modifying commands for the Band Albums table.
+        private static void BandAlbumPanel()
+        {
+
+        }
+
         private static void UpdateBandAlbum()
         {
             
@@ -6066,7 +6134,18 @@ namespace CDOrganiserProjectApp
         }
 
 
+        private static void ReviewPanel()
+        {
+
+        }
+
+
         // The data-modifying commands for the Artist Albums Reviews table.
+        private static void ArtistReviewPanel()
+        {
+
+        }
+
         private static void UpdateArtistReview()
         {
             
@@ -6286,6 +6365,11 @@ namespace CDOrganiserProjectApp
 
 
         // The data-modifying commands for the Band Albums Reviews table.
+        private static void BandReviewPanel()
+        {
+
+        }
+
         private static void UpdateBandReview()
         {
             
@@ -6514,7 +6598,7 @@ namespace CDOrganiserProjectApp
         
         UPDATE:
 
-        All methods used to update a field
+        All methods used to update a field and/or fields are updated using an
           
         */
 
