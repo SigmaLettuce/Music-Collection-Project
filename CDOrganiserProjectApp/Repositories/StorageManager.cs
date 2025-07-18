@@ -1,5 +1,6 @@
 ﻿using CDOrganiserProjectApp.Model;
 using Microsoft.Data.SqlClient;
+using Microsoft.Identity.Client;
 
 
 namespace CDOrganiserProjectApp
@@ -14,7 +15,7 @@ namespace CDOrganiserProjectApp
             [STORAGE MANAGER]
          
         \*                      */
-
+        
 
         // A generically shared integer for delays.
         const int wait = 100; 
@@ -803,10 +804,9 @@ namespace CDOrganiserProjectApp
         }
 
 
-        // Checks the role and username against themselves, then returns a match for a persons identification number in the database.
+        // Checks the role and persons ID against themselves, then returns a match for a persons identification number in the database.
         public int FetchAccount(int personId)
         {
-            personId = 0;
 
             string sqlStr = $"SELECT personID FROM Properties.tblAccounts WHERE personID = @personId";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
@@ -828,7 +828,7 @@ namespace CDOrganiserProjectApp
 
         
         // Checks the username and password against themselves, then returns a match for a username in the database.
-        public string FetchUsername(string password)
+        public string ScanUsername(string password)
         {
             string username = " ";
 
@@ -852,7 +852,7 @@ namespace CDOrganiserProjectApp
 
 
         // Checks the username and password against themselves, then returns a match for a password in the database.
-        public string FetchPassword(string username)
+        public string ScanPassword(string username)
         {
             string password = " ";
 
@@ -876,15 +876,15 @@ namespace CDOrganiserProjectApp
 
         
         // Checks the role and username against themselves, then returns a match for a role in the database.
-        public int FetchRole(int personId)
+        public int FetchRole(string username)
         {
 
             int roleId = 0;
 
-            string sqlStr = $"SELECT roleID FROM Properties.tblAccounts WHERE personId = @personID";
+            string sqlStr = $"SELECT roleID FROM Properties.tblAccounts WHERE username = @username";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
-                cmd.Parameters.AddWithValue("@personId", personId);
+                cmd.Parameters.AddWithValue("@username", username);
 
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
@@ -924,6 +924,7 @@ namespace CDOrganiserProjectApp
 
         public int FetchAccountFromBandReviews(int reviewId)
         {
+            int personId = 0;
 
             string sqlStr = $"SELECT personID FROM Contents.tblBandReviews WHERE reviewID = @reviewId";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
@@ -934,11 +935,11 @@ namespace CDOrganiserProjectApp
                 {
                     while (reader.Read())
                     {
-                        int personId = Convert.ToInt32(reader["personID"]);
+                        personId = Convert.ToInt32(reader["personID"]);
                     }
                 }
 
-                return reviewId;
+                return personId;
             }
         }
 

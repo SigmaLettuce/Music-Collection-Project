@@ -121,10 +121,10 @@ namespace CDOrganiserProjectApp
 
             // Searches for matches for credentials in the database, the 
 
-            string fetchUsername = storageManager.FetchUsername(pw);
-            string fetchPassword = storageManager.FetchPassword(user);
-            accountId = storageManager.FetchAccount(roleId);
-            roleId = storageManager.FetchRole(roleId);
+            string fetchUsername = storageManager.ScanUsername(pw);
+            string fetchPassword = storageManager.ScanPassword(user);
+            accountId = storageManager.FetchAccount(accountId);
+            roleId = storageManager.FetchRole(user);
 
 
             // If the given credentials matches with any searches, the user is granted permission, depending on their role for how much can be visible.
