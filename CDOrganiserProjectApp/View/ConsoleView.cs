@@ -383,7 +383,7 @@ namespace CDOrganiserProjectApp.View
                 Console.WriteLine("Enter any of the listings above to gain access... \n");
             }
 
-            if (type.Equals("reviews"))
+            else if (type.Equals("reviews"))
             {
                 Console.WriteLine($"\n\t [CD MANAGER / {d}]\n");
                 Console.WriteLine("\tVIEW... ");

@@ -448,7 +448,7 @@ namespace CDOrganiserProjectApp
 
         public int UpdateArtistAlbumById(int albumId, string albumName, int genreId, DateTime dateOfRelease, int formatId, int artistId, int shelfRowId, bool lost)
         {
-            string sqlStr = $"UPDATE Contents.tblArtistAlbums SET (albumID = @albumId, albumName = @albumName, genreID = @genreId, dateOfRelease = @dateOfRelease, formatID = @formatId, artistID = @artistId, shelfRowId = @shelfRowId, lost = @lost) WHERE albumID = @albumId";
+            string sqlStr = $"UPDATE Contents.tblArtistAlbums SET albumName = @albumName, genreID = @genreId, dateOfRelease = @dateOfRelease, formatID = @formatId, artistID = @artistId, shelfRowId = @shelfRowId, lost = @lost WHERE albumID = @albumId";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
                 cmd.Parameters.AddWithValue("@albumId", albumId);
@@ -547,7 +547,7 @@ namespace CDOrganiserProjectApp
 
         public int UpdateBandAlbumById(int albumId, string albumName, int genreId, DateTime dateOfRelease, int formatId, int bandId, int shelfRowId, bool lost)
         {
-            string sqlStr = $"UPDATE Contents.tblBandAlbums SET (albumID = @albumId, albumName = @albumName, genreID = @genreId, dateOfRelease = @dateOfRelease, formatID = @formatId, bandID = @bandId, shelfRowId = @shelfRowId, lost = @lost) WHERE albumID = @albumId";
+            string sqlStr = $"UPDATE Contents.tblBandAlbums SET albumName = @albumName, genreID = @genreId, dateOfRelease = @dateOfRelease, formatID = @formatId, bandID = @bandId, shelfRowId = @shelfRowId, lost = @lost WHERE albumID = @albumId";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
                 cmd.Parameters.AddWithValue("@albumId", albumId);
@@ -667,7 +667,7 @@ namespace CDOrganiserProjectApp
 
         public int UpdateArtistReviewById(int reviewId, int albumId, int tierId, int personId, bool favourite)
         {
-            string sqlStr = $"UPDATE Contents.tblArtistAlbums SET (reviewID = @reviewId, albumID = @albumId, tierID = @tierId, personID = @personId, favourite = @favourite) WHERE reviewID = @reviewId";
+            string sqlStr = $"UPDATE Contents.tblArtistAlbums SET albumID = @albumId, tierID = @tierId, personID = @personId, favourite = @favourite WHERE reviewID = @reviewId";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
                 cmd.Parameters.AddWithValue("@reviewId", reviewId);
@@ -761,7 +761,7 @@ namespace CDOrganiserProjectApp
 
         public int UpdateBandReviewById(int reviewId, int albumId, int tierId, int personId, bool favourite)
         {
-            string sqlStr = $"UPDATE Contents.tblBandReviews SET (reviewID = @reviewId, albumID = @albumId, tierID = @tierId, personID = @personId, favourite = @favourite) WHERE reviewID = @reviewId";
+            string sqlStr = $"UPDATE Contents.tblBandReviews SET albumID = @albumId, tierID = @tierId, personID = @personId, favourite = @favourite WHERE reviewID = @reviewId";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
                 cmd.Parameters.AddWithValue("@reviewId", reviewId);
