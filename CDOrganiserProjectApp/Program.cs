@@ -149,6 +149,7 @@ namespace CDOrganiserProjectApp
 
                     break;
 
+                    /*
                     case 3:
                         Thread.Sleep(wait);
                         Console.Clear();
@@ -156,6 +157,7 @@ namespace CDOrganiserProjectApp
                         TrueAdminMenuscreenOptions();
 
                     break;
+                    */
 
                 }
             }
@@ -228,7 +230,8 @@ namespace CDOrganiserProjectApp
             } while (invalid);
             
         } // The Help method. Calls the support page display.
-         
+        
+        /*
         private static void TrueAdminMenuscreenOptions() // The True Admin Menuscreen. 
         {           
             string select; // Stores a selection from a listing that branches into multiple.
@@ -781,6 +784,9 @@ namespace CDOrganiserProjectApp
                                                     view.DisplayMessage("\n  Please use the proper formatting.");
                                                     view.DisplayMessage(e.Message);
 
+                                                    Thread.Sleep(wait);
+                                                    Console.Clear();
+
                                                     TrueAdminMenuscreenOptions();
                                                     
                                                 }
@@ -898,260 +904,277 @@ namespace CDOrganiserProjectApp
 
                                             case "reports":
 
-                                                reportselect = view.DisplayRecordOptions("bands", "bands");
-
-                                                Thread.Sleep(wait);
-                                                Console.Clear();
-
-                                                invalid = false;
-
-                                                do
+                                                try
                                                 {
-                                                    switch (reportselect)
+                                                    reportselect = view.DisplayRecordOptions("bands", "bands");
+
+                                                    Thread.Sleep(wait);
+                                                    Console.Clear();
+
+                                                    invalid = false;
+
+                                                    do
                                                     {
-                                                        case 1:
-                                                            storageManager.GetBandReleaseDate();
+                                                        switch (reportselect)
+                                                        {
+                                                            case 1:
+                                                                storageManager.GetBandReleaseDate();
 
-                                                            cmd = view.GetInput();
+                                                                cmd = view.GetInput();
 
-                                                            do
-                                                            {
-                                                                switch (cmd.ToUpper())
+                                                                do
                                                                 {
-                                                                    case "E":
-                                                                        GoBack();
+                                                                    switch (cmd.ToUpper())
+                                                                    {
+                                                                        case "E":
+                                                                            GoBack();
 
-                                                                        invalid = false;
+                                                                            invalid = false;
 
-                                                                    break;
+                                                                        break;
 
-                                                                    default:
-                                                                        view.AltDisplayError(wait);
+                                                                        default:
+                                                                            view.AltDisplayError(wait);
 
-                                                                        GoBack();
+                                                                            GoBack();
 
-                                                                        invalid = true;
+                                                                            invalid = true;
 
-                                                                    break;
+                                                                        break;
 
-                                                                }
+                                                                    }
 
-                                                            } while (invalid);
+                                                                } while (invalid);
                                                 
 
-                                                        break;
+                                                            break;
 
-                                                        case 2:
-                                                            storageManager.GetAToJBands();
+                                                            case 2:
+                                                                storageManager.GetAToJBands();
 
-                                                            cmd = view.GetInput();
+                                                                cmd = view.GetInput();
 
-                                                            do
-                                                            {
-                                                                switch (cmd.ToUpper())
+                                                                do
                                                                 {
-                                                                    case "E":
-                                                                        GoBack();
+                                                                    switch (cmd.ToUpper())
+                                                                    {
+                                                                        case "E":
+                                                                            GoBack();
 
-                                                                        invalid = false;
+                                                                            invalid = false;
 
-                                                                    break;
+                                                                        break;
 
-                                                                    default:
-                                                                        view.AltDisplayError(wait);
+                                                                        default:
+                                                                            view.AltDisplayError(wait);
 
-                                                                        GoBack();
+                                                                            GoBack();
 
-                                                                        invalid = true;
+                                                                            invalid = true;
 
-                                                                    break;
+                                                                        break;
 
-                                                                }
+                                                                    }
 
-                                                            } while (invalid);
+                                                                } while (invalid);
                                                 
 
-                                                        break;
+                                                            break;
 
-                                                        case 3:
-                                                            storageManager.GetBandsEarly2000sMusic();
+                                                            case 3:
+                                                                storageManager.GetBandsEarly2000sMusic();
 
-                                                            cmd = view.GetInput();
+                                                                cmd = view.GetInput();
 
-                                                            do
-                                                            {
-                                                                switch (cmd.ToUpper())
+                                                                do
                                                                 {
-                                                                    case "E":
-                                                                        GoBack();
+                                                                    switch (cmd.ToUpper())
+                                                                    {
+                                                                        case "E":
+                                                                            GoBack();
 
-                                                                        invalid = false;
+                                                                            invalid = false;
 
-                                                                    break;
+                                                                        break;
 
-                                                                    default:
-                                                                        view.AltDisplayError(wait);
+                                                                        default:
+                                                                            view.AltDisplayError(wait);
 
-                                                                        GoBack();
+                                                                            GoBack();
 
-                                                                        invalid = true;
+                                                                            invalid = true;
 
-                                                                    break;
+                                                                        break;
 
-                                                                }
+                                                                    }
 
-                                                            } while (invalid);
+                                                                } while (invalid);
                                                 
 
-                                                        break;
+                                                            break;
 
-                                                        case 4:
-                                                            storageManager.GetTotalBandGenres();
+                                                            case 4:
+                                                                storageManager.GetTotalBandGenres();
 
-                                                            cmd = view.GetInput();
+                                                                cmd = view.GetInput();
 
-                                                            do
-                                                            {
-                                                                switch (cmd.ToUpper())
+                                                                do
                                                                 {
-                                                                    case "E":
-                                                                        GoBack();
+                                                                    switch (cmd.ToUpper())
+                                                                    {
+                                                                        case "E":
+                                                                            GoBack();
 
-                                                                        invalid = false;
+                                                                            invalid = false;
 
-                                                                    break;
+                                                                        break;
 
-                                                                    default:
-                                                                        view.AltDisplayError(wait);
+                                                                        default:
+                                                                            view.AltDisplayError(wait);
 
-                                                                        GoBack();
+                                                                            GoBack();
 
-                                                                        invalid = true;
+                                                                            invalid = true;
 
-                                                                    break;
+                                                                        break;
 
-                                                                }
+                                                                    }
 
-                                                            } while (invalid);
+                                                                } while (invalid);
                                                 
 
-                                                        break;
+                                                            break;
 
-                                                        case 5:
-                                                            storageManager.GetBandsAsAWhole();
+                                                            case 5:
+                                                                storageManager.GetBandsAsAWhole();
 
-                                                            cmd = view.GetInput();
+                                                                cmd = view.GetInput();
 
-                                                           do
-                                                            {
-                                                                switch (cmd.ToUpper())
+                                                               do
                                                                 {
-                                                                    case "E":
-                                                                        GoBack();
+                                                                    switch (cmd.ToUpper())
+                                                                    {
+                                                                        case "E":
+                                                                            GoBack();
 
-                                                                        invalid = false;
+                                                                            invalid = false;
 
-                                                                    break;
+                                                                        break;
 
-                                                                    default:
-                                                                        view.AltDisplayError(wait);
+                                                                        default:
+                                                                            view.AltDisplayError(wait);
 
-                                                                        GoBack();
+                                                                            GoBack();
 
-                                                                        invalid = true;
+                                                                            invalid = true;
 
-                                                                    break;
+                                                                        break;
 
-                                                                }
+                                                                    }
 
-                                                            } while (invalid);
+                                                                } while (invalid);
                                                 
 
-                                                        break;
+                                                            break;
 
-                                                        case 6:
-                                                            storageManager.GetTotalAlbumsPublishedByBands();
+                                                            case 6:
+                                                                storageManager.GetTotalAlbumsPublishedByBands();
 
-                                                            cmd = view.GetInput();
+                                                                cmd = view.GetInput();
 
-                                                            do
-                                                            {
-                                                                switch (cmd.ToUpper())
+                                                                do
                                                                 {
-                                                                    case "E":
-                                                                        GoBack();
+                                                                    switch (cmd.ToUpper())
+                                                                    {
+                                                                        case "E":
+                                                                            GoBack();
 
-                                                                        invalid = false;
+                                                                            invalid = false;
 
-                                                                    break;
+                                                                        break;
 
-                                                                    default:
-                                                                        view.AltDisplayError(wait);
+                                                                        default:
+                                                                            view.AltDisplayError(wait);
 
-                                                                        GoBack();
+                                                                            GoBack();
 
-                                                                        invalid = true;
+                                                                            invalid = true;
 
-                                                                    break;
+                                                                        break;
 
-                                                                }
+                                                                    }
 
-                                                            } while (invalid);
+                                                                } while (invalid);
                                                 
 
-                                                        break;
+                                                            break;
 
-                                                        case 7:
-                                                            storageManager.GetTotalPublishingsOfAllBandsPerYear();
+                                                            case 7:
+                                                                storageManager.GetTotalPublishingsOfAllBandsPerYear();
 
-                                                            cmd = view.GetInput();
+                                                                cmd = view.GetInput();
 
-                                                            do
-                                                            {
-                                                                switch (cmd.ToUpper())
+                                                                do
                                                                 {
-                                                                    case "E":
-                                                                        GoBack();
+                                                                    switch (cmd.ToUpper())
+                                                                    {
+                                                                        case "E":
+                                                                            GoBack();
 
-                                                                        invalid = false;
+                                                                            invalid = false;
 
-                                                                    break;
+                                                                        break;
 
-                                                                    default:
-                                                                        view.AltDisplayError(wait);
+                                                                        default:
+                                                                            view.AltDisplayError(wait);
 
-                                                                        GoBack();
+                                                                            GoBack();
 
-                                                                        invalid = true;
+                                                                            invalid = true;
 
-                                                                    break;
+                                                                        break;
 
-                                                                }
+                                                                    }
 
-                                                            } while (invalid);
+                                                                } while (invalid);
                                                 
 
-                                                        break;
+                                                            break;
 
-                                                        case 8:                                   
-                                                            GoBack();
+                                                            case 8:                                   
+                                                                GoBack();
 
-                                                            invalid = false;
+                                                                invalid = false;
 
-                                                        break;
+                                                            break;
 
-                                                        default:
-                                                            view.AltDisplayError(wait);
+                                                            default:
+                                                                view.AltDisplayError(wait);
 
-                                                            GoBack();
+                                                                GoBack();
 
-                                                            invalid = true;
+                                                                invalid = true;
 
-                                                        break;
+                                                            break;
 
-                                                    }
+                                                        }
 
-                                                } while (invalid);
+                                                    } while (invalid);
+                                                }
+                                                catch (FormatException e)
+                                                {
+
+                                                    view.DisplayMessage("\n  Please use the proper formatting.");
+                                                    view.DisplayMessage(e.Message);
+
+                                                    Thread.Sleep(wait);
+                                                    Console.Clear();
+
+                                                    TrueAdminMenuscreenOptions();
+    
+
+                                                }
+                                                
 
                                             break;
 
@@ -1313,100 +1336,118 @@ namespace CDOrganiserProjectApp
 
                                             case "reports":
 
-                                                reportselect = view.DisplayRecordOptions("artists", "reviews");
+                                                
 
-                                                Thread.Sleep(wait);
-                                                Console.Clear();
-
-                                                invalid = false;
-
-                                                do
+                                                try
                                                 {
-                                                    switch (reportselect)
+                                                    reportselect = view.DisplayRecordOptions("artists", "reviews");
+
+                                                    Thread.Sleep(wait);
+                                                    Console.Clear();
+
+                                                    invalid = false;
+
+                                                    do
                                                     {
-                                                        case 1:
-                                                            storageManager.GetHighRankingArtistAlbums();
+                                                        switch (reportselect)
+                                                        {
+                                                            case 1:
+                                                                storageManager.GetHighRankingArtistAlbums();
 
-                                                            cmd = view.GetInput();
+                                                                cmd = view.GetInput();
 
-                                                            do
-                                                            {
-                                                                switch (cmd.ToUpper())
+                                                                do
                                                                 {
-                                                                    case "E":
-                                                                        GoBack();
+                                                                    switch (cmd.ToUpper())
+                                                                    {
+                                                                        case "E":
+                                                                            GoBack();
 
-                                                                        invalid = false;
+                                                                            invalid = false;
 
-                                                                    break;
+                                                                        break;
 
-                                                                    default:
-                                                                        view.AltDisplayError(wait);
+                                                                        default:
+                                                                            view.AltDisplayError(wait);
 
-                                                                        GoBack();
+                                                                            GoBack();
 
-                                                                        invalid = true;
+                                                                            invalid = true;
 
-                                                                    break;
+                                                                        break;
 
-                                                                }
+                                                                    }
 
-                                                            } while (invalid);
+                                                                } while (invalid);
                                                 
 
-                                                        break;
+                                                            break;
 
-                                                        case 2:
-                                                            storageManager.GetTopThreeFavouriteArtistAlbums();
+                                                            case 2:
+                                                                storageManager.GetTopThreeFavouriteArtistAlbums();
 
-                                                            cmd = view.GetInput();
+                                                                cmd = view.GetInput();
 
-                                                            do
-                                                            {
-                                                                switch (cmd.ToUpper())
+                                                                do
                                                                 {
-                                                                    case "E":
-                                                                        GoBack();
+                                                                    switch (cmd.ToUpper())
+                                                                    {
+                                                                        case "E":
+                                                                            GoBack();
 
-                                                                        invalid = false;
+                                                                            invalid = false;
 
-                                                                    break;
+                                                                        break;
 
-                                                                    default:
-                                                                        view.AltDisplayError(wait);
+                                                                        default:
+                                                                            view.AltDisplayError(wait);
 
-                                                                        GoBack();
+                                                                            GoBack();
 
-                                                                        invalid = true;
+                                                                            invalid = true;
 
-                                                                    break;
+                                                                        break;
 
-                                                                }
+                                                                    }
 
-                                                            } while (invalid);
+                                                                } while (invalid);
                                                 
 
-                                                        break;
+                                                            break;
 
-                                                        case 3:                                   
-                                                            GoBack();
+                                                            case 3:                                   
+                                                                GoBack();
 
-                                                            invalid = false;
+                                                                invalid = false;
 
-                                                        break;
+                                                            break;
 
-                                                        default:
-                                                            view.AltDisplayError(wait);
+                                                            default:
+                                                                view.AltDisplayError(wait);
 
-                                                            GoBack();
+                                                                GoBack();
 
-                                                            invalid = true;
+                                                                invalid = true;
 
-                                                        break;
+                                                            break;
 
-                                                    }
+                                                        }
 
-                                                } while (invalid);
+                                                    } while (invalid);
+
+                                                }
+                                                catch (FormatException e)
+                                                {
+                                                    view.DisplayMessage("\n  Please use the proper formatting.");
+                                                    view.DisplayMessage(e.Message);
+
+                                                    Thread.Sleep(wait);
+                                                    Console.Clear();
+
+                                                    TrueAdminMenuscreenOptions();
+                                                    
+                                                }
+                                                
 
                                             break;
 
@@ -1522,100 +1563,117 @@ namespace CDOrganiserProjectApp
 
                                             case "reports":
 
-                                                reportselect = view.DisplayRecordOptions("bands", "reviews");
+                                                
 
-                                                Thread.Sleep(wait);
-                                                Console.Clear();
-
-                                                invalid = false;
-
-                                                do
+                                                try
                                                 {
-                                                    switch (reportselect)
+                                                    reportselect = view.DisplayRecordOptions("bands", "reviews");
+
+                                                    Thread.Sleep(wait);
+                                                    Console.Clear();
+
+                                                    invalid = false;
+
+                                                    do
                                                     {
-                                                        case 1:
-                                                            storageManager.GetHighRankingBandAlbums();
+                                                        switch (reportselect)
+                                                        {
+                                                            case 1:
+                                                                storageManager.GetHighRankingBandAlbums();
 
-                                                            cmd = view.GetInput();
+                                                                cmd = view.GetInput();
 
-                                                            do
-                                                            {
-                                                                switch (cmd.ToUpper())
+                                                                do
                                                                 {
-                                                                    case "E":
-                                                                        GoBack();
+                                                                    switch (cmd.ToUpper())
+                                                                    {
+                                                                        case "E":
+                                                                            GoBack();
 
-                                                                        invalid = false;
+                                                                            invalid = false;
 
-                                                                    break;
+                                                                        break;
 
-                                                                    default:
-                                                                        view.AltDisplayError(wait);
+                                                                        default:
+                                                                            view.AltDisplayError(wait);
 
-                                                                        GoBack();
+                                                                            GoBack();
 
-                                                                        invalid = true;
+                                                                            invalid = true;
 
-                                                                    break;
+                                                                        break;
 
-                                                                }
+                                                                    }
 
-                                                            } while (invalid);
+                                                                } while (invalid);
                                                 
 
-                                                        break;
+                                                            break;
 
-                                                        case 2:
-                                                            storageManager.GetTopThreeFavouriteBandAlbums();
+                                                            case 2:
+                                                                storageManager.GetTopThreeFavouriteBandAlbums();
 
-                                                            cmd = view.GetInput();
+                                                                cmd = view.GetInput();
 
-                                                            do
-                                                            {
-                                                                switch (cmd.ToUpper())
+                                                                do
                                                                 {
-                                                                    case "E":
-                                                                        GoBack();
+                                                                    switch (cmd.ToUpper())
+                                                                    {
+                                                                        case "E":
+                                                                            GoBack();
 
-                                                                        invalid = false;
+                                                                            invalid = false;
 
-                                                                    break;
+                                                                        break;
 
-                                                                    default:
-                                                                        view.AltDisplayError(wait);
+                                                                        default:
+                                                                            view.AltDisplayError(wait);
 
-                                                                        GoBack();
+                                                                            GoBack();
 
-                                                                        invalid = true;
+                                                                            invalid = true;
 
-                                                                    break;
+                                                                        break;
 
-                                                                }
+                                                                    }
 
-                                                            } while (invalid);
+                                                                } while (invalid);
                                                 
 
-                                                        break;
+                                                            break;
 
-                                                        case 3:                                   
-                                                            GoBack();
+                                                            case 3:                                   
+                                                                GoBack();
 
-                                                            invalid = false;
+                                                                invalid = false;
 
-                                                        break;
+                                                            break;
 
-                                                        default:
-                                                            view.AltDisplayError(wait);
+                                                            default:
+                                                                view.AltDisplayError(wait);
 
-                                                            GoBack();
+                                                                GoBack();
 
-                                                            invalid = true;
+                                                                invalid = true;
 
-                                                        break;
+                                                            break;
 
-                                                    }
+                                                        }
 
-                                                } while (invalid);
+                                                    } while (invalid);
+                                                }
+                                                catch (FormatException e)
+                                                {
+
+                                                    view.DisplayMessage("\n  Please use the proper formatting.");
+                                                    view.DisplayMessage(e.Message);
+
+                                                    Thread.Sleep(wait);
+                                                    Console.Clear();
+
+                                                    TrueAdminMenuscreenOptions();
+
+                                                }
 
                                             break;
 
@@ -2038,6 +2096,8 @@ namespace CDOrganiserProjectApp
 
                                     } while (invalid);
 
+
+
                                 break;
                                 
                                 case "back":                                   
@@ -2333,6 +2393,8 @@ namespace CDOrganiserProjectApp
             } while (invalid);
 
         }
+
+        */
 
         private static void AdminMenuscreenOptions() // The Admin Menuscreen. 
         {           
@@ -4784,6 +4846,7 @@ namespace CDOrganiserProjectApp
 
                      break;
 
+                    /*
                     case 3:
                     // If the user is the very first person who installed the application, they get sent back to the 'true' admin menu.
                      
@@ -4791,6 +4854,7 @@ namespace CDOrganiserProjectApp
 
 
                     break;
+                    */
 
                  }
 
