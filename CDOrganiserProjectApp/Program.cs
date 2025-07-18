@@ -53,6 +53,7 @@ namespace CDOrganiserProjectApp
                 {
                     case "R":
 
+                        logStatus = false;
                         Register(); // This calls the register. 
 
                         invalid = false; // Overwrites the boolean so that the Register can proceed.
@@ -97,7 +98,6 @@ namespace CDOrganiserProjectApp
             Thread.Sleep(wait);
             Console.Clear();
 
-            logStatus = false;
             CreateUser();
             Thread.Sleep(wait);
             Console.Clear();
@@ -2234,6 +2234,8 @@ namespace CDOrganiserProjectApp
                             switch (select.ToLower())
                             {
                                 case "default":
+
+                                    logStatus = true;
                                     CreateUser();
 
                                     GoBack();
@@ -2243,6 +2245,8 @@ namespace CDOrganiserProjectApp
                                 break;
 
                                 case "admin":
+
+                                    logStatus = true;
                                     CreateAdmin();
 
                                     GoBack();
@@ -4322,6 +4326,8 @@ namespace CDOrganiserProjectApp
                             switch (select.ToLower())
                             {
                                 case "default":
+
+                                    logStatus = true;
                                     CreateUser();
 
                                     GoBack();
@@ -4331,6 +4337,8 @@ namespace CDOrganiserProjectApp
                                 break;
 
                                 case "admin":
+
+                                    logStatus = true;
                                     CreateAdmin();
 
                                     GoBack();
@@ -4663,6 +4671,8 @@ namespace CDOrganiserProjectApp
                             switch (select)
                             {
                                 case "default":
+
+                                    logStatus = true;
                                     CreateUser();
 
                                     GoBack();
@@ -5477,7 +5487,7 @@ namespace CDOrganiserProjectApp
 
             try
             {
-                logStatus = true;
+                
 
                 view.DisplayMessage("[x] WARNING: CREATING AN ACCOUNT BOOTS YOU TO THE LOGIN/REGISTER.\n");
 
@@ -5494,6 +5504,8 @@ namespace CDOrganiserProjectApp
                 view.DisplayMessage(" ");
                 string newuser = view.GetInput();
                 roleId = 1;
+
+                Console.WriteLine(storageManager.FetchUsername(newuser));
 
                 view.DisplayMessage("\nCreate a password... ");
                 view.DisplayMessage(" ");
@@ -5565,7 +5577,7 @@ namespace CDOrganiserProjectApp
 
             try
             {
-                logStatus = true;
+
 
                 view.DisplayMessage("[x] WARNING: CREATING AN ACCOUNT BOOTS YOU TO THE LOGIN/REGISTER.\n");
 

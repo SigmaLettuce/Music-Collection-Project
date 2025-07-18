@@ -50,7 +50,7 @@ SET IDENTITY_INSERT Properties.tblAccounts ON;
 
 INSERT INTO Properties.tblAccounts(personID, fName, sName, username, pw, roleID)
 VALUES 
-(1, 'John', 'Kramer', 'johnk', 'jigsaw123', 1),
+(1, 'John', 'Kramer', 'johnk', 'jigsaw123', 3),
 (2, 'Clarice', 'Starling', 'agstarling', 'securepass456', 1),
 (3, 'Alice', 'Johnson', 'alicej', 'alicepwd789', 1),
 (4, 'Hannibal', 'Lecter', 'hanlecter', 'hansecure321', 1),
