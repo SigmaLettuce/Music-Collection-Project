@@ -943,6 +943,27 @@ namespace CDOrganiserProjectApp
             }
         }
 
+        public string FetchUsername(string username)
+        {
+            string sqlStr = $"SELECT username FROM Properties.tblAccounts WHERE username = @username";
+            using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
+            {
+                cmd.Parameters.AddWithValue("@username", username);
+
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        username = reader["username"].ToString();
+                    }
+
+                }
+
+                return username;
+            }
+        }  
+
+
         // These four check if an album is already marked as a favourite, or lost.
 
         public bool FetchFavouriteFromArtistReviews(bool favourite)
