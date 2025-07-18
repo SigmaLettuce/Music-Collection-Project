@@ -5499,7 +5499,7 @@ namespace CDOrganiserProjectApp
                 view.DisplayMessage(" ");
                 string newpw = view.GetInput();
 
-                if (newuser.Equals(storageManager.FetchUsername(newpw)))
+                if (newuser.Equals(storageManager.FetchUsername(newuser)))
                 {
                     view.DisplayMessage("\nThat username is already taken. Choose a different username. ");
                     Thread.Sleep(wait);
@@ -5508,9 +5508,20 @@ namespace CDOrganiserProjectApp
                     switch (logStatus)
                     {
                         case true:
-                             GuestMenuscreenOptions();
-                            
-                        break;
+                            switch (roleId)
+                            {
+                                case 1:
+                                    GuestMenuscreenOptions();
+
+                                break;
+
+                                case 2:
+                                    AdminMenuscreenOptions();
+
+                                break;
+                            }
+
+                            break;
 
                         case false:
                             StartMenuscreenOptions();
@@ -5577,7 +5588,7 @@ namespace CDOrganiserProjectApp
                 view.DisplayMessage(" ");
                 string newpw = view.GetInput();
 
-                if (newuser.Equals(storageManager.FetchUsername(newpw)))
+                if (newuser.Equals(storageManager.FetchUsername(newuser)))
                 {
                     view.DisplayMessage("\nThat username is already taken. Choose a different username. ");
                     Thread.Sleep(wait);
@@ -5586,8 +5597,19 @@ namespace CDOrganiserProjectApp
                     switch (logStatus)
                     {
                         case true:
-                             AdminMenuscreenOptions();
-                            
+                            switch (roleId)
+                            {
+                                case 1:
+                                    GuestMenuscreenOptions();
+
+                                break;
+
+                                case 2:
+                                    AdminMenuscreenOptions();
+
+                                break;
+                            }
+
                         break;
 
                         case false:
@@ -5596,7 +5618,6 @@ namespace CDOrganiserProjectApp
                         break;
                     }
                 }
-
                 else
                 {
                     Accounts newUser = new Accounts(personId, fName, sName, newuser, newpw, roleId);
