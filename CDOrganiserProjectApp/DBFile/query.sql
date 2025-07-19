@@ -1,2 +1,1 @@
-﻿SELECT COUNT(tblRow.shelfRowID) as 'shelfRowID', tblShelf.shelfTag FROM Properties.tblRow, Properties.tblShelf WHERE tblRow.shelfTagID = tblShelf.shelfTagID GROUP BY tblShelf.shelfTag
-
+﻿SELECT COUNT(tblBandAlbums.albumID) as 'Count', YEAR(tblBandAlbums.dateOfRelease) as 'dateOfRelease' FROM Contents.tblBandAlbums GROUP BY YEAR(tblBandAlbums.dateOfRelease) ORDER BY 'dateOfRelease'

@@ -1246,14 +1246,14 @@ namespace CDOrganiserProjectApp
 
         public void GetTotalAlbumsPublishedByArtists()
         {
-            string sqlStr = "SELECT COUNT(tblArtistAlbums.albumID), tblArtists.artistName FROM Contents.tblArtistAlbums, Contents.tblArtists WHERE tblArtistAlbums.artistID = tblArtists.artistID GROUP BY tblArtists.artistName ORDER BY tblArtists.artistName;";
+            string sqlStr = "SELECT COUNT(tblArtistAlbums.albumID) as Count, tblArtists.artistName FROM Contents.tblArtistAlbums, Contents.tblArtists WHERE tblArtistAlbums.artistID = tblArtists.artistID GROUP BY tblArtists.artistName ORDER BY tblArtists.artistName;";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())
                     {
-                        int albumId = Convert.ToInt32(reader["albumID"]);
+                        int albumId = Convert.ToInt32(reader["Count"]);
                         string artistName = reader ["artistName"].ToString();
 
                         Console.WriteLine($"{albumId}, {artistName}\n");
@@ -1268,14 +1268,14 @@ namespace CDOrganiserProjectApp
 
         public void GetTotalPublishingsOfAllArtistsPerYear()
         {
-            string sqlStr = "SELECT COUNT(tblArtistAlbums.albumID), YEAR(tblArtistAlbums.dateOfRelease) as 'dateOfRelease' FROM Contents.tblArtistAlbums GROUP BY YEAR(tblArtistAlbums.dateOfRelease) ORDER BY 'dateOfRelease'";
+            string sqlStr = "SELECT COUNT(tblArtistAlbums.albumID) as Count, YEAR(tblArtistAlbums.dateOfRelease) as 'dateOfRelease' FROM Contents.tblArtistAlbums GROUP BY YEAR(tblArtistAlbums.dateOfRelease) ORDER BY 'dateOfRelease'";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())
                     {
-                        int albumId = Convert.ToInt32(reader["albumID"]);
+                        int albumId = Convert.ToInt32(reader["Count"]);
                         DateTime dateOfRelease = Convert.ToDateTime(reader["dateOfRelease"]);
 
                         Console.WriteLine($"{albumId}, {dateOfRelease.ToString("d")}\n");
@@ -1402,14 +1402,14 @@ namespace CDOrganiserProjectApp
 
         public void GetTotalAlbumsPublishedByBands()
         {
-            string sqlStr = "SELECT COUNT(tblBandAlbums.albumID), tblBands.bandName FROM Contents.tblBandAlbums, Contents.tblBands WHERE tblBandAlbums.bandID = tblBands.bandID GROUP BY tblBands.bandName ORDER BY tblBands.bandName;";
+            string sqlStr = "SELECT COUNT(tblBandAlbums.albumID) as 'Count', tblBands.bandName FROM Contents.tblBandAlbums, Contents.tblBands WHERE tblBandAlbums.bandID = tblBands.bandID GROUP BY tblBands.bandName ORDER BY tblBands.bandName;";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())
                     {
-                        int albumId = Convert.ToInt32(reader["albumID"]);
+                        int albumId = Convert.ToInt32(reader["Count"]);
                         string bandName = reader ["bandName"].ToString();
 
                         Console.WriteLine($"{albumId}, {bandName}\n");
@@ -1424,14 +1424,14 @@ namespace CDOrganiserProjectApp
 
         public void GetTotalPublishingsOfAllBandsPerYear()
         {
-            string sqlStr = "SELECT COUNT(tblBandAlbums.albumID), YEAR(tblBandAlbums.dateOfRelease) as 'dateOfRelease' FROM Contents.tblBandAlbums GROUP BY YEAR(tblBandAlbums.dateOfRelease) ORDER BY 'dateOfRelease'";
+            string sqlStr = "SELECT COUNT(tblBandAlbums.albumID) as 'Count', YEAR(tblBandAlbums.dateOfRelease) as 'dateOfRelease' FROM Contents.tblBandAlbums GROUP BY YEAR(tblBandAlbums.dateOfRelease) ORDER BY 'dateOfRelease'";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())
                     {
-                        int albumId = Convert.ToInt32(reader["albumID"]);
+                        int albumId = Convert.ToInt32(reader["Count"]);
                         DateTime dateOfRelease = Convert.ToDateTime(reader["dateOfRelease"]);
 
                         Console.WriteLine($"{albumId}, {dateOfRelease.ToString("d")}\n");
@@ -1493,7 +1493,7 @@ namespace CDOrganiserProjectApp
 
         public void GetTopThreeFavouriteArtistAlbums()
         {
-            string sqlStr = "SELECT TOP 3 COUNT(tblArtistReviews.favourite), tblArtistAlbums.albumName FROM Contents.tblArtistReviews, Contents.tblArtistAlbums WHERE tblArtistReviews.albumID = tblArtistAlbums.albumID AND favourite = 'true' GROUP BY tblArtistAlbums.albumName";
+            string sqlStr = "SELECT TOP 3 COUNT(tblArtistReviews.favourite) as 'favourite', tblArtistAlbums.albumName FROM Contents.tblArtistReviews, Contents.tblArtistAlbums WHERE tblArtistReviews.albumID = tblArtistAlbums.albumID AND favourite = 'true' GROUP BY tblArtistAlbums.albumName";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
                 using (SqlDataReader reader = cmd.ExecuteReader())
@@ -1515,7 +1515,7 @@ namespace CDOrganiserProjectApp
 
         public void GetTopThreeFavouriteBandAlbums()
         {
-            string sqlStr = "SELECT TOP 3 COUNT(tblBandReviews.favourite), tblBandAlbums.albumName FROM Contents.tblBandReviews, Contents.tblBandAlbums WHERE tblBandReviews.albumID = tblBandAlbums.albumID AND favourite = 'true' GROUP BY tblBandAlbums.albumName";
+            string sqlStr = "SELECT TOP 3 COUNT(tblBandReviews.favourite) as 'favourite', tblBandAlbums.albumName FROM Contents.tblBandReviews, Contents.tblBandAlbums WHERE tblBandReviews.albumID = tblBandAlbums.albumID AND favourite = 'true' GROUP BY tblBandAlbums.albumName";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
                 using (SqlDataReader reader = cmd.ExecuteReader())
@@ -1539,17 +1539,17 @@ namespace CDOrganiserProjectApp
 
         public void GetTotalOfRowOccupancyPerShelf()
         {
-            string sqlStr = "SELECT COUNT(tblRow.shelfRowID), tblShelf.shelfTag FROM Properties.tblRow, Properties.tblShelf WHERE tblRow.shelfTagID = tblShelf.shelfTagID GROUP BY tblShelf.shelfTag";
+            string sqlStr = "SELECT COUNT(tblRow.shelfRowID) as 'shelfRowID', tblShelf.shelfTag FROM Properties.tblRow, Properties.tblShelf WHERE tblRow.shelfTagID = tblShelf.shelfTagID GROUP BY tblShelf.shelfTag";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())
                     {
-                        int shelfRowID = Convert.ToInt32(reader["shelfRowID"]);
+                        int shelfRowId = Convert.ToInt32(reader["shelfRowID"]);
                         char shelfTag = Convert.ToChar(reader["shelfTag"]);
 
-                        Console.WriteLine($"{shelfTag}, {shelfRowID}\n");
+                        Console.WriteLine($"{shelfTag}, {shelfRowId}\n");
                         Thread.Sleep(wait);
                     }
 

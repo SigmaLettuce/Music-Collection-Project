@@ -43,9 +43,9 @@ namespace CDOrganiserProjectApp.View
 
         */ 
 
-        public string DisplayAdminMenu()
+        public string DisplayAdminMenu(string fname)
         {
-            Console.WriteLine("\n\tWelcome to your CD Manager! \n");
+            Console.WriteLine($"\n\tWelcome to the CD Manager, {fname}! \n");
             Console.WriteLine("\tVIEW... ");
             Console.WriteLine("\tThese are your available listings, compiled into directories.");
 
@@ -84,9 +84,9 @@ namespace CDOrganiserProjectApp.View
 
         */ 
 
-        public string DisplayGuestMenu() 
+        public string DisplayGuestMenu(string fname) 
         {
-            Console.WriteLine("\n\tWelcome to your CD Manager! \n");
+            Console.WriteLine($"\n\tWelcome to the CD Manager, {fname}! \n");
             Console.WriteLine("\tVIEW... ");
             Console.WriteLine("\tThese are your available listings, compiled into directories.");
 
