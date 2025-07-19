@@ -13,8 +13,8 @@ namespace CDOrganiserProjectApp
          
         \*                   */
         
-        private static StorageManager storageManager; 
-        private static ConsoleView view;
+        private static StorageManager storageManager; // 
+        private static ConsoleView view; // The
         
         static int accountId; // This is the variable that stores an Account ID; Declared as a static variable so it is accessible across all instances
         static int roleId;
@@ -5731,8 +5731,6 @@ namespace CDOrganiserProjectApp
                 string newuser = view.GetInput();
                 roleId = 1;
 
-                Console.WriteLine(storageManager.FetchUsername(newuser));
-
                 view.DisplayMessage("\nCreate a password... ");
                 view.DisplayMessage(" ");
                 string newpw = view.GetInput();
@@ -6770,7 +6768,7 @@ namespace CDOrganiserProjectApp
         
         UPDATE:
 
-        All methods used to update a field and/or fields are updated using an
+        All methods used to update a field and/or fields are updated from 
           
         */
 
