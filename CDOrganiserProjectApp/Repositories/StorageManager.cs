@@ -996,19 +996,20 @@ namespace CDOrganiserProjectApp
             }
         }
 
-        public bool FetchFavouriteFromBandReviews(bool favourite)
+        public bool FetchFavouriteFromBandReviews(int reviewId)
         {
+            bool favourite = true;
 
-            string sqlStr = $"SELECT personID FROM Contents.tblBandReviews WHERE favourite = @favourite";
+            string sqlStr = $"SELECT favourite FROM Contents.tblBandReviews WHERE reviewID = @reviewId";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
-                cmd.Parameters.AddWithValue("@favourite", favourite);
+                cmd.Parameters.AddWithValue("@reviewId", reviewId);
 
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())
                     {
-                        int personId = Convert.ToInt32(reader["personID"]);
+                         favourite = Convert.ToBoolean(reader["favourite"]);
                     }
                 }
 

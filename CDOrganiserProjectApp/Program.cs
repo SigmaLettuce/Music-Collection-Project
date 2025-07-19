@@ -6502,7 +6502,7 @@ namespace CDOrganiserProjectApp
                     
                     bool favourite = true;
 
-                    switch (storageManager.FetchFavouriteFromArtistReviews(favourite))
+                    switch (storageManager.FetchFavouriteFromArtistReviews(reviewId))
                     {
                         case true:
                             favourite = false;
@@ -6725,7 +6725,7 @@ namespace CDOrganiserProjectApp
                     bool favourite = true;
 
 
-                    switch (storageManager.FetchFavouriteFromBandReviews(favourite))
+                    switch (storageManager.FetchFavouriteFromBandReviews(reviewId))
                     {
                         case true:
                             favourite = false;
