@@ -123,7 +123,7 @@ namespace CDOrganiserProjectApp
 
             string fetchUsername = storageManager.ScanUsername(pw);
             string fetchPassword = storageManager.ScanPassword(user);
-            accountId = storageManager.FetchAccount(accountId);
+            accountId = storageManager.FetchAccount(user);
             roleId = storageManager.FetchRole(user);
 
 
@@ -6487,7 +6487,7 @@ namespace CDOrganiserProjectApp
 
                 
 
-                if (accountId.Equals(storageManager.FetchAccountFromArtistReviews(reviewId)))
+                if (accountId != storageManager.FetchAccountFromArtistReviews(reviewId))
                 {
                     view.DisplayMessage("\nYou cannot modify someone elses review. Booting you back to the menuscreen.");
                     Thread.Sleep(wait);
@@ -6710,7 +6710,7 @@ namespace CDOrganiserProjectApp
 
 
 
-                if (accountId.Equals(storageManager.FetchAccountFromBandReviews(reviewId)))
+                if (accountId != storageManager.FetchAccountFromBandReviews(reviewId))
                 {
                     view.DisplayMessage("\nYou cannot modify someone elses review. Booting you back to the menuscreen.");
                     Thread.Sleep(wait);

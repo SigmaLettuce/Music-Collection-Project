@@ -629,7 +629,7 @@ namespace CDOrganiserProjectApp
 
         public int GetUsersArtistReviews(int personId)
         {
-            string sqlStr = "SELECT reviewID, albumName, tierTag, favourite FROM Contents.tblArtistReviews, Contents.tblArtistAlbums, Properties.tblAccounts, Properties.tblTier WHERE tblAccounts.personID = @currentPerson AND tblArtistReviews.albumID = tblArtistAlbums.albumID AND tblArtistReviews.tierID = tblTier.tierID AND tblArtistReviews.personID = tblAccounts.personID";
+            string sqlStr = "SELECT reviewID, albumName, tierTag, favourite FROM Contents.tblArtistReviews, Contents.tblArtistAlbums, Properties.tblAccounts, Properties.tblTier WHERE tblArtistReviews.personID = @currentPerson AND tblArtistReviews.albumID = tblArtistAlbums.albumID AND tblArtistReviews.tierID = tblTier.tierID AND tblArtistReviews.personID = tblAccounts.personID";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
                 cmd.Parameters.AddWithValue("@currentPerson", personId);
@@ -725,7 +725,7 @@ namespace CDOrganiserProjectApp
 
         public int GetUsersBandReviews(int personId)
         {
-            string sqlStr = "SELECT reviewID, albumName, tierTag, favourite FROM Contents.tblBandReviews, Contents.tblBandAlbums, Properties.tblAccounts, Properties.tblTier WHERE tblAccounts.personID = @currentPerson AND tblBandReviews.albumID = tblBandAlbums.albumID AND tblBandReviews.tierID = tblTier.tierID AND tblBandReviews.personID = tblAccounts.personID";
+            string sqlStr = "SELECT reviewID, albumName, tierTag, favourite FROM Contents.tblBandReviews, Contents.tblBandAlbums, Properties.tblAccounts, Properties.tblTier WHERE tblBandReviews.personID = @currentPerson AND tblBandReviews.albumID = tblBandAlbums.albumID AND tblBandReviews.tierID = tblTier.tierID AND tblBandReviews.personID = tblAccounts.personID";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
                 cmd.Parameters.AddWithValue("@currentPerson", personId);
@@ -811,13 +811,14 @@ namespace CDOrganiserProjectApp
 
 
         // Checks the role and persons ID against themselves, then returns a match for a persons identification number in the database.
-        public int FetchAccount(int personId)
+        public int FetchAccount(string username)
         {
+            int personId = 0; // Had to be initialised outside to remain within scope. The value gets overwritten after the data reader passes what is read through the integer.
 
-            string sqlStr = $"SELECT personID FROM Properties.tblAccounts WHERE personID = @personId";
+            string sqlStr = $"SELECT personID FROM Properties.tblAccounts WHERE username = @username";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
-                cmd.Parameters.AddWithValue("@personId", personId);
+                cmd.Parameters.AddWithValue("@username", username);
 
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
@@ -974,19 +975,20 @@ namespace CDOrganiserProjectApp
 
         // These four check if an album is already marked as a favourite, or lost.
 
-        public bool FetchFavouriteFromArtistReviews(bool favourite)
+        public bool FetchFavouriteFromArtistReviews(int reviewId)
         {
+            bool favourite = true;
 
-            string sqlStr = $"SELECT personID FROM Contents.tblArtistReviews WHERE favourite = @favourite";
+            string sqlStr = $"SELECT favourite FROM Contents.tblArtistReviews WHERE reviewID = @reviewId";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
-                cmd.Parameters.AddWithValue("@favourite", favourite);
+                cmd.Parameters.AddWithValue("@reviewId", reviewId);
 
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())
                     {
-                        int personId = Convert.ToInt32(reader["personID"]);
+                         favourite = Convert.ToBoolean(reader["favourite"]);
                     }
                 }
 
