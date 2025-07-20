@@ -12,3 +12,5 @@ It is important to note that this software is not cross-platform. Support for op
 User requirements
 -	Windows 10/11
 
+> [!WARNING]
+> BE WARNED: ALL INVALID INPUTS WILL BOOT YOU BACK TO THE MAIN MENU.
