@@ -16,6 +16,7 @@ namespace CDOrganiserProjectApp
         private static StorageManager storageManager; // 
         private static ConsoleView view; // The
         
+
         static int accountId; // This is the variable that stores an Account ID; Declared as a static variable so it is accessible across all instances
         static int roleId;
         static bool logStatus;
@@ -5294,16 +5295,18 @@ namespace CDOrganiserProjectApp
                 view.DisplayMessage("\nRename the record... ");
                 string artistName = view.GetInput();
 
-                int rowsAffected = storageManager.UpdateArtistById(artistId, artistName);
-                view.DisplayMessage($"\nUpdated {rowsAffected} records.");
+                if (artistId < 0 || artistId > artists.Count)
+                {
+                    view.DisplayMessage("\n  Please enter a valid parameter listed. If you want to create a new listing, please navigate to such.");
 
-            }
-            catch (IndexOutOfRangeException e)
-            { 
-                view.DisplayMessage("\n  Please enter a valid parameter listed. If you want to create a new listing, please navigate to such.");
-                view.DisplayMessage(e.Message);
-
-                UpdateArtistName();
+                    UpdateArtistName();
+                }
+                else
+                {
+                    int rowsAffected = storageManager.UpdateArtistById(artistId, artistName);
+                    view.DisplayMessage($"\nUpdated {rowsAffected} records.");
+                }
+                    
 
             }
             catch (FormatException e)
@@ -5315,8 +5318,7 @@ namespace CDOrganiserProjectApp
                 
             }
 
-
-
+            
         }
 
         private static void InsertNewArtist()

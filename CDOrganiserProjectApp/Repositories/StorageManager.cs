@@ -972,6 +972,28 @@ namespace CDOrganiserProjectApp
             }
         }  
 
+        public string FetchFirstName(int personId)
+        {
+            string fName = "";
+
+            string sqlStr = $"SELECT fname FROM Properties.tblAccounts WHERE personID = @personId";
+            using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
+            {
+                cmd.Parameters.AddWithValue("@personId", personId);
+
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        fName = reader["fname"].ToString();
+                    }
+
+                }
+
+                return fName;
+            }
+        }  
+
 
         // These four check if an album is already marked as a favourite, or lost.
 

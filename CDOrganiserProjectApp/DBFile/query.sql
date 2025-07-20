@@ -1,1 +1,1 @@
-﻿SELECT COUNT(tblBandAlbums.albumID) as 'Count', YEAR(tblBandAlbums.dateOfRelease) as 'dateOfRelease' FROM Contents.tblBandAlbums GROUP BY YEAR(tblBandAlbums.dateOfRelease) ORDER BY 'dateOfRelease'
+﻿SELECT * FROM Properties.tblAccounts
