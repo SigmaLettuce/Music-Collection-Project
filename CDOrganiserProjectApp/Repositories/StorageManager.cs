@@ -465,13 +465,13 @@ namespace CDOrganiserProjectApp
             }
         }
         
-        public int LostArtist(int albumId, bool favourite)
+        public int LostArtist(int albumId, bool lost)
         {
             string sqlStr = $"UPDATE Contents.tblArtistAlbums SET lost = @lost WHERE albumID = @albumId";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
                 cmd.Parameters.AddWithValue("@albumId", albumId);
-                cmd.Parameters.AddWithValue("@favourite", favourite);                
+                cmd.Parameters.AddWithValue("@lost", lost);                
 
                 return cmd.ExecuteNonQuery();
             }
@@ -565,13 +565,13 @@ namespace CDOrganiserProjectApp
             }
         }
 
-        public int LostBand(int albumId, bool favourite)
+        public int LostBand(int albumId, bool lost)
         {
             string sqlStr = $"UPDATE Contents.tblBandAlbums SET lost = @lost WHERE albumID = @albumId";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
                 cmd.Parameters.AddWithValue("@albumId", albumId);
-                cmd.Parameters.AddWithValue("@favourite", favourite);                
+                cmd.Parameters.AddWithValue("@lost", lost);                
 
                 return cmd.ExecuteNonQuery();
             }
