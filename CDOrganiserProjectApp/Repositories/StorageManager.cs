@@ -1039,19 +1039,20 @@ namespace CDOrganiserProjectApp
             }
         }
 
-        public bool FetchLostFromArtistAlbums(bool lost)
+        public bool FetchLostFromArtistAlbums(int albumId)
         {
+            bool lost = true;
 
-            string sqlStr = $"SELECT albumID FROM Contents.tblArtistAlbums WHERE lost = @lost";
+            string sqlStr = $"SELECT lost FROM Contents.tblArtistAlbums WHERE albumId = @albumId";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
-                cmd.Parameters.AddWithValue("@lost", lost);
+                cmd.Parameters.AddWithValue("@albumId", albumId);
 
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())
                     {
-                        int albumId = Convert.ToInt32(reader["albumID"]);
+                         lost = Convert.ToBoolean(reader["lost"]);
                     }
                 }
 
@@ -1059,19 +1060,20 @@ namespace CDOrganiserProjectApp
             }
         }
 
-        public bool FetchLostFromBandAlbums(bool lost)
+        public bool FetchLostFromBandAlbums(int albumId)
         {
+            bool lost = true;
 
-            string sqlStr = $"SELECT albumID FROM Contents.tblBandAlbums WHERE lost = @lost";
+            string sqlStr = $"SELECT lost FROM Contents.tblBandAlbums WHERE albumId = @albumId";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
-                cmd.Parameters.AddWithValue("@lost", lost);
+                cmd.Parameters.AddWithValue("@albumId", albumId);
 
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())
                     {
-                        int albumId = Convert.ToInt32(reader["albumID"]);
+                         lost = Convert.ToBoolean(reader["lost"]);
                     }
                 }
 
