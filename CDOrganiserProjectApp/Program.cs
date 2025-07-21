@@ -13,14 +13,15 @@ namespace CDOrganiserProjectApp
          
         \*                   */
         
-        private static StorageManager storageManager; // 
-        private static ConsoleView view; // The
+        private static StorageManager storageManager; 
+        private static ConsoleView view; 
 
-        static int accountId; // This is the variable that stores an Account ID; Declared as a static variable so it is accessible across all instances
+        static int accountId; 
         static int roleId;
+
         static bool logStatus;
-        
-        const int wait = 1000; 
+
+        static int wait = 1000; 
 
         
         static void Main(string[] args)
@@ -36,13 +37,14 @@ namespace CDOrganiserProjectApp
         private static void StartMenuscreenOptions()
         {
 
-            string connectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=HomeMusicCollectionDatabase;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False";
+            string pathToMdf = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "New Database.mdf");
+            string connectionString = $@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={pathToMdf};Integrated Security=True;Connect Timeout=30;";
+
             storageManager = new StorageManager(connectionString);
 
             logStatus = false;
 
             bool invalid = true; // A variable that evaluates the continuation of a process.
-
 
             string input = view.StartMenu(); // Calls the display, and returns a prompt for input.
             view.DisplayMessage("");
@@ -91,7 +93,7 @@ namespace CDOrganiserProjectApp
 
 
             
-        }
+        } // The Start method.
 
         private static void Register() // The Register method. Essentially an insert.
         {
@@ -2807,10 +2809,6 @@ namespace CDOrganiserProjectApp
 
 
         // The data-modifying commands for the Bands table.   
-        private static void BandPanel()
-        {
-
-        }
 
         private static void UpdateBandName()
         {
@@ -2908,10 +2906,6 @@ namespace CDOrganiserProjectApp
 
 
         // The data-modifying commands for the Genres table.
-        private static void GenrePanel()
-        {
-
-        }
 
         private static void UpdateGenreName()
         {
@@ -2935,7 +2929,7 @@ namespace CDOrganiserProjectApp
                 view.DisplayMessage("\n  Please enter a valid parameter listed. If you want to create a new listing, please navigate to such.");
                 view.DisplayMessage(e.Message);
 
-                UpdateGenreName();
+                AdminMenuscreenOptions();
 
             }
             catch (FormatException e)
@@ -2943,7 +2937,7 @@ namespace CDOrganiserProjectApp
                 view.DisplayMessage("\n  Please use the proper formatting.");
                 view.DisplayMessage(e.Message);
 
-                UpdateGenreName();
+                AdminMenuscreenOptions();
     
             }
 
@@ -3012,10 +3006,6 @@ namespace CDOrganiserProjectApp
 
 
         // The data-modifying commands for the Formats table.
-        private static void FormatPanel()
-        {
-
-        }
 
         private static void UpdateFormatName()
         {
@@ -3114,10 +3104,6 @@ namespace CDOrganiserProjectApp
 
 
         // The data-modifying commands for the Artists table.
-        private static void ArtistPanel()
-        {
-
-        }
 
         private static void UpdateArtistName()
         {
@@ -3212,10 +3198,6 @@ namespace CDOrganiserProjectApp
 
 
         // The data-modifying commands for the Rooms table.
-        private static void RoomPanel()
-        {
-
-        }
 
         private static void UpdateRoomName()
         {
@@ -3312,10 +3294,6 @@ namespace CDOrganiserProjectApp
 
 
         // The data-modifying commands for the Shelves table.
-        private static void ShelfPanel()
-        {
-
-        }
 
         private static void UpdateShelfRoom()
         {
@@ -3424,11 +3402,6 @@ namespace CDOrganiserProjectApp
 
 
         // The data-modifying commands for the Rows table.
-        private static void RowPanel()
-        {
-
-        }
-
         private static void UpdateRow()
         {
             
@@ -3537,10 +3510,6 @@ namespace CDOrganiserProjectApp
 
 
         // The data-modifying commands for the accounts.
-        private static void AccountPanel()
-        {
-
-        }
 
         private static void CreateUser()
         {
@@ -3719,17 +3688,7 @@ namespace CDOrganiserProjectApp
         }
 
 
-        private static void AlbumPanel()
-        {
-
-        }
-
-
         // The data-modifying commands for the Artist Albums table.
-        private static void ArtistAlbumPanel()
-        {
-
-        }
 
         private static void UpdateArtistAlbum()
         {
@@ -3918,7 +3877,7 @@ namespace CDOrganiserProjectApp
                     }
 
                 int rowsAffected = storageManager.LostArtist(albumId, lost);
-                view.DisplayMessage($"\nMarked {rowsAffected} records as lost.");
+                view.DisplayMessage($"\nMarked/unmarked {rowsAffected} records as lost.");
 
             }
             catch (FormatException e)
@@ -3934,10 +3893,6 @@ namespace CDOrganiserProjectApp
 
 
         // The data-modifying commands for the Band Albums table.
-        private static void BandAlbumPanel()
-        {
-
-        }
 
         private static void UpdateBandAlbum()
         {
@@ -4139,17 +4094,7 @@ namespace CDOrganiserProjectApp
         }
 
 
-        private static void ReviewPanel()
-        {
-
-        }
-
-
         // The data-modifying commands for the Artist Albums Reviews table.
-        private static void ArtistReviewPanel()
-        {
-
-        }
 
         private static void UpdateArtistReview()
         {
@@ -4370,10 +4315,6 @@ namespace CDOrganiserProjectApp
 
 
         // The data-modifying commands for the Band Albums Reviews table.
-        private static void BandReviewPanel()
-        {
-
-        }
 
         private static void UpdateBandReview()
         {
@@ -4601,9 +4542,12 @@ namespace CDOrganiserProjectApp
 
         /*
         
-        UPDATE:
+        THE IDEA:
 
-        All methods used to update a field and/or fields are updated from 
+            All methods used to update a field and/or fields are updated by calling the methods that are responsible for establishing a bridge between themselves and the database 
+            when active. These methods are parameterised, and they are called to pass the inputs of the user through their instance. This applies to inserting and deleting as well.
+
+            They are accessible by instantiating the Storage Manager class as a private static, where the same applies to the Console View.
           
         */
 
@@ -4614,7 +4558,7 @@ namespace CDOrganiserProjectApp
 
             try
             {
-                view.DisplayMessage("\nEnter the name... ");
+                view.DisplayMessage("\nEnter the name... \n");
                 string search = view.GetInput();
 
                 storageManager.SearchGenres(search);
@@ -4636,7 +4580,7 @@ namespace CDOrganiserProjectApp
 
             try
             {
-                view.DisplayMessage("\nEnter the name... ");
+                view.DisplayMessage("\nEnter the name... \n");
                 string search = view.GetInput();
 
                 storageManager.SearchArtists(search);
@@ -4658,7 +4602,7 @@ namespace CDOrganiserProjectApp
 
             try
             {
-                view.DisplayMessage("\nEnter the name... ");
+                view.DisplayMessage("\nEnter the name... \n");
                 string search = view.GetInput();
 
                 storageManager.SearchBands(search);
@@ -4680,7 +4624,7 @@ namespace CDOrganiserProjectApp
 
             try
             {
-                view.DisplayMessage("\nEnter the ranking... ");
+                view.DisplayMessage("\nEnter the ranking... \n");
                 string search = view.GetInput();
 
                 storageManager.SearchBandReviews(search);
@@ -4702,7 +4646,7 @@ namespace CDOrganiserProjectApp
 
             try
             {
-                view.DisplayMessage("\nEnter the ranking... ");
+                view.DisplayMessage("\nEnter the ranking... \n");
                 string search = view.GetInput();
 
                 storageManager.SearchArtistReviews(search);
@@ -4724,7 +4668,7 @@ namespace CDOrganiserProjectApp
 
             try
             {
-                view.DisplayMessage("\nEnter the name... ");
+                view.DisplayMessage("\nEnter the name... \n");
                 string search = view.GetInput();
 
                 storageManager.SearchArtistAlbums(search);
@@ -4746,7 +4690,7 @@ namespace CDOrganiserProjectApp
 
             try
             {
-                view.DisplayMessage("\nEnter the name... ");
+                view.DisplayMessage("\nEnter the name... \n");
                 string search = view.GetInput();
 
                 storageManager.SearchBandAlbums(search);

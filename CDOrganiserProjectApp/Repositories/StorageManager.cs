@@ -235,7 +235,7 @@ namespace CDOrganiserProjectApp
             string sqlStr = "SELECT * FROM Properties.tblStorageRoom";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
-                Console.WriteLine("ID:\tROOM:");
+                Console.WriteLine("ID:\tROOM:\n");
 
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
@@ -294,7 +294,7 @@ namespace CDOrganiserProjectApp
             {
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
-                    Console.WriteLine("ID:\tTAG:\tROOM:");
+                    Console.WriteLine("ID:\tTAG:\tROOM:\n");
 
                     while (reader.Read())
                     {
@@ -410,10 +410,13 @@ namespace CDOrganiserProjectApp
             {
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
-                    Console.WriteLine("ID:\tNAME:\tCATEGORY:\tRELEASE DATE:\tFORMAT:\tARTIST:\tROW:\tFAVOURITE:\n");
+
+                    string[] headers = { "ID:", "NAME:" , "CATEGORY:" , "RELEASE DATE:" , "FORMAT:" , "ARTIST:" , "ROW:" , "FAVOURITE:" };
+
+                    Console.WriteLine("{0, -20}{1, -40}{2, -20}{3, -20}{4, -20}{5, -40}{6, -20}{7, -20}", headers[0],  headers[1],  headers[2],  headers[3],  headers[4],  headers[5],  headers[6],  headers[7] + "\n");
 
                     while (reader.Read())
-                    {
+                    {    
                         int albumId = Convert.ToInt32(reader["albumID"]);
                         string albumName = reader["albumName"].ToString();
                         string genreName = reader["genreName"].ToString();
@@ -423,7 +426,7 @@ namespace CDOrganiserProjectApp
                         string shelfRow = reader["shelfRow"].ToString();     
                         bool lost = Convert.ToBoolean(reader["lost"]);
 
-                        Console.WriteLine($"{albumId}\t{albumName}\t{genreName}\t{dateOfRelease.ToString("d")}\t{formatName}\t{artistName}\t{shelfRow}\t{lost}\n");
+                        Console.WriteLine("{0, -20}{1, -40}{2, -20}{3, -20}{4, -20}{5, -40}{6, -20}{7, -20}", albumId.ToString(), albumName, genreName, dateOfRelease.ToString("d"), formatName, artistName, shelfRow, lost + "\n");
                         Thread.Sleep(wait);
                     }
                 }
@@ -509,7 +512,10 @@ namespace CDOrganiserProjectApp
             {
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
-                    Console.WriteLine("ID:\tNAME:\tCATEGORY:\tRELEASE DATE:\tFORMAT:\tARTIST:\tROW:\tFAVOURITE:\n");
+
+                    string[] headers = { "ID:", "NAME:" , "CATEGORY:" , "RELEASE DATE:" , "FORMAT:" , "ARTIST:" , "ROW:" , "FAVOURITE:" };
+
+                    Console.WriteLine("{0, -20}{1, -40}{2, -20}{3, -20}{4, -20}{5, -40}{6, -20}{7, -20}", headers[0],  headers[1],  headers[2],  headers[3],  headers[4],  headers[5],  headers[6],  headers[7] + "\n");
 
                     while (reader.Read())
                     {
@@ -522,7 +528,7 @@ namespace CDOrganiserProjectApp
                         string shelfRow = reader["shelfRow"].ToString();
                         bool lost = Convert.ToBoolean(reader["lost"]);
 
-                        Console.WriteLine($"{albumId}\t{albumName}\t{genreName}\t{dateOfRelease.ToString("d")}\t{formatName}\t{bandName}\t{shelfRow}\t{lost}\n");
+                        Console.WriteLine("{0, -20}{1, -40}{2, -20}{3, -20}{4, -20}{5, -40}{6, -20}{7, -20}", albumId.ToString(), albumName, genreName, dateOfRelease.ToString("d"), formatName, bandName, shelfRow, lost + "\n");
                         Thread.Sleep(wait);
                     }
                 }
@@ -810,7 +816,7 @@ namespace CDOrganiserProjectApp
         }
 
 
-        // Checks the role and persons ID against themselves, then returns a match for a persons identification number in the database.
+        // Uses the username credential as a parameter for usernames to pass through the scalar variable to return the ID of that person.
         public int FetchAccount(string username)
         {
             int personId = 0; // Had to be initialised outside to remain within scope. The value gets overwritten after the data reader passes what is read through the integer.
@@ -972,28 +978,6 @@ namespace CDOrganiserProjectApp
             }
         }  
 
-        public string FetchFirstName(int personId)
-        {
-            string fName = "";
-
-            string sqlStr = $"SELECT fname FROM Properties.tblAccounts WHERE personID = @personId";
-            using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
-            {
-                cmd.Parameters.AddWithValue("@personId", personId);
-
-                using (SqlDataReader reader = cmd.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        fName = reader["fname"].ToString();
-                    }
-
-                }
-
-                return fName;
-            }
-        }  
-
 
         // These four check if an album is already marked as a favourite, or lost.
 
@@ -1089,7 +1073,7 @@ namespace CDOrganiserProjectApp
             string sqlStr = "SELECT * FROM Properties.tblFormat";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
-                Console.WriteLine("ID:  NAME:");
+                Console.WriteLine("ID:\tNAME:\n");
 
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
@@ -1099,7 +1083,7 @@ namespace CDOrganiserProjectApp
                         string formatName = reader["formatName"].ToString();
                         formats.Add(new Formats(formatId, formatName));
 
-                        Console.WriteLine($"{formatId}, {formatName}\n");
+                        Console.WriteLine($"{formatId}\t{formatName}\n");
                     }
                 }
             }

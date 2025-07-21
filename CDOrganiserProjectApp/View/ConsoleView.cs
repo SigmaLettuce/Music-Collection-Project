@@ -485,7 +485,7 @@ namespace CDOrganiserProjectApp.View
 
             foreach (Bands band in bands)
             {
-                Console.WriteLine($"{band.BandId}, {band.BandName}\n");
+                Console.WriteLine($"{band.BandId}\t{band.BandName}\n");
                 Thread.Sleep(wait);
 
             }   
@@ -493,7 +493,7 @@ namespace CDOrganiserProjectApp.View
 
         public void DisplayGenres(List<Genres> genres)
         {
-            Console.WriteLine("ID:\tNAME:");
+            Console.WriteLine("ID:\tNAME:\n");
 
             foreach (Genres genre in genres)
             {
@@ -539,7 +539,7 @@ namespace CDOrganiserProjectApp.View
         /*
           
          The Input Getters.
-        Rather than retyping the readline, I can easily convert inputs.
+        Rather than retyping the readline, I can easily convert inputs inside of the main program.
 
         */ 
 
