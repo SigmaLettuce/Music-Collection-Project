@@ -286,6 +286,7 @@ namespace CDOrganiserProjectApp
         }
 
 
+
         public List<Shelves> GetAllShelves()
         {
             List<Shelves> shelves = new List<Shelves>();
@@ -312,7 +313,7 @@ namespace CDOrganiserProjectApp
 
         public int InsertShelf(Shelves shelves)
         {
-            using (SqlCommand cmd = new SqlCommand($"INSERT INTO Properties.tblShelf (shelfTag, roomName) VALUES (@shelfTag, @roomName); SELECT SCOPE_IDENTITY();", conn))
+            using (SqlCommand cmd = new SqlCommand($"INSERT INTO Properties.tblShelf (shelfTag, roomID) VALUES (@shelfTag, @roomId); SELECT SCOPE_IDENTITY();", conn))
             {
                 cmd.Parameters.AddWithValue("@shelfTag", shelves.ShelfTag);
                 cmd.Parameters.AddWithValue("@roomId", shelves.RoomId);
@@ -410,13 +411,10 @@ namespace CDOrganiserProjectApp
             {
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
-
-                    string[] headers = { "ID:", "NAME:" , "CATEGORY:" , "RELEASE DATE:" , "FORMAT:" , "ARTIST:" , "ROW:" , "FAVOURITE:" };
-
-                    Console.WriteLine("{0, -20}{1, -40}{2, -20}{3, -20}{4, -20}{5, -40}{6, -20}{7, -20}", headers[0],  headers[1],  headers[2],  headers[3],  headers[4],  headers[5],  headers[6],  headers[7] + "\n");
+                    Console.WriteLine("ID:\tNAME:\tCATEGORY:\tRELEASE DATE:\tFORMAT:\tARTIST:\tROW:\tFAVOURITE:\n");
 
                     while (reader.Read())
-                    {    
+                    {
                         int albumId = Convert.ToInt32(reader["albumID"]);
                         string albumName = reader["albumName"].ToString();
                         string genreName = reader["genreName"].ToString();
@@ -426,7 +424,7 @@ namespace CDOrganiserProjectApp
                         string shelfRow = reader["shelfRow"].ToString();     
                         bool lost = Convert.ToBoolean(reader["lost"]);
 
-                        Console.WriteLine("{0, -20}{1, -40}{2, -20}{3, -20}{4, -20}{5, -40}{6, -20}{7, -20}", albumId.ToString(), albumName, genreName, dateOfRelease.ToString("d"), formatName, artistName, shelfRow, lost + "\n");
+                        Console.WriteLine($"{albumId}\t{albumName}\t{genreName}\t{dateOfRelease.ToString("d")}\t{formatName}\t{artistName}\t{shelfRow}\t{lost}\n");
                         Thread.Sleep(wait);
                     }
                 }
@@ -512,10 +510,7 @@ namespace CDOrganiserProjectApp
             {
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
-
-                    string[] headers = { "ID:", "NAME:" , "CATEGORY:" , "RELEASE DATE:" , "FORMAT:" , "ARTIST:" , "ROW:" , "FAVOURITE:" };
-
-                    Console.WriteLine("{0, -20}{1, -40}{2, -20}{3, -20}{4, -20}{5, -40}{6, -20}{7, -20}", headers[0],  headers[1],  headers[2],  headers[3],  headers[4],  headers[5],  headers[6],  headers[7] + "\n");
+                    Console.WriteLine("ID:\tNAME:\tCATEGORY:\tRELEASE DATE:\tFORMAT:\tARTIST:\tROW:\tFAVOURITE:\n");
 
                     while (reader.Read())
                     {
@@ -528,7 +523,7 @@ namespace CDOrganiserProjectApp
                         string shelfRow = reader["shelfRow"].ToString();
                         bool lost = Convert.ToBoolean(reader["lost"]);
 
-                        Console.WriteLine("{0, -20}{1, -40}{2, -20}{3, -20}{4, -20}{5, -40}{6, -20}{7, -20}", albumId.ToString(), albumName, genreName, dateOfRelease.ToString("d"), formatName, bandName, shelfRow, lost + "\n");
+                        Console.WriteLine($"{albumId}\t{albumName}\t{genreName}\t{dateOfRelease.ToString("d")}\t{formatName}\t{bandName}\t{shelfRow}\t{lost}\n");
                         Thread.Sleep(wait);
                     }
                 }

@@ -1780,7 +1780,7 @@ namespace CDOrganiserProjectApp
                             switch (cmd.ToLower())
                             {
                                 case "up":
-                                    UpdateArtistName();
+                                    UpdateGenreName();
 
                                     invalid = false;
 
@@ -1789,7 +1789,7 @@ namespace CDOrganiserProjectApp
                                 break;
 
                                 case "ins":
-                                    UpdateArtistAlbum();
+                                    InsertNewGenre();
 
                                     invalid = false;
 
@@ -1798,7 +1798,7 @@ namespace CDOrganiserProjectApp
                                 break;
 
                                 case "del":
-                                    DeleteArtistById();
+                                    DeleteGenreById();
 
                                     invalid = false;
 
@@ -3341,6 +3341,7 @@ namespace CDOrganiserProjectApp
                 char shelfTag = view.GetCharInput();
 
                 view.DisplayMessage("\nEnter the new room... ");
+                List<Rooms> rooms = storageManager.GetAllRooms();
                 int roomId = view.GetIntInput();
                 int shelfTagId = 0;
 
