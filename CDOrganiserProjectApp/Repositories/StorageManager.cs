@@ -533,9 +533,8 @@ namespace CDOrganiserProjectApp
         
         public int InsertBandAlbum(BandAlbums albums)
         {
-            using (SqlCommand cmd = new SqlCommand($"INSERT INTO Contents.tblBandAlbums (albumName, genreID, dateOfRelease, formatID, bandID, shelfRowID, lost) VALUES (@AlbumId, @GenreId, @DateOfRelease, @FormatId, @BandId, @ShelfRowId, @Lost); SELECT SCOPE_IDENTITY();", conn))
+            using (SqlCommand cmd = new SqlCommand($"INSERT INTO Contents.tblBandAlbums (albumName, genreID, dateOfRelease, formatID, bandID, shelfRowID, lost) VALUES (@AlbumName, @GenreId, @DateOfRelease, @FormatId, @BandId, @ShelfRowId, @Lost); SELECT SCOPE_IDENTITY();", conn))
             {
-                cmd.Parameters.AddWithValue("@AlbumId", albums.AlbumId);
                 cmd.Parameters.AddWithValue("@AlbumName", albums.AlbumName);
                 cmd.Parameters.AddWithValue("@GenreId", albums.GenreId);
                 cmd.Parameters.AddWithValue("@DateOfRelease", albums.DateOfRelease);
@@ -656,14 +655,14 @@ namespace CDOrganiserProjectApp
             return personId;
         }
         
-        public int InsertArtistReview(ArtistReviews albums)
+        public int InsertArtistReview(ArtistReviews reviews)
         {
-            using (SqlCommand cmd = new SqlCommand($"INSERT INTO Contents.ArtistReviews (albumID, personID, tierID, favourite) VALUES (@AlbumId, @PersonId, @TierId, @Favourite); SELECT SCOPE_IDENTITY();", conn))
+            using (SqlCommand cmd = new SqlCommand($"INSERT INTO Contents.tblArtistReviews (albumID, personID, tierID, favourite) VALUES (@AlbumId, @PersonId, @TierId, @Favourite); SELECT SCOPE_IDENTITY();", conn))
             {
-                cmd.Parameters.AddWithValue("@AlbumId", albums.AlbumId);
-                cmd.Parameters.AddWithValue("@PersonId", albums.PersonId);
-                cmd.Parameters.AddWithValue("@TierId", albums.TierId);
-                cmd.Parameters.AddWithValue("@Favourite", albums.Favourite);
+                cmd.Parameters.AddWithValue("@AlbumId", reviews.AlbumId);
+                cmd.Parameters.AddWithValue("@PersonId", reviews.PersonId);
+                cmd.Parameters.AddWithValue("@TierId", reviews.TierId);
+                cmd.Parameters.AddWithValue("@Favourite", reviews.Favourite);
                 
 
                 return Convert.ToInt32(cmd.ExecuteScalar());
@@ -752,14 +751,14 @@ namespace CDOrganiserProjectApp
             return personId;
         }
         
-        public int InsertBandReview(BandReviews albums)
+        public int InsertBandReview(BandReviews reviews)
         {
-            using (SqlCommand cmd = new SqlCommand($"INSERT INTO Contents.BandReviews (albumID, personID, tierID, favourite) VALUES (@AlbumId, @PersonId, @TierId, @Favourite); SELECT SCOPE_IDENTITY();", conn))
+            using (SqlCommand cmd = new SqlCommand($"INSERT INTO Contents.tblBandReviews (albumID, personID, tierID, favourite) VALUES (@AlbumId, @PersonId, @TierId, @Favourite); SELECT SCOPE_IDENTITY();", conn))
             {
-                cmd.Parameters.AddWithValue("@AlbumId", albums.AlbumId);
-                cmd.Parameters.AddWithValue("@PersonId", albums.PersonId);
-                cmd.Parameters.AddWithValue("@TierId", albums.TierId);
-                cmd.Parameters.AddWithValue("@Favourite", albums.Favourite);
+                cmd.Parameters.AddWithValue("@AlbumId", reviews.AlbumId);
+                cmd.Parameters.AddWithValue("@PersonId", reviews.PersonId);
+                cmd.Parameters.AddWithValue("@TierId", reviews.TierId);
+                cmd.Parameters.AddWithValue("@Favourite", reviews.Favourite);
                 
 
                 return Convert.ToInt32(cmd.ExecuteScalar());

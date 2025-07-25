@@ -2873,6 +2873,7 @@ namespace CDOrganiserProjectApp
         }
 
         private static void DeleteBandById()
+
         {
             
 
@@ -4115,6 +4116,8 @@ namespace CDOrganiserProjectApp
 
                 view.DisplayMessage("\nEnter a ranking identification number...");
                 List<Tiers> tiers = storageManager.GetAllTiers();
+                view.DisplayTiers(tiers);
+
                 int tierId = view.GetIntInput();
 
                 int personId = accountId;
@@ -4123,7 +4126,7 @@ namespace CDOrganiserProjectApp
 
                 
 
-                if (personId.Equals(storageManager.FetchAccountFromArtistReviews(reviewId)))
+                if (personId != storageManager.FetchAccountFromArtistReviews(reviewId))
                 {
                     view.DisplayMessage("\nYou cannot modify someone elses review. Booting you back to the menuscreen.");
                     Thread.Sleep(wait);
@@ -4176,6 +4179,8 @@ namespace CDOrganiserProjectApp
 
                 view.DisplayMessage("\nEnter a ranking identification number...");
                 List<Tiers> tiers = storageManager.GetAllTiers();
+                view.DisplayTiers(tiers);
+
                 int tierId = view.GetIntInput();
 
                 int personId = accountId;
@@ -4219,7 +4224,7 @@ namespace CDOrganiserProjectApp
 
 
 
-                if (accountId.Equals(storageManager.FetchAccountFromArtistReviews(reviewId)))
+                if (accountId != storageManager.FetchAccountFromArtistReviews(reviewId))
                 {
                     view.DisplayMessage("\nYou cannot modify someone elses review. Booting you back to the menuscreen.");
                     Thread.Sleep(wait);
@@ -4335,13 +4340,15 @@ namespace CDOrganiserProjectApp
 
                 view.DisplayMessage("\nEnter a ranking identification number...");
                 List<Tiers> tiers = storageManager.GetAllTiers();
+                view.DisplayTiers(tiers);
+
                 int tierId = view.GetIntInput();
 
                 int personId = accountId;
   
                 bool favourite = false;
 
-                if (personId.Equals(storageManager.FetchAccountFromBandReviews(reviewId)))
+                if (personId != storageManager.FetchAccountFromBandReviews(reviewId))
                 {
                     view.DisplayMessage("\nYou cannot modify someone elses review. Booting you back to the menuscreen.");
                     Thread.Sleep(wait);
@@ -4394,6 +4401,8 @@ namespace CDOrganiserProjectApp
 
                 view.DisplayMessage("\nEnter a ranking identification number...");
                 List<Tiers> tiers = storageManager.GetAllTiers();
+                view.DisplayTiers(tiers);
+
                 int tierId = view.GetIntInput();
 
                 int personId = accountId;
@@ -4437,7 +4446,7 @@ namespace CDOrganiserProjectApp
 
 
 
-                if (accountId.Equals(storageManager.FetchAccountFromBandReviews(reviewId)))
+                if (accountId != storageManager.FetchAccountFromBandReviews(reviewId))
                 {
                     view.DisplayMessage("\nYou cannot modify someone elses review. Booting you back to the menuscreen.");
                     Thread.Sleep(wait);

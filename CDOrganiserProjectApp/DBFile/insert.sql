@@ -1,4 +1,4 @@
-﻿use HomeMusicCollectionDatabase;
+﻿use "New Database";
 
 SET IDENTITY_INSERT Contents.tblArtists ON;
 
