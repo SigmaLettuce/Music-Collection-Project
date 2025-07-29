@@ -3040,25 +3040,49 @@ namespace CDOrganiserProjectApp
 
             try
             {
-                view.DisplayMessage("\nEnter the identification number... ");
+
                 List<Formats> formats = storageManager.GetAllFormats();
+
+                view.DisplayMessage("\nEnter the identification number... ");
                 int formatId = view.GetIntInput();
+                bool id = view.PassBoundary(formatId, formats.Count);
 
-                view.DisplayMessage("\nRename the record... ");
-                string formatName = view.GetInput();
+                switch (id)
+                {
+                    case true:
+                        view.DisplayMessage("\nRename the record... ");
+                        string formatName = view.GetInput();
+                        bool name = view.PassBoundary(formatName.Length, 15);
 
-                int rowsAffected = storageManager.UpdateFormatById(formatId, formatName);
-                view.DisplayMessage($"\nUpdated {rowsAffected} records.");
+                        switch (name)
+                        {
+                            case true:
+                                int rowsAffected = storageManager.UpdateFormatById(formatId, formatName);
+                                view.DisplayMessage($"\nUpdated {rowsAffected} records.");
+
+                            break;
+
+                            case false:
+                                view.RangeError(wait);
+
+                                UpdateFormatName();
+
+                            break;
+                        }
+
+                    break;
+
+                    case false:
+                        view.RangeError(wait);
+
+                        UpdateFormatName();
+
+                    break;
+
+                }
 
             }
-            catch (IndexOutOfRangeException e)
-            { 
-                view.DisplayMessage("\n  Please enter a valid parameter listed. If you want to create a new listing, please navigate to such.");
-                view.DisplayMessage(e.Message);
 
-                UpdateFormatName();
-
-            }
             catch (FormatException e)
             {
                 view.DisplayMessage("\n  Please use the proper formatting.");
@@ -3136,32 +3160,56 @@ namespace CDOrganiserProjectApp
         {
             try
             {
-                view.DisplayMessage("\nEnter the identification number... ");
+
                 List<Artists> artists = storageManager.GetAllArtists();
+
+                view.DisplayMessage("\nEnter the identification number... ");
                 int artistId = view.GetIntInput();
+                bool id = view.PassBoundary(artistId, artists.Count);
 
-                view.DisplayMessage("\nRename the record... ");
-                string artistName = view.GetInput();
+                switch (id)
+                {
+                    case true:
+                        view.DisplayMessage("\nRename the record... ");
+                        string artistName = view.GetInput();
+                        bool name = view.PassBoundary(artistName.Length, 50);
 
-                int rowsAffected = storageManager.UpdateArtistById(artistId, artistName);
-                view.DisplayMessage($"\nUpdated {rowsAffected} records.");
+                        switch (name)
+                        {
+                            case true:
+                                int rowsAffected = storageManager.UpdateArtistById(artistId, artistName);
+                                view.DisplayMessage($"\nUpdated {rowsAffected} records.");
+
+                            break;
+
+                            case false:
+                                view.RangeError(wait);
+
+                                UpdateArtistName();
+
+                            break;
+                        }
+
+                    break;
+
+                    case false:
+                        view.RangeError(wait);
+
+                        UpdateArtistName();
+
+                    break;
+
+                }
 
             }
-            catch (IndexOutOfRangeException e)
-            { 
-                view.DisplayMessage("\n  Please enter a valid parameter listed. If you want to create a new listing, please navigate to such.");
-                view.DisplayMessage(e.Message);
 
-                UpdateArtistName();
-
-            }
             catch (FormatException e)
             {
                 view.DisplayMessage("\n  Please use the proper formatting.");
                 view.DisplayMessage(e.Message);
 
                 UpdateArtistName();
-                
+    
             }
 
             
