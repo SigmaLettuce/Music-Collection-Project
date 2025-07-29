@@ -871,6 +871,7 @@ namespace CDOrganiserProjectApp
                                     view.DisplayMessage("");
 
                                     Thread.Sleep(wait);
+                                    Console.Clear();
 
                                     invalid = false;
 
@@ -2816,8 +2817,21 @@ namespace CDOrganiserProjectApp
 
             try
             {
+
+                List<Bands> bands = storageManager.GetAllBands();
+
                 view.DisplayMessage("\nEnter the identification number... ");
                 int bandId = view.GetIntInput();
+
+                bool boundary = view.PassBoundary(bandId, bands.Count);
+
+                switch (boundary)
+                {
+                    default:
+
+
+                    break;
+                }
 
                 view.DisplayMessage("\nRename the record... ");
                 string bandName = view.GetInput();

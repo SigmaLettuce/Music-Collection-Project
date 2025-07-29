@@ -1,3 +1,1 @@
-﻿SELECT reviewID, albumName, tierTag, fName, favourite FROM Contents.tblBandReviews, Contents.tblBandAlbums, Properties.tblAccounts, Properties.tblTier WHERE tblBandReviews.albumID = tblBandAlbums.albumID AND tblBandReviews.tierID = tblTier.tierID AND tblBandReviews.personID = tblAccounts.personID
-
-UPDATE Contents.tblBandReviews SET tierID = 2 WHERE reviewID = 1001
+﻿SELECT tblArtists.artistName, tblArtistAlbums.albumName, tblAlbums.genreName FROM Contents.tblArtists, Contents.tblArtistAlbums WHERE tblArtistAlbums.artistID = tblArtists.artistID AND tblArtists.artistName LIKE '[A-J]%' ORDER BY tblArtists.artistName, tblAlbums.albumName, tblAlbums.genreName;

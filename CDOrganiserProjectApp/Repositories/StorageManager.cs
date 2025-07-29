@@ -1159,7 +1159,7 @@ namespace CDOrganiserProjectApp
 
         public void GetAToJArtists()
         {
-            string sqlStr = "SELECT tblArtists.artistName, tblArtistAlbums.albumName, tblAlbums.genreName FROM Contents.tblArtists, Contents.tblAlbums WHERE tblArtistAlbums.artistID = tblArtists.artistID AND tblArtists.artistName LIKE '[A-J]%' ORDER BY tblArtists.artistName, tblAlbums.albumName, tblAlbums.genreName;";
+            string sqlStr = "SELECT tblArtists.artistName, tblArtistAlbums.albumName, tblGenres.genreName FROM Contents.tblArtists, Contents.tblArtistAlbums, Contents.tblGenres WHERE tblArtistAlbums.artistID = tblArtists.artistID AND tblArtistAlbums.genreID = tblGenres.genreID AND tblArtists.artistName LIKE '[A-J]%' ORDER BY tblArtists.artistName asc";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
                 using (SqlDataReader reader = cmd.ExecuteReader())
@@ -1182,7 +1182,7 @@ namespace CDOrganiserProjectApp
 
         public void GetArtistsEarly2000sMusic()
         {
-            string sqlStr = "SELECT tblArtistAlbums.albumName, tblGenres.genreName, tblArtists.artistName FROM Contents.tblArtistAlbums, Contents.tblGenres, Contents.tblArtists WHERE tblArtistAlbums.genreID = tblGenres.genreID AND tblArtistAlbums.artistID = tblArtists.artistID AND tblArtistAlbums.dateOfRelease BETWEEN '20000101' AND '20051231'";
+            string sqlStr = "SELECT tblArtistAlbums.albumName, tblArtists.artistName, tblArtistAlbums.dateOfRelease FROM Contents.tblArtistAlbums, Contents.tblArtists WHERE tblArtistAlbums.artistID = tblArtists.artistID AND tblArtistAlbums.dateOfRelease BETWEEN '20000101' AND '20051231'";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
                 using (SqlDataReader reader = cmd.ExecuteReader())
@@ -1190,10 +1190,10 @@ namespace CDOrganiserProjectApp
                     while (reader.Read())
                     {
                         string albumName = reader["albumName"].ToString();
-                        string genreName = reader["genreName"].ToString();
                         string artistName = reader["artistName"].ToString();
+                        DateTime dateOfRelease = Convert.ToDateTime(reader["dateOfRelease"]);
 
-                        Console.WriteLine($"{albumName}, {genreName}, {artistName}\n");
+                        Console.WriteLine($"{albumName}, {artistName}, {dateOfRelease.ToString("d")}\n");
                         Thread.Sleep(wait);
                     }
                 }
@@ -1278,9 +1278,9 @@ namespace CDOrganiserProjectApp
                     while (reader.Read())
                     {
                         int albumId = Convert.ToInt32(reader["Count"]);
-                        DateTime dateOfRelease = Convert.ToDateTime(reader["dateOfRelease"]);
+                        int dateOfRelease = Convert.ToInt32(reader["dateOfRelease"]);
 
-                        Console.WriteLine($"{albumId}, {dateOfRelease.ToString("d")}\n");
+                        Console.WriteLine($"{albumId}, {dateOfRelease}\n");
                         Thread.Sleep(wait);
                     }
                 }
@@ -1318,7 +1318,7 @@ namespace CDOrganiserProjectApp
 
         public void GetAToJBands()
         {
-            string sqlStr = "SELECT tblBands.bandName, tblBandAlbums.albumName, tblAlbums.genreName FROM Contents.tblBands, Contents.tblAlbums WHERE tblBandAlbums.bandID = tblBands.bandID AND tblBands.bandName LIKE '[A-J]%' ORDER BY tblBands.bandName asc, tblAlbums.albumName, tblAlbums.genreName;";
+            string sqlStr = "SELECT tblBands.bandName, tblBandAlbums.albumName, tblGenres.genreName FROM Contents.tblBands, Contents.tblBandAlbums, Contents.tblGenres WHERE tblBandAlbums.bandID = tblBands.bandID AND tblBandAlbums.genreID = tblGenres.genreID AND tblBands.bandName LIKE '[A-J]%' ORDER BY tblBands.bandName asc";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
                 using (SqlDataReader reader = cmd.ExecuteReader())
@@ -1341,7 +1341,7 @@ namespace CDOrganiserProjectApp
 
         public void GetBandsEarly2000sMusic()
         {
-            string sqlStr = "SELECT tblBandAlbums.albumName, tblGenres.genreName, tblBands.bandName FROM Contents.tblBandAlbums, Contents.tblGenres, Contents.tblBands WHERE tblBandAlbums.genreID = tblGenres.genreID AND tblBandAlbums.bandID = tblBands.bandID AND tblBandAlbums.dateOfRelease BETWEEN '20000101' AND '20051231'";
+            string sqlStr = "SELECT tblBandAlbums.albumName, tblBands.bandName, tblBandAlbums.dateOfRelease FROM Contents.tblBandAlbums, Contents.tblBands WHERE tblBandAlbums.bandID = tblBands.bandID AND tblBandAlbums.dateOfRelease BETWEEN '20000101' AND '20051231'";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
                 using (SqlDataReader reader = cmd.ExecuteReader())
@@ -1349,10 +1349,10 @@ namespace CDOrganiserProjectApp
                     while (reader.Read())
                     {
                         string albumName = reader["albumName"].ToString();
-                        string genreName = reader["genreName"].ToString();
                         string bandName = reader["bandName"].ToString();
+                        DateTime dateOfRelease = Convert.ToDateTime(reader["dateOfRelease"]);
 
-                        Console.WriteLine($"{albumName}, {genreName}, {bandName}\n");
+                        Console.WriteLine($"{albumName}, {bandName}, {dateOfRelease.ToString("d")}\n");
                         Thread.Sleep(wait);
                     }
                 }
@@ -1434,9 +1434,9 @@ namespace CDOrganiserProjectApp
                     while (reader.Read())
                     {
                         int albumId = Convert.ToInt32(reader["Count"]);
-                        DateTime dateOfRelease = Convert.ToDateTime(reader["dateOfRelease"]);
+                        int dateOfRelease = Convert.ToInt32(reader["dateOfRelease"]);
 
-                        Console.WriteLine($"{albumId}, {dateOfRelease.ToString("d")}\n");
+                        Console.WriteLine($"{albumId}, {dateOfRelease}\n");
                         Thread.Sleep(wait);
                     }
                 }
@@ -1642,19 +1642,20 @@ namespace CDOrganiserProjectApp
         public void SearchArtistReviews(string search)
         {
 
-            string sqlStr = $"SELECT tblTier.tierTag FROM Contents.tblArtistReviews, Contents.tblArtistAlbums, Contents.tblArtists, Properties.tblTier WHERE tblArtists.artistName = @search AND tblArtistReviews.tierID = tblTier.tierID AND tblArtistReviews.albumID = tblArtistAlbums.albumID AND tblArtistAlbums.artistID = tblArtists.artistID";
+            string sqlStr = $"SELECT tblTier.tierTag, tblArtistAlbums.albumName FROM Contents.tblArtistReviews, Contents.tblArtistAlbums, Properties.tblTier WHERE tblTier.tierTag = @search AND tblArtistReviews.tierID = tblTier.tierID AND tblArtistReviews.albumID = tblArtistAlbums.albumID";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
                 cmd.Parameters.AddWithValue("@search", search);
-                Console.WriteLine("\nRANK:\n");
+                Console.WriteLine("\nRANK:\tNAME:\n");
 
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())
                     {
                         search = reader["tierTag"].ToString();
+                        string albumName = reader["albumName"].ToString();
 
-                        Console.WriteLine($"{search}\n");
+                        Console.WriteLine($"{search}\t{albumName}\n");
                     }
 
                     Console.WriteLine("\n\t[*]  Return to homepage - Press E + Enter\n");
@@ -1667,19 +1668,20 @@ namespace CDOrganiserProjectApp
         public void SearchBandReviews(string search)
         {
 
-            string sqlStr = $"SELECT tblTier.tierTag FROM Contents.tblBandReviews, Contents.tblBandAlbums, Contents.tblBands, Properties.tblTier WHERE tblTier.tierTag = @search AND tblBandReviews.tierID = tblTier.tierID AND tblBandAlbums.bandID = tblBands.bandID";
+            string sqlStr = $"SELECT tblTier.tierTag, tblBandAlbums.albumName FROM Contents.tblBandReviews, Contents.tblBandAlbums, Properties.tblTier WHERE tblTier.tierTag = @search AND tblBandReviews.tierID = tblTier.tierID AND tblBandReviews.albumID = tblBandAlbums.albumID";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
                 cmd.Parameters.AddWithValue("@search", search);
-                Console.WriteLine("\nRANK:\n");
+                Console.WriteLine("\nRANK:\tNAME:\n");
 
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())
                     {
                         search = reader["tierTag"].ToString();
+                        string albumName = reader["albumName"].ToString();
 
-                        Console.WriteLine($"{search}\n");
+                        Console.WriteLine($"{search}\t{albumName}\n");
                     }
 
                     Console.WriteLine("\n\t[*]  Return to homepage - Press E + Enter\n");
@@ -1692,19 +1694,20 @@ namespace CDOrganiserProjectApp
         public void SearchArtistAlbums(string search)
         {
 
-            string sqlStr = $"SELECT tblArtists.artistName FROM Contents.tblArtistAlbums, Contents.tblArtists WHERE tblArtists.artistName = @search AND tblArtistAlbums.artistID = tblArtists.artistID";
+            string sqlStr = $"SELECT tblArtists.artistName, tblArtistAlbums.albumName FROM Contents.tblArtistAlbums, Contents.tblArtists WHERE tblArtists.artistName = @search AND tblArtistAlbums.artistID = tblArtists.artistID";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
                 cmd.Parameters.AddWithValue("@search", search);
-                Console.WriteLine("\nNAME:\n");
+                Console.WriteLine("\nNAME:\tNAME:\n");
 
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())
                     {
                         search = reader["artistName"].ToString();
+                        string albumName = reader["albumName"].ToString();
 
-                        Console.WriteLine($"{search}\n");
+                        Console.WriteLine($"{search}\t{albumName}\n");
                     }
 
                     Console.WriteLine("\n\t[*]  Return to homepage - Press E + Enter\n");
@@ -1717,19 +1720,20 @@ namespace CDOrganiserProjectApp
         public void SearchBandAlbums(string search)
         {
 
-            string sqlStr = $"SELECT tblBands.bandName FROM Contents.tblBandAlbums, Contents.tblBands WHERE tblBands.bandName = @search AND tblBandAlbums.bandID = tblBands.bandID";
+            string sqlStr = $"SELECT tblBands.bandName, tblBandAlbums.albumName FROM Contents.tblBandAlbums, Contents.tblBands WHERE tblBands.bandName = @search AND tblBandAlbums.bandID = tblBands.bandID";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
                 cmd.Parameters.AddWithValue("@search", search);
-                Console.WriteLine("\nNAME:\n");
+                Console.WriteLine("\nNAME:\tNAME:\n");
 
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())
                     {
                         search = reader["bandName"].ToString();
+                        string albumName = reader["albumName"].ToString();
 
-                        Console.WriteLine($"{search}\n");
+                        Console.WriteLine($"{search}\t{albumName}\n");
                     }
 
                     Console.WriteLine("\n\t[*]  Return to homepage - Press E + Enter\n");

@@ -562,9 +562,9 @@ namespace CDOrganiserProjectApp.View
         }
 
 
-        public bool PassIntBoundary(int i)
+        public bool PassBoundary(int i, int size)
         {
-            bool boundary = i > 0;
+            bool boundary = i > 0 || i <= size;
 
             return boundary;
         }
