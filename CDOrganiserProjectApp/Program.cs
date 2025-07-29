@@ -43,7 +43,7 @@ namespace CDOrganiserProjectApp
             storageManager = new StorageManager(connectionString);
 
             logStatus = false;
-
+            
             bool invalid = true; // A variable that evaluates the continuation of a process.
 
             string input = view.StartMenu(); // Calls the display, and returns a prompt for input.
@@ -127,7 +127,7 @@ namespace CDOrganiserProjectApp
             string fetchPassword = storageManager.ScanPassword(user);
             accountId = storageManager.FetchAccount(user);
             roleId = storageManager.FetchRole(user);
-
+            
 
             // If the given credentials matches with any searches, the user is granted permission, depending on their role for how much can be visible.
 

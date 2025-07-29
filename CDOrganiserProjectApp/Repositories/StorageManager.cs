@@ -669,9 +669,9 @@ namespace CDOrganiserProjectApp
             }
         }
 
-        public int UpdateArtistReviewById(int reviewId, int albumId, int tierId, int personId, bool favourite)
+        public int UpdateArtistReviewById(int reviewId, int albumId, int personId, int tierId, bool favourite)
         {
-            string sqlStr = $"UPDATE Contents.tblArtistAlbums SET albumID = @albumId, tierID = @tierId, personID = @personId, favourite = @favourite WHERE reviewID = @reviewId";
+            string sqlStr = $"UPDATE Contents.tblArtistReviews SET albumID = @albumId, tierID = @tierId, personID = @personId, favourite = @favourite WHERE reviewID = @reviewId";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
                 cmd.Parameters.AddWithValue("@reviewId", reviewId);
@@ -765,7 +765,7 @@ namespace CDOrganiserProjectApp
             }
         }
 
-        public int UpdateBandReviewById(int reviewId, int albumId, int tierId, int personId, bool favourite)
+        public int UpdateBandReviewById(int reviewId, int albumId, int personId, int tierId, bool favourite)
         {
             string sqlStr = $"UPDATE Contents.tblBandReviews SET albumID = @albumId, tierID = @tierId, personID = @personId, favourite = @favourite WHERE reviewID = @reviewId";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
@@ -1639,14 +1639,14 @@ namespace CDOrganiserProjectApp
         }
 
 
-        public void SearchBandReviews(string search)
+        public void SearchArtistReviews(string search)
         {
 
             string sqlStr = $"SELECT tblTier.tierTag FROM Contents.tblArtistReviews, Contents.tblArtistAlbums, Contents.tblArtists, Properties.tblTier WHERE tblArtists.artistName = @search AND tblArtistReviews.tierID = tblTier.tierID AND tblArtistReviews.albumID = tblArtistAlbums.albumID AND tblArtistAlbums.artistID = tblArtists.artistID";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
                 cmd.Parameters.AddWithValue("@search", search);
-                Console.WriteLine("\nNAME:\n");
+                Console.WriteLine("\nRANK:\n");
 
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
@@ -1664,14 +1664,14 @@ namespace CDOrganiserProjectApp
         }
 
 
-        public void SearchArtistReviews(string search)
+        public void SearchBandReviews(string search)
         {
 
-            string sqlStr = $"SELECT tblTier.tierTag FROM Contents.tblBandReviews, Contents.tblBandAlbums, Contents.tblBands, Properties.tblTier WHERE tblBands.bandName = @search AND tblBandReviews.tierID = tblTier.tierID  AND tblBandReviews.albumID = tblBandAlbums.albumID AND tblBandAlbums.bandID = tblBands.bandID";
+            string sqlStr = $"SELECT tblTier.tierTag FROM Contents.tblBandReviews, Contents.tblBandAlbums, Contents.tblBands, Properties.tblTier WHERE tblTier.tierTag = @search AND tblBandReviews.tierID = tblTier.tierID AND tblBandAlbums.bandID = tblBands.bandID";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
                 cmd.Parameters.AddWithValue("@search", search);
-                Console.WriteLine("\nNAME:\n");
+                Console.WriteLine("\nRANK:\n");
 
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
@@ -1717,7 +1717,7 @@ namespace CDOrganiserProjectApp
         public void SearchBandAlbums(string search)
         {
 
-            string sqlStr = $"SELECT tblBands.bandName FROM Contents.tblBandAlbums, Contents.tblBandsWHERE tblBands.bandName = @search AND tblBandAlbums.bandID = tblBands.bandID";
+            string sqlStr = $"SELECT tblBands.bandName FROM Contents.tblBandAlbums, Contents.tblBands WHERE tblBands.bandName = @search AND tblBandAlbums.bandID = tblBands.bandID";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
                 cmd.Parameters.AddWithValue("@search", search);

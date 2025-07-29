@@ -562,5 +562,12 @@ namespace CDOrganiserProjectApp.View
         }
 
 
+        public bool PassIntBoundary(int i)
+        {
+            bool boundary = i > 0;
+
+            return boundary;
+        }
+
     }
 }

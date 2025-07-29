@@ -1,5 +1,4 @@
-﻿use "New Database";
-
+﻿
 SET IDENTITY_INSERT Contents.tblArtists ON;
 
 INSERT INTO Contents.tblArtists(artistID, artistName) 
