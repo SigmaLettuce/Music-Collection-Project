@@ -319,7 +319,7 @@ namespace CDOrganiserProjectApp
                                             break;
 
                                             default:
-                                                view.AltDisplayError(wait);
+                                                view.HomepageError(wait);
 
                                                 GoBack();
 
@@ -423,7 +423,7 @@ namespace CDOrganiserProjectApp
                                             break;
 
                                             default:
-                                                view.AltDisplayError(wait);
+                                                view.HomepageError(wait);
 
                                                 GoBack();
 
@@ -556,7 +556,7 @@ namespace CDOrganiserProjectApp
                                                                         break;
 
                                                                         default:
-                                                                            view.AltDisplayError(wait);
+                                                                            view.HomepageError(wait);
 
                                                                             GoBack();
 
@@ -588,7 +588,7 @@ namespace CDOrganiserProjectApp
                                                                         break;
 
                                                                         default:
-                                                                            view.AltDisplayError(wait);
+                                                                            view.HomepageError(wait);
 
                                                                             GoBack();
 
@@ -620,7 +620,7 @@ namespace CDOrganiserProjectApp
                                                                         break;
 
                                                                         default:
-                                                                            view.AltDisplayError(wait);
+                                                                            view.HomepageError(wait);
 
                                                                             GoBack();
 
@@ -652,7 +652,7 @@ namespace CDOrganiserProjectApp
                                                                         break;
 
                                                                         default:
-                                                                            view.AltDisplayError(wait);
+                                                                            view.HomepageError(wait);
 
                                                                             GoBack();
 
@@ -684,7 +684,7 @@ namespace CDOrganiserProjectApp
                                                                         break;
 
                                                                         default:
-                                                                            view.AltDisplayError(wait);
+                                                                            view.HomepageError(wait);
 
                                                                             GoBack();
 
@@ -716,7 +716,7 @@ namespace CDOrganiserProjectApp
                                                                         break;
 
                                                                         default:
-                                                                            view.AltDisplayError(wait);
+                                                                            view.HomepageError(wait);
 
                                                                             GoBack();
 
@@ -748,7 +748,7 @@ namespace CDOrganiserProjectApp
                                                                         break;
 
                                                                         default:
-                                                                            view.AltDisplayError(wait);
+                                                                            view.HomepageError(wait);
 
                                                                             GoBack();
 
@@ -771,7 +771,7 @@ namespace CDOrganiserProjectApp
                                                             break;
 
                                                             default:
-                                                                view.AltDisplayError(wait);
+                                                                view.HomepageError(wait);
 
                                                                 GoBack();
 
@@ -818,7 +818,7 @@ namespace CDOrganiserProjectApp
                                                         break;
 
                                                         default:
-                                                            view.AltDisplayError(wait);
+                                                            view.HomepageError(wait);
 
                                                             GoBack();
 
@@ -941,7 +941,7 @@ namespace CDOrganiserProjectApp
                                                                         break;
 
                                                                         default:
-                                                                            view.AltDisplayError(wait);
+                                                                            view.HomepageError(wait);
 
                                                                             GoBack();
 
@@ -973,7 +973,7 @@ namespace CDOrganiserProjectApp
                                                                         break;
 
                                                                         default:
-                                                                            view.AltDisplayError(wait);
+                                                                            view.HomepageError(wait);
 
                                                                             GoBack();
 
@@ -1005,7 +1005,7 @@ namespace CDOrganiserProjectApp
                                                                         break;
 
                                                                         default:
-                                                                            view.AltDisplayError(wait);
+                                                                            view.HomepageError(wait);
 
                                                                             GoBack();
 
@@ -1037,7 +1037,7 @@ namespace CDOrganiserProjectApp
                                                                         break;
 
                                                                         default:
-                                                                            view.AltDisplayError(wait);
+                                                                            view.HomepageError(wait);
 
                                                                             GoBack();
 
@@ -1069,7 +1069,7 @@ namespace CDOrganiserProjectApp
                                                                         break;
 
                                                                         default:
-                                                                            view.AltDisplayError(wait);
+                                                                            view.HomepageError(wait);
 
                                                                             GoBack();
 
@@ -1101,7 +1101,7 @@ namespace CDOrganiserProjectApp
                                                                         break;
 
                                                                         default:
-                                                                            view.AltDisplayError(wait);
+                                                                            view.HomepageError(wait);
 
                                                                             GoBack();
 
@@ -1133,7 +1133,7 @@ namespace CDOrganiserProjectApp
                                                                         break;
 
                                                                         default:
-                                                                            view.AltDisplayError(wait);
+                                                                            view.HomepageError(wait);
 
                                                                             GoBack();
 
@@ -1156,7 +1156,7 @@ namespace CDOrganiserProjectApp
                                                             break;
 
                                                             default:
-                                                                view.AltDisplayError(wait);
+                                                                view.HomepageError(wait);
 
                                                                 GoBack();
 
@@ -1204,7 +1204,7 @@ namespace CDOrganiserProjectApp
                                                         break;
 
                                                         default:
-                                                            view.AltDisplayError(wait);
+                                                            view.HomepageError(wait);
 
                                                             GoBack();
 
@@ -1373,7 +1373,7 @@ namespace CDOrganiserProjectApp
                                                                         break;
 
                                                                         default:
-                                                                            view.AltDisplayError(wait);
+                                                                            view.HomepageError(wait);
 
                                                                             GoBack();
 
@@ -1405,7 +1405,7 @@ namespace CDOrganiserProjectApp
                                                                         break;
 
                                                                         default:
-                                                                            view.AltDisplayError(wait);
+                                                                            view.HomepageError(wait);
 
                                                                             GoBack();
 
@@ -1428,7 +1428,7 @@ namespace CDOrganiserProjectApp
                                                             break;
 
                                                             default:
-                                                                view.AltDisplayError(wait);
+                                                                view.HomepageError(wait);
 
                                                                 GoBack();
 
@@ -1477,7 +1477,7 @@ namespace CDOrganiserProjectApp
                                                         break;
 
                                                         default:
-                                                            view.AltDisplayError(wait);
+                                                            view.HomepageError(wait);
 
                                                             GoBack();
 
@@ -1600,7 +1600,7 @@ namespace CDOrganiserProjectApp
                                                                         break;
 
                                                                         default:
-                                                                            view.AltDisplayError(wait);
+                                                                            view.HomepageError(wait);
 
                                                                             GoBack();
 
@@ -1632,7 +1632,7 @@ namespace CDOrganiserProjectApp
                                                                         break;
 
                                                                         default:
-                                                                            view.AltDisplayError(wait);
+                                                                            view.HomepageError(wait);
 
                                                                             GoBack();
 
@@ -1655,7 +1655,7 @@ namespace CDOrganiserProjectApp
                                                             break;
 
                                                             default:
-                                                                view.AltDisplayError(wait);
+                                                                view.HomepageError(wait);
 
                                                                 GoBack();
 
@@ -1704,7 +1704,7 @@ namespace CDOrganiserProjectApp
                                                         break;
 
                                                         default:
-                                                            view.AltDisplayError(wait);
+                                                            view.HomepageError(wait);
 
                                                             GoBack();
 
@@ -1827,7 +1827,7 @@ namespace CDOrganiserProjectApp
                                             break;
 
                                             default:
-                                                view.AltDisplayError(wait);
+                                                view.HomepageError(wait);
 
                                                 GoBack();
 
@@ -2071,7 +2071,7 @@ namespace CDOrganiserProjectApp
                                                             break;
 
                                                             default:
-                                                                view.AltDisplayError(wait);
+                                                                view.HomepageError(wait);
 
                                                                 GoBack();
 
@@ -2094,7 +2094,7 @@ namespace CDOrganiserProjectApp
                                                 break;
 
                                                 default:
-                                                    view.AltDisplayError(wait);
+                                                    view.HomepageError(wait);
 
                                                     GoBack();
 
@@ -2222,7 +2222,7 @@ namespace CDOrganiserProjectApp
                                                             break;
 
                                                             default:
-                                                                view.AltDisplayError(wait);
+                                                                view.HomepageError(wait);
 
                                                                 GoBack();
 
@@ -2245,7 +2245,7 @@ namespace CDOrganiserProjectApp
                                                 break;
 
                                                 default:
-                                                    view.AltDisplayError(wait);
+                                                    view.HomepageError(wait);
 
                                                     GoBack();
 
@@ -2822,32 +2822,44 @@ namespace CDOrganiserProjectApp
 
                 view.DisplayMessage("\nEnter the identification number... ");
                 int bandId = view.GetIntInput();
+                bool id = view.PassBoundary(bandId, bands.Count);
 
-                bool boundary = view.PassBoundary(bandId, bands.Count);
-
-                switch (boundary)
+                switch (id)
                 {
-                    default:
+                    case true:
+                        view.DisplayMessage("\nRename the record... ");
+                        string bandName = view.GetInput();
+                        bool name = view.PassBoundary(bandName.Length, 50);
 
+                        switch (name)
+                        {
+                            case true:
+                                int rowsAffected = storageManager.UpdateBandById(bandId, bandName);
+                                view.DisplayMessage($"\nUpdated {rowsAffected} records.");
+
+                            break;
+
+                            case false:
+                                view.RangeError(wait);
+
+                                UpdateBandName();
+
+                            break;
+                        }
 
                     break;
+
+                    case false:
+                        view.RangeError(wait);
+
+                        UpdateBandName();
+
+                    break;
+
                 }
 
-                view.DisplayMessage("\nRename the record... ");
-                string bandName = view.GetInput();
-
-                int rowsAffected = storageManager.UpdateBandById(bandId, bandName);
-                view.DisplayMessage($"\nUpdated {rowsAffected} records.");
-
             }
-            catch (IndexOutOfRangeException e)
-            { 
-                view.DisplayMessage("\n  Please enter a valid parameter listed. If you want to create a new listing, please navigate to such.");
-                view.DisplayMessage(e.Message);
 
-                UpdateBandName();
-
-            }
             catch (FormatException e)
             {
                 view.DisplayMessage("\n  Please use the proper formatting.");

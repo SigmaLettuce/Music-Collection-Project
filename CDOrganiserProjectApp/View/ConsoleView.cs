@@ -434,9 +434,17 @@ namespace CDOrganiserProjectApp.View
 
         }
 
-        public void AltDisplayError(int delay)
+        public void HomepageError(int delay)
         {
             Console.WriteLine("The input was invalid. Sending you back to homepage... ");
+            Thread.Sleep(wait);
+            Console.Clear();
+
+        }
+
+        public void RangeError(int delay)
+        {
+            Console.WriteLine($"Input is out of range. Please try again.");
             Thread.Sleep(wait);
             Console.Clear();
 
@@ -564,7 +572,7 @@ namespace CDOrganiserProjectApp.View
 
         public bool PassBoundary(int i, int size)
         {
-            bool boundary = i > 0 || i <= size;
+            bool boundary = i > 0 && i <= size;
 
             return boundary;
         }
