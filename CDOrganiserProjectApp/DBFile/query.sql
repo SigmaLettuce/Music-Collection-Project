@@ -1,1 +1,1 @@
-﻿SELECT tblArtists.artistName, tblArtistAlbums.albumName, tblAlbums.genreName FROM Contents.tblArtists, Contents.tblArtistAlbums WHERE tblArtistAlbums.artistID = tblArtists.artistID AND tblArtists.artistName LIKE '[A-J]%' ORDER BY tblArtists.artistName, tblAlbums.albumName, tblAlbums.genreName;
+﻿SELECT genreName FROM Contents.tblGenres WHERE genreName LIKE '%' + @search + '%'

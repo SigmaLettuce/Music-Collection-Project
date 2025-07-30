@@ -1567,7 +1567,7 @@ namespace CDOrganiserProjectApp
         public void SearchGenres(string search)
         {
 
-            string sqlStr = $"SELECT genreName FROM Contents.tblGenres WHERE genreName = @search";
+            string sqlStr = $"SELECT genreName FROM Contents.tblGenres WHERE genreName LIKE '%' + @search + '%'";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
                 cmd.Parameters.AddWithValue("@search", search);
