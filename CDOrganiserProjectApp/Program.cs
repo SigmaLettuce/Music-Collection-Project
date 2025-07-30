@@ -1,5 +1,6 @@
 ﻿using CDOrganiserProjectApp.Model;
 using CDOrganiserProjectApp.View;
+using System.Collections;
 
 
 namespace CDOrganiserProjectApp
@@ -2940,31 +2941,55 @@ namespace CDOrganiserProjectApp
 
             try
             {
-                view.DisplayMessage("\nEnter the identification number... ");
+
                 List<Genres> genres = storageManager.GetAllGenres();
+
+                view.DisplayMessage("\nEnter the identification number... ");
                 int genreId = view.GetIntInput();
+                bool id = view.PassBoundary(genreId, genres.Count);
 
-                view.DisplayMessage("\nRename the record... ");
-                string genreName = view.GetInput();
+                switch (id)
+                {
+                    case true:
+                        view.DisplayMessage("\nRename the record... ");
+                        string genreName = view.GetInput();
+                        bool name = view.PassBoundary(genreName.Length, 50);
 
-                int rowsAffected = storageManager.UpdateGenreById(genreId, genreName);
-                view.DisplayMessage($"\nUpdated {rowsAffected} records.");
+                        switch (name)
+                        {
+                            case true:
+                                int rowsAffected = storageManager.UpdateGenreById(genreId, genreName);
+                                view.DisplayMessage($"\nUpdated {rowsAffected} records.");
+
+                            break;
+
+                            case false:
+                                view.RangeError(wait);
+
+                                UpdateGenreName();
+
+                            break;
+                        }
+
+                    break;
+
+                    case false:
+                        view.RangeError(wait);
+
+                        UpdateGenreName();
+
+                    break;
+
+                }
 
             }
-            catch (IndexOutOfRangeException e)
-            { 
-                view.DisplayMessage("\n  Please enter a valid parameter listed. If you want to create a new listing, please navigate to such.");
-                view.DisplayMessage(e.Message);
 
-                AdminMenuscreenOptions();
-
-            }
             catch (FormatException e)
             {
                 view.DisplayMessage("\n  Please use the proper formatting.");
                 view.DisplayMessage(e.Message);
 
-                AdminMenuscreenOptions();
+                UpdateGenreName();
     
             }
 
@@ -3280,31 +3305,56 @@ namespace CDOrganiserProjectApp
 
             try
             {
-                view.DisplayMessage("\nEnter the identification number... ");
+
                 List<Rooms> rooms = storageManager.GetAllRooms();
+
+                view.DisplayMessage("\nEnter the identification number... ");
                 int roomId = view.GetIntInput();
+                bool id = view.PassBoundary(roomId, rooms.Count);
 
-                view.DisplayMessage("\nRename the record... ");
-                string roomName = view.GetInput();
+                switch (id)
+                {
+                    case true:
+                        view.DisplayMessage("\nRename the record... ");
+                        string roomName = view.GetInput();
+                        bool name = view.PassBoundary(roomName.Length, 255);
 
-                int rowsAffected = storageManager.UpdateRoomById(roomId, roomName);
-                view.DisplayMessage($"\nUpdated {rowsAffected} records.");
+                        switch (name)
+                        {
+                            case true:
+                                int rowsAffected = storageManager.UpdateRoomById(roomId, roomName);
+                                view.DisplayMessage($"\nUpdated {rowsAffected} records.");
+
+                            break;
+
+                            case false:
+                                view.RangeError(wait);
+
+                                UpdateRoomName();
+
+                            break;
+                        }
+
+                    break;
+
+                    case false:
+                        view.RangeError(wait);
+
+                        UpdateRoomName();
+
+                    break;
+
+                }
+
             }
-            catch (IndexOutOfRangeException e)
-            { 
-                view.DisplayMessage("\n  Please enter a valid parameter listed. If you want to create a new listing, please navigate to such.");
-                view.DisplayMessage(e.Message);
 
-                UpdateRoomName();
-
-            }
             catch (FormatException e)
             {
                 view.DisplayMessage("\n  Please use the proper formatting.");
                 view.DisplayMessage(e.Message);
 
                 UpdateRoomName();
-
+    
             }
 
         }
@@ -3376,32 +3426,59 @@ namespace CDOrganiserProjectApp
 
             try
             {
-                view.DisplayMessage("\nEnter the identification number... ");
+
                 List<Shelves> shelves = storageManager.GetAllShelves();
-                int shelfTagId = view.GetIntInput();
 
                 view.DisplayMessage("\nEnter the identification number... ");
-                List<Rooms> rooms = storageManager.GetAllRooms();
-                int roomId = view.GetIntInput();
+                int shelfTagId = view.GetIntInput();
+                bool staid = view.PassBoundary(shelfTagId, shelves.Count);
 
-                int rowsAffected = storageManager.UpdateShelfRoomById(shelfTagId, roomId);
-                view.DisplayMessage($"\nUpdated {rowsAffected} records.");
+                switch (staid)
+                {
+                    case true:
+
+                        List<Rooms> rooms = storageManager.GetAllRooms();
+
+                        view.DisplayMessage("\nRename the record... ");
+                        int roomId = view.GetIntInput();
+                        bool rid = view.PassBoundary(roomId, rooms.Count);
+
+                        switch (rid)
+                        {
+                            case true:
+                                int rowsAffected = storageManager.UpdateShelfRoomById(shelfTagId, roomId);
+                                view.DisplayMessage($"\nUpdated {rowsAffected} records.");
+
+                            break;
+
+                            case false:
+                                view.RangeError(wait);
+
+                                UpdateShelfRoom();
+
+                            break;
+                        }
+
+                    break;
+
+                    case false:
+                        view.RangeError(wait);
+
+                        UpdateShelfRoom();
+
+                    break;
+
+                }
+
             }
-            catch (IndexOutOfRangeException e)
-            { 
-                view.DisplayMessage("\n  Please enter a valid parameter listed. If you want to create a new listing, please navigate to such.");
-                view.DisplayMessage(e.Message);
 
-                UpdateShelfRoom();
-
-            }
             catch (FormatException e)
             {
                 view.DisplayMessage("\n  Please use the proper formatting.");
                 view.DisplayMessage(e.Message);
 
                 UpdateShelfRoom();
-
+    
             }
 
         }
@@ -3484,32 +3561,59 @@ namespace CDOrganiserProjectApp
 
             try
             {
-                view.DisplayMessage("\nEnter the identification number... ");
+
                 List<Rows> rows = storageManager.GetAllRows();
-                int shelfRowId = view.GetIntInput();
 
                 view.DisplayMessage("\nEnter the identification number... ");
-                List<Shelves> shelves = storageManager.GetAllShelves();
-                int shelfTagId = view.GetIntInput();
+                int shelfRowId = view.GetIntInput();
+                bool sroid = view.PassBoundary(shelfRowId, rows.Count);
 
-                int rowsAffected = storageManager.UpdateRowsShelfById(shelfRowId, shelfTagId);
-                view.DisplayMessage($"\nUpdated {rowsAffected} records.");
+                switch (sroid)
+                {
+                    case true:
+
+                        List<Shelves> shelves = storageManager.GetAllShelves();
+
+                        view.DisplayMessage("\nEnter the identification number... ");
+                        int shelfTagId = view.GetIntInput();
+                        bool staid = view.PassBoundary(shelfTagId, shelves.Count);
+
+                        switch (staid)
+                        {
+                            case true:
+                                int rowsAffected = storageManager.UpdateRowsShelfById(shelfRowId, shelfTagId);
+                                view.DisplayMessage($"\nUpdated {rowsAffected} records.");
+
+                            break;
+
+                            case false:
+                                view.RangeError(wait);
+
+                                UpdateRow();
+
+                            break;
+                        }
+
+                    break;
+
+                    case false:
+                        view.RangeError(wait);
+
+                        UpdateRow();
+
+                    break;
+
+                }
+
             }
-            catch (IndexOutOfRangeException e)
-            { 
-                view.DisplayMessage("\n  Please enter a valid parameter listed. If you want to create a new listing, please navigate to such.");
-                view.DisplayMessage(e.Message);
 
-                UpdateRow();
-
-            }
             catch (FormatException e)
             {
                 view.DisplayMessage("\n  Please use the proper formatting.");
                 view.DisplayMessage(e.Message);
 
                 UpdateRow();
-
+    
             }
 
         }
@@ -3590,7 +3694,7 @@ namespace CDOrganiserProjectApp
         private static void CreateUser()
         {
             
-
+            
             try
             {
                 
@@ -3600,67 +3704,126 @@ namespace CDOrganiserProjectApp
                 view.DisplayMessage("\nEnter your first name... ");
                 view.DisplayMessage(" ");
                 string fName = view.GetInput();
+                bool fname = view.PassBoundary(fName.Length, 30);
+
                 int personId = 0;
 
-                view.DisplayMessage("\nEnter your last name... ");
-                view.DisplayMessage(" ");
-                string sName = view.GetInput();
-
-                view.DisplayMessage("\nCreate a username... ");
-                view.DisplayMessage(" ");
-                string newuser = view.GetInput();
-                roleId = 1;
-
-                view.DisplayMessage("\nCreate a password... ");
-                view.DisplayMessage(" ");
-                string newpw = view.GetInput();
-
-                if (newuser.Equals(storageManager.FetchUsername(newuser)))
+                switch (fname)
                 {
-                    view.DisplayMessage("\nThat username is already taken. Choose a different username. ");
-                    Thread.Sleep(wait);
-                    Console.Clear();
+                    case true:
+                        view.DisplayMessage("\nEnter your last name... ");
+                        view.DisplayMessage(" ");
+                        string sName = view.GetInput();
+                        bool sname = view.PassBoundary(sName.Length, 30);
 
-                    switch (logStatus)
-                    {
-                        case true:
-                            switch (roleId)
-                            {
-                                case 1:
-                                    GuestMenuscreenOptions();
+                        switch (sname)
+                        {
+                            case true:
+                                view.DisplayMessage("\nCreate a username... ");
+                                view.DisplayMessage(" ");
+                                string newuser = view.GetInput();
+                                bool username = view.PassBoundary(newuser.Length, 30);
+
+                                switch (username)
+                                {
+                                    case true:
+                                        roleId = 1;
+
+                                        view.DisplayMessage("\nCreate a password... ");
+                                        view.DisplayMessage(" ");
+                                        string newpw = view.GetInput();
+                                        bool password = view.PassBoundary(newpw.Length, 30);
+
+                                        switch (password)
+                                        {
+                                            case true:
+                                                if (newuser.Equals(storageManager.FetchUsername(newuser)))
+                                                {
+                                                    view.DisplayMessage("\nThat username is already taken. Choose a different username. ");
+                                                    Thread.Sleep(wait);
+                                                    Console.Clear();
+
+                                                    switch (logStatus)
+                                                    {
+                                                        case true:
+                                                            switch (roleId)
+                                                            {
+                                                                case 1:
+                                                                    GuestMenuscreenOptions();
+
+                                                                break;
+
+                                                                case 2:
+                                                                    AdminMenuscreenOptions();
+
+                                                                break;
+                                                            }
+
+                                                            break;
+
+                                                        case false:
+                                                            StartMenuscreenOptions();
+
+                                                        break;
+                                                    }
+                                                }
+
+                                                else
+                                                {
+                                                    Accounts newUser = new Accounts(personId, fName, sName, newuser, newpw, roleId);
+
+
+                                                    int generatedId = storageManager.CreateAccount(newUser);
+
+                                                    view.DisplayMessage("\n  Successful. Booting you to the login/register.");
+                                                    Thread.Sleep(wait);
+                                                    Console.Clear();
+                                                    StartMenuscreenOptions();
+
+                                                }
+
+                                            break;
+
+                                            case false:
+                                                view.RangeError(wait);
+
+                                                CreateUser();
+
+                                            break;
+                                        }
+
+                                        break;
+
+                                    case false:
+                                        view.RangeError(wait);
+
+                                        CreateUser();
+
+                                    break;
+
+                                }
 
                                 break;
 
-                                case 2:
-                                    AdminMenuscreenOptions();
+                            case false:
+                                view.RangeError(wait);
 
-                                break;
-                            }
+                                CreateUser();
 
                             break;
 
-                        case false:
-                            StartMenuscreenOptions();
+                        }
 
                         break;
-                    }
-                }
 
-                else
-                {
-                    Accounts newUser = new Accounts(personId, fName, sName, newuser, newpw, roleId);
+                    case false:
+                        view.RangeError(wait);
 
+                        CreateUser();
 
-                    int generatedId = storageManager.CreateAccount(newUser);
-
-                    view.DisplayMessage("\n  Successful. Booting you to the login/register.");
-                    Thread.Sleep(wait);
-                    Console.Clear();
-                    StartMenuscreenOptions();
+                    break;
 
                 }
-
-                
 
             }
 
@@ -3678,77 +3841,136 @@ namespace CDOrganiserProjectApp
         private static void CreateAdmin()
         {
             
-
+            
             try
             {
-
+                
 
                 view.DisplayMessage("[x] WARNING: CREATING AN ACCOUNT BOOTS YOU TO THE LOGIN/REGISTER.\n");
 
-               
                 view.DisplayMessage("\nEnter your first name... ");
                 view.DisplayMessage(" ");
                 string fName = view.GetInput();
+                bool fname = view.PassBoundary(fName.Length, 30);
+
                 int personId = 0;
 
-                view.DisplayMessage("\nEnter your last name... ");
-                view.DisplayMessage(" ");
-                string sName = view.GetInput();
-
-                view.DisplayMessage("\nCreate a username... ");
-                view.DisplayMessage(" ");
-                string newuser = view.GetInput();
-                roleId = 2; // Assigns the Admninistrator role
-
-                view.DisplayMessage("\nCreate a password... ");
-                view.DisplayMessage(" ");
-                string newpw = view.GetInput();
-
-                if (newuser.Equals(storageManager.FetchUsername(newuser)))
+                switch (fname)
                 {
-                    view.DisplayMessage("\nThat username is already taken. Choose a different username. ");
-                    Thread.Sleep(wait);
-                    Console.Clear();
+                    case true:
+                        view.DisplayMessage("\nEnter your last name... ");
+                        view.DisplayMessage(" ");
+                        string sName = view.GetInput();
+                        bool sname = view.PassBoundary(sName.Length, 30);
 
-                    switch (logStatus)
-                    {
-                        case true:
-                            switch (roleId)
-                            {
-                                case 1:
-                                    GuestMenuscreenOptions();
+                        switch (sname)
+                        {
+                            case true:
+                                view.DisplayMessage("\nCreate a username... ");
+                                view.DisplayMessage(" ");
+                                string newuser = view.GetInput();
+                                bool username = view.PassBoundary(newuser.Length, 30);
+
+                                switch (username)
+                                {
+                                    case true:
+                                        roleId = 2;
+
+                                        view.DisplayMessage("\nCreate a password... ");
+                                        view.DisplayMessage(" ");
+                                        string newpw = view.GetInput();
+                                        bool password = view.PassBoundary(newpw.Length, 30);
+
+                                        switch (password)
+                                        {
+                                            case true:
+                                                if (newuser.Equals(storageManager.FetchUsername(newuser)))
+                                                {
+                                                    view.DisplayMessage("\nThat username is already taken. Choose a different username. ");
+                                                    Thread.Sleep(wait);
+                                                    Console.Clear();
+
+                                                    switch (logStatus)
+                                                    {
+                                                        case true:
+                                                            switch (roleId)
+                                                            {
+                                                                case 1:
+                                                                    GuestMenuscreenOptions();
+
+                                                                break;
+
+                                                                case 2:
+                                                                    AdminMenuscreenOptions();
+
+                                                                break;
+                                                            }
+
+                                                            break;
+
+                                                        case false:
+                                                            StartMenuscreenOptions();
+
+                                                        break;
+                                                    }
+                                                }
+
+                                                else
+                                                {
+                                                    Accounts newAdmin = new Accounts(personId, fName, sName, newuser, newpw, roleId);
+
+
+                                                    int generatedId = storageManager.CreateAccount(newAdmin);
+
+                                                    view.DisplayMessage("\n  Successful. Booting you to the login/register.");
+                                                    Thread.Sleep(wait);
+                                                    Console.Clear();
+                                                    StartMenuscreenOptions();
+
+                                                }
+
+                                            break;
+
+                                            case false:
+                                                view.RangeError(wait);
+
+                                                CreateAdmin();
+
+                                            break;
+                                        }
+
+                                        break;
+
+                                    case false:
+                                        view.RangeError(wait);
+
+                                        CreateAdmin();
+
+                                    break;
+
+                                }
 
                                 break;
 
-                                case 2:
-                                    AdminMenuscreenOptions();
+                            case false:
+                                view.RangeError(wait);
 
-                                break;
-                            }
+                                CreateAdmin();
 
-                        break;
+                            break;
 
-                        case false:
-                            StartMenuscreenOptions();
+                        }
 
                         break;
-                    }
-                }
-                else
-                {
-                    Accounts newUser = new Accounts(personId, fName, sName, newuser, newpw, roleId);
 
+                    case false:
+                        view.RangeError(wait);
 
-                    int generatedId = storageManager.CreateAccount(newUser);
+                        CreateAdmin();
 
-                    view.DisplayMessage("\n  Successful. Booting you to the login/register.");
-                    Thread.Sleep(wait);
-                    Console.Clear();
-                    StartMenuscreenOptions();
+                    break;
 
                 }
-
-                
 
             }
 
@@ -3775,51 +3997,132 @@ namespace CDOrganiserProjectApp
                 view.DisplayMessage("\nEnter an album identification number... ");
                 List<ArtistAlbums> albums = storageManager.GetAllArtistAlbums();
                 int albumId = view.GetIntInput();
+                bool alid = view.PassBoundary(albumId, albums.Count);
 
-                view.DisplayMessage("\nEnter the new album name... ");
-                albums = storageManager.GetAllArtistAlbums();
+                switch (alid)
+                {
+                    case true:
+                        view.DisplayMessage("\nEnter the new album name... ");
+                        albums = storageManager.GetAllArtistAlbums();
 
-                string albumName = view.GetInput();
+                        string albumName = view.GetInput();
+                        bool aln = view.PassBoundary(albumName.Length, 255);
 
-                view.DisplayMessage("\nEnter a new genre identification number...");
-                List<Genres> genres = storageManager.GetAllGenres();
-                view.DisplayGenres(genres);
+                        switch (aln)
+                        {
+                            case true:
+                                view.DisplayMessage("\nEnter a new genre identification number...");
+                                List<Genres> genres = storageManager.GetAllGenres();
+                                view.DisplayGenres(genres);
 
-                int genreId = view.GetIntInput();
+                                int genreId = view.GetIntInput();
+                                bool gid = view.PassBoundary(genreId, genres.Count);
 
-                view.DisplayMessage("\nEnter a new date of release... YYYY/MM/DD");
-                DateTime dateOfRelease = view.GetDateTimeInput();
+                                switch (gid)
+                                {
+                                    case true:
+                                        view.DisplayMessage("\nEnter a new date of release... YYYY/MM/DD");
+                                        DateTime dateOfRelease = view.GetDateTimeInput();
 
-                view.DisplayMessage("\nEnter a new format identification number... ");
-                List<Formats> formats = storageManager.GetAllFormats();
+                                        view.DisplayMessage("\nEnter a new format identification number... ");
+                                        List<Formats> formats = storageManager.GetAllFormats();
 
-                int formatId = view.GetIntInput();
+                                        int formatId = view.GetIntInput();
+                                        bool fid = view.PassBoundary(formatId, formats.Count);
 
-                view.DisplayMessage("\nEnter a new artist identification number... ");
-                List<Artists> artists = storageManager.GetAllArtists();
-                view.DisplayArtists(artists);
+                                        switch (fid)
+                                        {
+                                            case true:
+                                                view.DisplayMessage("\nEnter a new artist identification number... ");
+                                                List<Artists> artists = storageManager.GetAllArtists();
+                                                view.DisplayArtists(artists);
 
-                int artistId = view.GetIntInput();
+                                                int artistId = view.GetIntInput();
+                                                bool aid = view.PassBoundary(artistId, artists.Count);
 
-                view.DisplayMessage("\nEnter a new shelf row identification number... ");
-                List<Shelves> shelves = storageManager.GetAllShelves();
+                                                switch (aid)
+                                                {
+                                                    case true:
+                                                        view.DisplayMessage("\nEnter a new shelf row identification number... ");
+                                                        List<Shelves> shelves = storageManager.GetAllShelves();
 
-                int shelfRowId = view.GetIntInput();
+                                                        int shelfRowId = view.GetIntInput();
+                                                        bool sroid = view.PassBoundary(shelfRowId, shelves.Count);
 
-                bool lost = false;
+                                                        bool lost = false;
 
-                int rowsAffected = storageManager.UpdateArtistAlbumById(albumId, albumName, genreId, dateOfRelease, formatId, artistId, shelfRowId, lost);
-                view.DisplayMessage($"\nUpdated {rowsAffected} records.");
+                                                        switch (sroid)
+                                                        {
+                                                            case true:
+                                                                int rowsAffected = storageManager.UpdateArtistAlbumById(albumId, albumName, genreId, dateOfRelease, formatId, artistId, shelfRowId, lost);
+                                                                view.DisplayMessage($"\nUpdated {rowsAffected} records.");
+
+                                                            break;
+
+                                                            case false:
+                                                                view.RangeError(wait);
+
+                                                                UpdateArtistAlbum();
+
+                                                            break;
+
+                                                        }
+
+                                                        break;
+
+                                                    case false:
+                                                        view.RangeError(wait);
+
+                                                        UpdateArtistAlbum();
+
+                                                    break;
+                                                }
+
+                                                break;
+
+                                            case false:
+                                                view.RangeError(wait);
+
+                                                UpdateArtistAlbum();
+
+                                            break;
+
+                                        }
+
+                                    break;
+
+                                    case false:
+                                        view.RangeError(wait);
+
+                                        UpdateArtistAlbum();
+
+                                    break;
+                                }
+
+                            break;
+
+                            case false:
+                                view.RangeError(wait);
+
+                                UpdateArtistAlbum();
+
+                            break;
+                            
+                        }
+
+                    break;
+
+                    case false:
+                        view.RangeError(wait);
+
+                        UpdateArtistAlbum();
+
+                    break;
+
+                }
 
             }
-            catch (IndexOutOfRangeException e)
-            { 
-                view.DisplayMessage("\n  Please enter a valid parameter listed. If you want to create a new listing, please navigate to such.");
-                view.DisplayMessage(e.Message);
 
-                UpdateArtistAlbum();
-
-            }
             catch (FormatException e)
             {
                 view.DisplayMessage("\n  Please use the proper formatting.");
@@ -3828,8 +4131,6 @@ namespace CDOrganiserProjectApp
                 UpdateArtistAlbum();
 
             }
-
-
 
         }
         
