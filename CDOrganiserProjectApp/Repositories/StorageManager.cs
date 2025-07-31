@@ -448,6 +448,27 @@ namespace CDOrganiserProjectApp
         }
 
 
+        public int GetRowBoundary()
+        {
+            int max = 0;
+
+            string sqlStr = "SELECT TOP 1 shelfRowID FROM Properties.tblRow ORDER BY shelfRowID DESC;";
+
+            using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
+            {
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        max = Convert.ToInt32(reader["shelfRowID"]);
+                    }
+                }
+            }
+
+            return max;
+
+        }
+
         public List<Rows> GetAllRows()
         {
             List<Rows> rows = new List<Rows>();
@@ -505,6 +526,27 @@ namespace CDOrganiserProjectApp
 
         }
 
+
+        public int GetArtistAlbumBoundary()
+        {
+            int max = 0;
+
+            string sqlStr = "SELECT TOP 1 albumID FROM Contents.tblArtistAlbums ORDER BY albumID DESC;";
+
+            using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
+            {
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        max = Convert.ToInt32(reader["albumID"]);
+                    }
+                }
+            }
+
+            return max;
+
+        }
 
         public List<ArtistAlbums> GetAllArtistAlbums()
         {
@@ -605,6 +647,27 @@ namespace CDOrganiserProjectApp
         }
 
 
+        public int GetBandAlbumBoundary()
+        {
+            int max = 0;
+
+            string sqlStr = "SELECT TOP 1 albumID FROM Contents.tblBandAlbums ORDER BY albumID DESC;";
+
+            using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
+            {
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        max = Convert.ToInt32(reader["albumID"]);
+                    }
+                }
+            }
+
+            return max;
+
+        }
+
         public List<BandAlbums> GetAllBandAlbums()
         {
             List<BandAlbums> albums = new List<BandAlbums>();
@@ -704,6 +767,27 @@ namespace CDOrganiserProjectApp
         }
 
 
+        public int GetArtistReviewBoundary()
+        {
+            int max = 0;
+
+            string sqlStr = "SELECT TOP 1 reviewID FROM Contents.tblArtistReviews ORDER BY reviewID DESC;";
+
+            using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
+            {
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        max = Convert.ToInt32(reader["reviewID"]);
+                    }
+                }
+            }
+
+            return max;
+
+        }
+
         public List<ArtistReviews> GetAllArtistReviews()
         {
             List<ArtistReviews> albums = new List<ArtistReviews>();
@@ -799,6 +883,27 @@ namespace CDOrganiserProjectApp
 
         }
 
+
+        public int GetBandReviewBoundary()
+        {
+            int max = 0;
+
+            string sqlStr = "SELECT TOP 1 reviewID FROM Contents.tblBandReviews ORDER BY reviewID DESC;";
+
+            using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
+            {
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        max = Convert.ToInt32(reader["reviewID"]);
+                    }
+                }
+            }
+
+            return max;
+
+        }
 
         public List<BandReviews> GetAllBandReviews()
         {
@@ -1163,7 +1268,30 @@ namespace CDOrganiserProjectApp
         }
 
         
-        // Pulls data from the Formats table using the reader, and returns a list.
+        // Pulls the last identification number from the Formats table to use as the upper boundary.
+        public int GetFormatBoundary()
+        {
+            int max = 0;
+
+            string sqlStr = "SELECT TOP 1 formatID FROM Properties.tblFormat ORDER BY formatID DESC;";
+
+            using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
+            {
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        max = Convert.ToInt32(reader["formatID"]);
+                    }
+                }
+            }
+
+            return max;
+
+        }
+
+
+        // Pulls data from the Formats table using the reader, and returns it through the class used as an element for the list.
         public List<Formats> GetAllFormats()
         {
             List<Formats> formats = new List<Formats>();

@@ -1,1 +1,1 @@
-﻿SELECT TOP 1 bandID FROM Contents.tblBands ORDER BY bandID DESC
+﻿SELECT TOP 1 formatID FROM Properties.tblFormat ORDER BY formatID DESC

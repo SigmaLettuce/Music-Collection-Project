@@ -90,8 +90,7 @@ namespace CDOrganiserProjectApp.View
             Console.WriteLine("\tVIEW... ");
             Console.WriteLine("\tThese are your available listings, compiled into directories.");
 
-                Console.WriteLine("\n\t[/]  'albums' - Albums of available CDs");
-                Console.WriteLine("\t[/]  'artists' - All artists who have published an album you own");
+                Console.WriteLine("\n\t[/]  'artists' - All artists who have published an album you own");
                 Console.WriteLine("\t[/]  'bands' - All bands who have published an album you own");
                 Console.WriteLine("\t[/]  'genres' - All musical categories of your collection");
 
