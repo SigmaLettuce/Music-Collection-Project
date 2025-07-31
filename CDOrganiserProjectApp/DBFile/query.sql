@@ -1,1 +1,1 @@
-﻿SELECT genreName FROM Contents.tblGenres WHERE genreName LIKE '%' + @search + '%'
+﻿SELECT TOP 1 bandID FROM Contents.tblBands ORDER BY bandID DESC

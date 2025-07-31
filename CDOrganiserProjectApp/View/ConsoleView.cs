@@ -577,5 +577,21 @@ namespace CDOrganiserProjectApp.View
             return boundary;
         }
 
+        public bool PassRange(int i, int min, int max)
+        {
+            bool boundary = i >= min && i <= max;
+
+            return boundary;
+        }
+
+        public bool PassDateBoundary(DateTime i)
+        {
+            DateTime min = new DateTime(1600, 01, 01);
+
+            bool boundary = i >= min && i <= DateTime.Now;
+
+            return boundary;
+        }
+
     }
 }

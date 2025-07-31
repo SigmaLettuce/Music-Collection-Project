@@ -258,7 +258,7 @@ namespace CDOrganiserProjectApp
                         
                         List<Bands> bands = storageManager.GetAllBands();
                         view.DisplayBands(bands);
-
+                        
                         Thread.Sleep(wait);
 
                         cmd = view.DisplayEditingOptions("bands", "default~extras~search");
@@ -3641,7 +3641,7 @@ namespace CDOrganiserProjectApp
                 view.DisplayMessage("\nEnter your first name... ");
                 view.DisplayMessage(" ");
                 string fName = view.GetInput();
-                bool fname = view.PassBoundary(fName.Length, 30);
+                bool fname = view.PassRange(fName.Length, 3, 20);
 
                 int personId = 0;
 
@@ -3651,7 +3651,7 @@ namespace CDOrganiserProjectApp
                         view.DisplayMessage("\nEnter your last name... ");
                         view.DisplayMessage(" ");
                         string sName = view.GetInput();
-                        bool sname = view.PassBoundary(sName.Length, 30);
+                        bool sname = view.PassRange(sName.Length, 3, 20);
 
                         switch (sname)
                         {
@@ -3659,7 +3659,7 @@ namespace CDOrganiserProjectApp
                                 view.DisplayMessage("\nCreate a username... ");
                                 view.DisplayMessage(" ");
                                 string newuser = view.GetInput();
-                                bool username = view.PassBoundary(newuser.Length, 30);
+                                bool username = view.PassRange(newuser.Length, 3, 15);
 
                                 switch (username)
                                 {
@@ -3669,7 +3669,7 @@ namespace CDOrganiserProjectApp
                                         view.DisplayMessage("\nCreate a password... ");
                                         view.DisplayMessage(" ");
                                         string newpw = view.GetInput();
-                                        bool password = view.PassBoundary(newpw.Length, 30);
+                                        bool password = view.PassRange(newpw.Length, 3, 30);
 
                                         switch (password)
                                         {
@@ -3788,7 +3788,7 @@ namespace CDOrganiserProjectApp
                 view.DisplayMessage("\nEnter your first name... ");
                 view.DisplayMessage(" ");
                 string fName = view.GetInput();
-                bool fname = view.PassBoundary(fName.Length, 30);
+                bool fname = view.PassRange(fName.Length, 3, 20);
 
                 int personId = 0;
 
@@ -3798,7 +3798,7 @@ namespace CDOrganiserProjectApp
                         view.DisplayMessage("\nEnter your last name... ");
                         view.DisplayMessage(" ");
                         string sName = view.GetInput();
-                        bool sname = view.PassBoundary(sName.Length, 30);
+                        bool sname = view.PassRange(sName.Length, 3, 20);
 
                         switch (sname)
                         {
@@ -3806,7 +3806,7 @@ namespace CDOrganiserProjectApp
                                 view.DisplayMessage("\nCreate a username... ");
                                 view.DisplayMessage(" ");
                                 string newuser = view.GetInput();
-                                bool username = view.PassBoundary(newuser.Length, 30);
+                                bool username = view.PassRange(newuser.Length, 3, 15);
 
                                 switch (username)
                                 {
@@ -3816,7 +3816,7 @@ namespace CDOrganiserProjectApp
                                         view.DisplayMessage("\nCreate a password... ");
                                         view.DisplayMessage(" ");
                                         string newpw = view.GetInput();
-                                        bool password = view.PassBoundary(newpw.Length, 30);
+                                        bool password = view.PassRange(newpw.Length, 3, 30);
 
                                         switch (password)
                                         {
@@ -3943,7 +3943,7 @@ namespace CDOrganiserProjectApp
                         albums = storageManager.GetAllArtistAlbums();
 
                         string albumName = view.GetInput();
-                        bool aln = view.PassBoundary(albumName.Length, 255);
+                        bool aln = view.PassBoundary(albumName.Length, 50);
 
                         switch (aln)
                         {
@@ -4212,7 +4212,7 @@ namespace CDOrganiserProjectApp
                         albums = storageManager.GetAllBandAlbums();
 
                         string albumName = view.GetInput();
-                        bool aln = view.PassBoundary(albumName.Length, 255);
+                        bool aln = view.PassBoundary(albumName.Length, 50);
 
                         switch (aln)
                         {
@@ -4229,6 +4229,23 @@ namespace CDOrganiserProjectApp
                                     case true:
                                         view.DisplayMessage("\nEnter a new date of release... YYYY/MM/DD");
                                         DateTime dateOfRelease = view.GetDateTimeInput();
+                                        bool dtor = view.PassDateBoundary(dateOfRelease);
+
+                                        switch (dtor)
+                                        {
+                                            case true:
+
+
+                                            break;
+
+                                            case false:
+                                                view.RangeError(wait);
+
+                                                UpdateBandAlbum();
+
+                                            break;
+
+                                        }
 
                                         view.DisplayMessage("\nEnter a new format identification number... ");
                                         List<Formats> formats = storageManager.GetAllFormats();
@@ -4274,7 +4291,7 @@ namespace CDOrganiserProjectApp
 
                                                         }
 
-                                                        break;
+                                                    break;
 
                                                     case false:
                                                         view.RangeError(wait);

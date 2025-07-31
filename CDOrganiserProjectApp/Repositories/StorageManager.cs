@@ -53,6 +53,26 @@ namespace CDOrganiserProjectApp
             }
         }
 
+        public int GetBandBoundary()
+        {
+            int max = 0;
+
+            string sqlStr = "SELECT TOP 1 bandID FROM Contents.tblBands ORDER BY bandID DESC;";
+
+            using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
+            {
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        max = Convert.ToInt32(reader["bandID"]);
+                    }
+                }
+            }
+
+            return max;
+
+        }
 
         public List<Bands> GetAllBands()
         {
@@ -104,6 +124,27 @@ namespace CDOrganiserProjectApp
 
         }
 
+
+        public int GetGenreBoundary()
+        {
+            int max = 0;
+
+            string sqlStr = "SELECT TOP 1 genreID FROM Contents.tblGenres ORDER BY genreID DESC;";
+
+            using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
+            {
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        max = Convert.ToInt32(reader["genreID"]);
+                    }
+                }
+            }
+
+            return max;
+
+        }
 
         public List<Genres> GetAllGenres()
         {
@@ -177,6 +218,27 @@ namespace CDOrganiserProjectApp
         }
 
 
+        public int GetArtistBoundary()
+        {
+            int max = 0;
+
+            string sqlStr = "SELECT TOP 1 artistID FROM Contents.tblArtists ORDER BY artistID DESC;";
+
+            using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
+            {
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        max = Convert.ToInt32(reader["artistID"]);
+                    }
+                }
+            }
+
+            return max;
+
+        }
+
         public List<Artists> GetAllArtists()
         {
             List<Artists> artists = new List<Artists>();
@@ -228,6 +290,27 @@ namespace CDOrganiserProjectApp
 
         }
 
+
+        public int GetRoomBoundary()
+        {
+            int max = 0;
+
+            string sqlStr = "SELECT TOP 1 roomID FROM Properties.tblRooms ORDER BY roomID DESC;";
+
+            using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
+            {
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        max = Convert.ToInt32(reader["roomID"]);
+                    }
+                }
+            }
+
+            return max;
+
+        }
 
         public List<Rooms> GetAllRooms()
         {
@@ -286,6 +369,26 @@ namespace CDOrganiserProjectApp
         }
 
 
+        public int GetShelfBoundary()
+        {
+            int max = 0;
+
+            string sqlStr = "SELECT TOP 1 shelfTagID FROM Properties.tblShelf ORDER BY shelfTagID DESC;";
+
+            using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
+            {
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        max = Convert.ToInt32(reader["shelfTagID"]);
+                    }
+                }
+            }
+
+            return max;
+
+        }
 
         public List<Shelves> GetAllShelves()
         {
@@ -1592,7 +1695,7 @@ namespace CDOrganiserProjectApp
         public void SearchArtists(string search)
         {
 
-            string sqlStr = $"SELECT artistName FROM Contents.tblArtists WHERE artistName = @search";
+            string sqlStr = $"SELECT artistName FROM Contents.tblArtists WHERE artistName LIKE '%' + @search + '%'";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
                 cmd.Parameters.AddWithValue("@search", search);
@@ -1617,7 +1720,7 @@ namespace CDOrganiserProjectApp
         public void SearchBands(string search)
         {
 
-            string sqlStr = $"SELECT bandName FROM Contents.tblBands WHERE bandName = @search";
+            string sqlStr = $"SELECT bandName FROM Contents.tblBands WHERE bandName LIKE '%' + @search + '%'";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
                 cmd.Parameters.AddWithValue("@search", search);
@@ -1642,7 +1745,7 @@ namespace CDOrganiserProjectApp
         public void SearchArtistReviews(string search)
         {
 
-            string sqlStr = $"SELECT tblTier.tierTag, tblArtistAlbums.albumName FROM Contents.tblArtistReviews, Contents.tblArtistAlbums, Properties.tblTier WHERE tblTier.tierTag = @search AND tblArtistReviews.tierID = tblTier.tierID AND tblArtistReviews.albumID = tblArtistAlbums.albumID";
+            string sqlStr = $"SELECT tblTier.tierTag, tblArtistAlbums.albumName FROM Contents.tblArtistReviews, Contents.tblArtistAlbums, Properties.tblTier WHERE tblTier.tierTag LIKE '%' + @search + '%' AND tblArtistReviews.tierID = tblTier.tierID AND tblArtistReviews.albumID = tblArtistAlbums.albumID";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
                 cmd.Parameters.AddWithValue("@search", search);
@@ -1668,7 +1771,7 @@ namespace CDOrganiserProjectApp
         public void SearchBandReviews(string search)
         {
 
-            string sqlStr = $"SELECT tblTier.tierTag, tblBandAlbums.albumName FROM Contents.tblBandReviews, Contents.tblBandAlbums, Properties.tblTier WHERE tblTier.tierTag = @search AND tblBandReviews.tierID = tblTier.tierID AND tblBandReviews.albumID = tblBandAlbums.albumID";
+            string sqlStr = $"SELECT tblTier.tierTag, tblBandAlbums.albumName FROM Contents.tblBandReviews, Contents.tblBandAlbums, Properties.tblTier WHERE tblTier.tierTag LIKE '%' + @search + '%' AND tblBandReviews.tierID = tblTier.tierID AND tblBandReviews.albumID = tblBandAlbums.albumID";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
                 cmd.Parameters.AddWithValue("@search", search);
@@ -1694,7 +1797,7 @@ namespace CDOrganiserProjectApp
         public void SearchArtistAlbums(string search)
         {
 
-            string sqlStr = $"SELECT tblArtists.artistName, tblArtistAlbums.albumName FROM Contents.tblArtistAlbums, Contents.tblArtists WHERE tblArtists.artistName = @search AND tblArtistAlbums.artistID = tblArtists.artistID";
+            string sqlStr = $"SELECT tblArtists.artistName, tblArtistAlbums.albumName FROM Contents.tblArtistAlbums, Contents.tblArtists WHERE tblArtists.artistName LIKE '%' + @search + '%' AND tblArtistAlbums.artistID = tblArtists.artistID";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
                 cmd.Parameters.AddWithValue("@search", search);
@@ -1720,7 +1823,7 @@ namespace CDOrganiserProjectApp
         public void SearchBandAlbums(string search)
         {
 
-            string sqlStr = $"SELECT tblBands.bandName, tblBandAlbums.albumName FROM Contents.tblBandAlbums, Contents.tblBands WHERE tblBands.bandName = @search AND tblBandAlbums.bandID = tblBands.bandID";
+            string sqlStr = $"SELECT tblBands.bandName, tblBandAlbums.albumName FROM Contents.tblBandAlbums, Contents.tblBands WHERE tblBands.bandName LIKE '%' + @search + '%' AND tblBandAlbums.bandID = tblBands.bandID";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
                 cmd.Parameters.AddWithValue("@search", search);
