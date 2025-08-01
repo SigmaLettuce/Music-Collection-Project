@@ -1925,7 +1925,7 @@ namespace CDOrganiserProjectApp
         public void SearchArtistAlbums(string search)
         {
 
-            string sqlStr = $"SELECT tblArtists.artistName, tblArtistAlbums.albumName FROM Contents.tblArtistAlbums, Contents.tblArtists WHERE tblArtists.artistName LIKE '%' + @search + '%' AND tblArtistAlbums.artistID = tblArtists.artistID";
+            string sqlStr = $"SELECT tblArtists.artistName, tblArtistAlbums.albumName FROM Contents.tblArtistAlbums, Contents.tblArtists WHERE tblArtistAlbums.albumName LIKE '%' + @search + '%' AND tblArtistAlbums.artistID = tblArtists.artistID";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
                 cmd.Parameters.AddWithValue("@search", search);
@@ -1951,7 +1951,7 @@ namespace CDOrganiserProjectApp
         public void SearchBandAlbums(string search)
         {
 
-            string sqlStr = $"SELECT tblBands.bandName, tblBandAlbums.albumName FROM Contents.tblBandAlbums, Contents.tblBands WHERE tblBands.bandName LIKE '%' + @search + '%' AND tblBandAlbums.bandID = tblBands.bandID";
+            string sqlStr = $"SELECT tblBands.bandName, tblBandAlbums.albumName FROM Contents.tblBandAlbums, Contents.tblBands WHERE tblBandAlbums.bandName LIKE '%' + @search + '%' AND tblBandAlbums.bandID = tblBands.bandID";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
                 cmd.Parameters.AddWithValue("@search", search);

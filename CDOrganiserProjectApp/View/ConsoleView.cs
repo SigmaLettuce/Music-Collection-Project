@@ -436,7 +436,7 @@ namespace CDOrganiserProjectApp.View
         public void HomepageError(int delay)
         {
             Console.WriteLine("The input was invalid. Sending you back to homepage... ");
-            Thread.Sleep(wait);
+            Thread.Sleep(delay);
             Console.Clear();
 
         }
@@ -444,7 +444,7 @@ namespace CDOrganiserProjectApp.View
         public void RangeError(int delay)
         {
             Console.WriteLine($"Input is out of range. Please try again.");
-            Thread.Sleep(wait);
+            Thread.Sleep(delay);
             Console.Clear();
 
         }

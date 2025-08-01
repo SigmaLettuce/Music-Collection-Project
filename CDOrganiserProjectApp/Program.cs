@@ -2705,26 +2705,25 @@ namespace CDOrganiserProjectApp
 
         private static void UpdateBandName()
         {
-            
 
             try
             {
 
                 List<Bands> bands = storageManager.GetAllBands();
-                int upper = storageManager.GetBandBoundary();
+                int bUpper = storageManager.GetBandBoundary();
 
                 view.DisplayMessage("\nEnter the identification number... ");
                 int bandId = view.GetIntInput();
-                bool id = view.PassBoundary(bandId, upper);
+                bool bid = view.PassBoundary(bandId, bUpper);
 
-                switch (id)
+                switch (bid)
                 {
                     case true:
                         view.DisplayMessage("\nRename the record... ");
                         string bandName = view.GetInput();
-                        bool name = view.PassBoundary(bandName.Length, 50);
+                        bool bn = view.PassRange(bandName.Length, 10, 50);
 
-                        switch (name)
+                        switch (bn)
                         {
                             case true:
                                 int rowsAffected = storageManager.UpdateBandById(bandId, bandName);
@@ -2766,20 +2765,36 @@ namespace CDOrganiserProjectApp
 
         private static void InsertNewBand()
         {
-            
 
             try
             {
                 view.DisplayMessage("\nEnter the new band... ");
                 string bandName = view.GetInput();
-                int bandId = 0; 
+                bool bn = view.PassRange(bandName.Length, 10, 50);
 
-                Bands newBand = new Bands(bandId, bandName);
+                int bandId = 0;
 
-                int generatedId = storageManager.InsertBand(newBand);
-                view.DisplayMessage($"\nThe new bands identification number is: {generatedId}");
+                switch (bn)
+                {
+                    case true:
+                        Bands newBand = new Bands(bandId, bandName);
+
+
+                        int generatedId = storageManager.InsertBand(newBand);
+                        view.DisplayMessage($"\nThe new bands identification number is: {generatedId}");
+
+                    break;
+
+                    case false:
+                        view.RangeError(wait);
+
+                        InsertNewBand();
+
+                    break;
+                }  
 
             }
+
             catch (FormatException e)
             {
                 view.DisplayMessage("\n  Please use the proper formatting.");
@@ -2792,17 +2807,33 @@ namespace CDOrganiserProjectApp
         }
 
         private static void DeleteBandById()
-
         {
-            
 
             try
             {
+
+                List<Bands> bands = storageManager.GetAllBands();
+                int bUpper = storageManager.GetBandBoundary();
+
                 view.DisplayMessage("\nEnter the identification number... ");
                 int bandId = view.GetIntInput();
+                bool bid = view.PassBoundary(bandId, bUpper);
 
-                int rowsAffected = storageManager.DeleteBandById(bandId);
-                view.DisplayMessage($"\nDeleted {rowsAffected} row.");
+                switch (bid)
+                {
+                    case true:
+                        int rowsAffected = storageManager.DeleteBandById(bandId);
+                        view.DisplayMessage($"\nDeleted {rowsAffected} row.");
+
+                    break;
+
+                    case false:
+                        view.RangeError(wait);
+
+                        DeleteBandById();
+
+                    break;
+                }
 
             }
             
@@ -2822,26 +2853,25 @@ namespace CDOrganiserProjectApp
 
         private static void UpdateGenreName()
         {
-            
 
             try
             {
 
                 List<Genres> genres = storageManager.GetAllGenres();
-                int upper = storageManager.GetGenreBoundary();
+                int gUpper = storageManager.GetGenreBoundary();
 
                 view.DisplayMessage("\nEnter the identification number... ");
                 int genreId = view.GetIntInput();
-                bool id = view.PassBoundary(genreId, upper);
+                bool gid = view.PassBoundary(genreId, gUpper);
 
-                switch (id)
+                switch (gid)
                 {
                     case true:
                         view.DisplayMessage("\nRename the record... ");
                         string genreName = view.GetInput();
-                        bool name = view.PassBoundary(genreName.Length, 50);
+                        bool gn = view.PassRange(genreName.Length, 3, 20);
 
-                        switch (name)
+                        switch (gn)
                         {
                             case true:
                                 int rowsAffected = storageManager.UpdateGenreById(genreId, genreName);
@@ -2879,25 +2909,40 @@ namespace CDOrganiserProjectApp
     
             }
 
-        }
+        }  
 
         private static void InsertNewGenre()
         {
-            
 
             try
             {
                 view.DisplayMessage("\nEnter the new genre... ");
                 string genreName = view.GetInput();
-                List<Genres> genres = storageManager.GetAllGenres();
-                int genreId = 0; 
+                bool gn = view.PassRange(genreName.Length, 3, 20);
 
-                Genres newGenre = new Genres(genreId, genreName);
+                int genreId = 0;
 
-                int generatedId = storageManager.InsertGenre(newGenre);
-                view.DisplayMessage($"\nThe new genres identification number is: {generatedId}");
+                switch (gn)
+                {
+                    case true:
+                        Genres newGenre = new Genres(genreId, genreName);
+
+
+                        int generatedId = storageManager.InsertGenre(newGenre);
+                        view.DisplayMessage($"\nThe new genres identification number is: {generatedId}");
+
+                    break;
+
+                    case false:
+                        view.RangeError(wait);
+
+                        InsertNewGenre();
+
+                    break;
+                }  
 
             }
+
             catch (FormatException e)
             {
                 view.DisplayMessage("\n  Please use the proper formatting.");
@@ -2911,16 +2956,32 @@ namespace CDOrganiserProjectApp
 
         private static void DeleteGenreById()
         {
-            
 
             try
             {
-                view.DisplayMessage("\nEnter the identification number... ");
-                List<Genres> genres = storageManager.GetAllGenres();
-                int genreId = view.GetIntInput();
 
-                int rowsAffected = storageManager.DeleteGenreById(genreId);
-                view.DisplayMessage($"\nDeleted {rowsAffected} rows.");
+                List<Genres> genres = storageManager.GetAllGenres();
+                int gUpper = storageManager.GetGenreBoundary();
+
+                view.DisplayMessage("\nEnter the identification number... ");
+                int genreId = view.GetIntInput();
+                bool gid = view.PassBoundary(genreId, gUpper);
+
+                switch (gid)
+                {
+                    case true:
+                        int rowsAffected = storageManager.DeleteGenreById(genreId);
+                        view.DisplayMessage($"\nDeleted {rowsAffected} row.");
+
+                    break;
+
+                    case false:
+                        view.RangeError(wait);
+
+                        DeleteGenreById();
+
+                    break;
+                }
 
             }
             
@@ -2940,26 +3001,25 @@ namespace CDOrganiserProjectApp
 
         private static void UpdateFormatName()
         {
-            
 
             try
             {
 
                 List<Formats> formats = storageManager.GetAllFormats();
-                int upper = storageManager.GetFormatBoundary();
+                int fUpper = storageManager.GetFormatBoundary();
 
                 view.DisplayMessage("\nEnter the identification number... ");
                 int formatId = view.GetIntInput();
-                bool id = view.PassBoundary(formatId, upper);
+                bool fid = view.PassBoundary(formatId, fUpper);
 
-                switch (id)
+                switch (fid)
                 {
                     case true:
                         view.DisplayMessage("\nRename the record... ");
                         string formatName = view.GetInput();
-                        bool name = view.PassBoundary(formatName.Length, 15);
+                        bool fn = view.PassRange(formatName.Length, 3, 20);
 
-                        switch (name)
+                        switch (fn)
                         {
                             case true:
                                 int rowsAffected = storageManager.UpdateFormatById(formatId, formatName);
@@ -2997,24 +3057,40 @@ namespace CDOrganiserProjectApp
     
             }
 
-        }
+        }  
 
         private static void InsertNewFormat()
         {
-            
 
             try
             {
                 view.DisplayMessage("\nEnter the new format... ");
                 string formatName = view.GetInput();
-                int formatId = 0; 
+                bool fn = view.PassRange(formatName.Length, 3, 20);
 
-                Formats newFormat = new Formats(formatId, formatName);
+                int formatId = 0;
 
-                int generatedId = storageManager.InsertFormat(newFormat);
-                view.DisplayMessage($"\nThe new formats identification number is: {generatedId}");
+                switch (fn)
+                {
+                    case true:
+                        Formats newFormat = new Formats(formatId, formatName);
+
+
+                        int generatedId = storageManager.InsertFormat(newFormat);
+                        view.DisplayMessage($"\nThe new formats identification number is: {generatedId}");
+
+                    break;
+
+                    case false:
+                        view.RangeError(wait);
+
+                        InsertNewFormat();
+
+                    break;
+                }  
 
             }
+
             catch (FormatException e)
             {
                 view.DisplayMessage("\n  Please use the proper formatting.");
@@ -3028,16 +3104,32 @@ namespace CDOrganiserProjectApp
 
         private static void DeleteFormatById()
         {
-            
 
             try
             {
-                view.DisplayMessage("\nEnter the identification number... ");
-                List<Formats> formats = storageManager.GetAllFormats();
-                int formatId = view.GetIntInput();
 
-                int rowsAffected = storageManager.DeleteFormatById(formatId);
-                view.DisplayMessage($"\nDeleted {rowsAffected} rows.");
+                List<Formats> formats = storageManager.GetAllFormats();
+                int fUpper = storageManager.GetFormatBoundary();
+
+                view.DisplayMessage("\nEnter the identification number... ");
+                int formatId = view.GetIntInput();
+                bool fid = view.PassBoundary(formatId, fUpper);
+
+                switch (fid)
+                {
+                    case true:
+                        int rowsAffected = storageManager.DeleteFormatById(formatId);
+                        view.DisplayMessage($"\nDeleted {rowsAffected} row.");
+
+                    break;
+
+                    case false:
+                        view.RangeError(wait);
+
+                        DeleteFormatById();
+
+                    break;
+                }
 
             }
             
@@ -3049,6 +3141,7 @@ namespace CDOrganiserProjectApp
                 DeleteFormatById();
     
             }
+
         }
 
 
@@ -3056,24 +3149,25 @@ namespace CDOrganiserProjectApp
 
         private static void UpdateArtistName()
         {
+
             try
             {
 
                 List<Artists> artists = storageManager.GetAllArtists();
-                int upper = storageManager.GetArtistBoundary();
+                int aUpper = storageManager.GetArtistBoundary();
 
                 view.DisplayMessage("\nEnter the identification number... ");
                 int artistId = view.GetIntInput();
-                bool id = view.PassBoundary(artistId, upper);
+                bool aid = view.PassBoundary(artistId, aUpper);
 
-                switch (id)
+                switch (aid)
                 {
                     case true:
                         view.DisplayMessage("\nRename the record... ");
                         string artistName = view.GetInput();
-                        bool name = view.PassBoundary(artistName.Length, 50);
+                        bool an = view.PassRange(artistName.Length, 10, 50);
 
-                        switch (name)
+                        switch (an)
                         {
                             case true:
                                 int rowsAffected = storageManager.UpdateArtistById(artistId, artistName);
@@ -3111,45 +3205,79 @@ namespace CDOrganiserProjectApp
     
             }
 
-            
-        }
+        }  
 
         private static void InsertNewArtist()
         {
+
             try
             {
                 view.DisplayMessage("\nEnter the new artist... ");
                 string artistName = view.GetInput();
+                bool an = view.PassRange(artistName.Length, 10, 50);
+
                 int artistId = 0;
 
-                Artists newArtist = new Artists(artistId, artistName);
+                switch (an)
+                {
+                    case true:
+                        Artists newArtist = new Artists(artistId, artistName);
 
-                int generatedId = storageManager.InsertArtist(newArtist);
-                view.DisplayMessage($"\nThe new artists identification number is: {generatedId}");
+
+                        int generatedId = storageManager.InsertArtist(newArtist);
+                        view.DisplayMessage($"\nThe new artists identification number is: {generatedId}");
+
+                    break;
+
+                    case false:
+                        view.RangeError(wait);
+
+                        InsertNewArtist();
+
+                    break;
+                }  
 
             }
+
             catch (FormatException e)
             {
                 view.DisplayMessage("\n  Please use the proper formatting.");
                 view.DisplayMessage(e.Message);
 
                 InsertNewArtist();
-                
-            }           
+    
+            }
 
         }
 
         private static void DeleteArtistById()
         {
+
             try
             {
-                view.DisplayMessage("\nEnter the identification number... ");
+
                 List<Artists> artists = storageManager.GetAllArtists();
+                int aUpper = storageManager.GetArtistBoundary();
+
+                view.DisplayMessage("\nEnter the identification number... ");
                 int artistId = view.GetIntInput();
+                bool aid = view.PassBoundary(artistId, aUpper);
 
-                int rowsAffected = storageManager.DeleteArtistById(artistId);
-                view.DisplayMessage($"\nDeleted {rowsAffected} row.");
+                switch (aid)
+                {
+                    case true:
+                        int rowsAffected = storageManager.DeleteArtistById(artistId);
+                        view.DisplayMessage($"\nDeleted {rowsAffected} row.");
 
+                    break;
+
+                    case false:
+                        view.RangeError(wait);
+
+                        DeleteArtistById();
+
+                    break;
+                }
 
             }
             
@@ -3159,8 +3287,9 @@ namespace CDOrganiserProjectApp
                 view.DisplayMessage(e.Message);
 
                 DeleteArtistById();
-               
+    
             }
+
         }
 
 
@@ -3416,7 +3545,7 @@ namespace CDOrganiserProjectApp
 
                 view.DisplayMessage("\nEnter the identification number... ");
                 int shelfRowId = view.GetIntInput();
-                bool sroid = view.PassBoundary(shelfRowId, rows.Count);
+                bool sroid = view.PassBoundary(shelfRowId, rowsUpper);
 
                 switch (sroid)
                 {
@@ -3427,7 +3556,7 @@ namespace CDOrganiserProjectApp
 
                         view.DisplayMessage("\nEnter the identification number... ");
                         int shelfTagId = view.GetIntInput();
-                        bool staid = view.PassBoundary(shelfTagId, shelves.Count);
+                        bool staid = view.PassBoundary(shelfTagId, shelvesUpper);
 
                         switch (staid)
                         {
@@ -3726,30 +3855,9 @@ namespace CDOrganiserProjectApp
                                                     view.DisplayMessage("\nThat username is already taken. Choose a different username. ");
                                                     Thread.Sleep(wait);
                                                     Console.Clear();
-
-                                                    switch (logStatus)
-                                                    {
-                                                        case true:
-                                                            switch (roleId)
-                                                            {
-                                                                case 1:
-                                                                    GuestMenuscreenOptions();
-
-                                                                break;
-
-                                                                case 2:
-                                                                    AdminMenuscreenOptions();
-
-                                                                break;
-                                                            }
-
-                                                            break;
-
-                                                        case false:
-                                                            StartMenuscreenOptions();
-
-                                                        break;
-                                                    }
+                                                    
+                                                    AdminMenuscreenOptions();
+                                                               
                                                 }
 
                                                 else
@@ -4426,6 +4534,7 @@ namespace CDOrganiserProjectApp
 
                 view.DisplayMessage("\nEnter an album identification number...");
                 List<ArtistAlbums> albums = storageManager.GetAllArtistAlbums();
+                int artistReviewUpper = storageManager.GetArtistReviewBoundary();
 
                 int albumId = view.GetIntInput();
                 bool alid = view.PassBoundary(albumId, albums.Count);
