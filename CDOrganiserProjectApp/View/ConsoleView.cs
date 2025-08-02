@@ -413,7 +413,6 @@ namespace CDOrganiserProjectApp.View
             }
 
 
-
             return Convert.ToInt32(Console.ReadLine());
         }
 
@@ -571,7 +570,18 @@ namespace CDOrganiserProjectApp.View
 
         public bool PassBoundary(int i, int size)
         {
-            bool boundary = i > 0 && i <= size;
+            bool minConditions = i > 0;
+            bool maxConditions = i <= size;
+
+            bool boundary = minConditions && maxConditions;
+
+            switch (minConditions)
+            {
+                case false:
+                    Console.WriteLine($"'{i}' Goes outside of the boundaries. Please pass ");
+
+                break;
+            }
 
             return boundary;
         }

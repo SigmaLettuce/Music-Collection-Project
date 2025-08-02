@@ -247,7 +247,6 @@ namespace CDOrganiserProjectApp
                 {
 
                     case "bands":
-
                         BandPanel();
 
                         invalid = false;
@@ -255,106 +254,9 @@ namespace CDOrganiserProjectApp
                     break;
                   
                     case "artists":
-                        List<Artists> artists = storageManager.GetAllArtists();
-                        view.DisplayArtists(artists);
-
-                        Thread.Sleep(wait);
-
-                        cmd = view.DisplayEditingOptions("artists", "default~extras~search");
-                        view.DisplayMessage("");
-
-                        Thread.Sleep(wait);
+                        ArtistPanel();
 
                         invalid = false;
-
-                        do
-                        {
-
-                            switch (cmd.ToLower())
-                            {
-                                case "up":
-                                    UpdateArtistName();
-
-                                    invalid = false;
-
-                                    GoBack();
-
-                                break;
-
-                                case "ins":
-                                    InsertNewArtist();
-
-                                    invalid = false;
-
-                                    GoBack();
-
-                                break;
-
-                                case "del":
-                                    DeleteArtistById();
-
-                                    invalid = false;
-
-                                    GoBack();
-
-                                break;
-
-                                case "search":
-                                    SearchArtists();
-
-                                    cmd = view.GetInput();
-                                    view.DisplayMessage("");
-
-                                    Thread.Sleep(wait);
-
-                                    do
-                                    {
-                                        switch (cmd.ToUpper())
-                                        {
-                                            case "E":
-                                                GoBack();
-
-                                                invalid = false;
-
-                                            break;
-
-                                            default:
-                                                view.HomepageError(wait);
-
-                                                GoBack();
-
-                                                invalid = true;
-
-                                            break;
-
-                                        }
-
-                                    }  while (invalid);
-
-                                    invalid = false;
-
-                                    GoBack();
-
-                                break;
-
-                                case "back":                                   
-                                    GoBack();
-
-                                    invalid = false;
-
-                                break;
-
-                                default:
-                                    view.DisplayError(wait);
-
-                                    GoBack();
-
-                                    invalid = true;
-
-                                break;
-                            }
-
-                        } while (invalid);
 
                     break;
                                         
@@ -3170,7 +3072,106 @@ namespace CDOrganiserProjectApp
         private static void ArtistPanel()
         {
             string artistCmd;
-            bool invalidCmd = true;
+            bool invalidArtistCmd = true;
+
+            List<Artists> artists = storageManager.GetAllArtists();
+            view.DisplayArtists(artists);
+
+            Thread.Sleep(wait);
+
+            artistCmd = view.DisplayEditingOptions("artists", "default~extras~search");
+            view.DisplayMessage("");
+
+            Thread.Sleep(wait);
+
+            do
+            {
+
+                switch (artistCmd.ToLower())
+                {
+                    case "up":
+                        UpdateArtistName();
+
+                        invalidArtistCmd = false;
+
+                        GoBack();
+
+                    break;
+
+                    case "ins":
+                        InsertNewArtist();
+
+                        invalidArtistCmd = false;
+
+                        GoBack();
+
+                    break;
+
+                    case "del":
+                        DeleteArtistById();
+
+                        invalidArtistCmd = false;
+
+                        GoBack();
+
+                    break;
+
+                    case "search":
+                        SearchArtists();
+
+                        artistCmd = view.GetInput();
+                        view.DisplayMessage("");
+
+                        Thread.Sleep(wait);
+
+                        do
+                        {
+                            switch (artistCmd.ToUpper())
+                            {
+                                case "E":
+                                    GoBack();
+
+                                    invalidArtistCmd = false;
+
+                                break;
+
+                                default:
+                                    view.HomepageError(wait);
+
+                                    GoBack();
+
+                                    invalidArtistCmd = true;
+
+                                break;
+
+                            }
+
+                        }  while (invalidArtistCmd);
+
+                        invalidArtistCmd = false;
+
+                        GoBack();
+
+                    break;
+
+                    case "back":                                   
+                        GoBack();
+
+                        invalidArtistCmd = false;
+
+                    break;
+
+                    default:
+                        view.DisplayError(wait);
+
+                        GoBack();
+
+                        invalidArtistCmd = true;
+
+                    break;
+                }
+
+            } while (invalidArtistCmd);
 
         }
 
@@ -4105,10 +4106,10 @@ namespace CDOrganiserProjectApp
             {
                 view.DisplayMessage("\nEnter an album identification number... ");
                 List<ArtistAlbums> albums = storageManager.GetAllArtistAlbums();
-                int getAlbumUpper = storageManager.GetArtistAlbumBoundary();
+                int alUpper = storageManager.GetArtistAlbumBoundary();
 
                 int albumId = view.GetIntInput();
-                bool alid = view.PassBoundary(albumId, getAlbumUpper);
+                bool alid = view.PassBoundary(albumId, alUpper);
 
                 switch (alid)
                 {
@@ -4124,12 +4125,12 @@ namespace CDOrganiserProjectApp
                             case true:
                                 view.DisplayMessage("\nEnter a new genre identification number...");
                                 List<Genres> genres = storageManager.GetAllGenres();
-                                int getGenresUpper = storageManager.GetGenreBoundary();
+                                int gUpper = storageManager.GetGenreBoundary();
 
                                 view.DisplayGenres(genres);
 
                                 int genreId = view.GetIntInput();
-                                bool gid = view.PassBoundary(genreId, getGenresUpper);
+                                bool gid = view.PassBoundary(genreId, gUpper);
 
                                 switch (gid)
                                 {
@@ -4143,32 +4144,32 @@ namespace CDOrganiserProjectApp
                                             case true:
                                                 view.DisplayMessage("\nEnter a new format identification number... ");
                                                 List<Formats> formats = storageManager.GetAllFormats();
-                                                int getFormatsUpper = storageManager.GetFormatBoundary();
+                                                int fUpper = storageManager.GetFormatBoundary();
 
                                                 int formatId = view.GetIntInput();
-                                                bool fid = view.PassBoundary(formatId, getFormatsUpper);
+                                                bool fid = view.PassBoundary(formatId, fUpper);
 
                                                 switch (fid)
                                                 {
                                                     case true:
                                                         view.DisplayMessage("\nEnter a new artist identification number... ");
                                                         List<Artists> artists = storageManager.GetAllArtists();
-                                                        int getArtistsUpper = storageManager.GetArtistBoundary();
+                                                        int aUpper = storageManager.GetArtistBoundary();
 
                                                         view.DisplayArtists(artists);
 
                                                         int artistId = view.GetIntInput();
-                                                        bool aid = view.PassBoundary(artistId, getArtistsUpper);
+                                                        bool aid = view.PassBoundary(artistId, aUpper);
 
                                                         switch (aid)
                                                         {
                                                             case true:
                                                                 view.DisplayMessage("\nEnter a new shelf row identification number... ");
                                                                 List<Shelves> shelves = storageManager.GetAllShelves();
-                                                                int getShelfUpper = storageManager.GetShelfBoundary();
+                                                                int sUpper = storageManager.GetShelfBoundary();
 
                                                                 int shelfRowId = view.GetIntInput();
-                                                                bool sroid = view.PassBoundary(shelfRowId, getShelfUpper);
+                                                                bool sroid = view.PassBoundary(shelfRowId, sUpper);
 
                                                                 bool lost = false;
 
@@ -4189,7 +4190,7 @@ namespace CDOrganiserProjectApp
 
                                                                 }
 
-                                                                break;
+                                                            break;
 
                                                             case false:
                                                                 view.RangeError(wait);
@@ -4276,39 +4277,131 @@ namespace CDOrganiserProjectApp
             {
                 view.DisplayMessage("\nEnter the new album... ");
                 string albumName = view.GetInput();
+                bool aln = view.PassRange(albumName.Length, 9, 50);
+
                 int albumId = 0;
 
-                view.DisplayMessage("\nEnter a genre identification number...");
-                List<Genres> genres = storageManager.GetAllGenres();
-                view.DisplayGenres(genres);
+                switch (aln)
+                {
+                    case true:
+                        view.DisplayMessage("\nEnter a genre identification number...");
+                        List<Genres> genres = storageManager.GetAllGenres();
+                        int gUpper = storageManager.GetShelfBoundary();
 
-                int genreId = view.GetIntInput();
+                        view.DisplayGenres(genres);
 
-                view.DisplayMessage("\nEnter the date of release... YYYY/MM/DD");
-                DateTime dateOfRelease = view.GetDateTimeInput();
+                        int genreId = view.GetIntInput();
+                        bool gid = view.PassBoundary(genreId, gUpper);
 
-                view.DisplayMessage("\nEnter the format identification number... ");
-                List<Formats> formats = storageManager.GetAllFormats();
+                        switch (gid)
+                        {
+                            case true:
+                                view.DisplayMessage("\nEnter the date of release... YYYY/MM/DD");
+                                DateTime dateOfRelease = view.GetDateTimeInput();
+                                bool dtor = view.PassDateBoundary(dateOfRelease);
 
-                int formatId = view.GetIntInput();
+                                switch (dtor)
+                                {
+                                    case true:
+                                        view.DisplayMessage("\nEnter the format identification number... ");
+                                        List<Formats> formats = storageManager.GetAllFormats();
+                                        int fUpper = storageManager.GetFormatBoundary();
 
-                view.DisplayMessage("\nEnter the artist identification number... ");
-                List<Artists> artists = storageManager.GetAllArtists();
-                view.DisplayArtists(artists);
+                                        int formatId = view.GetIntInput();
+                                        bool fid = view.PassBoundary(formatId, fUpper);
 
-                int artistId = view.GetIntInput();
+                                        switch (fid)
+                                        {
+                                            case true:
+                                                view.DisplayMessage("\nEnter the artist identification number... ");
+                                                List<Artists> artists = storageManager.GetAllArtists();
+                                                int aUpper = storageManager.GetArtistBoundary();
 
-                view.DisplayMessage("\nEnter the shelf rows identification number... ");
-                List<Shelves> shelves = storageManager.GetAllShelves();
+                                                view.DisplayArtists(artists);
 
-                int shelfRowId = view.GetIntInput();
-  
-                bool lost = false;
+                                                int artistId = view.GetIntInput();
+                                                bool aid = view.PassBoundary(artistId, aUpper);
 
-                ArtistAlbums newAlbum = new ArtistAlbums(albumId, albumName, genreId, dateOfRelease, formatId, artistId, shelfRowId, lost);
+                                                switch (aid)
+                                                {
+                                                    case true:
+                                                        view.DisplayMessage("\nEnter the shelf rows identification number... ");
+                                                        List<Shelves> shelves = storageManager.GetAllShelves();
+                                                        int sUpper = storageManager.GetShelfBoundary();
 
-                int generatedId = storageManager.InsertArtistAlbum(newAlbum);
-                view.DisplayMessage($"\nThe new albums identification number is: {generatedId}");
+                                                        int shelfRowId = view.GetIntInput();
+                                                        bool sroid = view.PassBoundary(shelfRowId, sUpper);
+
+                                                        bool lost = false;
+
+                                                        switch (sroid)
+                                                        {
+                                                            case true:
+                                                                ArtistAlbums newAlbum = new ArtistAlbums(albumId, albumName, genreId, dateOfRelease, formatId, artistId, shelfRowId, lost);
+
+                                                                int generatedId = storageManager.InsertArtistAlbum(newAlbum);
+                                                                view.DisplayMessage($"\nThe new albums identification number is: {generatedId}");
+
+                                                            break;
+
+                                                            case false:
+                                                                view.RangeError(wait);
+
+                                                                InsertArtistAlbum();
+
+                                                            break;
+                                                        }
+
+                                                    break;
+
+                                                    case false:
+                                                        view.RangeError(wait);
+
+                                                        InsertArtistAlbum();
+
+                                                    break;
+                                                }
+
+                                                break;
+
+                                            case false:
+                                                view.RangeError(wait);
+
+                                                InsertArtistAlbum();
+
+                                            break;
+                                        }
+
+                                        break;
+
+                                    case false:
+                                        view.RangeError(wait);
+
+                                        InsertArtistAlbum();
+
+                                    break;
+                                }
+
+                            break;
+
+                            case false:
+                                view.RangeError(wait);
+
+                                InsertArtistAlbum();
+
+                            break;
+                        }
+
+
+                    break;
+
+                    case false:
+                        view.RangeError(wait);
+
+                        InsertArtistAlbum();
+
+                    break;
+                }
 
             }
             
@@ -4330,10 +4423,27 @@ namespace CDOrganiserProjectApp
             try
             {
                 view.DisplayMessage("\nEnter the identification number... ");
-                int albumId = view.GetIntInput();
+                List<ArtistAlbums> albums = storageManager.GetAllArtistAlbums();
+                int alUpper = storageManager.GetArtistAlbumBoundary();
 
-                int rowsAffected = storageManager.DeleteArtistAlbumById(albumId);
-                view.DisplayMessage($"\nDeleted {rowsAffected} row.");
+                int albumId = view.GetIntInput();
+                bool alid = view.PassBoundary(albumId, alUpper);
+
+                switch (alid)
+                {
+                    case true:
+                        int rowsAffected = storageManager.DeleteArtistAlbumById(albumId);
+                        view.DisplayMessage($"\nDeleted {rowsAffected} row.");
+
+                    break;
+
+                    case false:
+                        view.RangeError(wait);
+
+                        DeleteArtistAlbumById();
+
+                    break;
+                }
 
             }
             
@@ -4406,10 +4516,10 @@ namespace CDOrganiserProjectApp
             {
                 view.DisplayMessage("\nEnter an album identification number... ");
                 List<BandAlbums> albums = storageManager.GetAllBandAlbums();
-                int getAlbumUpper = storageManager.GetBandAlbumBoundary();
+                int alUpper = storageManager.GetBandAlbumBoundary();
 
                 int albumId = view.GetIntInput();
-                bool alid = view.PassBoundary(albumId, getAlbumUpper);
+                bool alid = view.PassBoundary(albumId, alUpper);
 
                 switch (alid)
                 {
@@ -4418,19 +4528,19 @@ namespace CDOrganiserProjectApp
                         albums = storageManager.GetAllBandAlbums();
 
                         string albumName = view.GetInput();
-                        bool aln = view.PassBoundary(albumName.Length, 50);
+                        bool aln = view.PassRange(albumName.Length, 9, 50);
 
                         switch (aln)
                         {
                             case true:
                                 view.DisplayMessage("\nEnter a new genre identification number...");
                                 List<Genres> genres = storageManager.GetAllGenres();
-                                int getGenresUpper = storageManager.GetGenreBoundary();
+                                int gUpper = storageManager.GetGenreBoundary();
 
                                 view.DisplayGenres(genres);
 
                                 int genreId = view.GetIntInput();
-                                bool gid = view.PassBoundary(genreId, getGenresUpper);
+                                bool gid = view.PassBoundary(genreId, gUpper);
 
                                 switch (gid)
                                 {
@@ -4444,32 +4554,32 @@ namespace CDOrganiserProjectApp
                                             case true:
                                                 view.DisplayMessage("\nEnter a new format identification number... ");
                                                 List<Formats> formats = storageManager.GetAllFormats();
-                                                int getFormatsUpper = storageManager.GetFormatBoundary();
+                                                int fUpper = storageManager.GetFormatBoundary();
 
                                                 int formatId = view.GetIntInput();
-                                                bool fid = view.PassBoundary(formatId, getFormatsUpper);
+                                                bool fid = view.PassBoundary(formatId, fUpper);
 
                                                 switch (fid)
                                                 {
                                                     case true:
                                                         view.DisplayMessage("\nEnter a new band identification number... ");
                                                         List<Bands> bands = storageManager.GetAllBands();
-                                                        int getBandsUpper = storageManager.GetBandBoundary();
+                                                        int bUpper = storageManager.GetBandBoundary();
 
                                                         view.DisplayBands(bands);
 
                                                         int bandId = view.GetIntInput();
-                                                        bool bid = view.PassBoundary(bandId, getBandsUpper);
+                                                        bool bid = view.PassBoundary(bandId, bUpper);
 
                                                         switch (bid)
                                                         {
                                                             case true:
                                                                 view.DisplayMessage("\nEnter a new shelf row identification number... ");
                                                                 List<Shelves> shelves = storageManager.GetAllShelves();
-                                                                int getShelfUpper = storageManager.GetShelfBoundary();
+                                                                int sUpper = storageManager.GetShelfBoundary();
 
                                                                 int shelfRowId = view.GetIntInput();
-                                                                bool sroid = view.PassBoundary(shelfRowId, getShelfUpper);
+                                                                bool sroid = view.PassBoundary(shelfRowId, sUpper);
 
                                                                 bool lost = false;
 
@@ -4490,7 +4600,7 @@ namespace CDOrganiserProjectApp
 
                                                                 }
 
-                                                                break;
+                                                            break;
 
                                                             case false:
                                                                 view.RangeError(wait);
@@ -4577,39 +4687,131 @@ namespace CDOrganiserProjectApp
             {
                 view.DisplayMessage("\nEnter the new album... ");
                 string albumName = view.GetInput();
+                bool aln = view.PassRange(albumName.Length, 9, 50);
+
                 int albumId = 0;
 
-                view.DisplayMessage("\nEnter a genre identification number...");
-                List<Genres> genres = storageManager.GetAllGenres();
-                view.DisplayGenres(genres);
+                switch (aln)
+                {
+                    case true:
+                        view.DisplayMessage("\nEnter a genre identification number...");
+                        List<Genres> genres = storageManager.GetAllGenres();
+                        int gUpper = storageManager.GetShelfBoundary();
 
-                int genreId = view.GetIntInput();
+                        view.DisplayGenres(genres);
 
-                view.DisplayMessage("\nEnter the date of release... YYYY/MM/DD");
-                DateTime dateOfRelease = view.GetDateTimeInput();
+                        int genreId = view.GetIntInput();
+                        bool gid = view.PassBoundary(genreId, gUpper);
 
-                view.DisplayMessage("\nEnter the format identification number... ");
-                List<Formats> formats = storageManager.GetAllFormats();
+                        switch (gid)
+                        {
+                            case true:
+                                view.DisplayMessage("\nEnter the date of release... YYYY/MM/DD");
+                                DateTime dateOfRelease = view.GetDateTimeInput();
+                                bool dtor = view.PassDateBoundary(dateOfRelease);
 
-                int formatId = view.GetIntInput();
+                                switch (dtor)
+                                {
+                                    case true:
+                                        view.DisplayMessage("\nEnter the format identification number... ");
+                                        List<Formats> formats = storageManager.GetAllFormats();
+                                        int fUpper = storageManager.GetFormatBoundary();
 
-                view.DisplayMessage("\nEnter the band identification number... ");
-                List<Bands> bands = storageManager.GetAllBands();
-                view.DisplayBands(bands);
+                                        int formatId = view.GetIntInput();
+                                        bool fid = view.PassBoundary(formatId, fUpper);
 
-                int bandId = view.GetIntInput();
+                                        switch (fid)
+                                        {
+                                            case true:
+                                                view.DisplayMessage("\nEnter the band identification number... ");
+                                                List<Bands> bands = storageManager.GetAllBands();
+                                                int bUpper = storageManager.GetBandBoundary();
 
-                view.DisplayMessage("\nEnter the shelf rows identification number... ");
-                List<Shelves> shelves = storageManager.GetAllShelves();
+                                                view.DisplayBands(bands);
 
-                int shelfRowId = view.GetIntInput();
-  
-                bool lost = false;
+                                                int bandId = view.GetIntInput();
+                                                bool bid = view.PassBoundary(bandId, bUpper);
 
-                BandAlbums newAlbum = new BandAlbums(albumId, albumName, genreId, dateOfRelease, formatId, bandId, shelfRowId, lost);
+                                                switch (bid)
+                                                {
+                                                    case true:
+                                                        view.DisplayMessage("\nEnter the shelf rows identification number... ");
+                                                        List<Shelves> shelves = storageManager.GetAllShelves();
+                                                        int sUpper = storageManager.GetShelfBoundary();
 
-                int generatedId = storageManager.InsertBandAlbum(newAlbum);
-                view.DisplayMessage($"\nThe new albums identification number is: {generatedId}");
+                                                        int shelfRowId = view.GetIntInput();
+                                                        bool sroid = view.PassBoundary(shelfRowId, sUpper);
+
+                                                        bool lost = false;
+
+                                                        switch (sroid)
+                                                        {
+                                                            case true:
+                                                                BandAlbums newAlbum = new BandAlbums(albumId, albumName, genreId, dateOfRelease, formatId, bandId, shelfRowId, lost);
+
+                                                                int generatedId = storageManager.InsertBandAlbum(newAlbum);
+                                                                view.DisplayMessage($"\nThe new albums identification number is: {generatedId}");
+
+                                                            break;
+
+                                                            case false:
+                                                                view.RangeError(wait);
+
+                                                                InsertBandAlbum();
+
+                                                            break;
+                                                        }
+
+                                                    break;
+
+                                                    case false:
+                                                        view.RangeError(wait);
+
+                                                        InsertBandAlbum();
+
+                                                    break;
+                                                }
+
+                                                break;
+
+                                            case false:
+                                                view.RangeError(wait);
+
+                                                InsertBandAlbum();
+
+                                            break;
+                                        }
+
+                                        break;
+
+                                    case false:
+                                        view.RangeError(wait);
+
+                                        InsertBandAlbum();
+
+                                    break;
+                                }
+
+                            break;
+
+                            case false:
+                                view.RangeError(wait);
+
+                                InsertBandAlbum();
+
+                            break;
+                        }
+
+
+                    break;
+
+                    case false:
+                        view.RangeError(wait);
+
+                        InsertBandAlbum();
+
+                    break;
+                }
 
             }
             
@@ -4631,10 +4833,27 @@ namespace CDOrganiserProjectApp
             try
             {
                 view.DisplayMessage("\nEnter the identification number... ");
-                int albumId = view.GetIntInput();
+                List<BandAlbums> albums = storageManager.GetAllBandAlbums();
+                int alUpper = storageManager.GetBandAlbumBoundary();
 
-                int rowsAffected = storageManager.DeleteBandAlbumById(albumId);
-                view.DisplayMessage($"\nDeleted {rowsAffected} row.");
+                int albumId = view.GetIntInput();
+                bool alid = view.PassBoundary(albumId, alUpper);
+
+                switch (alid)
+                {
+                    case true:
+                        int rowsAffected = storageManager.DeleteBandAlbumById(albumId);
+                        view.DisplayMessage($"\nDeleted {rowsAffected} row.");
+
+                    break;
+
+                    case false:
+                        view.RangeError(wait);
+
+                        DeleteBandAlbumById();
+
+                    break;
+                }
 
             }
             
@@ -4707,25 +4926,27 @@ namespace CDOrganiserProjectApp
             {
                 view.DisplayMessage("\nEnter a review identification number... ");
                 int reviews = storageManager.GetUsersArtistReviews(accountId);
-
+                
                 int reviewId = view.GetIntInput();
 
                 view.DisplayMessage("\nEnter an album identification number...");
                 List<ArtistAlbums> albums = storageManager.GetAllArtistAlbums();
-                int artistReviewUpper = storageManager.GetArtistReviewBoundary();
+                int alUpper = storageManager.GetArtistAlbumBoundary();
 
                 int albumId = view.GetIntInput();
-                bool alid = view.PassBoundary(albumId, albums.Count);
+                bool alid = view.PassBoundary(albumId, alUpper);
 
                 switch (alid)
                 {
                     case true:
                         view.DisplayMessage("\nEnter a ranking identification number...");
                         List<Tiers> tiers = storageManager.GetAllTiers();
+                        int tUpper = storageManager.GetTierBoundary();
+
                         view.DisplayTiers(tiers);
 
                         int tierId = view.GetIntInput();
-                        bool tid = view.PassBoundary(tierId, tiers.Count);
+                        bool tid = view.PassBoundary(tierId, tUpper);
 
                         int personId = accountId;
   
@@ -4794,24 +5015,56 @@ namespace CDOrganiserProjectApp
             {
                 view.DisplayMessage("\nEnter an album identification number...");
                 List<ArtistAlbums> albums = storageManager.GetAllArtistAlbums();
+                int alUpper = storageManager.GetArtistAlbumBoundary();
 
                 int albumId = view.GetIntInput();
+                bool alid = view.PassBoundary(albumId, alUpper);
+
                 int reviewId = 0;
 
-                view.DisplayMessage("\nEnter a ranking identification number...");
-                List<Tiers> tiers = storageManager.GetAllTiers();
-                view.DisplayTiers(tiers);
+                switch (alid)
+                {
+                    case true:
+                        view.DisplayMessage("\nEnter a ranking identification number...");
+                        List<Tiers> tiers = storageManager.GetAllTiers();
+                        int tUpper = storageManager.GetTierBoundary();
 
-                int tierId = view.GetIntInput();
+                        view.DisplayTiers(tiers);
 
-                int personId = accountId;
+                        int tierId = view.GetIntInput();
+                        bool tid = view.PassBoundary(tierId, tUpper);
+
+                        switch (tid)
+                        {
+                            case true:
+                                int personId = accountId;
   
-                bool favourite = false;
+                                bool favourite = false;
 
-                ArtistReviews newReviews = new ArtistReviews(reviewId, albumId, personId, tierId, favourite);
+                                ArtistReviews newReviews = new ArtistReviews(reviewId, albumId, personId, tierId, favourite);
 
-                int generatedId = storageManager.InsertArtistReview(newReviews);
-                view.DisplayMessage($"\nThe new albums identification number is: {generatedId}");
+                                int generatedId = storageManager.InsertArtistReview(newReviews);
+                                view.DisplayMessage($"\nThe new albums identification number is: {generatedId}");
+
+                            break;
+
+                            case false:
+                                view.RangeError(wait);
+
+                                InsertArtistReview();
+
+                            break;
+                        }
+
+                    break;
+
+                    case false:
+                        view.RangeError(wait);
+
+                        InsertArtistReview();
+
+                    break;
+                }
 
             }
             
@@ -4944,24 +5197,27 @@ namespace CDOrganiserProjectApp
             {
                 view.DisplayMessage("\nEnter a review identification number... ");
                 int reviews = storageManager.GetUsersBandReviews(accountId);
-
+                
                 int reviewId = view.GetIntInput();
 
                 view.DisplayMessage("\nEnter an album identification number...");
                 List<BandAlbums> albums = storageManager.GetAllBandAlbums();
+                int alUpper = storageManager.GetBandAlbumBoundary();
 
                 int albumId = view.GetIntInput();
-                bool alid = view.PassBoundary(albumId, albums.Count);
+                bool alid = view.PassBoundary(albumId, alUpper);
 
                 switch (alid)
                 {
                     case true:
                         view.DisplayMessage("\nEnter a ranking identification number...");
                         List<Tiers> tiers = storageManager.GetAllTiers();
+                        int tUpper = storageManager.GetTierBoundary();
+
                         view.DisplayTiers(tiers);
 
                         int tierId = view.GetIntInput();
-                        bool tid = view.PassBoundary(tierId, tiers.Count);
+                        bool tid = view.PassBoundary(tierId, tUpper);
 
                         int personId = accountId;
   
@@ -5030,24 +5286,56 @@ namespace CDOrganiserProjectApp
             {
                 view.DisplayMessage("\nEnter an album identification number...");
                 List<BandAlbums> albums = storageManager.GetAllBandAlbums();
+                int alUpper = storageManager.GetBandAlbumBoundary();
 
                 int albumId = view.GetIntInput();
+                bool alid = view.PassBoundary(albumId, alUpper);
+
                 int reviewId = 0;
 
-                view.DisplayMessage("\nEnter a ranking identification number...");
-                List<Tiers> tiers = storageManager.GetAllTiers();
-                view.DisplayTiers(tiers);
+                switch (alid)
+                {
+                    case true:
+                        view.DisplayMessage("\nEnter a ranking identification number...");
+                        List<Tiers> tiers = storageManager.GetAllTiers();
+                        int tUpper = storageManager.GetTierBoundary();
 
-                int tierId = view.GetIntInput();
+                        view.DisplayTiers(tiers);
 
-                int personId = accountId;
+                        int tierId = view.GetIntInput();
+                        bool tid = view.PassBoundary(tierId, tUpper);
+
+                        switch (tid)
+                        {
+                            case true:
+                                int personId = accountId;
   
-                bool favourite = false;
+                                bool favourite = false;
 
-                BandReviews newReviews = new BandReviews(reviewId, albumId, personId, tierId, favourite);
+                                BandReviews newReviews = new BandReviews(reviewId, albumId, personId, tierId, favourite);
 
-                int generatedId = storageManager.InsertBandReview(newReviews);
-                view.DisplayMessage($"\nThe new albums identification number is: {generatedId}");
+                                int generatedId = storageManager.InsertBandReview(newReviews);
+                                view.DisplayMessage($"\nThe new albums identification number is: {generatedId}");
+
+                            break;
+
+                            case false:
+                                view.RangeError(wait);
+
+                                InsertBandReview();
+
+                            break;
+                        }
+
+                    break;
+
+                    case false:
+                        view.RangeError(wait);
+
+                        InsertBandReview();
+
+                    break;
+                }
 
             }
             
@@ -5087,8 +5375,7 @@ namespace CDOrganiserProjectApp
                 else
                 {
                     int rowsAffected = storageManager.DeleteBandReviewById(reviewId);
-                    view.DisplayMessage($"Deleted {rowsAffected} records.");
-
+                    view.DisplayMessage($"\nDeleted {rowsAffected} row.");
 
                 }
 

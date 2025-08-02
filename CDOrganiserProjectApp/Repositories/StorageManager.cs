@@ -197,6 +197,27 @@ namespace CDOrganiserProjectApp
         }
 
 
+        public int GetTierBoundary()
+        {
+            int max = 0;
+
+            string sqlStr = "SELECT TOP 1 tierID FROM Properties.tblTier ORDER BY tierID DESC;";
+
+            using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
+            {
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        max = Convert.ToInt32(reader["tierID"]);
+                    }
+                }
+            }
+
+            return max;
+
+        }
+
         public List<Tiers> GetAllTiers()
         {
             List<Tiers> tiers = new List<Tiers>();
