@@ -47,12 +47,12 @@ namespace CDOrganiserProjectApp
             
             bool invalid = true; // A variable that evaluates the continuation of a process.
 
-            string input = view.StartMenu(); // Calls the display, and returns a prompt for input.
+            string startInput = view.StartMenu(); // Calls the display, and returns a prompt for input.
             view.DisplayMessage("");
              
             do
             {
-                switch (input.ToUpper())
+                switch (startInput.ToUpper())
                 {
                     case "R":
 
@@ -247,107 +247,10 @@ namespace CDOrganiserProjectApp
                 {
 
                     case "bands":
-                        
-                        List<Bands> bands = storageManager.GetAllBands();
-                        view.DisplayBands(bands);
-                        
-                        Thread.Sleep(wait);
 
-                        cmd = view.DisplayEditingOptions("bands", "default~extras~search");
-                        view.DisplayMessage("");
-
-                        Thread.Sleep(wait);
+                        BandPanel();
 
                         invalid = false;
-
-                        do
-                        {
-
-                            switch (cmd.ToLower())
-                            {
-                                case "up":
-                                    UpdateBandName();
-
-                                    invalid = false;
-
-                                    GoBack();
-
-                                break;
-
-                                case "ins":
-                                    InsertNewBand();
-
-                                    invalid = false;
-
-                                    GoBack();
-
-                                break;
-
-                                case "del":
-                                    DeleteBandById();
-
-                                    invalid = false;
-
-                                    GoBack();
-
-                                break;
-
-                                case "search":
-                                    SearchBands();
-
-                                    cmd = view.GetInput();
-                                    view.DisplayMessage("");
-
-                                    Thread.Sleep(wait);
-
-                                    do
-                                    {
-                                        switch (cmd.ToUpper())
-                                        {
-                                            case "E":
-                                                GoBack();
-
-                                                invalid = false;
-
-                                            break;
-
-                                            default:
-                                                view.HomepageError(wait);
-
-                                                GoBack();
-
-                                                invalid = true;
-
-                                            break;
-
-                                        }
-
-                                    }  while (invalid);
-
-                                    invalid = false;
-
-                                    GoBack();
-
-                                break;
-
-                                case "back":
-                                    GoBack();
-
-                                    invalid = false;
-
-                                break;
-
-                                default:
-                                    view.DisplayError(wait);
-
-                                    GoBack();
-
-                                    invalid = true;
-
-                                break;
-                            }
-
-                        } while (invalid);
 
                     break;
                   
@@ -2697,6 +2600,106 @@ namespace CDOrganiserProjectApp
 
         private static void BandPanel()
         {
+            string bandCmd;
+            bool invalidCmd = true;
+
+            List<Bands> bands = storageManager.GetAllBands();
+            view.DisplayBands(bands);
+
+            Thread.Sleep(wait);
+
+            bandCmd = view.DisplayEditingOptions("bands", "default~extras~search");
+            view.DisplayMessage("");
+
+            Thread.Sleep(wait);
+
+            do
+            {
+                switch (bandCmd.ToLower())
+                {
+                    case "up":
+                        UpdateBandName();
+
+                        invalidCmd = false;
+
+                        GoBack();
+
+                    break;
+
+                    case "ins":
+                        InsertNewBand();
+
+                        invalidCmd = false;
+
+                        GoBack();
+
+                    break;
+
+                    case "del":
+                        DeleteBandById();
+
+                        invalidCmd = false;
+
+                        GoBack();
+
+                    break;
+
+                    case "search":
+                        SearchBands();
+
+                        bandCmd = view.GetInput();
+                        view.DisplayMessage("");
+
+                        Thread.Sleep(wait);
+
+                        do
+                        {
+                            switch (bandCmd.ToUpper())
+                            {
+                                case "E":
+                                    GoBack();
+
+                                    invalidCmd = false;
+
+                                break;
+
+                                default:
+                                    view.HomepageError(wait);
+
+                                    GoBack();
+
+                                    invalidCmd = true;
+
+                                break;
+
+                            }
+
+                        }  while (invalidCmd);
+
+                        invalidCmd = false;
+
+                        GoBack();
+
+                    break;
+
+                    case "back":
+                        GoBack();
+
+                        invalidCmd = false;
+
+                    break;
+
+                    default:
+                        view.DisplayError(wait);
+
+                        GoBack();
+
+                        invalidCmd = true;
+
+                    break;
+                }
+
+            } while (invalidCmd);
 
         }
 
@@ -2852,6 +2855,8 @@ namespace CDOrganiserProjectApp
 
         private static void GenrePanel()
         {
+            string genreCmd;
+            bool invalidCmd = true;
 
         }
 
@@ -3007,6 +3012,13 @@ namespace CDOrganiserProjectApp
 
         // The data-modifying commands for the Formats table.
 
+        private static void FormatPanel()
+        {
+            string formatCmd;
+            bool invalidCmd = true;
+
+        }
+
         private static void UpdateFormatName()
         {
 
@@ -3154,6 +3166,13 @@ namespace CDOrganiserProjectApp
 
 
         // The data-modifying commands for the Artists table.
+
+        private static void ArtistPanel()
+        {
+            string artistCmd;
+            bool invalidCmd = true;
+
+        }
 
         private static void UpdateArtistName()
         {
@@ -3303,6 +3322,13 @@ namespace CDOrganiserProjectApp
 
         // The data-modifying commands for the Rooms table.
 
+        private static void RoomPanel()
+        {
+            string roomCmd;
+            bool invalidCmd = true;
+
+        }
+
         private static void UpdateRoomName()
         {
 
@@ -3451,6 +3477,13 @@ namespace CDOrganiserProjectApp
 
         // The data-modifying commands for the Shelves table.
 
+        private static void ShelfPanel()
+        {
+            string shelfCmd;
+            bool invalidCmd = true;
+
+        }
+
         private static void UpdateShelfRoom()
         {
             
@@ -3524,20 +3557,36 @@ namespace CDOrganiserProjectApp
             {
 
                 List<Shelves> shelves = storageManager.GetAllShelves();
-                int sUpper = storageManager.GetShelfBoundary();
-
                 view.DisplayMessage("\nEnter the new shelves tag... ");
                 char shelfTag = view.GetCharInput();
 
                 view.DisplayMessage("\nEnter the new room... ");
                 List<Rooms> rooms = storageManager.GetAllRooms();
+
+                int rUpper = storageManager.GetRoomBoundary();
+
                 int roomId = view.GetIntInput();
+                bool rid = view.PassBoundary(roomId, rUpper);
                 int shelfTagId = 0;
 
-                Shelves newShelf = new Shelves(shelfTagId, shelfTag, roomId);
+                switch (rid)
+                {
+                    case true:
+                        Shelves newShelf = new Shelves(shelfTagId, shelfTag, roomId);
 
-                int generatedId = storageManager.InsertShelf(newShelf);
-                view.DisplayMessage($"\nThe new shelves identification number is: {generatedId}");
+                        int generatedId = storageManager.InsertShelf(newShelf);
+                        view.DisplayMessage($"\nThe new shelves identification number is: {generatedId}");
+
+                    break;
+
+                    case false:
+                        view.RangeError(wait);
+
+                        InsertNewShelf();
+
+                    break;
+                }
+
             }
             
             catch (FormatException e)
@@ -3597,6 +3646,14 @@ namespace CDOrganiserProjectApp
 
 
         // The data-modifying commands for the Rows table.
+
+        private static void RowPanel()
+        {
+            string rowCmd;
+            bool invalidCmd = true;
+
+        }
+
         private static void UpdateRow()
         {
             
@@ -3673,13 +3730,31 @@ namespace CDOrganiserProjectApp
 
                 view.DisplayMessage("\nEnter the shelf it belongs on... ");
                 List<Shelves> shelves = storageManager.GetAllShelves();
+
+                int sUpper = storageManager.GetShelfBoundary();
+
                 int shelfTagId = view.GetIntInput();
+                bool staid = view.PassBoundary(shelfTagId, sUpper);
                 int shelfRowId = 0;
 
-                Rows newRow = new Rows(shelfRowId, shelfRow, shelfTagId);
+                switch (staid)
+                {
+                    case true:
+                        Rows newRow = new Rows(shelfRowId, shelfRow, shelfTagId);
 
-                int generatedId = storageManager.InsertRow(newRow);
-                view.DisplayMessage($"\nThe new shelves identification number is: {generatedId}");
+                        int generatedId = storageManager.InsertRow(newRow);
+                        view.DisplayMessage($"\nThe new shelves identification number is: {generatedId}");
+
+                    break;
+
+                    case false:
+                        view.RangeError(wait);
+
+                        InsertNewRow();
+
+                    break;
+                }
+
             }
             
             catch (FormatException e)
@@ -4015,6 +4090,13 @@ namespace CDOrganiserProjectApp
 
         // The data-modifying commands for the Artist Albums table.
 
+        private static void ArtistAlbumPanel()
+        {
+            string aAlbumCmd;
+            bool invalidCmd = true;
+
+        }
+
         private static void UpdateArtistAlbum()
         {
 
@@ -4308,6 +4390,13 @@ namespace CDOrganiserProjectApp
 
 
         // The data-modifying commands for the Band Albums table.
+
+        private static void BandAlbumPanel()
+        {
+            string bAlbumCmd;
+            bool invalidCmd = true;
+
+        }
 
         private static void UpdateBandAlbum()
         {
@@ -4603,6 +4692,13 @@ namespace CDOrganiserProjectApp
 
         // The data-modifying commands for the Artist Albums Reviews table.
 
+        private static void ArtistReviewPanel()
+        {
+            string aReviewCmd;
+            bool invalidCmd = true;
+
+        }
+
         private static void UpdateArtistReview()
         {
             
@@ -4832,6 +4928,13 @@ namespace CDOrganiserProjectApp
 
 
         // The data-modifying commands for the Band Albums Reviews table.
+
+        private static void BandReviewPanel()
+        {
+            string bReviewCmd;
+            bool invalidCmd = true;
+
+        }
 
         private static void UpdateBandReview()
         {
