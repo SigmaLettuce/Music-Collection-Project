@@ -152,15 +152,7 @@ namespace CDOrganiserProjectApp
 
                     break;
 
-                    /*
-                    case 3:
-                        Thread.Sleep(wait);
-                        Console.Clear();
-
-                        TrueAdminMenuscreenOptions();
-
-                    break;
-                    */
+               
 
                 }
             }
@@ -2703,6 +2695,11 @@ namespace CDOrganiserProjectApp
 
         // The data-modifying commands for the Bands table.   
 
+        private static void BandPanel()
+        {
+
+        }
+
         private static void UpdateBandName()
         {
 
@@ -2710,6 +2707,8 @@ namespace CDOrganiserProjectApp
             {
 
                 List<Bands> bands = storageManager.GetAllBands();
+                view.DisplayBands(bands);
+
                 int bUpper = storageManager.GetBandBoundary();
 
                 view.DisplayMessage("\nEnter the identification number... ");
@@ -2851,6 +2850,11 @@ namespace CDOrganiserProjectApp
 
         // The data-modifying commands for the Genres table.
 
+        private static void GenrePanel()
+        {
+
+        }
+
         private static void UpdateGenreName()
         {
 
@@ -2858,6 +2862,8 @@ namespace CDOrganiserProjectApp
             {
 
                 List<Genres> genres = storageManager.GetAllGenres();
+                view.DisplayGenres(genres);
+
                 int gUpper = storageManager.GetGenreBoundary();
 
                 view.DisplayMessage("\nEnter the identification number... ");
@@ -2961,6 +2967,8 @@ namespace CDOrganiserProjectApp
             {
 
                 List<Genres> genres = storageManager.GetAllGenres();
+                view.DisplayGenres(genres);
+
                 int gUpper = storageManager.GetGenreBoundary();
 
                 view.DisplayMessage("\nEnter the identification number... ");
@@ -3017,7 +3025,7 @@ namespace CDOrganiserProjectApp
                     case true:
                         view.DisplayMessage("\nRename the record... ");
                         string formatName = view.GetInput();
-                        bool fn = view.PassRange(formatName.Length, 3, 20);
+                        bool fn = view.PassRange(formatName.Length, 2, 15);
 
                         switch (fn)
                         {
@@ -3066,7 +3074,7 @@ namespace CDOrganiserProjectApp
             {
                 view.DisplayMessage("\nEnter the new format... ");
                 string formatName = view.GetInput();
-                bool fn = view.PassRange(formatName.Length, 3, 20);
+                bool fn = view.PassRange(formatName.Length, 2, 15);
 
                 int formatId = 0;
 
@@ -3297,26 +3305,25 @@ namespace CDOrganiserProjectApp
 
         private static void UpdateRoomName()
         {
-            
 
             try
             {
 
                 List<Rooms> rooms = storageManager.GetAllRooms();
-                int upper = storageManager.GetRoomBoundary();
+                int rUpper = storageManager.GetRoomBoundary();
 
                 view.DisplayMessage("\nEnter the identification number... ");
                 int roomId = view.GetIntInput();
-                bool id = view.PassBoundary(roomId, upper);
+                bool rid = view.PassBoundary(roomId, rUpper);
 
-                switch (id)
+                switch (rid)
                 {
                     case true:
                         view.DisplayMessage("\nRename the record... ");
                         string roomName = view.GetInput();
-                        bool name = view.PassBoundary(roomName.Length, 255);
+                        bool rn = view.PassRange(roomName.Length, 3, 20);
 
-                        switch (name)
+                        switch (rn)
                         {
                             case true:
                                 int rowsAffected = storageManager.UpdateRoomById(roomId, roomName);
@@ -3354,46 +3361,80 @@ namespace CDOrganiserProjectApp
     
             }
 
-        }
+        }  
 
         private static void InsertNewRoom()
         {
-            
 
             try
             {
                 view.DisplayMessage("\nEnter the new room... ");
                 string roomName = view.GetInput();
+                bool rn = view.PassRange(roomName.Length, 3, 20);
+
                 int roomId = 0;
 
-                Rooms newRoom = new Rooms(roomId, roomName);
+                switch (rn)
+                {
+                    case true:
+                        Rooms newRoom = new Rooms(roomId, roomName);
 
-                int generatedId = storageManager.InsertRoom(newRoom);
-                view.DisplayMessage($"\nThe new rooms identification number is: {generatedId}");
+
+                        int generatedId = storageManager.InsertRoom(newRoom);
+                        view.DisplayMessage($"\nThe new rooms identification number is: {generatedId}");
+
+                    break;
+
+                    case false:
+                        view.RangeError(wait);
+
+                        InsertNewRoom();
+
+                    break;
+                }  
+
             }
+
             catch (FormatException e)
             {
                 view.DisplayMessage("\n  Please use the proper formatting.");
                 view.DisplayMessage(e.Message);
 
                 InsertNewRoom();
-
+    
             }
 
         }
 
         private static void DeleteRoomById()
         {
-            
 
             try
             {
-                view.DisplayMessage("\nEnter the identification number... ");
-                List<Rooms> rooms = storageManager.GetAllRooms();
-                int roomId = view.GetIntInput();
 
-                int rowsAffected = storageManager.DeleteRoomById(roomId);
-                view.DisplayMessage($"\nDeleted {rowsAffected} row.");
+                List<Rooms> rooms = storageManager.GetAllRooms();
+                int rUpper = storageManager.GetRoomBoundary();
+
+                view.DisplayMessage("\nEnter the identification number... ");
+                int roomId = view.GetIntInput();
+                bool rid = view.PassBoundary(roomId, rUpper);
+
+                switch (rid)
+                {
+                    case true:
+                        int rowsAffected = storageManager.DeleteRoomById(roomId);
+                        view.DisplayMessage($"\nDeleted {rowsAffected} row.");
+
+                    break;
+
+                    case false:
+                        view.RangeError(wait);
+
+                        DeleteRoomById();
+
+                    break;
+                }
+
             }
             
             catch (FormatException e)
@@ -3402,7 +3443,7 @@ namespace CDOrganiserProjectApp
                 view.DisplayMessage(e.Message);
 
                 DeleteRoomById();
-
+    
             }
 
         }
@@ -3418,22 +3459,22 @@ namespace CDOrganiserProjectApp
             {
 
                 List<Shelves> shelves = storageManager.GetAllShelves();
-                int shelvesUpper = storageManager.GetShelfBoundary();
+                int sUpper = storageManager.GetShelfBoundary();
 
                 view.DisplayMessage("\nEnter the identification number... ");
                 int shelfTagId = view.GetIntInput();
-                bool staid = view.PassBoundary(shelfTagId, shelvesUpper);
+                bool staid = view.PassBoundary(shelfTagId, sUpper);
 
                 switch (staid)
                 {
                     case true:
 
                         List<Rooms> rooms = storageManager.GetAllRooms();
-                        int roomsUpper = storageManager.GetRoomBoundary();
+                        int rUpper = storageManager.GetRoomBoundary();
 
-                        view.DisplayMessage("\nRename the record... ");
+                        view.DisplayMessage("\nEnter the identification number... ");
                         int roomId = view.GetIntInput();
-                        bool rid = view.PassBoundary(roomId, roomsUpper);
+                        bool rid = view.PassBoundary(roomId, rUpper);
 
                         switch (rid)
                         {
@@ -3474,13 +3515,17 @@ namespace CDOrganiserProjectApp
             }
 
         }
-
+        
         private static void InsertNewShelf()
         {
             
 
             try
             {
+
+                List<Shelves> shelves = storageManager.GetAllShelves();
+                int sUpper = storageManager.GetShelfBoundary();
+
                 view.DisplayMessage("\nEnter the new shelves tag... ");
                 char shelfTag = view.GetCharInput();
 
@@ -3512,12 +3557,31 @@ namespace CDOrganiserProjectApp
 
             try
             {
-                view.DisplayMessage("\nEnter the identification number... ");
-                List<Shelves> shelves = storageManager.GetAllShelves();
-                int shelfTagId = view.GetIntInput();
 
-                int rowsAffected = storageManager.DeleteShelfById(shelfTagId);
-                view.DisplayMessage($"\nDeleted {rowsAffected} row.");
+                List<Shelves> shelves = storageManager.GetAllShelves();
+                int sUpper = storageManager.GetShelfBoundary();
+
+                view.DisplayMessage("\nEnter the identification number... ");
+                int shelfTagId = view.GetIntInput();
+                bool staid = view.PassBoundary(shelfTagId, sUpper);
+
+                switch (staid)
+                {
+                    case true:
+                        int rowsAffected = storageManager.DeleteShelfById(shelfTagId);
+                        view.DisplayMessage($"\nDeleted {rowsAffected} row.");
+
+                    break;
+
+                    case false:
+                        view.RangeError(wait);
+
+                        DeleteShelfById();
+
+                    break;
+                }
+
+                
             }
             
             catch (FormatException e)
@@ -3541,11 +3605,11 @@ namespace CDOrganiserProjectApp
             {
 
                 List<Rows> rows = storageManager.GetAllRows();
-                int rowsUpper = storageManager.GetRowBoundary();
+                int rUpper = storageManager.GetRowBoundary();
 
                 view.DisplayMessage("\nEnter the identification number... ");
                 int shelfRowId = view.GetIntInput();
-                bool sroid = view.PassBoundary(shelfRowId, rowsUpper);
+                bool sroid = view.PassBoundary(shelfRowId, rUpper);
 
                 switch (sroid)
                 {
@@ -3637,10 +3701,28 @@ namespace CDOrganiserProjectApp
             {
                 view.DisplayMessage("\nEnter the identification number... ");
                 List<Rows> rows = storageManager.GetAllRows();
-                int shelfRowId = view.GetIntInput();
+                int rUpper = storageManager.GetRowBoundary();
 
-                int rowsAffected = storageManager.DeleteRowById(shelfRowId);
-                view.DisplayMessage($"\nDeleted {rowsAffected} row.");
+                int shelfRowId = view.GetIntInput();
+                bool sroid = view.PassBoundary(shelfRowId, rUpper);
+
+                switch (sroid)
+                {
+                    case true:
+                        int rowsAffected = storageManager.DeleteRowById(shelfRowId);
+                        view.DisplayMessage($"\nDeleted {rowsAffected} row.");
+
+                    break;
+
+                    case false:
+                        view.RangeError(wait);
+
+                        DeleteRowById();
+
+                    break;
+                }
+
+                
             }
             
             catch (FormatException e)
@@ -3725,7 +3807,7 @@ namespace CDOrganiserProjectApp
                                                                 break;
                                                             }
 
-                                                            break;
+                                                        break;
 
                                                         case false:
                                                             StartMenuscreenOptions();
@@ -3953,7 +4035,7 @@ namespace CDOrganiserProjectApp
                         albums = storageManager.GetAllArtistAlbums();
 
                         string albumName = view.GetInput();
-                        bool aln = view.PassBoundary(albumName.Length, 50);
+                        bool aln = view.PassRange(albumName.Length, 9, 50);
 
                         switch (aln)
                         {
