@@ -316,7 +316,7 @@ namespace CDOrganiserProjectApp
         {
             int max = 0;
 
-            string sqlStr = "SELECT TOP 1 roomID FROM Properties.tblRooms ORDER BY roomID DESC;";
+            string sqlStr = "SELECT TOP 1 roomID FROM Properties.tblStorageRoom ORDER BY roomID DESC;";
 
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
@@ -572,12 +572,12 @@ namespace CDOrganiserProjectApp
         public List<ArtistAlbums> GetAllArtistAlbums()
         {
             List<ArtistAlbums> albums = new List<ArtistAlbums>();
-            string sqlStr = "SELECT albumID, albumName, genreName, dateOfRelease, formatName, artistName, shelfRow, lost FROM Contents.tblGenres, Contents.tblArtistAlbums, Properties.tblFormat, Contents.tblArtists, Properties.tblRow WHERE tblArtistAlbums.genreID = tblGenres.genreID AND tblArtistAlbums.formatID = tblFormat.formatID AND tblArtistAlbums.artistID = tblArtists.artistID AND tblArtistAlbums.shelfRowID = tblRow.shelfRowID";
+            string sqlStr = "SELECT albumID, albumName, genreName, dateOfRelease, formatName, artistName, shelfTag, shelfRow, lost FROM Contents.tblGenres, Contents.tblArtistAlbums, Properties.tblFormat, Contents.tblArtists, Properties.tblShelf, Properties.tblRow WHERE tblArtistAlbums.genreID = tblGenres.genreID AND tblArtistAlbums.formatID = tblFormat.formatID AND tblArtistAlbums.artistID = tblArtists.artistID AND tblShelf.shelfTagID = tblRow.shelfTagID AND tblArtistAlbums.shelfRowID = tblRow.shelfRowID";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
-                    Console.WriteLine("ID:\tNAME:\tCATEGORY:\tRELEASE DATE:\tFORMAT:\tARTIST:\tROW:\tFAVOURITE:\n");
+                    Console.WriteLine("ID:\tNAME:\tCATEGORY:\tRELEASE DATE:\tFORMAT:\tARTIST:\tTAG:\tROW:\tFAVOURITE:\n");
 
                     while (reader.Read())
                     {
@@ -587,10 +587,11 @@ namespace CDOrganiserProjectApp
                         DateTime dateOfRelease = Convert.ToDateTime(reader["dateOfRelease"]);
                         string formatName = reader["formatName"].ToString();
                         string artistName = reader["artistName"].ToString();
+                        string shelfTag = reader["shelfTag"].ToString();
                         string shelfRow = reader["shelfRow"].ToString();     
                         bool lost = Convert.ToBoolean(reader["lost"]);
 
-                        Console.WriteLine($"{albumId}\t{albumName}\t{genreName}\t{dateOfRelease.ToString("d")}\t{formatName}\t{artistName}\t{shelfRow}\t{lost}\n");
+                        Console.WriteLine($"{albumId}\t{albumName}\t{genreName}\t{dateOfRelease.ToString("d")}\t{formatName}\t{artistName}\t{shelfTag}\t{shelfRow}\t{lost}\n");
                         Thread.Sleep(wait);
                     }
                 }
@@ -692,12 +693,12 @@ namespace CDOrganiserProjectApp
         public List<BandAlbums> GetAllBandAlbums()
         {
             List<BandAlbums> albums = new List<BandAlbums>();
-            string sqlStr = "SELECT albumID, albumName, genreName, dateOfRelease, formatName, bandName, shelfRow, lost FROM Contents.tblGenres, Contents.tblBandAlbums, Properties.tblFormat, Contents.tblBands, Properties.tblRow WHERE tblBandAlbums.genreID = tblGenres.genreID AND tblBandAlbums.formatID = tblFormat.formatID AND tblBandAlbums.bandID = tblBands.bandID AND tblBandAlbums.shelfRowId = tblRow.shelfRowId";
+            string sqlStr = "SELECT albumID, albumName, genreName, dateOfRelease, formatName, bandName, shelfTag, shelfRow, lost FROM Contents.tblGenres, Contents.tblBandAlbums, Properties.tblFormat, Contents.tblBands, Properties.tblShelf, Properties.tblRow WHERE tblBandAlbums.genreID = tblGenres.genreID AND tblBandAlbums.formatID = tblFormat.formatID AND tblBandAlbums.bandID = tblBands.bandID AND tblShelf.shelfTagID = tblRow.shelfTagID AND tblBandAlbums.shelfRowID = tblRow.shelfRowID";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
-                    Console.WriteLine("ID:\tNAME:\tCATEGORY:\tRELEASE DATE:\tFORMAT:\tARTIST:\tROW:\tFAVOURITE:\n");
+                    Console.WriteLine("ID:\tNAME:\tCATEGORY:\tRELEASE DATE:\tFORMAT:\tARTIST:\tTAG:\tROW:\tFAVOURITE:\n");
 
                     while (reader.Read())
                     {
@@ -707,10 +708,11 @@ namespace CDOrganiserProjectApp
                         DateTime dateOfRelease = Convert.ToDateTime(reader["dateOfRelease"]);
                         string formatName = reader["formatName"].ToString();
                         string bandName = reader["bandName"].ToString();
-                        string shelfRow = reader["shelfRow"].ToString();
+                        string shelfTag = reader["shelfTag"].ToString();
+                        string shelfRow = reader["shelfRow"].ToString();     
                         bool lost = Convert.ToBoolean(reader["lost"]);
 
-                        Console.WriteLine($"{albumId}\t{albumName}\t{genreName}\t{dateOfRelease.ToString("d")}\t{formatName}\t{bandName}\t{shelfRow}\t{lost}\n");
+                        Console.WriteLine($"{albumId}\t{albumName}\t{genreName}\t{dateOfRelease.ToString("d")}\t{formatName}\t{bandName}\t{shelfTag}\t{shelfRow}\t{lost}\n");
                         Thread.Sleep(wait);
                     }
                 }

@@ -423,9 +423,15 @@ namespace CDOrganiserProjectApp
                         Thread.Sleep(wait);
                         Console.Clear();
 
+                        // Resets the accounts credentials.
+
                         roleId = 0;
                         accountId = 0;
-                        storageManager.CloseConnection();
+                        storageManager.CloseConnection(); // Closes the connection upon signing out. 
+
+                        Thread.Sleep(wait);
+                        Console.Clear();
+
                         StartMenuscreenOptions();
 
                         invalid = false;
@@ -497,15 +503,17 @@ namespace CDOrganiserProjectApp
             string bandCmd;
             bool invalidCmd;
 
+            Thread.Sleep(wait);
+            Console.Clear();
+
             List<Bands> bands = storageManager.GetAllBands();
             view.DisplayBands(bands);
-
-            Thread.Sleep(wait);
 
             bandCmd = view.DisplayEditingOptions("bands", "none");
             view.DisplayMessage("");
 
             Thread.Sleep(wait);
+            Console.Clear();
 
             invalidCmd = false;
 
@@ -540,15 +548,17 @@ namespace CDOrganiserProjectApp
             string bandCmd;
             bool invalidCmd = true;
 
+            Thread.Sleep(wait);
+            Console.Clear();
+
             List<Bands> bands = storageManager.GetAllBands();
             view.DisplayBands(bands);
-
-            Thread.Sleep(wait);
 
             bandCmd = view.DisplayEditingOptions("bands", "default~extras~search");
             view.DisplayMessage("");
 
             Thread.Sleep(wait);
+            Console.Clear();
 
             do
             {
@@ -640,7 +650,7 @@ namespace CDOrganiserProjectApp
                             break;
 
                             case false:
-                                view.RangeError(wait);
+                                
 
                                 UpdateBandName();
 
@@ -650,7 +660,7 @@ namespace CDOrganiserProjectApp
                     break;
 
                     case false:
-                        view.RangeError(wait);
+                        
 
                         UpdateBandName();
 
@@ -694,7 +704,7 @@ namespace CDOrganiserProjectApp
                     break;
 
                     case false:
-                        view.RangeError(wait);
+                        
 
                         InsertNewBand();
 
@@ -736,7 +746,7 @@ namespace CDOrganiserProjectApp
                     break;
 
                     case false:
-                        view.RangeError(wait);
+                        
 
                         DeleteBandById();
 
@@ -764,15 +774,17 @@ namespace CDOrganiserProjectApp
             string genreCmd;
             bool invalidCmd;
 
+            Thread.Sleep(wait);
+            Console.Clear();
+
             List<Genres> genres = storageManager.GetAllGenres();
             view.DisplayGenres(genres);
-
-            Thread.Sleep(wait);
 
             genreCmd = view.DisplayEditingOptions("genres", "none");
             view.DisplayMessage("");
 
             Thread.Sleep(wait);
+            Console.Clear();
 
             invalidCmd = false;
 
@@ -807,15 +819,17 @@ namespace CDOrganiserProjectApp
             string genreCmd;
             bool invalidCmd = true;
 
+            Thread.Sleep(wait);
+            Console.Clear();
+
             List<Genres> genres = storageManager.GetAllGenres();
             view.DisplayGenres(genres);
-
-            Thread.Sleep(wait);
 
             genreCmd = view.DisplayEditingOptions("genres", "default~extras~search");
             view.DisplayMessage("");
 
             Thread.Sleep(wait);
+            Console.Clear();
 
             do
             {
@@ -909,7 +923,7 @@ namespace CDOrganiserProjectApp
                             break;
 
                             case false:
-                                view.RangeError(wait);
+                                
 
                                 UpdateGenreName();
 
@@ -919,7 +933,7 @@ namespace CDOrganiserProjectApp
                     break;
 
                     case false:
-                        view.RangeError(wait);
+                        
 
                         UpdateGenreName();
 
@@ -963,7 +977,7 @@ namespace CDOrganiserProjectApp
                     break;
 
                     case false:
-                        view.RangeError(wait);
+                        
 
                         InsertNewGenre();
 
@@ -1007,7 +1021,7 @@ namespace CDOrganiserProjectApp
                     break;
 
                     case false:
-                        view.RangeError(wait);
+                        
 
                         DeleteGenreById();
 
@@ -1035,14 +1049,16 @@ namespace CDOrganiserProjectApp
             string formatCmd;
             bool invalidCmd = true;
 
-            List<Formats> formats = storageManager.GetAllFormats();
-
             Thread.Sleep(wait);
+            Console.Clear();
+
+            List<Formats> formats = storageManager.GetAllFormats();
 
             formatCmd = view.DisplayEditingOptions("formats", "default");
             view.DisplayMessage("");
 
             Thread.Sleep(wait);
+            Console.Clear();
 
             do
             {
@@ -1126,7 +1142,7 @@ namespace CDOrganiserProjectApp
                             break;
 
                             case false:
-                                view.RangeError(wait);
+                                
 
                                 UpdateFormatName();
 
@@ -1136,7 +1152,7 @@ namespace CDOrganiserProjectApp
                     break;
 
                     case false:
-                        view.RangeError(wait);
+                        
 
                         UpdateFormatName();
 
@@ -1180,7 +1196,7 @@ namespace CDOrganiserProjectApp
                     break;
 
                     case false:
-                        view.RangeError(wait);
+                        
 
                         InsertNewFormat();
 
@@ -1222,7 +1238,7 @@ namespace CDOrganiserProjectApp
                     break;
 
                     case false:
-                        view.RangeError(wait);
+                        
 
                         DeleteFormatById();
 
@@ -1250,15 +1266,17 @@ namespace CDOrganiserProjectApp
             string artistCmd;
             bool invalidCmd = true;
 
+            Thread.Sleep(wait);
+            Console.Clear();
+
             List<Artists> artists = storageManager.GetAllArtists();
             view.DisplayArtists(artists);
-
-            Thread.Sleep(wait);
 
             artistCmd = view.DisplayEditingOptions("artists", "none");
             view.DisplayMessage("");
 
             Thread.Sleep(wait);
+            Console.Clear();
 
             invalidCmd = false;
 
@@ -1293,15 +1311,17 @@ namespace CDOrganiserProjectApp
             string artistCmd;
             bool invalidCmd = true;
 
+            Thread.Sleep(wait);
+            Console.Clear();
+
             List<Artists> artists = storageManager.GetAllArtists();
             view.DisplayArtists(artists);
-
-            Thread.Sleep(wait);
 
             artistCmd = view.DisplayEditingOptions("artists", "default~extras~search");
             view.DisplayMessage("");
 
             Thread.Sleep(wait);
+            Console.Clear();
 
             do
             {
@@ -1392,7 +1412,7 @@ namespace CDOrganiserProjectApp
                             break;
 
                             case false:
-                                view.RangeError(wait);
+                                
 
                                 UpdateArtistName();
 
@@ -1402,7 +1422,7 @@ namespace CDOrganiserProjectApp
                     break;
 
                     case false:
-                        view.RangeError(wait);
+                        
 
                         UpdateArtistName();
 
@@ -1446,7 +1466,7 @@ namespace CDOrganiserProjectApp
                     break;
 
                     case false:
-                        view.RangeError(wait);
+                        
 
                         InsertNewArtist();
 
@@ -1488,7 +1508,7 @@ namespace CDOrganiserProjectApp
                     break;
 
                     case false:
-                        view.RangeError(wait);
+                        
 
                         DeleteArtistById();
 
@@ -1516,14 +1536,16 @@ namespace CDOrganiserProjectApp
             string roomCmd;
             bool invalidCmd = true;
 
-            storageManager.GetAllRooms();
-
             Thread.Sleep(wait);
+            Console.Clear();
+
+            storageManager.GetAllRooms();
 
             roomCmd = view.DisplayEditingOptions("rooms", "default");
             view.DisplayMessage("");
 
             Thread.Sleep(wait);
+            Console.Clear();
 
             invalidCmd = false;
 
@@ -1609,7 +1631,7 @@ namespace CDOrganiserProjectApp
                             break;
 
                             case false:
-                                view.RangeError(wait);
+                                
 
                                 UpdateRoomName();
 
@@ -1619,7 +1641,7 @@ namespace CDOrganiserProjectApp
                     break;
 
                     case false:
-                        view.RangeError(wait);
+                        
 
                         UpdateRoomName();
 
@@ -1663,7 +1685,7 @@ namespace CDOrganiserProjectApp
                     break;
 
                     case false:
-                        view.RangeError(wait);
+                        
 
                         InsertNewRoom();
 
@@ -1705,7 +1727,7 @@ namespace CDOrganiserProjectApp
                     break;
 
                     case false:
-                        view.RangeError(wait);
+                        
 
                         DeleteRoomById();
 
@@ -1904,14 +1926,16 @@ namespace CDOrganiserProjectApp
             string shelfCmd;
             bool invalidCmd = true;
 
-            storageManager.GetAllShelves();
-
             Thread.Sleep(wait);
+            Console.Clear();
+
+            storageManager.GetAllShelves();
 
             shelfCmd = view.DisplayEditingOptions("shelves", "default~extras~view");
             view.DisplayMessage("");
 
             Thread.Sleep(wait);
+            Console.Clear();
 
             do
             {
@@ -1985,7 +2009,7 @@ namespace CDOrganiserProjectApp
                 List<Shelves> shelves = storageManager.GetAllShelves();
                 int sUpper = storageManager.GetShelfBoundary();
 
-                view.DisplayMessage("\nEnter the identification number... ");
+                view.DisplayMessage("\nEnter the shelf identification number... ");
                 int shelfTagId = view.GetIntInput();
                 bool staid = view.PassBoundary(shelfTagId, sUpper);
 
@@ -1996,7 +2020,7 @@ namespace CDOrganiserProjectApp
                         List<Rooms> rooms = storageManager.GetAllRooms();
                         int rUpper = storageManager.GetRoomBoundary();
 
-                        view.DisplayMessage("\nEnter the identification number... ");
+                        view.DisplayMessage("\nEnter the new room identification number... ");
                         int roomId = view.GetIntInput();
                         bool rid = view.PassBoundary(roomId, rUpper);
 
@@ -2009,7 +2033,7 @@ namespace CDOrganiserProjectApp
                             break;
 
                             case false:
-                                view.RangeError(wait);
+                                
 
                                 UpdateShelfRoom();
 
@@ -2019,7 +2043,7 @@ namespace CDOrganiserProjectApp
                     break;
 
                     case false:
-                        view.RangeError(wait);
+                        
 
                         UpdateShelfRoom();
 
@@ -2071,7 +2095,7 @@ namespace CDOrganiserProjectApp
                     break;
 
                     case false:
-                        view.RangeError(wait);
+                        
 
                         InsertNewShelf();
 
@@ -2114,7 +2138,7 @@ namespace CDOrganiserProjectApp
                     break;
 
                     case false:
-                        view.RangeError(wait);
+                        
 
                         DeleteShelfById();
 
@@ -2143,14 +2167,16 @@ namespace CDOrganiserProjectApp
             string rowCmd;
             bool invalidCmd = true;
 
-            storageManager.GetAllRows();
-
             Thread.Sleep(wait);
+            Console.Clear();
+
+            storageManager.GetAllRows();
 
             rowCmd = view.DisplayEditingOptions("rows", "default~extras~view");
             view.DisplayMessage("");
 
             Thread.Sleep(wait);
+            Console.Clear();
 
             invalidCmd = false;
 
@@ -2225,7 +2251,7 @@ namespace CDOrganiserProjectApp
                 List<Rows> rows = storageManager.GetAllRows();
                 int rUpper = storageManager.GetRowBoundary();
 
-                view.DisplayMessage("\nEnter the identification number... ");
+                view.DisplayMessage("\nEnter the row identification number... ");
                 int shelfRowId = view.GetIntInput();
                 bool sroid = view.PassBoundary(shelfRowId, rUpper);
 
@@ -2236,7 +2262,7 @@ namespace CDOrganiserProjectApp
                         List<Shelves> shelves = storageManager.GetAllShelves();
                         int shelvesUpper = storageManager.GetShelfBoundary();
 
-                        view.DisplayMessage("\nEnter the identification number... ");
+                        view.DisplayMessage("\nEnter the new shelf identification number... ");
                         int shelfTagId = view.GetIntInput();
                         bool staid = view.PassBoundary(shelfTagId, shelvesUpper);
 
@@ -2249,7 +2275,7 @@ namespace CDOrganiserProjectApp
                             break;
 
                             case false:
-                                view.RangeError(wait);
+                                
 
                                 UpdateRow();
 
@@ -2259,7 +2285,7 @@ namespace CDOrganiserProjectApp
                     break;
 
                     case false:
-                        view.RangeError(wait);
+                        
 
                         UpdateRow();
 
@@ -2288,33 +2314,49 @@ namespace CDOrganiserProjectApp
             {
                 view.DisplayMessage("\nEnter the new rows number... ");
                 int shelfRow = view.GetIntInput();
+                bool sr = view.PassBoundary(shelfRow, 6);
 
-                view.DisplayMessage("\nEnter the shelf it belongs on... ");
-                List<Shelves> shelves = storageManager.GetAllShelves();
-
-                int sUpper = storageManager.GetShelfBoundary();
-
-                int shelfTagId = view.GetIntInput();
-                bool staid = view.PassBoundary(shelfTagId, sUpper);
-                int shelfRowId = 0;
-
-                switch (staid)
+                switch (sr)
                 {
                     case true:
-                        Rows newRow = new Rows(shelfRowId, shelfRow, shelfTagId);
+                        view.DisplayMessage("\nEnter the shelf it belongs on... ");
+                        List<Shelves> shelves = storageManager.GetAllShelves();
 
-                        int generatedId = storageManager.InsertRow(newRow);
-                        view.DisplayMessage($"\nThe new shelves identification number is: {generatedId}");
+                        int sUpper = storageManager.GetShelfBoundary();
+
+                        int shelfTagId = view.GetIntInput();
+                        bool staid = view.PassBoundary(shelfTagId, sUpper);
+                        int shelfRowId = 0;
+
+                        switch (staid)
+                        {
+                            case true:
+                                Rows newRow = new Rows(shelfRowId, shelfRow, shelfTagId);
+
+                                int generatedId = storageManager.InsertRow(newRow);
+                                view.DisplayMessage($"\nThe new shelves identification number is: {generatedId}");
+
+                            break;
+
+                            case false:
+        
+
+                                InsertNewRow();
+
+                            break;
+                        }
 
                     break;
 
                     case false:
-                        view.RangeError(wait);
+
 
                         InsertNewRow();
 
                     break;
                 }
+
+                
 
             }
             
@@ -2351,7 +2393,7 @@ namespace CDOrganiserProjectApp
                     break;
 
                     case false:
-                        view.RangeError(wait);
+                        
 
                         DeleteRowById();
 
@@ -2381,6 +2423,7 @@ namespace CDOrganiserProjectApp
             bool invalidCmd;
 
             Thread.Sleep(wait);
+            Console.Clear();
 
             accountSelect = view.DisplayEditingOptions("accounts", "df~account~variants");
 
@@ -2428,6 +2471,7 @@ namespace CDOrganiserProjectApp
             bool invalidCmd;
 
             Thread.Sleep(wait);
+            Console.Clear();
 
             accountCmd = view.DisplayEditingOptions("accounts", "account~variants");
 
@@ -2528,29 +2572,8 @@ namespace CDOrganiserProjectApp
                                                     Thread.Sleep(wait);
                                                     Console.Clear();
 
-                                                    switch (logStatus)
-                                                    {
-                                                        case true:
-                                                            switch (roleId)
-                                                            {
-                                                                case 1:
-                                                                    GuestMenuscreenOptions();
+                                                    CreateUser();
 
-                                                                break;
-
-                                                                case 2:
-                                                                    AdminMenuscreenOptions();
-
-                                                                break;
-                                                            }
-
-                                                        break;
-
-                                                        case false:
-                                                            StartMenuscreenOptions();
-
-                                                        break;
-                                                    }
                                                 }
 
                                                 else
@@ -2570,7 +2593,7 @@ namespace CDOrganiserProjectApp
                                             break;
 
                                             case false:
-                                                view.RangeError(wait);
+                                                
 
                                                 CreateUser();
 
@@ -2580,7 +2603,7 @@ namespace CDOrganiserProjectApp
                                         break;
 
                                     case false:
-                                        view.RangeError(wait);
+                                        
 
                                         CreateUser();
 
@@ -2591,7 +2614,7 @@ namespace CDOrganiserProjectApp
                                 break;
 
                             case false:
-                                view.RangeError(wait);
+                                
 
                                 CreateUser();
 
@@ -2602,7 +2625,7 @@ namespace CDOrganiserProjectApp
                         break;
 
                     case false:
-                        view.RangeError(wait);
+                        
 
                         CreateUser();
 
@@ -2675,7 +2698,7 @@ namespace CDOrganiserProjectApp
                                                     Thread.Sleep(wait);
                                                     Console.Clear();
                                                     
-                                                    AdminMenuscreenOptions();
+                                                    CreateAdmin();
                                                                
                                                 }
 
@@ -2696,7 +2719,7 @@ namespace CDOrganiserProjectApp
                                             break;
 
                                             case false:
-                                                view.RangeError(wait);
+                                                
 
                                                 CreateAdmin();
 
@@ -2706,7 +2729,7 @@ namespace CDOrganiserProjectApp
                                         break;
 
                                     case false:
-                                        view.RangeError(wait);
+                                        
 
                                         CreateAdmin();
 
@@ -2717,7 +2740,7 @@ namespace CDOrganiserProjectApp
                                 break;
 
                             case false:
-                                view.RangeError(wait);
+                                
 
                                 CreateAdmin();
 
@@ -2728,7 +2751,7 @@ namespace CDOrganiserProjectApp
                         break;
 
                     case false:
-                        view.RangeError(wait);
+                        
 
                         CreateAdmin();
 
@@ -2759,6 +2782,7 @@ namespace CDOrganiserProjectApp
             bool invalidAlbumSelect;
 
             Thread.Sleep(wait);
+            Console.Clear();
 
             albumSelect = view.DisplayEditingOptions("albums", "album~variants");
 
@@ -2779,6 +2803,13 @@ namespace CDOrganiserProjectApp
 
                     case "bands":
                         BandAlbumPanel();
+
+                        invalidAlbumSelect = false;
+
+                    break;
+
+                    case "back":
+                        GoBack();
 
                         invalidAlbumSelect = false;
 
@@ -3366,9 +3397,10 @@ namespace CDOrganiserProjectApp
             string aAlbumCmd;
             bool invalidCmd = true;
 
-            storageManager.GetAllArtistAlbums();
-
             Thread.Sleep(wait);
+            Console.Clear();
+
+            storageManager.GetAllArtistAlbums();
 
             aAlbumCmd = view.DisplayEditingOptions("artist-albums", "album~extras");
             view.DisplayMessage("");
@@ -3432,7 +3464,7 @@ namespace CDOrganiserProjectApp
                     break;
 
                     case "back":
-                        GoBack();
+                        AlbumPanel();
 
                         invalidCmd = false;
 
@@ -3517,11 +3549,11 @@ namespace CDOrganiserProjectApp
                                                         {
                                                             case true:
                                                                 view.DisplayMessage("\nEnter a new shelf row identification number... ");
-                                                                List<Shelves> shelves = storageManager.GetAllShelves();
-                                                                int sUpper = storageManager.GetShelfBoundary();
+                                                                List<Rows> rows = storageManager.GetAllRows();
+                                                                int rUpper = storageManager.GetRowBoundary();
 
                                                                 int shelfRowId = view.GetIntInput();
-                                                                bool sroid = view.PassBoundary(shelfRowId, sUpper);
+                                                                bool sroid = view.PassBoundary(shelfRowId, rUpper);
 
                                                                 bool lost = false;
 
@@ -3534,7 +3566,7 @@ namespace CDOrganiserProjectApp
                                                                     break;
 
                                                                     case false:
-                                                                        view.RangeError(wait);
+                                                                        
 
                                                                         UpdateArtistAlbum();
 
@@ -3545,7 +3577,7 @@ namespace CDOrganiserProjectApp
                                                             break;
 
                                                             case false:
-                                                                view.RangeError(wait);
+                                                                
 
                                                                 UpdateArtistAlbum();
 
@@ -3555,7 +3587,7 @@ namespace CDOrganiserProjectApp
                                                         break;
 
                                                     case false:
-                                                        view.RangeError(wait);
+                                                        
 
                                                         UpdateArtistAlbum();
 
@@ -3566,7 +3598,7 @@ namespace CDOrganiserProjectApp
                                             break;
 
                                             case false:
-                                                view.RangeError(wait);
+                                                
 
                                                 UpdateArtistAlbum();
 
@@ -3579,7 +3611,7 @@ namespace CDOrganiserProjectApp
                                     break;
 
                                     case false:
-                                        view.RangeError(wait);
+                                        
 
                                         UpdateArtistAlbum();
 
@@ -3589,7 +3621,7 @@ namespace CDOrganiserProjectApp
                             break;
 
                             case false:
-                                view.RangeError(wait);
+                                
 
                                 UpdateArtistAlbum();
 
@@ -3600,7 +3632,7 @@ namespace CDOrganiserProjectApp
                     break;
 
                     case false:
-                        view.RangeError(wait);
+                        
 
                         UpdateArtistAlbum();
 
@@ -3638,7 +3670,7 @@ namespace CDOrganiserProjectApp
                     case true:
                         view.DisplayMessage("\nEnter a genre identification number...");
                         List<Genres> genres = storageManager.GetAllGenres();
-                        int gUpper = storageManager.GetShelfBoundary();
+                        int gUpper = storageManager.GetGenreBoundary();
 
                         view.DisplayGenres(genres);
 
@@ -3677,12 +3709,11 @@ namespace CDOrganiserProjectApp
                                                 switch (aid)
                                                 {
                                                     case true:
-                                                        view.DisplayMessage("\nEnter the shelf rows identification number... ");
-                                                        List<Shelves> shelves = storageManager.GetAllShelves();
-                                                        int sUpper = storageManager.GetShelfBoundary();
+                                                        List<Rows> rows = storageManager.GetAllRows();
+                                                        int rUpper = storageManager.GetShelfBoundary();
 
                                                         int shelfRowId = view.GetIntInput();
-                                                        bool sroid = view.PassBoundary(shelfRowId, sUpper);
+                                                        bool sroid = view.PassBoundary(shelfRowId, rUpper);
 
                                                         bool lost = false;
 
@@ -3697,7 +3728,7 @@ namespace CDOrganiserProjectApp
                                                             break;
 
                                                             case false:
-                                                                view.RangeError(wait);
+                                                                
 
                                                                 InsertArtistAlbum();
 
@@ -3707,7 +3738,7 @@ namespace CDOrganiserProjectApp
                                                     break;
 
                                                     case false:
-                                                        view.RangeError(wait);
+                                                        
 
                                                         InsertArtistAlbum();
 
@@ -3717,7 +3748,7 @@ namespace CDOrganiserProjectApp
                                                 break;
 
                                             case false:
-                                                view.RangeError(wait);
+                                                
 
                                                 InsertArtistAlbum();
 
@@ -3727,7 +3758,7 @@ namespace CDOrganiserProjectApp
                                         break;
 
                                     case false:
-                                        view.RangeError(wait);
+                                        
 
                                         InsertArtistAlbum();
 
@@ -3737,7 +3768,7 @@ namespace CDOrganiserProjectApp
                             break;
 
                             case false:
-                                view.RangeError(wait);
+                                
 
                                 InsertArtistAlbum();
 
@@ -3748,7 +3779,7 @@ namespace CDOrganiserProjectApp
                     break;
 
                     case false:
-                        view.RangeError(wait);
+                        
 
                         InsertArtistAlbum();
 
@@ -3790,7 +3821,7 @@ namespace CDOrganiserProjectApp
                     break;
 
                     case false:
-                        view.RangeError(wait);
+                        
 
                         DeleteArtistAlbumById();
 
@@ -3818,7 +3849,10 @@ namespace CDOrganiserProjectApp
             {
                 view.DisplayMessage("\nEnter the identification number... ");
                 List<ArtistAlbums> artists = storageManager.GetAllArtistAlbums();
+                int alUpper = storageManager.GetArtistAlbumBoundary();
+
                 int albumId = view.GetIntInput();
+                bool alid = view.PassBoundary(albumId, alUpper);
 
                 bool lost = true;
 
@@ -3835,8 +3869,19 @@ namespace CDOrganiserProjectApp
                         break;
                     }
 
-                int rowsAffected = storageManager.LostArtist(albumId, lost);
-                view.DisplayMessage($"\nMarked/unmarked {rowsAffected} records as lost.");
+                switch (alid)
+                {
+                    case true:
+                        int rowsAffected = storageManager.LostArtist(albumId, lost);
+                        view.DisplayMessage($"\nMarked/unmarked {rowsAffected} records as lost.");
+
+                    break;
+
+                    case false:
+                        MarkArtistAsLost();
+
+                    break;
+                }
 
             }
             catch (FormatException e)
@@ -3859,9 +3904,10 @@ namespace CDOrganiserProjectApp
             string bAlbumCmd;
             bool invalidCmd = true;
 
-            storageManager.GetAllBandAlbums();
-
             Thread.Sleep(wait);
+            Console.Clear();
+
+            storageManager.GetAllBandAlbums();
 
             bAlbumCmd = view.DisplayEditingOptions("band-albums", "album~extras");
             view.DisplayMessage("");
@@ -3925,7 +3971,7 @@ namespace CDOrganiserProjectApp
                     break;
 
                     case "back":
-                        GoBack();
+                        AlbumPanel();
 
                         invalidCmd = false;
 
@@ -4010,11 +4056,11 @@ namespace CDOrganiserProjectApp
                                                         {
                                                             case true:
                                                                 view.DisplayMessage("\nEnter a new shelf row identification number... ");
-                                                                List<Shelves> shelves = storageManager.GetAllShelves();
-                                                                int sUpper = storageManager.GetShelfBoundary();
+                                                                List<Rows> rows = storageManager.GetAllRows();
+                                                                int rUpper = storageManager.GetRowBoundary();
 
                                                                 int shelfRowId = view.GetIntInput();
-                                                                bool sroid = view.PassBoundary(shelfRowId, sUpper);
+                                                                bool sroid = view.PassBoundary(shelfRowId, rUpper);
 
                                                                 bool lost = false;
 
@@ -4027,7 +4073,7 @@ namespace CDOrganiserProjectApp
                                                                     break;
 
                                                                     case false:
-                                                                        view.RangeError(wait);
+                                                                        
 
                                                                         UpdateBandAlbum();
 
@@ -4038,7 +4084,7 @@ namespace CDOrganiserProjectApp
                                                             break;
 
                                                             case false:
-                                                                view.RangeError(wait);
+                                                                
 
                                                                 UpdateBandAlbum();
 
@@ -4048,7 +4094,7 @@ namespace CDOrganiserProjectApp
                                                         break;
 
                                                     case false:
-                                                        view.RangeError(wait);
+                                                        
 
                                                         UpdateBandAlbum();
 
@@ -4059,7 +4105,7 @@ namespace CDOrganiserProjectApp
                                             break;
 
                                             case false:
-                                                view.RangeError(wait);
+                                                
 
                                                 UpdateBandAlbum();
 
@@ -4072,7 +4118,7 @@ namespace CDOrganiserProjectApp
                                     break;
 
                                     case false:
-                                        view.RangeError(wait);
+                                        
 
                                         UpdateBandAlbum();
 
@@ -4082,7 +4128,7 @@ namespace CDOrganiserProjectApp
                             break;
 
                             case false:
-                                view.RangeError(wait);
+                                
 
                                 UpdateBandAlbum();
 
@@ -4093,7 +4139,7 @@ namespace CDOrganiserProjectApp
                     break;
 
                     case false:
-                        view.RangeError(wait);
+                        
 
                         UpdateBandAlbum();
 
@@ -4131,7 +4177,7 @@ namespace CDOrganiserProjectApp
                     case true:
                         view.DisplayMessage("\nEnter a genre identification number...");
                         List<Genres> genres = storageManager.GetAllGenres();
-                        int gUpper = storageManager.GetShelfBoundary();
+                        int gUpper = storageManager.GetGenreBoundary();
 
                         view.DisplayGenres(genres);
 
@@ -4142,6 +4188,7 @@ namespace CDOrganiserProjectApp
                         {
                             case true:
                                 view.DisplayMessage("\nEnter the date of release... YYYY/MM/DD");
+
                                 DateTime dateOfRelease = view.GetDateTimeInput();
                                 bool dtor = view.PassDateBoundary(dateOfRelease);
 
@@ -4171,11 +4218,11 @@ namespace CDOrganiserProjectApp
                                                 {
                                                     case true:
                                                         view.DisplayMessage("\nEnter the shelf rows identification number... ");
-                                                        List<Shelves> shelves = storageManager.GetAllShelves();
-                                                        int sUpper = storageManager.GetShelfBoundary();
+                                                        List<Rows> rows = storageManager.GetAllRows();
+                                                        int rUpper = storageManager.GetShelfBoundary();
 
                                                         int shelfRowId = view.GetIntInput();
-                                                        bool sroid = view.PassBoundary(shelfRowId, sUpper);
+                                                        bool sroid = view.PassBoundary(shelfRowId, rUpper);
 
                                                         bool lost = false;
 
@@ -4190,7 +4237,7 @@ namespace CDOrganiserProjectApp
                                                             break;
 
                                                             case false:
-                                                                view.RangeError(wait);
+                                                                
 
                                                                 InsertBandAlbum();
 
@@ -4200,7 +4247,7 @@ namespace CDOrganiserProjectApp
                                                     break;
 
                                                     case false:
-                                                        view.RangeError(wait);
+                                                        
 
                                                         InsertBandAlbum();
 
@@ -4210,17 +4257,17 @@ namespace CDOrganiserProjectApp
                                                 break;
 
                                             case false:
-                                                view.RangeError(wait);
+                                                
 
                                                 InsertBandAlbum();
 
                                             break;
                                         }
 
-                                        break;
+                                    break;
 
                                     case false:
-                                        view.RangeError(wait);
+                                        
 
                                         InsertBandAlbum();
 
@@ -4230,7 +4277,7 @@ namespace CDOrganiserProjectApp
                             break;
 
                             case false:
-                                view.RangeError(wait);
+                                
 
                                 InsertBandAlbum();
 
@@ -4241,7 +4288,7 @@ namespace CDOrganiserProjectApp
                     break;
 
                     case false:
-                        view.RangeError(wait);
+                        
 
                         InsertBandAlbum();
 
@@ -4283,7 +4330,7 @@ namespace CDOrganiserProjectApp
                     break;
 
                     case false:
-                        view.RangeError(wait);
+                        
 
                         DeleteBandAlbumById();
 
@@ -4311,7 +4358,10 @@ namespace CDOrganiserProjectApp
             {
                 view.DisplayMessage("\nEnter the identification number... ");
                 List<BandAlbums> bands = storageManager.GetAllBandAlbums();
+                int alUpper = storageManager.GetBandAlbumBoundary();
+
                 int albumId = view.GetIntInput();
+                bool alid = view.PassBoundary(albumId, alUpper);
 
                 bool lost = true;
 
@@ -4328,8 +4378,19 @@ namespace CDOrganiserProjectApp
                         break;
                     }
 
-                int rowsAffected = storageManager.LostBand(albumId, lost);
-                view.DisplayMessage($"\nMarked/unmarked {rowsAffected} records as lost.");
+                switch (alid)
+                {
+                    case true:
+                        int rowsAffected = storageManager.LostBand(albumId, lost);
+                        view.DisplayMessage($"\nMarked/unmarked {rowsAffected} records as lost.");
+
+                    break;
+
+                    case false:
+                        MarkBandAsLost();
+
+                    break;
+                }
 
             }
             catch (FormatException e)
@@ -4353,6 +4414,7 @@ namespace CDOrganiserProjectApp
             bool invalidCmd;
 
             Thread.Sleep(wait);
+            Console.Clear();
 
             reviewSelect = view.DisplayEditingOptions("reviews", "album~variants");
 
@@ -4643,9 +4705,10 @@ namespace CDOrganiserProjectApp
             string aReviewCmd;
             bool invalidCmd = true;
 
-            storageManager.GetAllArtistReviews();
-
             Thread.Sleep(wait);
+            Console.Clear();
+
+            storageManager.GetAllArtistReviews();
 
             aReviewCmd = view.DisplayEditingOptions("artist-album-reviews", "review~extras");
             view.DisplayMessage("");
@@ -4766,11 +4829,11 @@ namespace CDOrganiserProjectApp
                             case true:
                                 if (personId != storageManager.FetchAccountFromArtistReviews(reviewId))
                                 {
-                                    view.DisplayMessage("\nYou cannot modify someone elses review. Booting you back to the menuscreen.");
+                                    view.DisplayMessage("\nYou cannot modify someone elses review.");
                                     Thread.Sleep(wait);
                                     Console.Clear();
 
-                                    AdminMenuscreenOptions();
+                                    UpdateArtistReview();
 
                                 }
 
@@ -4784,7 +4847,7 @@ namespace CDOrganiserProjectApp
                             break;
 
                             case false:
-                                view.RangeError(wait);
+                                
 
                                 UpdateArtistReview();
 
@@ -4794,7 +4857,7 @@ namespace CDOrganiserProjectApp
                         break;
 
                     case false:
-                        view.RangeError(wait);
+                        
 
                         UpdateArtistReview();
 
@@ -4858,7 +4921,7 @@ namespace CDOrganiserProjectApp
                             break;
 
                             case false:
-                                view.RangeError(wait);
+                                
 
                                 InsertArtistReview();
 
@@ -4868,7 +4931,7 @@ namespace CDOrganiserProjectApp
                     break;
 
                     case false:
-                        view.RangeError(wait);
+                        
 
                         InsertArtistReview();
 
@@ -4902,11 +4965,11 @@ namespace CDOrganiserProjectApp
 
                 if (accountId != storageManager.FetchAccountFromArtistReviews(reviewId))
                 {
-                    view.DisplayMessage("\nYou cannot modify someone elses review. Booting you back to the menuscreen.");
+                    view.DisplayMessage("\nYou cannot modify someone elses review.");
                     Thread.Sleep(wait);
                     Console.Clear();
 
-                    AdminMenuscreenOptions();
+                    DeleteArtistReviewById();
 
                 }
 
@@ -4996,9 +5059,10 @@ namespace CDOrganiserProjectApp
             string bReviewCmd;
             bool invalidCmd = true;
 
-            storageManager.GetAllBandReviews();
-
             Thread.Sleep(wait);
+            Console.Clear();
+
+            storageManager.GetAllBandReviews();
 
             bReviewCmd = view.DisplayEditingOptions("band-album-reviews", "review~extras");
             view.DisplayMessage("");
@@ -5119,11 +5183,11 @@ namespace CDOrganiserProjectApp
                             case true:
                                 if (personId != storageManager.FetchAccountFromBandReviews(reviewId))
                                 {
-                                    view.DisplayMessage("\nYou cannot modify someone elses review. Booting you back to the menuscreen.");
+                                    view.DisplayMessage("\nYou cannot modify someone elses review.");
                                     Thread.Sleep(wait);
                                     Console.Clear();
 
-                                    AdminMenuscreenOptions();
+                                    UpdateBandReview();
 
                                 }
 
@@ -5137,7 +5201,7 @@ namespace CDOrganiserProjectApp
                             break;
 
                             case false:
-                                view.RangeError(wait);
+                                
 
                                 UpdateBandReview();
 
@@ -5147,7 +5211,7 @@ namespace CDOrganiserProjectApp
                         break;
 
                     case false:
-                        view.RangeError(wait);
+                        
 
                         UpdateBandReview();
 
@@ -5211,7 +5275,7 @@ namespace CDOrganiserProjectApp
                             break;
 
                             case false:
-                                view.RangeError(wait);
+                                
 
                                 InsertBandReview();
 
@@ -5221,7 +5285,7 @@ namespace CDOrganiserProjectApp
                     break;
 
                     case false:
-                        view.RangeError(wait);
+                        
 
                         InsertBandReview();
 
@@ -5255,11 +5319,11 @@ namespace CDOrganiserProjectApp
 
                 if (accountId != storageManager.FetchAccountFromBandReviews(reviewId))
                 {
-                    view.DisplayMessage("\nYou cannot modify someone elses review. Booting you back to the menuscreen.");
+                    view.DisplayMessage("\nYou cannot modify someone elses review.");
                     Thread.Sleep(wait);
                     Console.Clear();
 
-                    AdminMenuscreenOptions();
+                    DeleteBandReviewById();
 
                 }
 
@@ -5368,15 +5432,17 @@ namespace CDOrganiserProjectApp
             string tierCmd;
             bool invalidCmd;
 
+            Thread.Sleep(wait);
+            Console.Clear();
+
             List<Tiers> tiers = storageManager.GetAllTiers();
             view.DisplayTiers(tiers);
-
-            Thread.Sleep(wait);
 
             tierCmd = view.DisplayEditingOptions("tiers", "none");
             view.DisplayMessage("");
 
             Thread.Sleep(wait);
+            Console.Clear();
 
             invalidCmd = false;
 
@@ -5582,8 +5648,6 @@ namespace CDOrganiserProjectApp
 
                 storageManager.SearchBandReviews(search);
 
-                SearchBandReviews();
-
                 bReviewCmd = view.GetInput();
                 view.DisplayMessage("");
 
@@ -5638,7 +5702,6 @@ namespace CDOrganiserProjectApp
 
                 storageManager.SearchArtistReviews(search);
 
-                SearchArtistReviews();
 
                 aReviewCmd = view.GetInput();
                 view.DisplayMessage("");

@@ -31,6 +31,7 @@ namespace CDOrganiserProjectApp.View
 
             Console.WriteLine("\n\t     Help - Press H + Enter\n");
 
+
             // When the method is called, a prompt for the users input is returned. This let me store whatever is placed inside of the methods returned prompt in strings.
 
             return Console.ReadLine(); 
@@ -432,22 +433,6 @@ namespace CDOrganiserProjectApp.View
 
         }
 
-        public void HomepageError(int delay)
-        {
-            Console.WriteLine("The input was invalid. Sending you back to homepage... ");
-            Thread.Sleep(delay);
-            Console.Clear();
-
-        }
-
-        public void RangeError(int delay)
-        {
-            Console.WriteLine($"Input is out of range. Please try again.");
-            Thread.Sleep(delay);
-            Console.Clear();
-
-        }
-
         /*
          
          The Support Page.
@@ -465,7 +450,6 @@ namespace CDOrganiserProjectApp.View
 
                 Console.WriteLine("\t[*]  'How can I login?' - Open the folder you installed, then open the .txt file 'account~list'.");
                 Console.WriteLine("\t[*]  'Text from a record is clipping into the next line!' - Enter F11 or Alt + Enter.");
-                Console.WriteLine("\t[*]  'Why does failing a command input send me back to the menuscreen?' - It was taking up too much of my time, couldn't wrap my head around it.");
                 Console.WriteLine("\t[*]  'How do I view the listings?' - Exactly how you ended up here. Enter a listed keyword. This is not case-sensitive.");
                 Console.WriteLine("\t[*]  'How do I leave the support page?' - Press E + Enter\n");
 
@@ -567,6 +551,13 @@ namespace CDOrganiserProjectApp.View
             return Convert.ToChar(Console.ReadLine());
         }
 
+        /*
+         
+         The Boundaries.
+        These set boundaries for data being modified.
+
+         
+        */
 
         public bool PassBoundary(int i, int size)
         {
@@ -578,7 +569,19 @@ namespace CDOrganiserProjectApp.View
             switch (minConditions)
             {
                 case false:
-                    Console.WriteLine($"'{i}' Goes outside of the boundaries. Please pass ");
+                    Console.WriteLine($"'{i}' is below one? Please provide a valid ID.");
+                    Thread.Sleep(1000);
+                    Console.Clear();
+
+                break;
+            }
+
+            switch (maxConditions)
+            {
+                case false:
+                    Console.WriteLine($"'{i}' exceeds '{size}', the most recent record. Please provide a valid ID.");
+                    Thread.Sleep(1000);
+                    Console.Clear();
 
                 break;
             }
@@ -588,16 +591,39 @@ namespace CDOrganiserProjectApp.View
 
         public bool PassRange(int i, int min, int max)
         {
-            bool boundary = i >= min && i <= max;
+            bool minConditions = i >= min;
+            bool maxConditions = i <= max;
+
+            bool boundary = minConditions && maxConditions;
+
+            switch (boundary)
+            {
+                case false:
+                    Console.WriteLine($"'{min}' - '{max}' is the set boundary for this field type. Please follow these guidelines.");
+                    Thread.Sleep(1000);
+                    Console.Clear();
+
+                break;
+            }
 
             return boundary;
         }
 
         public bool PassDateBoundary(DateTime i)
         {
-            DateTime min = new DateTime(1600, 01, 01);
+            var min = new DateTime(1600, 01, 01);
 
-            bool boundary = i >= min && i <= DateTime.Now;
+            bool boundary = i >= min && i <= DateTime.Today;
+
+            switch (boundary)
+            {
+                case false:
+                    Console.WriteLine($"{min.ToString("d")} - {DateTime.Now.ToString("d")} is the set boundary for this field type. Please follow these guidelines.");
+                    Thread.Sleep(1000);
+                    Console.Clear();
+
+                break;
+            }
 
             return boundary;
         }
