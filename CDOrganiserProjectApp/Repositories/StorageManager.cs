@@ -75,7 +75,27 @@ namespace CDOrganiserProjectApp
             }
         }
 
-        
+        public int FetchBandAlbumBandReferences(int bid)
+        {
+            int bandId = 0;
+
+            string sqlStr = $"SELECT bandID FROM Contents.tblBandAlbums WHERE bandID = @bid";
+            using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
+            {
+                cmd.Parameters.AddWithValue("@bid", bid);
+
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        bandId = Convert.ToInt32(reader["bandID"]);
+                    }
+
+                }
+
+                return bandId;
+            }
+        }
 
         public int GetBandBoundary()
         {
@@ -148,6 +168,50 @@ namespace CDOrganiserProjectApp
 
         }
 
+
+        public int FetchArtistAlbumGenreReferences(int gid)
+        {
+            int genreId = 0;
+
+            string sqlStr = $"SELECT genreID FROM Contents.tblArtistAlbums WHERE genreID = @gid";
+            using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
+            {
+                cmd.Parameters.AddWithValue("@gid", gid);
+
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        genreId = Convert.ToInt32(reader["genreID"]);
+                    }
+
+                }
+
+                return genreId;
+            }
+        }
+
+        public int FetchBandAlbumGenreReferences(int gid)
+        {
+            int genreId = 0;
+
+            string sqlStr = $"SELECT genreID FROM Contents.tblBandAlbums WHERE genreID = @gid";
+            using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
+            {
+                cmd.Parameters.AddWithValue("@gid", gid);
+
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        genreId = Convert.ToInt32(reader["genreID"]);
+                    }
+
+                }
+
+                return genreId;
+            }
+        }
 
         public int GetGenreBoundary()
         {
