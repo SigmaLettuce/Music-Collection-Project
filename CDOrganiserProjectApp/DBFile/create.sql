@@ -25,10 +25,10 @@ CREATE TABLE Properties.tblAccounts (
 	personID INT IDENTITY(1,1) PRIMARY KEY,
 	fName VARCHAR(30) NOT NULL,
 	sName VARCHAR(30) NOT NULL,
-	username VARCHAR(30) NOT NULL,
+	username VARCHAR(15) NOT NULL,
 	pw VARCHAR(30) NOT NULL,
 	roleID INT NOT NULL
-	FOREIGN KEY (roleID) REFERENCES Properties.tblRole (roleID) ON DELETE CASCADE ON UPDATE CASCADE
+	FOREIGN KEY (roleID) REFERENCES Properties.tblRole (roleID) 
 );
 
 CREATE TABLE Properties.tblTier (
@@ -39,7 +39,7 @@ CREATE TABLE Properties.tblTier (
 
 CREATE TABLE Contents.tblGenres (
 	genreID INT IDENTITY(1,1) PRIMARY KEY,
-	genreName VARCHAR(50)
+	genreName VARCHAR(20)
 );
 
 CREATE TABLE Properties.tblFormat (
@@ -49,26 +49,26 @@ CREATE TABLE Properties.tblFormat (
 
 CREATE TABLE Properties.tblStorageRoom (
 	roomID INT IDENTITY(1,1) PRIMARY KEY,
-	roomName VARCHAR(255) NOT NULL
+	roomName VARCHAR(20) NOT NULL
 );
 
 CREATE TABLE Properties.tblShelf (
 	shelfTagID INT IDENTITY(1,1) PRIMARY KEY,
 	shelfTag VARCHAR(1) NOT NULL, 
 	roomID INT NOT NULL,
-	FOREIGN KEY (roomID) REFERENCES Properties.tblStorageRoom (roomID) ON DELETE CASCADE ON UPDATE CASCADE
+	FOREIGN KEY (roomID) REFERENCES Properties.tblStorageRoom (roomID) 
 );
 
 CREATE TABLE Properties.tblRow (
 	shelfRowID INT IDENTITY(1,1) PRIMARY KEY,
 	shelfRow INT NOT NULL,
 	shelfTagID INT NOT NULL,
-	FOREIGN KEY (shelfTagID) REFERENCES Properties.tblShelf (shelfTagID) ON DELETE CASCADE ON UPDATE CASCADE 
+	FOREIGN KEY (shelfTagID) REFERENCES Properties.tblShelf (shelfTagID)
 );
 
 CREATE TABLE Contents.tblArtistAlbums (
 	albumID INT IDENTITY(1,1) PRIMARY KEY,
-	albumName VARCHAR(255) NOT NULL,
+	albumName VARCHAR(50) NOT NULL,
 	genreID INT NOT NULL,
 	dateOfRelease DATE NOT NULL,
 	formatID INT NOT NULL,
@@ -76,16 +76,16 @@ CREATE TABLE Contents.tblArtistAlbums (
 	shelfRowID INT NOT NULL,
 	lost BIT NOT NULL,
 
-	FOREIGN KEY (genreID) REFERENCES Contents.tblGenres (genreID) ON DELETE CASCADE ON UPDATE CASCADE,
-	FOREIGN KEY (formatID) REFERENCES Properties.tblFormat (formatID) ON DELETE CASCADE ON UPDATE CASCADE,
-	FOREIGN KEY (artistID) REFERENCES Contents.tblArtists (artistID) ON DELETE CASCADE ON UPDATE CASCADE,
-	FOREIGN KEY (shelfRowID) REFERENCES Properties.tblRow (shelfRowID) ON DELETE CASCADE ON UPDATE CASCADE
+	FOREIGN KEY (genreID) REFERENCES Contents.tblGenres (genreID), 
+	FOREIGN KEY (formatID) REFERENCES Properties.tblFormat (formatID),
+	FOREIGN KEY (artistID) REFERENCES Contents.tblArtists (artistID),
+	FOREIGN KEY (shelfRowID) REFERENCES Properties.tblRow (shelfRowID) 
 
 );
 
 CREATE TABLE Contents.tblBandAlbums (
 	albumID INT IDENTITY(1,1) PRIMARY KEY,
-	albumName VARCHAR(255) NOT NULL,
+	albumName VARCHAR(50) NOT NULL,
 	genreID INT NOT NULL,
 	dateOfRelease DATE NOT NULL,
 	bandID INT NOT NULL,
@@ -93,10 +93,10 @@ CREATE TABLE Contents.tblBandAlbums (
 	shelfRowID INT NOT NULL,
 	lost BIT NOT NULL,
 
-	FOREIGN KEY (genreID) REFERENCES Contents.tblGenres (genreID) ON DELETE CASCADE ON UPDATE CASCADE,
-	FOREIGN KEY (formatID) REFERENCES Properties.tblFormat (formatID) ON DELETE CASCADE ON UPDATE CASCADE,
-	FOREIGN KEY (bandID) REFERENCES Contents.tblBands (bandID) ON DELETE CASCADE ON UPDATE CASCADE,
-	FOREIGN KEY (shelfRowID) REFERENCES Properties.tblRow (shelfRowID) ON DELETE CASCADE ON UPDATE CASCADE
+	FOREIGN KEY (genreID) REFERENCES Contents.tblGenres (genreID),
+	FOREIGN KEY (formatID) REFERENCES Properties.tblFormat (formatID),
+	FOREIGN KEY (bandID) REFERENCES Contents.tblBands (bandID),
+	FOREIGN KEY (shelfRowID) REFERENCES Properties.tblRow (shelfRowID) 
 
 );
 
@@ -107,9 +107,9 @@ CREATE TABLE Contents.tblArtistReviews (
 	tierID INT NOT NULL,
 	favourite BIT NOT NULL,
 	
-	FOREIGN KEY (albumID) REFERENCES Contents.tblArtistAlbums (albumID) ON DELETE CASCADE ON UPDATE CASCADE,
-	FOREIGN KEY (personID) REFERENCES Properties.tblAccounts (personID) ON DELETE CASCADE ON UPDATE CASCADE,
-	FOREIGN KEY (tierID) REFERENCES Properties.tblTier (tierID) ON DELETE CASCADE ON UPDATE CASCADE
+	FOREIGN KEY (albumID) REFERENCES Contents.tblArtistAlbums (albumID),
+	FOREIGN KEY (personID) REFERENCES Properties.tblAccounts (personID),
+	FOREIGN KEY (tierID) REFERENCES Properties.tblTier (tierID) 
 
 );
 
@@ -120,8 +120,8 @@ CREATE TABLE Contents.tblBandReviews (
 	tierID INT NOT NULL,
 	favourite BIT NOT NULL,
 	
-	FOREIGN KEY (albumID) REFERENCES Contents.tblBandAlbums (albumID) ON DELETE CASCADE ON UPDATE CASCADE,
-	FOREIGN KEY (personID) REFERENCES Properties.tblAccounts (personID) ON DELETE CASCADE ON UPDATE CASCADE,
-	FOREIGN KEY (tierID) REFERENCES Properties.tblTier (tierID) ON DELETE CASCADE ON UPDATE CASCADE
+	FOREIGN KEY (albumID) REFERENCES Contents.tblBandAlbums (albumID),
+	FOREIGN KEY (personID) REFERENCES Properties.tblAccounts (personID),
+	FOREIGN KEY (tierID) REFERENCES Properties.tblTier (tierID) 
 
 );

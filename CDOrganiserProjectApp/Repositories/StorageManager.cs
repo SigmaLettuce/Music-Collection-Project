@@ -53,6 +53,30 @@ namespace CDOrganiserProjectApp
             }
         }
 
+        public int FetchArtistAlbumBandReferences(int bid)
+        {
+            int bandId = 0;
+
+            string sqlStr = $"SELECT bandID FROM Contents.tblArtistAlbums WHERE bandID = @bid";
+            using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
+            {
+                cmd.Parameters.AddWithValue("@bid", bid);
+
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        bandId = Convert.ToInt32(reader["bandID"]);
+                    }
+
+                }
+
+                return bandId;
+            }
+        }
+
+        
+
         public int GetBandBoundary()
         {
             int max = 0;
