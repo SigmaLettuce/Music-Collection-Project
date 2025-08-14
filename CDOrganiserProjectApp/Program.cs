@@ -639,7 +639,7 @@ namespace CDOrganiserProjectApp
                     case true:
                         view.DisplayMessage("\nRename the record... ");
                         string bandName = view.GetInput();
-                        bool bn = view.PassRange(bandName.Length, 10, 50);
+                        bool bn = view.PassRange(bandName.Length, 3, 50);
 
                         switch (bn)
                         {
@@ -688,7 +688,7 @@ namespace CDOrganiserProjectApp
             {
                 view.DisplayMessage("\nEnter the new band... ");
                 string bandName = view.GetInput();
-                bool bn = view.PassRange(bandName.Length, 10, 50);
+                bool bn = view.PassRange(bandName.Length, 3, 50);
 
                 int bandId = 0;
 
@@ -731,17 +731,36 @@ namespace CDOrganiserProjectApp
             {
 
                 List<Bands> bands = storageManager.GetAllBands();
+                view.DisplayBands(bands);
+
                 int bUpper = storageManager.GetBandBoundary();
 
                 view.DisplayMessage("\nEnter the identification number... ");
                 int bandId = view.GetIntInput();
                 bool bid = view.PassBoundary(bandId, bUpper);
+           
+                int bandAlbumReference = storageManager.FetchBandAlbumBandReferences(bandId);
 
                 switch (bid)
                 {
                     case true:
-                        int rowsAffected = storageManager.DeleteBandById(bandId);
-                        view.DisplayMessage($"\nDeleted {rowsAffected} row.");
+
+                        if (bandId.Equals(bandAlbumReference))
+                        {
+                            view.DisplayReferentialError(wait);
+
+                            BandPanel();
+
+                        }
+
+                        else 
+                        { 
+                            int rowsAffected = storageManager.DeleteBandById(bandId);
+                            view.DisplayMessage($"\nDeleted {rowsAffected} row.");
+
+
+                        }
+                        
 
                     break;
 
@@ -1390,6 +1409,8 @@ namespace CDOrganiserProjectApp
             {
 
                 List<Artists> artists = storageManager.GetAllArtists();
+                view.DisplayArtists(artists);
+
                 int aUpper = storageManager.GetArtistBoundary();
 
                 view.DisplayMessage("\nEnter the identification number... ");
@@ -1401,7 +1422,7 @@ namespace CDOrganiserProjectApp
                     case true:
                         view.DisplayMessage("\nRename the record... ");
                         string artistName = view.GetInput();
-                        bool an = view.PassRange(artistName.Length, 10, 50);
+                        bool an = view.PassRange(artistName.Length, 3, 50);
 
                         switch (an)
                         {
@@ -1450,7 +1471,7 @@ namespace CDOrganiserProjectApp
             {
                 view.DisplayMessage("\nEnter the new artist... ");
                 string artistName = view.GetInput();
-                bool an = view.PassRange(artistName.Length, 10, 50);
+                bool an = view.PassRange(artistName.Length, 3, 50);
 
                 int artistId = 0;
 
@@ -1493,6 +1514,8 @@ namespace CDOrganiserProjectApp
             {
 
                 List<Artists> artists = storageManager.GetAllArtists();
+                view.DisplayArtists(artists);
+
                 int aUpper = storageManager.GetArtistBoundary();
 
                 view.DisplayMessage("\nEnter the identification number... ");
@@ -3503,7 +3526,7 @@ namespace CDOrganiserProjectApp
                         albums = storageManager.GetAllArtistAlbums();
 
                         string albumName = view.GetInput();
-                        bool aln = view.PassRange(albumName.Length, 9, 50);
+                        bool aln = view.PassRange(albumName.Length, 3, 50);
 
                         switch (aln)
                         {
@@ -3662,7 +3685,7 @@ namespace CDOrganiserProjectApp
             {
                 view.DisplayMessage("\nEnter the new album... ");
                 string albumName = view.GetInput();
-                bool aln = view.PassRange(albumName.Length, 9, 50);
+                bool aln = view.PassRange(albumName.Length, 3, 50);
 
                 int albumId = 0;
 
@@ -4010,7 +4033,7 @@ namespace CDOrganiserProjectApp
                         albums = storageManager.GetAllBandAlbums();
 
                         string albumName = view.GetInput();
-                        bool aln = view.PassRange(albumName.Length, 9, 50);
+                        bool aln = view.PassRange(albumName.Length, 3, 50);
 
                         switch (aln)
                         {
@@ -4169,7 +4192,7 @@ namespace CDOrganiserProjectApp
             {
                 view.DisplayMessage("\nEnter the new album... ");
                 string albumName = view.GetInput();
-                bool aln = view.PassRange(albumName.Length, 9, 50);
+                bool aln = view.PassRange(albumName.Length, 3, 50);
 
                 int albumId = 0;
 

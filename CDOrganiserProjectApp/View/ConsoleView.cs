@@ -433,6 +433,14 @@ namespace CDOrganiserProjectApp.View
 
         }
 
+        public void DisplayReferentialError(int delay)
+        {
+            Console.WriteLine("You are unable to delete this record - it is referenced in another table. ");
+            Thread.Sleep(delay);
+            Console.Clear();
+
+        }
+
         /*
          
          The Support Page.
