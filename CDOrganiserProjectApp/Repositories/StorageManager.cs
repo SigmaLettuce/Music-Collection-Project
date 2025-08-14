@@ -327,6 +327,50 @@ namespace CDOrganiserProjectApp
         }
 
 
+        public int FetchArtistAlbumArtistReferences(int aid)
+        {
+            int artistId = 0;
+
+            string sqlStr = $"SELECT artistID FROM Contents.tblArtistAlbums WHERE artistID = @aid";
+            using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
+            {
+                cmd.Parameters.AddWithValue("@aid", aid);
+
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        artistId = Convert.ToInt32(reader["artistID"]);
+                    }
+
+                }
+
+                return artistId;
+            }
+        }
+
+        public int FetchBandAlbumArtistReferences(int aid)
+        {
+            int artistId = 0;
+
+            string sqlStr = $"SELECT artistID FROM Contents.tblBandAlbums WHERE artistID = @aid";
+            using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
+            {
+                cmd.Parameters.AddWithValue("@aid", aid);
+
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        artistId = Convert.ToInt32(reader["artistID"]);
+                    }
+
+                }
+
+                return artistId;
+            }
+        }
+
         public int GetArtistBoundary()
         {
             int max = 0;
@@ -399,6 +443,28 @@ namespace CDOrganiserProjectApp
 
         }
 
+
+        public int FetchShelfRoomReferences(int rid)
+        {
+            int roomId = 0;
+
+            string sqlStr = $"SELECT roomID FROM Properties.tblShelf WHERE roomID = @rid";
+            using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
+            {
+                cmd.Parameters.AddWithValue("@rid", rid);
+
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        roomId = Convert.ToInt32(reader["roomID"]);
+                    }
+
+                }
+
+                return roomId;
+            }
+        }
 
         public int GetRoomBoundary()
         {
@@ -477,6 +543,28 @@ namespace CDOrganiserProjectApp
 
         }
 
+
+        public int FetchRowShelfReferences(int staid)
+        {
+            int shelfTagId = 0;
+
+            string sqlStr = $"SELECT shelfTagID FROM Properties.tblRow WHERE shelfTagID = @staid";
+            using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
+            {
+                cmd.Parameters.AddWithValue("@staid", staid);
+
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        shelfTagId = Convert.ToInt32(reader["shelfTagID"]);
+                    }
+
+                }
+
+                return shelfTagId;
+            }
+        }
 
         public int GetShelfBoundary()
         {
@@ -557,6 +645,50 @@ namespace CDOrganiserProjectApp
         }
 
 
+        public int FetchArtistAlbumRowReferences(int sroid)
+        {
+            int shelfRowId = 0;
+
+            string sqlStr = $"SELECT shelfRowID FROM Contents.tblArtistAlbums WHERE shelfRowID = @sroid";
+            using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
+            {
+                cmd.Parameters.AddWithValue("@sroid", sroid);
+
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        shelfRowId = Convert.ToInt32(reader["shelfRowID"]);
+                    }
+
+                }
+
+                return shelfRowId;
+            }
+        }
+
+        public int FetchBandAlbumRowReferences(int sroid)
+        {
+            int shelfRowId = 0;
+
+            string sqlStr = $"SELECT shelfRowID FROM Contents.tblBandAlbums WHERE shelfRowID = @sroid";
+            using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
+            {
+                cmd.Parameters.AddWithValue("@sroid", sroid);
+
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        shelfRowId = Convert.ToInt32(reader["shelfRowID"]);
+                    }
+
+                }
+
+                return shelfRowId;
+            }
+        }
+
         public int GetRowBoundary()
         {
             int max = 0;
@@ -635,6 +767,28 @@ namespace CDOrganiserProjectApp
 
         }
 
+
+        public int FetchArtistReviewArtistAlbumReferences(int alid)
+        {
+            int albumId = 0;
+
+            string sqlStr = $"SELECT albumID FROM Contents.tblArtistReviews WHERE albumID = @alid";
+            using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
+            {
+                cmd.Parameters.AddWithValue("@alid", alid);
+
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        albumId = Convert.ToInt32(reader["albumID"]);
+                    }
+
+                }
+
+                return albumId;
+            }
+        }
 
         public int GetArtistAlbumBoundary()
         {
@@ -756,6 +910,28 @@ namespace CDOrganiserProjectApp
 
         }
 
+
+        public int FetchBandReviewBandAlbumReferences(int alid)
+        {
+            int albumId = 0;
+
+            string sqlStr = $"SELECT albumID FROM Contents.tblBandReviews WHERE albumID = @alid";
+            using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
+            {
+                cmd.Parameters.AddWithValue("@alid", alid);
+
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        albumId = Convert.ToInt32(reader["albumID"]);
+                    }
+
+                }
+
+                return albumId;
+            }
+        }
 
         public int GetBandAlbumBoundary()
         {
