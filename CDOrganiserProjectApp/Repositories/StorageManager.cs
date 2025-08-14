@@ -1,6 +1,7 @@
 ﻿using CDOrganiserProjectApp.Model;
 using Microsoft.Data.SqlClient;
 using Microsoft.Identity.Client;
+using System.Runtime.InteropServices;
 
 
 namespace CDOrganiserProjectApp
@@ -1511,6 +1512,50 @@ namespace CDOrganiserProjectApp
             }
         }
 
+
+        public int FetchArtistAlbumFormatReferences(int fid)
+        {
+            int formatId = 0;
+
+            string sqlStr = $"SELECT formatID FROM Contents.tblArtistAlbums WHERE formatID = @fid";
+            using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
+            {
+                cmd.Parameters.AddWithValue("@fid", fid);
+
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        formatId = Convert.ToInt32(reader["formatID"]);
+                    }
+
+                }
+
+                return formatId;
+            }
+        }
+
+        public int FetchBandAlbumFormatReferences(int fid)
+        {
+            int formatId = 0;
+
+            string sqlStr = $"SELECT formatID FROM Contents.tblBandAlbums WHERE formatID = @fid";
+            using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
+            {
+                cmd.Parameters.AddWithValue("@fid", fid);
+
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        formatId = Convert.ToInt32(reader["formatID"]);
+                    }
+
+                }
+
+                return formatId;
+            }
+        }
         
         // Pulls the last identification number from the Formats table to use as the upper boundary.
         public int GetFormatBoundary()

@@ -1030,12 +1030,30 @@ namespace CDOrganiserProjectApp
                 view.DisplayMessage("\nEnter the identification number... ");
                 int genreId = view.GetIntInput();
                 bool gid = view.PassBoundary(genreId, gUpper);
+           
+                int genreAAlbumReference = storageManager.FetchArtistAlbumGenreReferences(genreId);
+                int genreBAlbumReference = storageManager.FetchBandAlbumGenreReferences(genreId);
 
                 switch (gid)
                 {
                     case true:
-                        int rowsAffected = storageManager.DeleteGenreById(genreId);
-                        view.DisplayMessage($"\nDeleted {rowsAffected} row.");
+
+                        if (genreId.Equals(genreAAlbumReference) || genreId.Equals(genreBAlbumReference))
+                        {
+                            view.DisplayReferentialError(wait);
+
+                            GenrePanel();
+
+                        }
+
+                        else 
+                        { 
+                            int rowsAffected = storageManager.DeleteGenreById(genreId);
+                            view.DisplayMessage($"\nDeleted {rowsAffected} row.");
+
+
+                        }
+                        
 
                     break;
 
@@ -1247,12 +1265,30 @@ namespace CDOrganiserProjectApp
                 view.DisplayMessage("\nEnter the identification number... ");
                 int formatId = view.GetIntInput();
                 bool fid = view.PassBoundary(formatId, fUpper);
+           
+                int formatAAlbumReference = storageManager.FetchArtistAlbumFormatReferences(formatId);
+                int formatBAlbumReference = storageManager.FetchBandAlbumFormatReferences(formatId);
 
                 switch (fid)
                 {
                     case true:
-                        int rowsAffected = storageManager.DeleteFormatById(formatId);
-                        view.DisplayMessage($"\nDeleted {rowsAffected} row.");
+
+                        if (formatId.Equals(formatAAlbumReference) || formatId.Equals(formatBAlbumReference))
+                        {
+                            view.DisplayReferentialError(wait);
+
+                            FormatPanel();
+
+                        }
+
+                        else 
+                        { 
+                            int rowsAffected = storageManager.DeleteFormatById(formatId);
+                            view.DisplayMessage($"\nDeleted {rowsAffected} row.");
+
+
+                        }
+                        
 
                     break;
 
@@ -1521,12 +1557,29 @@ namespace CDOrganiserProjectApp
                 view.DisplayMessage("\nEnter the identification number... ");
                 int artistId = view.GetIntInput();
                 bool aid = view.PassBoundary(artistId, aUpper);
+           
+                int artistAlbumReference = storageManager.FetchArtistAlbumArtistReferences(artistId);
 
                 switch (aid)
                 {
                     case true:
-                        int rowsAffected = storageManager.DeleteArtistById(artistId);
-                        view.DisplayMessage($"\nDeleted {rowsAffected} row.");
+
+                        if (artistId.Equals(artistAlbumReference))
+                        {
+                            view.DisplayReferentialError(wait);
+
+                            ArtistPanel();
+
+                        }
+
+                        else 
+                        { 
+                            int rowsAffected = storageManager.DeleteArtistById(artistId);
+                            view.DisplayMessage($"\nDeleted {rowsAffected} row.");
+
+
+                        }
+                        
 
                     break;
 
@@ -1741,12 +1794,29 @@ namespace CDOrganiserProjectApp
                 view.DisplayMessage("\nEnter the identification number... ");
                 int roomId = view.GetIntInput();
                 bool rid = view.PassBoundary(roomId, rUpper);
+           
+                int roomShelfReference = storageManager.FetchShelfRoomReferences(roomId);
 
                 switch (rid)
                 {
                     case true:
-                        int rowsAffected = storageManager.DeleteRoomById(roomId);
-                        view.DisplayMessage($"\nDeleted {rowsAffected} row.");
+
+                        if (roomId.Equals(roomShelfReference))
+                        {
+                            view.DisplayReferentialError(wait);
+
+                            RoomPanel();
+
+                        }
+
+                        else 
+                        { 
+                            int rowsAffected = storageManager.DeleteRoomById(roomId);
+                            view.DisplayMessage($"\nDeleted {rowsAffected} row.");
+
+
+                        }
+                        
 
                     break;
 
@@ -1762,7 +1832,7 @@ namespace CDOrganiserProjectApp
             
             catch (FormatException e)
             {
-                view.DisplayMessage("\n  Please use the proper formatting.");
+                view.DisplayMessage("\n  Please use the proper roomting.");
                 view.DisplayMessage(e.Message);
 
                 RoomPanel();
@@ -2141,7 +2211,6 @@ namespace CDOrganiserProjectApp
 
         private static void DeleteShelfById()
         {
-            
 
             try
             {
@@ -2152,12 +2221,29 @@ namespace CDOrganiserProjectApp
                 view.DisplayMessage("\nEnter the identification number... ");
                 int shelfTagId = view.GetIntInput();
                 bool staid = view.PassBoundary(shelfTagId, sUpper);
+           
+                int shelfRowReference = storageManager.FetchRowShelfReferences(shelfTagId);
 
                 switch (staid)
                 {
                     case true:
-                        int rowsAffected = storageManager.DeleteShelfById(shelfTagId);
-                        view.DisplayMessage($"\nDeleted {rowsAffected} row.");
+
+                        if (shelfTagId.Equals(shelfRowReference))
+                        {
+                            view.DisplayReferentialError(wait);
+
+                            ShelfPanel();
+
+                        }
+
+                        else 
+                        { 
+                            int rowsAffected = storageManager.DeleteRoomById(shelfTagId);
+                            view.DisplayMessage($"\nDeleted {rowsAffected} row.");
+
+
+                        }
+                        
 
                     break;
 
@@ -2169,16 +2255,14 @@ namespace CDOrganiserProjectApp
                     break;
                 }
 
-                
             }
             
             catch (FormatException e)
             {
-                view.DisplayMessage("\n  Please use the proper formatting.");
+                view.DisplayMessage("\n  Please use the proper roomting.");
                 view.DisplayMessage(e.Message);
 
                 ShelfPanel();
-
             }
 
         }
@@ -2397,22 +2481,40 @@ namespace CDOrganiserProjectApp
 
         private static void DeleteRowById()
         {
-            
 
             try
             {
-                view.DisplayMessage("\nEnter the identification number... ");
+
                 List<Rows> rows = storageManager.GetAllRows();
                 int rUpper = storageManager.GetRowBoundary();
 
-                int shelfRowId = view.GetIntInput();
-                bool sroid = view.PassBoundary(shelfRowId, rUpper);
+                view.DisplayMessage("\nEnter the identification number... ");
+                int rowId = view.GetIntInput();
+                bool sroid = view.PassBoundary(rowId, rUpper);
+           
+                int rowAAlbumReference = storageManager.FetchArtistAlbumRowReferences(rowId);
+                int rowBAlbumReference = storageManager.FetchBandAlbumRowReferences(rowId);
 
                 switch (sroid)
                 {
                     case true:
-                        int rowsAffected = storageManager.DeleteRowById(shelfRowId);
-                        view.DisplayMessage($"\nDeleted {rowsAffected} row.");
+
+                        if (rowId.Equals(rowAAlbumReference) || rowId.Equals(rowBAlbumReference))
+                        {
+                            view.DisplayReferentialError(wait);
+
+                            RowPanel();
+
+                        }
+
+                        else 
+                        { 
+                            int rowsAffected = storageManager.DeleteRowById(rowId);
+                            view.DisplayMessage($"\nDeleted {rowsAffected} row.");
+
+
+                        }
+                        
 
                     break;
 
@@ -2424,16 +2526,15 @@ namespace CDOrganiserProjectApp
                     break;
                 }
 
-                
             }
             
             catch (FormatException e)
             {
-                view.DisplayMessage("\n  Please use the proper formatting.");
+                view.DisplayMessage("\n  Please use the proper rowting.");
                 view.DisplayMessage(e.Message);
 
                 RowPanel();
-
+    
             }
 
         }
@@ -3825,22 +3926,39 @@ namespace CDOrganiserProjectApp
         
         private static void DeleteArtistAlbumById()
         {
-            
 
             try
             {
-                view.DisplayMessage("\nEnter the identification number... ");
+
                 List<ArtistAlbums> albums = storageManager.GetAllArtistAlbums();
                 int alUpper = storageManager.GetArtistAlbumBoundary();
 
+                view.DisplayMessage("\nEnter the identification number... ");
                 int albumId = view.GetIntInput();
                 bool alid = view.PassBoundary(albumId, alUpper);
+           
+                int AAlbumAReviewReference = storageManager.FetchArtistReviewArtistAlbumReferences(albumId);
 
                 switch (alid)
                 {
                     case true:
-                        int rowsAffected = storageManager.DeleteArtistAlbumById(albumId);
-                        view.DisplayMessage($"\nDeleted {rowsAffected} row.");
+
+                        if (albumId.Equals(AAlbumAReviewReference))
+                        {
+                            view.DisplayReferentialError(wait);
+
+                            ArtistAlbumPanel();
+
+                        }
+
+                        else 
+                        { 
+                            int albumssAffected = storageManager.DeleteArtistAlbumById(albumId);
+                            view.DisplayMessage($"\nDeleted {albumssAffected} albums.");
+
+
+                        }
+                        
 
                     break;
 
@@ -3856,11 +3974,11 @@ namespace CDOrganiserProjectApp
             
             catch (FormatException e)
             {
-                view.DisplayMessage("\n  Please use the proper formatting.");
+                view.DisplayMessage("\n  Please use the proper albumsting.");
                 view.DisplayMessage(e.Message);
 
                 ArtistAlbumPanel();
-
+    
             }
 
         }
@@ -4334,22 +4452,39 @@ namespace CDOrganiserProjectApp
         
         private static void DeleteBandAlbumById()
         {
-            
 
             try
             {
-                view.DisplayMessage("\nEnter the identification number... ");
+
                 List<BandAlbums> albums = storageManager.GetAllBandAlbums();
                 int alUpper = storageManager.GetBandAlbumBoundary();
 
+                view.DisplayMessage("\nEnter the identification number... ");
                 int albumId = view.GetIntInput();
                 bool alid = view.PassBoundary(albumId, alUpper);
+           
+                int BAlbumBReviewReference = storageManager.FetchBandReviewBandAlbumReferences(albumId);
 
                 switch (alid)
                 {
                     case true:
-                        int rowsAffected = storageManager.DeleteBandAlbumById(albumId);
-                        view.DisplayMessage($"\nDeleted {rowsAffected} row.");
+
+                        if (albumId.Equals(BAlbumBReviewReference))
+                        {
+                            view.DisplayReferentialError(wait);
+
+                            BandAlbumPanel();
+
+                        }
+
+                        else 
+                        { 
+                            int albumssAffected = storageManager.DeleteBandAlbumById(albumId);
+                            view.DisplayMessage($"\nDeleted {albumssAffected} albums.");
+
+
+                        }
+                        
 
                     break;
 
@@ -4365,11 +4500,11 @@ namespace CDOrganiserProjectApp
             
             catch (FormatException e)
             {
-                view.DisplayMessage("\n  Please use the proper formatting.");
+                view.DisplayMessage("\n  Please use the proper albumsting.");
                 view.DisplayMessage(e.Message);
 
                 BandAlbumPanel();
-
+    
             }
 
         }
