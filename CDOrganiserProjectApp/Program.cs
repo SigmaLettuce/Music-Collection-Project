@@ -652,7 +652,7 @@ namespace CDOrganiserProjectApp
                             case false:
                                 
 
-                                UpdateBandName();
+                                BandPanel();
 
                             break;
                         }
@@ -662,7 +662,7 @@ namespace CDOrganiserProjectApp
                     case false:
                         
 
-                        UpdateBandName();
+                        BandPanel();
 
                     break;
 
@@ -675,7 +675,7 @@ namespace CDOrganiserProjectApp
                 view.DisplayMessage("\n  Please use the proper formatting.");
                 view.DisplayMessage(e.Message);
 
-                UpdateBandName();
+                BandPanel();
     
             }
 
@@ -706,7 +706,7 @@ namespace CDOrganiserProjectApp
                     case false:
                         
 
-                        InsertNewBand();
+                        BandPanel();
 
                     break;
                 }  
@@ -718,7 +718,7 @@ namespace CDOrganiserProjectApp
                 view.DisplayMessage("\n  Please use the proper formatting.");
                 view.DisplayMessage(e.Message);
 
-                InsertNewBand();
+                BandPanel();
     
             }
 
@@ -748,7 +748,7 @@ namespace CDOrganiserProjectApp
                     case false:
                         
 
-                        DeleteBandById();
+                        BandPanel();
 
                     break;
                 }
@@ -760,7 +760,7 @@ namespace CDOrganiserProjectApp
                 view.DisplayMessage("\n  Please use the proper formatting.");
                 view.DisplayMessage(e.Message);
 
-                DeleteBandById();
+                BandPanel();
     
             }
 
@@ -925,7 +925,7 @@ namespace CDOrganiserProjectApp
                             case false:
                                 
 
-                                UpdateGenreName();
+                                GenrePanel();
 
                             break;
                         }
@@ -935,7 +935,7 @@ namespace CDOrganiserProjectApp
                     case false:
                         
 
-                        UpdateGenreName();
+                        GenrePanel();
 
                     break;
 
@@ -948,7 +948,7 @@ namespace CDOrganiserProjectApp
                 view.DisplayMessage("\n  Please use the proper formatting.");
                 view.DisplayMessage(e.Message);
 
-                UpdateGenreName();
+                GenrePanel();
     
             }
 
@@ -979,7 +979,7 @@ namespace CDOrganiserProjectApp
                     case false:
                         
 
-                        InsertNewGenre();
+                        GenrePanel();
 
                     break;
                 }  
@@ -991,7 +991,7 @@ namespace CDOrganiserProjectApp
                 view.DisplayMessage("\n  Please use the proper formatting.");
                 view.DisplayMessage(e.Message);
 
-                InsertNewGenre();
+                GenrePanel();
     
             }
 
@@ -1023,7 +1023,7 @@ namespace CDOrganiserProjectApp
                     case false:
                         
 
-                        DeleteGenreById();
+                        GenrePanel();
 
                     break;
                 }
@@ -1035,7 +1035,7 @@ namespace CDOrganiserProjectApp
                 view.DisplayMessage("\n  Please use the proper formatting.");
                 view.DisplayMessage(e.Message);
 
-                DeleteGenreById();
+                GenrePanel();
     
             }
 
@@ -1144,7 +1144,7 @@ namespace CDOrganiserProjectApp
                             case false:
                                 
 
-                                UpdateFormatName();
+                                FormatPanel();
 
                             break;
                         }
@@ -1154,7 +1154,7 @@ namespace CDOrganiserProjectApp
                     case false:
                         
 
-                        UpdateFormatName();
+                        FormatPanel();
 
                     break;
 
@@ -1167,7 +1167,7 @@ namespace CDOrganiserProjectApp
                 view.DisplayMessage("\n  Please use the proper formatting.");
                 view.DisplayMessage(e.Message);
 
-                UpdateFormatName();
+                FormatPanel();
     
             }
 
@@ -1198,7 +1198,7 @@ namespace CDOrganiserProjectApp
                     case false:
                         
 
-                        InsertNewFormat();
+                        FormatPanel();
 
                     break;
                 }  
@@ -1210,7 +1210,7 @@ namespace CDOrganiserProjectApp
                 view.DisplayMessage("\n  Please use the proper formatting.");
                 view.DisplayMessage(e.Message);
 
-                InsertNewFormat();
+                FormatPanel();
     
             }
 
@@ -1240,7 +1240,7 @@ namespace CDOrganiserProjectApp
                     case false:
                         
 
-                        DeleteFormatById();
+                        FormatPanel();
 
                     break;
                 }
@@ -1252,7 +1252,7 @@ namespace CDOrganiserProjectApp
                 view.DisplayMessage("\n  Please use the proper formatting.");
                 view.DisplayMessage(e.Message);
 
-                DeleteFormatById();
+                FormatPanel();
     
             }
 
@@ -1412,9 +1412,9 @@ namespace CDOrganiserProjectApp
                             break;
 
                             case false:
-                                
 
-                                UpdateArtistName();
+
+                                ArtistPanel();
 
                             break;
                         }
@@ -1424,7 +1424,7 @@ namespace CDOrganiserProjectApp
                     case false:
                         
 
-                        UpdateArtistName();
+                        ArtistPanel();
 
                     break;
 
@@ -1437,7 +1437,7 @@ namespace CDOrganiserProjectApp
                 view.DisplayMessage("\n  Please use the proper formatting.");
                 view.DisplayMessage(e.Message);
 
-                UpdateArtistName();
+                ArtistPanel();
     
             }
 
@@ -1468,7 +1468,7 @@ namespace CDOrganiserProjectApp
                     case false:
                         
 
-                        InsertNewArtist();
+                        ArtistPanel();
 
                     break;
                 }  
@@ -1480,7 +1480,7 @@ namespace CDOrganiserProjectApp
                 view.DisplayMessage("\n  Please use the proper formatting.");
                 view.DisplayMessage(e.Message);
 
-                InsertNewArtist();
+                ArtistPanel();
     
             }
 
@@ -1510,7 +1510,7 @@ namespace CDOrganiserProjectApp
                     case false:
                         
 
-                        DeleteArtistById();
+                        ArtistPanel();
 
                     break;
                 }
@@ -1522,7 +1522,7 @@ namespace CDOrganiserProjectApp
                 view.DisplayMessage("\n  Please use the proper formatting.");
                 view.DisplayMessage(e.Message);
 
-                DeleteArtistById();
+                ArtistPanel();
     
             }
 
@@ -1611,6 +1611,7 @@ namespace CDOrganiserProjectApp
                 List<Rooms> rooms = storageManager.GetAllRooms();
                 int rUpper = storageManager.GetRoomBoundary();
 
+
                 view.DisplayMessage("\nEnter the identification number... ");
                 int roomId = view.GetIntInput();
                 bool rid = view.PassBoundary(roomId, rUpper);
@@ -1631,9 +1632,9 @@ namespace CDOrganiserProjectApp
                             break;
 
                             case false:
-                                
 
-                                UpdateRoomName();
+
+                                RoomPanel();
 
                             break;
                         }
@@ -1643,7 +1644,7 @@ namespace CDOrganiserProjectApp
                     case false:
                         
 
-                        UpdateRoomName();
+                       RoomPanel();
 
                     break;
 
@@ -1656,7 +1657,7 @@ namespace CDOrganiserProjectApp
                 view.DisplayMessage("\n  Please use the proper formatting.");
                 view.DisplayMessage(e.Message);
 
-                UpdateRoomName();
+                RoomPanel();
     
             }
 
@@ -1687,7 +1688,7 @@ namespace CDOrganiserProjectApp
                     case false:
                         
 
-                        InsertNewRoom();
+                        RoomPanel();
 
                     break;
                 }  
@@ -1699,7 +1700,7 @@ namespace CDOrganiserProjectApp
                 view.DisplayMessage("\n  Please use the proper formatting.");
                 view.DisplayMessage(e.Message);
 
-                InsertNewRoom();
+                RoomPanel();
     
             }
 
@@ -5359,7 +5360,7 @@ namespace CDOrganiserProjectApp
 
 
 
-                if (accountId != storageManager.FetchAccountFromBandReviews(reviewId))
+                if (accountId != storageManager.FetchAccountFromBandReviews(reviewId)) // If the review id connected to an accounts id does not correspond with the current users account id.
                 {
                     view.DisplayMessage("\nYou cannot modify someone elses review. Booting you back to the menuscreen.");
                     Thread.Sleep(wait);
@@ -5484,9 +5485,9 @@ namespace CDOrganiserProjectApp
             try
             {
                 view.DisplayMessage("\nEnter the name... \n");
-                string search = view.GetInput();
+                string genreSearch = view.GetInput();
 
-                storageManager.SearchGenres(search);
+                storageManager.SearchGenres(genreSearch);
 
                 genreCmd = view.GetInput();
                 view.DisplayMessage("");
@@ -5537,9 +5538,9 @@ namespace CDOrganiserProjectApp
             try
             {
                 view.DisplayMessage("\nEnter the name... \n");
-                string search = view.GetInput();
+                string artistSearch = view.GetInput();
 
-                storageManager.SearchArtists(search);
+                storageManager.SearchArtists(artistSearch);
 
                 artistCmd = view.GetInput();
                 view.DisplayMessage("");
@@ -5590,9 +5591,9 @@ namespace CDOrganiserProjectApp
             try
             {
                 view.DisplayMessage("\nEnter the name... \n");
-                string search = view.GetInput();
+                string bandSearch = view.GetInput();
 
-                storageManager.SearchBands(search);
+                storageManager.SearchBands(bandSearch);
 
                 bandCmd = view.GetInput();
                 view.DisplayMessage("");
@@ -5644,9 +5645,9 @@ namespace CDOrganiserProjectApp
                 bool invalidCmd;
 
                 view.DisplayMessage("\nEnter the ranking... \n");
-                string search = view.GetInput();
+                string bReviewSearch = view.GetInput();
 
-                storageManager.SearchBandReviews(search);
+                storageManager.SearchBandReviews(bReviewSearch);
 
                 bReviewCmd = view.GetInput();
                 view.DisplayMessage("");
@@ -5698,9 +5699,9 @@ namespace CDOrganiserProjectApp
                 bool invalidCmd;
 
                 view.DisplayMessage("\nEnter the ranking... \n");
-                string search = view.GetInput();
+                string aReviewSearch = view.GetInput();
 
-                storageManager.SearchArtistReviews(search);
+                storageManager.SearchArtistReviews(aReviewSearch);
 
 
                 aReviewCmd = view.GetInput();
@@ -5753,9 +5754,9 @@ namespace CDOrganiserProjectApp
                 bool invalidCmd;
 
                 view.DisplayMessage("\nEnter the name... \n");
-                string search = view.GetInput();
+                string aAlbumSearch = view.GetInput();
 
-                storageManager.SearchArtistAlbums(search);
+                storageManager.SearchArtistAlbums(aAlbumSearch);
 
                 aAlbumCmd = view.GetInput();
                 view.DisplayMessage("");
@@ -5807,9 +5808,9 @@ namespace CDOrganiserProjectApp
                 bool invalidCmd;
 
                 view.DisplayMessage("\nEnter the name... \n");
-                string search = view.GetInput();
+                string bAlbumSearch = view.GetInput();
 
-                storageManager.SearchBandAlbums(search);
+                storageManager.SearchBandAlbums(bAlbumSearch);
 
                 bAlbumCmd = view.GetInput();
                 view.DisplayMessage("");
