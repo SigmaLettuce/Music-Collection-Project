@@ -2424,7 +2424,7 @@ namespace CDOrganiserProjectApp
             {
                 view.DisplayMessage("\nEnter the new rows number... ");
                 int shelfRow = view.GetIntInput();
-                bool sr = view.PassBoundary(shelfRow, 6);
+                bool sr = view.PassRange(shelfRow, 1, 6);
 
                 switch (sr)
                 {
@@ -2701,7 +2701,18 @@ namespace CDOrganiserProjectApp
                                                     Thread.Sleep(wait);
                                                     Console.Clear();
 
-                                                    CreateUser();
+                                                    switch (roleId)
+                                                    {
+                                                        case 1:
+                                                            DefaultAccountPanel();
+
+                                                        break;
+
+                                                        case 2:
+                                                            AccountPanel();
+
+                                                        break;
+                                                    }
 
                                                 }
 
@@ -2723,8 +2734,19 @@ namespace CDOrganiserProjectApp
 
                                             case false:
                                                 
+                                                switch (roleId)
+                                                {
+                                                    case 1:
+                                                        DefaultAccountPanel();
 
-                                                CreateUser();
+                                                    break;
+
+                                                    case 2:
+                                                        AccountPanel();
+
+                                                    break;
+                                                }
+                                                
 
                                             break;
                                         }
@@ -2732,9 +2754,31 @@ namespace CDOrganiserProjectApp
                                         break;
 
                                     case false:
-                                        
 
-                                        CreateUser();
+                                        switch (logStatus)
+                                        {
+                                            case true:
+                                                switch (roleId)
+                                                {
+                                                    case 1:
+                                                        DefaultAccountPanel();
+
+                                                    break;
+
+                                                    case 2:
+                                                        AccountPanel();
+
+                                                    break;
+                                                }
+
+                                            break;
+
+                                            case false:
+                                                StartMenuscreenOptions();
+
+                                            break;
+                                        }
+                                        
 
                                     break;
 
@@ -2745,7 +2789,29 @@ namespace CDOrganiserProjectApp
                             case false:
                                 
 
-                                CreateUser();
+                                switch (logStatus)
+                                {
+                                    case true:
+                                        switch (roleId)
+                                        {
+                                            case 1:
+                                                DefaultAccountPanel();
+
+                                            break;
+
+                                            case 2:
+                                                AccountPanel();
+
+                                            break;
+                                        }
+
+                                    break;
+
+                                    case false:
+                                        StartMenuscreenOptions();
+
+                                    break;
+                                }
 
                             break;
 
@@ -2756,7 +2822,29 @@ namespace CDOrganiserProjectApp
                     case false:
                         
 
-                        CreateUser();
+                        switch (logStatus)
+                        {
+                            case true:
+                                switch (roleId)
+                                {
+                                    case 1:
+                                        DefaultAccountPanel();
+
+                                    break;
+
+                                    case 2:
+                                        AccountPanel();
+
+                                    break;
+                                }
+
+                            break;
+
+                            case false:
+                                StartMenuscreenOptions();
+
+                            break;
+                        }
 
                     break;
 
@@ -2769,7 +2857,29 @@ namespace CDOrganiserProjectApp
                 
                 view.DisplayMessage(e.Message);
 
-                CreateUser();
+                switch (logStatus)
+                {
+                    case true:
+                        switch (roleId)
+                        {
+                            case 1:
+                                DefaultAccountPanel();
+
+                            break;
+
+                            case 2:
+                                AccountPanel();
+
+                            break;
+                        }
+
+                    break;
+
+                    case false:
+                        StartMenuscreenOptions();
+
+                    break;
+                }
 
             }
 
