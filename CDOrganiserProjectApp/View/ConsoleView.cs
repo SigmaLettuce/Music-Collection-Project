@@ -619,7 +619,7 @@ namespace CDOrganiserProjectApp.View
 
         public bool PassDateBoundary(DateTime i)
         {
-            var min = new DateTime(1600, 01, 01);
+            var min = new DateTime(1980, 01, 01);
 
             bool boundary = i >= min && i <= DateTime.Today;
 

@@ -670,9 +670,9 @@ namespace CDOrganiserProjectApp
 
             }
 
-            catch (FormatException e)
+            catch (Exception e)
             {
-                view.DisplayMessage("\n  Please use the proper formatting.");
+                
                 view.DisplayMessage(e.Message);
 
                 BandPanel();
@@ -713,9 +713,9 @@ namespace CDOrganiserProjectApp
 
             }
 
-            catch (FormatException e)
+            catch (Exception e)
             {
-                view.DisplayMessage("\n  Please use the proper formatting.");
+                
                 view.DisplayMessage(e.Message);
 
                 BandPanel();
@@ -774,9 +774,9 @@ namespace CDOrganiserProjectApp
 
             }
             
-            catch (FormatException e)
+            catch (Exception e)
             {
-                view.DisplayMessage("\n  Please use the proper formatting.");
+                
                 view.DisplayMessage(e.Message);
 
                 BandPanel();
@@ -962,9 +962,9 @@ namespace CDOrganiserProjectApp
 
             }
 
-            catch (FormatException e)
+            catch (Exception e)
             {
-                view.DisplayMessage("\n  Please use the proper formatting.");
+                
                 view.DisplayMessage(e.Message);
 
                 GenrePanel();
@@ -1005,9 +1005,9 @@ namespace CDOrganiserProjectApp
 
             }
 
-            catch (FormatException e)
+            catch (Exception e)
             {
-                view.DisplayMessage("\n  Please use the proper formatting.");
+                
                 view.DisplayMessage(e.Message);
 
                 GenrePanel();
@@ -1038,7 +1038,7 @@ namespace CDOrganiserProjectApp
                 {
                     case true:
 
-                        if (genreId.Equals(genreAAlbumReference) || genreId.Equals(genreBAlbumReference))
+                        if (genreId.Equals(genreAAlbumReference) | genreId.Equals(genreBAlbumReference))
                         {
                             view.DisplayReferentialError(wait);
 
@@ -1067,9 +1067,9 @@ namespace CDOrganiserProjectApp
 
             }
             
-            catch (FormatException e)
+            catch (Exception e)
             {
-                view.DisplayMessage("\n  Please use the proper formatting.");
+                
                 view.DisplayMessage(e.Message);
 
                 GenrePanel();
@@ -1199,9 +1199,9 @@ namespace CDOrganiserProjectApp
 
             }
 
-            catch (FormatException e)
+            catch (Exception e)
             {
-                view.DisplayMessage("\n  Please use the proper formatting.");
+                
                 view.DisplayMessage(e.Message);
 
                 FormatPanel();
@@ -1242,9 +1242,9 @@ namespace CDOrganiserProjectApp
 
             }
 
-            catch (FormatException e)
+            catch (Exception e)
             {
-                view.DisplayMessage("\n  Please use the proper formatting.");
+                
                 view.DisplayMessage(e.Message);
 
                 FormatPanel();
@@ -1273,7 +1273,7 @@ namespace CDOrganiserProjectApp
                 {
                     case true:
 
-                        if (formatId.Equals(formatAAlbumReference) || formatId.Equals(formatBAlbumReference))
+                        if (formatId.Equals(formatAAlbumReference) | formatId.Equals(formatBAlbumReference))
                         {
                             view.DisplayReferentialError(wait);
 
@@ -1302,9 +1302,9 @@ namespace CDOrganiserProjectApp
 
             }
             
-            catch (FormatException e)
+            catch (Exception e)
             {
-                view.DisplayMessage("\n  Please use the proper formatting.");
+                
                 view.DisplayMessage(e.Message);
 
                 FormatPanel();
@@ -1489,9 +1489,9 @@ namespace CDOrganiserProjectApp
 
             }
 
-            catch (FormatException e)
+            catch (Exception e)
             {
-                view.DisplayMessage("\n  Please use the proper formatting.");
+                
                 view.DisplayMessage(e.Message);
 
                 ArtistPanel();
@@ -1532,9 +1532,9 @@ namespace CDOrganiserProjectApp
 
             }
 
-            catch (FormatException e)
+            catch (Exception e)
             {
-                view.DisplayMessage("\n  Please use the proper formatting.");
+                
                 view.DisplayMessage(e.Message);
 
                 ArtistPanel();
@@ -1593,9 +1593,9 @@ namespace CDOrganiserProjectApp
 
             }
             
-            catch (FormatException e)
+            catch (Exception e)
             {
-                view.DisplayMessage("\n  Please use the proper formatting.");
+                
                 view.DisplayMessage(e.Message);
 
                 ArtistPanel();
@@ -1728,9 +1728,9 @@ namespace CDOrganiserProjectApp
 
             }
 
-            catch (FormatException e)
+            catch (Exception e)
             {
-                view.DisplayMessage("\n  Please use the proper formatting.");
+                
                 view.DisplayMessage(e.Message);
 
                 RoomPanel();
@@ -1771,9 +1771,9 @@ namespace CDOrganiserProjectApp
 
             }
 
-            catch (FormatException e)
+            catch (Exception e)
             {
-                view.DisplayMessage("\n  Please use the proper formatting.");
+                
                 view.DisplayMessage(e.Message);
 
                 RoomPanel();
@@ -1830,7 +1830,7 @@ namespace CDOrganiserProjectApp
 
             }
             
-            catch (FormatException e)
+            catch (Exception e)
             {
                 view.DisplayMessage("\n  Please use the proper roomting.");
                 view.DisplayMessage(e.Message);
@@ -1912,10 +1912,10 @@ namespace CDOrganiserProjectApp
 
                 } while (invalidCmd);
             }
-            catch (FormatException e)
+            catch (Exception e)
             {
 
-                view.DisplayMessage("\n  Please use the proper formatting.");
+                
                 view.DisplayMessage(e.Message);
 
                 Thread.Sleep(wait);
@@ -1998,10 +1998,10 @@ namespace CDOrganiserProjectApp
 
                 } while (invalidCmd);
             }
-            catch (FormatException e)
+            catch (Exception e)
             {
 
-                view.DisplayMessage("\n  Please use the proper formatting.");
+                
                 view.DisplayMessage(e.Message);
 
                 Thread.Sleep(wait);
@@ -2147,9 +2147,9 @@ namespace CDOrganiserProjectApp
 
             }
 
-            catch (FormatException e)
+            catch (Exception e)
             {
-                view.DisplayMessage("\n  Please use the proper formatting.");
+                
                 view.DisplayMessage(e.Message);
 
                 ShelfPanel();
@@ -2198,9 +2198,9 @@ namespace CDOrganiserProjectApp
 
             }
             
-            catch (FormatException e)
+            catch (Exception e)
             {
-                view.DisplayMessage("\n  Please use the proper formatting.");
+                
                 view.DisplayMessage(e.Message);
 
                 ShelfPanel();
@@ -2217,6 +2217,8 @@ namespace CDOrganiserProjectApp
 
                 List<Shelves> shelves = storageManager.GetAllShelves();
                 int sUpper = storageManager.GetShelfBoundary();
+
+                Console.WriteLine(sUpper);
 
                 view.DisplayMessage("\nEnter the identification number... ");
                 int shelfTagId = view.GetIntInput();
@@ -2238,7 +2240,7 @@ namespace CDOrganiserProjectApp
 
                         else 
                         { 
-                            int rowsAffected = storageManager.DeleteRoomById(shelfTagId);
+                            int rowsAffected = storageManager.DeleteShelfById(shelfTagId);
                             view.DisplayMessage($"\nDeleted {rowsAffected} row.");
 
 
@@ -2257,7 +2259,7 @@ namespace CDOrganiserProjectApp
 
             }
             
-            catch (FormatException e)
+            catch (Exception e)
             {
                 view.DisplayMessage("\n  Please use the proper roomting.");
                 view.DisplayMessage(e.Message);
@@ -2403,9 +2405,9 @@ namespace CDOrganiserProjectApp
 
             }
 
-            catch (FormatException e)
+            catch (Exception e)
             {
-                view.DisplayMessage("\n  Please use the proper formatting.");
+                
                 view.DisplayMessage(e.Message);
 
                 RowPanel();
@@ -2468,9 +2470,9 @@ namespace CDOrganiserProjectApp
 
             }
             
-            catch (FormatException e)
+            catch (Exception e)
             {
-                view.DisplayMessage("\n  Please use the proper formatting.");
+                
                 view.DisplayMessage(e.Message);
 
                 RowPanel();
@@ -2488,6 +2490,8 @@ namespace CDOrganiserProjectApp
                 List<Rows> rows = storageManager.GetAllRows();
                 int rUpper = storageManager.GetRowBoundary();
 
+                Console.WriteLine(rUpper);
+
                 view.DisplayMessage("\nEnter the identification number... ");
                 int rowId = view.GetIntInput();
                 bool sroid = view.PassBoundary(rowId, rUpper);
@@ -2499,7 +2503,7 @@ namespace CDOrganiserProjectApp
                 {
                     case true:
 
-                        if (rowId.Equals(rowAAlbumReference) || rowId.Equals(rowBAlbumReference))
+                        if (rowId.Equals(rowAAlbumReference) | rowId.Equals(rowBAlbumReference))
                         {
                             view.DisplayReferentialError(wait);
 
@@ -2528,7 +2532,7 @@ namespace CDOrganiserProjectApp
 
             }
             
-            catch (FormatException e)
+            catch (Exception e)
             {
                 view.DisplayMessage("\n  Please use the proper rowting.");
                 view.DisplayMessage(e.Message);
@@ -2760,9 +2764,9 @@ namespace CDOrganiserProjectApp
 
             }
 
-            catch (FormatException e)
+            catch (Exception e)
             {
-                view.DisplayMessage("\n  Please use the proper formatting.");
+                
                 view.DisplayMessage(e.Message);
 
                 CreateUser();
@@ -2886,9 +2890,9 @@ namespace CDOrganiserProjectApp
 
             }
 
-            catch (FormatException e)
+            catch (Exception e)
             {
-                view.DisplayMessage("\n  Please use the proper formatting.");
+                
                 view.DisplayMessage(e.Message);
 
                 CreateAdmin();
@@ -3219,10 +3223,10 @@ namespace CDOrganiserProjectApp
                 } while (invalidCmd);
             }
 
-            catch (FormatException e)
+            catch (Exception e)
             {
 
-                view.DisplayMessage("\n  Please use the proper formatting.");
+                
                 view.DisplayMessage(e.Message);
 
                 Thread.Sleep(wait);
@@ -3498,10 +3502,10 @@ namespace CDOrganiserProjectApp
                 } while (invalidCmd);
             }
 
-            catch (FormatException e)
+            catch (Exception e)
             {
 
-                view.DisplayMessage("\n  Please use the proper formatting.");
+                
                 view.DisplayMessage(e.Message);
 
                 Thread.Sleep(wait);
@@ -3767,9 +3771,9 @@ namespace CDOrganiserProjectApp
 
             }
 
-            catch (FormatException e)
+            catch (Exception e)
             {
-                view.DisplayMessage("\n  Please use the proper formatting.");
+                
                 view.DisplayMessage(e.Message);
 
                 ArtistAlbumPanel();
@@ -3913,9 +3917,9 @@ namespace CDOrganiserProjectApp
 
             }
             
-            catch (FormatException e)
+            catch (Exception e)
             {
-                view.DisplayMessage("\n  Please use the proper formatting.");
+                
                 view.DisplayMessage(e.Message);
 
                 ArtistAlbumPanel();
@@ -3972,7 +3976,7 @@ namespace CDOrganiserProjectApp
 
             }
             
-            catch (FormatException e)
+            catch (Exception e)
             {
                 view.DisplayMessage("\n  Please use the proper albumsting.");
                 view.DisplayMessage(e.Message);
@@ -4026,9 +4030,9 @@ namespace CDOrganiserProjectApp
                 }
 
             }
-            catch (FormatException e)
+            catch (Exception e)
             {
-                view.DisplayMessage("\n  Please use the proper formatting.");
+                
                 view.DisplayMessage(e.Message);
 
                 ArtistAlbumPanel();
@@ -4291,9 +4295,9 @@ namespace CDOrganiserProjectApp
 
             }
 
-            catch (FormatException e)
+            catch (Exception e)
             {
-                view.DisplayMessage("\n  Please use the proper formatting.");
+                
                 view.DisplayMessage(e.Message);
 
                 BandAlbumPanel();
@@ -4439,9 +4443,9 @@ namespace CDOrganiserProjectApp
 
             }
             
-            catch (FormatException e)
+            catch (Exception e)
             {
-                view.DisplayMessage("\n  Please use the proper formatting.");
+                
                 view.DisplayMessage(e.Message);
 
                 BandAlbumPanel();
@@ -4498,7 +4502,7 @@ namespace CDOrganiserProjectApp
 
             }
             
-            catch (FormatException e)
+            catch (Exception e)
             {
                 view.DisplayMessage("\n  Please use the proper albumsting.");
                 view.DisplayMessage(e.Message);
@@ -4552,9 +4556,9 @@ namespace CDOrganiserProjectApp
                 }
 
             }
-            catch (FormatException e)
+            catch (Exception e)
             {
-                view.DisplayMessage("\n  Please use the proper formatting.");
+                
                 view.DisplayMessage(e.Message);
 
                 BandAlbumPanel();
@@ -4723,10 +4727,10 @@ namespace CDOrganiserProjectApp
 
                 } while (invalidCmd);
             }
-            catch (FormatException e)
+            catch (Exception e)
             {
 
-                view.DisplayMessage("\n  Please use the proper formatting.");
+                
                 view.DisplayMessage(e.Message);
 
                 Thread.Sleep(wait);
@@ -4841,10 +4845,10 @@ namespace CDOrganiserProjectApp
 
                 } while (invalidCmd);
             }
-            catch (FormatException e)
+            catch (Exception e)
             {
 
-                view.DisplayMessage("\n  Please use the proper formatting.");
+                
                 view.DisplayMessage(e.Message);
 
                 Thread.Sleep(wait);
@@ -5026,9 +5030,9 @@ namespace CDOrganiserProjectApp
 
             }
 
-            catch (FormatException e)
+            catch (Exception e)
             {
-                view.DisplayMessage("\n  Please use the proper formatting.");
+                
                 view.DisplayMessage(e.Message);
 
                 ArtistReviewPanel();
@@ -5099,9 +5103,9 @@ namespace CDOrganiserProjectApp
 
             }
             
-            catch (FormatException e)
+            catch (Exception e)
             {
-                view.DisplayMessage("\n  Please use the proper formatting.");
+                
                 view.DisplayMessage(e.Message);
 
                 ArtistReviewPanel();
@@ -5141,9 +5145,9 @@ namespace CDOrganiserProjectApp
 
             }
             
-            catch (FormatException e)
+            catch (Exception e)
             {
-                view.DisplayMessage("\n  Please use the proper formatting.");
+                
                 view.DisplayMessage(e.Message);
 
                 ArtistReviewPanel();
@@ -5199,9 +5203,9 @@ namespace CDOrganiserProjectApp
                 }
 
             }
-            catch (FormatException e)
+            catch (Exception e)
             {
-                view.DisplayMessage("\n  Please use the proper formatting.");
+                
                 view.DisplayMessage(e.Message);
 
                 ArtistReviewPanel();
@@ -5380,9 +5384,9 @@ namespace CDOrganiserProjectApp
 
             }
 
-            catch (FormatException e)
+            catch (Exception e)
             {
-                view.DisplayMessage("\n  Please use the proper formatting.");
+                
                 view.DisplayMessage(e.Message);
 
                 BandReviewPanel();
@@ -5453,9 +5457,9 @@ namespace CDOrganiserProjectApp
 
             }
             
-            catch (FormatException e)
+            catch (Exception e)
             {
-                view.DisplayMessage("\n  Please use the proper formatting.");
+                
                 view.DisplayMessage(e.Message);
 
                 BandReviewPanel();
@@ -5495,9 +5499,9 @@ namespace CDOrganiserProjectApp
 
             }
             
-            catch (FormatException e)
+            catch (Exception e)
             {
-                view.DisplayMessage("\n  Please use the proper formatting.");
+                
                 view.DisplayMessage(e.Message);
 
                 BandReviewPanel();
@@ -5554,9 +5558,9 @@ namespace CDOrganiserProjectApp
              
 
             }
-            catch (FormatException e)
+            catch (Exception e)
             {
-                view.DisplayMessage("\n  Please use the proper formatting.");
+                
                 view.DisplayMessage(e.Message);
 
                 BandReviewPanel();
@@ -5677,9 +5681,9 @@ namespace CDOrganiserProjectApp
                 }  while (invalidCmd);
 
             }
-            catch (FormatException e)
+            catch (Exception e)
             {
-                view.DisplayMessage("\n  Please use the proper formatting.");
+                
                 view.DisplayMessage(e.Message);
 
                 SearchGenres();
@@ -5730,9 +5734,9 @@ namespace CDOrganiserProjectApp
                 }  while (invalidCmd);
 
             }
-            catch (FormatException e)
+            catch (Exception e)
             {
-                view.DisplayMessage("\n  Please use the proper formatting.");
+                
                 view.DisplayMessage(e.Message);
 
                 SearchArtists();
@@ -5783,9 +5787,9 @@ namespace CDOrganiserProjectApp
                 }  while (invalidCmd);
 
             }
-            catch (FormatException e)
+            catch (Exception e)
             {
-                view.DisplayMessage("\n  Please use the proper formatting.");
+                
                 view.DisplayMessage(e.Message);
 
                 SearchBands();
@@ -5837,9 +5841,9 @@ namespace CDOrganiserProjectApp
                 }  while (invalidCmd);
 
             }
-            catch (FormatException e)
+            catch (Exception e)
             {
-                view.DisplayMessage("\n  Please use the proper formatting.");
+                
                 view.DisplayMessage(e.Message);
 
                 SearchBandReviews();
@@ -5892,9 +5896,9 @@ namespace CDOrganiserProjectApp
                 }  while (invalidCmd);
 
             }
-            catch (FormatException e)
+            catch (Exception e)
             {
-                view.DisplayMessage("\n  Please use the proper formatting.");
+                
                 view.DisplayMessage(e.Message);
 
                 SearchArtistReviews();
@@ -5946,9 +5950,9 @@ namespace CDOrganiserProjectApp
                 }  while (invalidCmd);
 
             }
-            catch (FormatException e)
+            catch (Exception e)
             {
-                view.DisplayMessage("\n  Please use the proper formatting.");
+                
                 view.DisplayMessage(e.Message);
 
                 SearchArtistAlbums();
@@ -6000,9 +6004,9 @@ namespace CDOrganiserProjectApp
                 }  while (invalidCmd);
 
             }
-            catch (FormatException e)
+            catch (Exception e)
             {
-                view.DisplayMessage("\n  Please use the proper formatting.");
+                
                 view.DisplayMessage(e.Message);
 
                 SearchBandAlbums();
