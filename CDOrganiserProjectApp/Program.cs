@@ -5145,20 +5145,10 @@ namespace CDOrganiserProjectApp
 
                                 }
 
-                                else if (personId.Equals(storageManager.FetchAccountFromArtistReviews(reviewId)))
+                                else
                                 {
                                     int rowsAffected = storageManager.UpdateArtistReviewById(reviewId, albumId, personId, tierId, favourite);
                                     view.DisplayMessage($"\nUpdated {rowsAffected} records.");
-
-                                }
-
-                                else
-                                {
-                                    view.DisplayMessage("\nThis review does not exist.");
-                                    Thread.Sleep(wait);
-                                    Console.Clear();
-
-                                    ArtistReviewPanel();
 
                                 }
 
@@ -5291,20 +5281,10 @@ namespace CDOrganiserProjectApp
 
                 }
 
-                else if (accountId.Equals(storageManager.FetchAccountFromArtistReviews(reviewId)))
+                else
                 {
                     int rowsAffected = storageManager.DeleteArtistReviewById(reviewId);
                     view.DisplayMessage($"\nDeleted {rowsAffected} row.");
-
-                }
-
-                else
-                {
-                    view.DisplayMessage("\nThis review does not exist.");
-                    Thread.Sleep(wait);
-                    Console.Clear();
-
-                    ArtistReviewPanel();
 
                 }
 
@@ -5343,7 +5323,7 @@ namespace CDOrganiserProjectApp
 
                 }
 
-                else if (accountId.Equals(storageManager.FetchAccountFromArtistReviews(reviewId)))
+                else
                 {
                     
                     bool favourite = true;
@@ -5364,16 +5344,6 @@ namespace CDOrganiserProjectApp
                     int rowsAffected = storageManager.FavouriteArtist(reviewId, favourite);
                     view.DisplayMessage($"\nMarked/unmarked {rowsAffected} records as a favourite.");
 
-
-                }
-
-                else
-                {
-                    view.DisplayMessage("\nThis review does not exist.");
-                    Thread.Sleep(wait);
-                    Console.Clear();
-
-                    ArtistReviewPanel();
 
                 }
 
@@ -5529,20 +5499,10 @@ namespace CDOrganiserProjectApp
 
                                 }
 
-                                else if (personId.Equals(storageManager.FetchAccountFromBandReviews(reviewId)))
+                                else
                                 {
                                     int rowsAffected = storageManager.UpdateBandReviewById(reviewId, albumId, personId, tierId, favourite);
                                     view.DisplayMessage($"\nUpdated {rowsAffected} records.");
-
-                                }
-
-                                else
-                                {
-                                    view.DisplayMessage("\nThis review does not exist.");
-                                    Thread.Sleep(wait);
-                                    Console.Clear();
-
-                                    BandReviewPanel();
 
                                 }
 
@@ -5675,20 +5635,10 @@ namespace CDOrganiserProjectApp
 
                 }
 
-                else if (accountId.Equals(storageManager.FetchAccountFromBandReviews(reviewId)))
+                else
                 {
                     int rowsAffected = storageManager.DeleteBandReviewById(reviewId);
                     view.DisplayMessage($"\nDeleted {rowsAffected} row.");
-
-                }
-
-                else
-                {
-                    view.DisplayMessage("\nThis review does not exist.");
-                    Thread.Sleep(wait);
-                    Console.Clear();
-
-                    BandReviewPanel();
 
                 }
 
@@ -5727,7 +5677,7 @@ namespace CDOrganiserProjectApp
 
                 }
 
-                else if (accountId.Equals(storageManager.FetchAccountFromBandReviews(reviewId)))
+                else
                 {   
                     bool favourite = true;
 
@@ -5750,29 +5700,16 @@ namespace CDOrganiserProjectApp
 
 
                 }
-
-                else
-                {
-                    view.DisplayMessage("\nThis review does not exist.");
-                    Thread.Sleep(wait);
-                    Console.Clear();
-
-                    BandReviewPanel();
-
-                }
              
 
             }
-
-            
-
             catch (Exception e)
             {
+                
+                view.DisplayMessage(e.Message);
 
-                    view.DisplayMessage(e.Message);
-
-                    BandReviewPanel();
-
+                BandReviewPanel();
+                
             }
 
         }
