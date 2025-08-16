@@ -2620,7 +2620,6 @@ namespace CDOrganiserProjectApp
                     break;
 
                     case "admin":
-                        logStatus = true;
                         CreateAdmin();
 
                         invalidCmd = false;
@@ -2701,15 +2700,26 @@ namespace CDOrganiserProjectApp
                                                     Thread.Sleep(wait);
                                                     Console.Clear();
 
-                                                    switch (roleId)
+                                                    switch (logStatus)
                                                     {
-                                                        case 1:
-                                                            DefaultAccountPanel();
+                                                        case true:
+                                                            switch (roleId)
+                                                            {
+                                                                case 1:
+                                                                    DefaultAccountPanel();
+
+                                                                break;
+
+                                                                case 2:
+                                                                    AccountPanel();
+
+                                                                break;
+                                                            }
 
                                                         break;
 
-                                                        case 2:
-                                                            AccountPanel();
+                                                        case false:
+                                                            StartMenuscreenOptions();
 
                                                         break;
                                                     }
@@ -2724,6 +2734,13 @@ namespace CDOrganiserProjectApp
                                                     int generatedId = storageManager.CreateAccount(newUser);
 
                                                     view.DisplayMessage("\n  Successful. Booting you to the login/register.");
+
+                                                    // Resets the accounts credentials.
+
+                                                    roleId = 0;
+                                                    accountId = 0;
+                                                    storageManager.CloseConnection(); // Closes the connection upon signing out.
+
                                                     Thread.Sleep(wait);
                                                     Console.Clear();
                                                     StartMenuscreenOptions();
@@ -2734,15 +2751,26 @@ namespace CDOrganiserProjectApp
 
                                             case false:
                                                 
-                                                switch (roleId)
+                                                switch (logStatus)
                                                 {
-                                                    case 1:
-                                                        DefaultAccountPanel();
+                                                    case true:
+                                                        switch (roleId)
+                                                        {
+                                                            case 1:
+                                                                DefaultAccountPanel();
+
+                                                            break;
+
+                                                            case 2:
+                                                                AccountPanel();
+
+                                                            break;
+                                                        }
 
                                                     break;
 
-                                                    case 2:
-                                                        AccountPanel();
+                                                    case false:
+                                                        StartMenuscreenOptions();
 
                                                     break;
                                                 }
@@ -2937,7 +2965,7 @@ namespace CDOrganiserProjectApp
                                                     Thread.Sleep(wait);
                                                     Console.Clear();
                                                     
-                                                    CreateAdmin();
+                                                    AccountPanel();
                                                                
                                                 }
 
@@ -2949,6 +2977,13 @@ namespace CDOrganiserProjectApp
                                                     int generatedId = storageManager.CreateAccount(newAdmin);
 
                                                     view.DisplayMessage("\n  Successful. Booting you to the login/register.");
+
+                                                    // Resets the accounts credentials.
+
+                                                    roleId = 0;
+                                                    accountId = 0;
+                                                    storageManager.CloseConnection(); // Closes the connection upon signing out.
+
                                                     Thread.Sleep(wait);
                                                     Console.Clear();
                                                     StartMenuscreenOptions();
@@ -2960,7 +2995,7 @@ namespace CDOrganiserProjectApp
                                             case false:
                                                 
 
-                                                CreateAdmin();
+                                                AccountPanel();
 
                                             break;
                                         }
@@ -2970,7 +3005,7 @@ namespace CDOrganiserProjectApp
                                     case false:
                                         
 
-                                        CreateAdmin();
+                                        AccountPanel();
 
                                     break;
 
@@ -2981,7 +3016,7 @@ namespace CDOrganiserProjectApp
                             case false:
                                 
 
-                                CreateAdmin();
+                                AccountPanel();
 
                             break;
 
@@ -2992,7 +3027,7 @@ namespace CDOrganiserProjectApp
                     case false:
                         
 
-                        CreateAdmin();
+                        AccountPanel();
 
                     break;
 
@@ -3005,7 +3040,7 @@ namespace CDOrganiserProjectApp
                 
                 view.DisplayMessage(e.Message);
 
-                CreateAdmin();
+                AccountPanel();
 
             }
 
@@ -5110,10 +5145,20 @@ namespace CDOrganiserProjectApp
 
                                 }
 
-                                else
+                                else if (personId.Equals(storageManager.FetchAccountFromArtistReviews(reviewId)))
                                 {
                                     int rowsAffected = storageManager.UpdateArtistReviewById(reviewId, albumId, personId, tierId, favourite);
                                     view.DisplayMessage($"\nUpdated {rowsAffected} records.");
+
+                                }
+
+                                else
+                                {
+                                    view.DisplayMessage("\nThis review does not exist.");
+                                    Thread.Sleep(wait);
+                                    Console.Clear();
+
+                                    ArtistReviewPanel();
 
                                 }
 
@@ -5246,10 +5291,20 @@ namespace CDOrganiserProjectApp
 
                 }
 
-                else
+                else if (accountId.Equals(storageManager.FetchAccountFromArtistReviews(reviewId)))
                 {
                     int rowsAffected = storageManager.DeleteArtistReviewById(reviewId);
                     view.DisplayMessage($"\nDeleted {rowsAffected} row.");
+
+                }
+
+                else
+                {
+                    view.DisplayMessage("\nThis review does not exist.");
+                    Thread.Sleep(wait);
+                    Console.Clear();
+
+                    ArtistReviewPanel();
 
                 }
 
@@ -5288,7 +5343,7 @@ namespace CDOrganiserProjectApp
 
                 }
 
-                else
+                else if (accountId.Equals(storageManager.FetchAccountFromArtistReviews(reviewId)))
                 {
                     
                     bool favourite = true;
@@ -5309,6 +5364,16 @@ namespace CDOrganiserProjectApp
                     int rowsAffected = storageManager.FavouriteArtist(reviewId, favourite);
                     view.DisplayMessage($"\nMarked/unmarked {rowsAffected} records as a favourite.");
 
+
+                }
+
+                else
+                {
+                    view.DisplayMessage("\nThis review does not exist.");
+                    Thread.Sleep(wait);
+                    Console.Clear();
+
+                    ArtistReviewPanel();
 
                 }
 
@@ -5464,10 +5529,20 @@ namespace CDOrganiserProjectApp
 
                                 }
 
-                                else
+                                else if (personId.Equals(storageManager.FetchAccountFromBandReviews(reviewId)))
                                 {
                                     int rowsAffected = storageManager.UpdateBandReviewById(reviewId, albumId, personId, tierId, favourite);
                                     view.DisplayMessage($"\nUpdated {rowsAffected} records.");
+
+                                }
+
+                                else
+                                {
+                                    view.DisplayMessage("\nThis review does not exist.");
+                                    Thread.Sleep(wait);
+                                    Console.Clear();
+
+                                    BandReviewPanel();
 
                                 }
 
@@ -5600,10 +5675,20 @@ namespace CDOrganiserProjectApp
 
                 }
 
-                else
+                else if (accountId.Equals(storageManager.FetchAccountFromBandReviews(reviewId)))
                 {
                     int rowsAffected = storageManager.DeleteBandReviewById(reviewId);
                     view.DisplayMessage($"\nDeleted {rowsAffected} row.");
+
+                }
+
+                else
+                {
+                    view.DisplayMessage("\nThis review does not exist.");
+                    Thread.Sleep(wait);
+                    Console.Clear();
+
+                    BandReviewPanel();
 
                 }
 
@@ -5642,7 +5727,7 @@ namespace CDOrganiserProjectApp
 
                 }
 
-                else
+                else if (accountId.Equals(storageManager.FetchAccountFromBandReviews(reviewId)))
                 {   
                     bool favourite = true;
 
@@ -5665,16 +5750,29 @@ namespace CDOrganiserProjectApp
 
 
                 }
+
+                else
+                {
+                    view.DisplayMessage("\nThis review does not exist.");
+                    Thread.Sleep(wait);
+                    Console.Clear();
+
+                    BandReviewPanel();
+
+                }
              
 
             }
+
+            
+
             catch (Exception e)
             {
-                
-                view.DisplayMessage(e.Message);
 
-                BandReviewPanel();
-                
+                    view.DisplayMessage(e.Message);
+
+                    BandReviewPanel();
+
             }
 
         }
