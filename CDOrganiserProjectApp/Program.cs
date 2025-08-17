@@ -1832,7 +1832,7 @@ namespace CDOrganiserProjectApp
             
             catch (Exception e)
             {
-                view.DisplayMessage("\n  Please use the proper roomting.");
+                
                 view.DisplayMessage(e.Message);
 
                 RoomPanel();
@@ -2261,7 +2261,7 @@ namespace CDOrganiserProjectApp
             
             catch (Exception e)
             {
-                view.DisplayMessage("\n  Please use the proper roomting.");
+                
                 view.DisplayMessage(e.Message);
 
                 ShelfPanel();
@@ -2534,7 +2534,7 @@ namespace CDOrganiserProjectApp
             
             catch (Exception e)
             {
-                view.DisplayMessage("\n  Please use the proper rowting.");
+                
                 view.DisplayMessage(e.Message);
 
                 RowPanel();
@@ -3773,7 +3773,6 @@ namespace CDOrganiserProjectApp
                 {
                     case true:
                         view.DisplayMessage("\nEnter the new album name... ");
-                        albums = storageManager.GetAllArtistAlbums();
 
                         string albumName = view.GetInput();
                         bool aln = view.PassRange(albumName.Length, 3, 50);
@@ -4123,7 +4122,7 @@ namespace CDOrganiserProjectApp
             
             catch (Exception e)
             {
-                view.DisplayMessage("\n  Please use the proper albumsting.");
+                
                 view.DisplayMessage(e.Message);
 
                 ArtistAlbumPanel();
@@ -4297,7 +4296,6 @@ namespace CDOrganiserProjectApp
                 {
                     case true:
                         view.DisplayMessage("\nEnter the new album name... ");
-                        albums = storageManager.GetAllBandAlbums();
 
                         string albumName = view.GetInput();
                         bool aln = view.PassRange(albumName.Length, 3, 50);
@@ -4649,7 +4647,7 @@ namespace CDOrganiserProjectApp
             
             catch (Exception e)
             {
-                view.DisplayMessage("\n  Please use the proper albumsting.");
+              
                 view.DisplayMessage(e.Message);
 
                 BandAlbumPanel();

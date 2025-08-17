@@ -627,7 +627,7 @@ namespace CDOrganiserProjectApp.View
             {
                 case false:
                     Console.WriteLine($"{min.ToString("d")} - {DateTime.Now.ToString("d")} is the set boundary for this field type. Please follow these guidelines.");
-                    Thread.Sleep(1000);
+                    Thread.Sleep(1500);
                     Console.Clear();
 
                 break;

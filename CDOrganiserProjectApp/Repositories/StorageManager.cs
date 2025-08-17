@@ -2222,16 +2222,16 @@ namespace CDOrganiserProjectApp
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
                 cmd.Parameters.AddWithValue("@search", search);
-                Console.WriteLine("\nNAME:\tNAME:\n");
+                Console.WriteLine("\tALBUM:\t\tNAME:\n");
 
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())
                     {
-                        search = reader["artistName"].ToString();
-                        string albumName = reader["albumName"].ToString();
+                        search = reader["albumName"].ToString();
+                        string artistName = reader["artistName"].ToString();
 
-                        Console.WriteLine($"{search}\t{albumName}\n");
+                        Console.WriteLine($"{search}\t{artistName}\n");
                     }
 
                     Console.WriteLine("\n\t[*]  Return to homepage - Press E + Enter\n");
@@ -2244,20 +2244,20 @@ namespace CDOrganiserProjectApp
         public void SearchBandAlbums(string search)
         {
 
-            string sqlStr = $"SELECT tblBands.bandName, tblBandAlbums.albumName FROM Contents.tblBandAlbums, Contents.tblBands WHERE tblBandAlbums.bandName LIKE '%' + @search + '%' AND tblBandAlbums.bandID = tblBands.bandID";
+            string sqlStr = $"SELECT tblBands.bandName, tblBandAlbums.albumName FROM Contents.tblBandAlbums, Contents.tblBands WHERE tblBandAlbums.albumName LIKE '%' + @search + '%' AND tblBandAlbums.bandID = tblBands.bandID";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
                 cmd.Parameters.AddWithValue("@search", search);
-                Console.WriteLine("\nNAME:\tNAME:\n");
+                Console.WriteLine("\tALBUM:\t\tNAME:\n");
 
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())
                     {
-                        search = reader["bandName"].ToString();
-                        string albumName = reader["albumName"].ToString();
+                        search = reader["albumName"].ToString();
+                        string bandName = reader["bandName"].ToString();
 
-                        Console.WriteLine($"{search}\t{albumName}\n");
+                        Console.WriteLine($"{search}\t{bandName}\n");
                     }
 
                     Console.WriteLine("\n\t[*]  Return to homepage - Press E + Enter\n");
