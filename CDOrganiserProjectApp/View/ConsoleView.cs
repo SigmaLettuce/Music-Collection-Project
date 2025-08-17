@@ -12,7 +12,7 @@ namespace CDOrganiserProjectApp.View
         \*                     */  
 
 
-        // Global variable for the threadsleep.
+        // A globally shared integer for delays - absolves latency issues.
 
         int wait = 100;
 
@@ -341,7 +341,7 @@ namespace CDOrganiserProjectApp.View
 
         */
 
-        public int DisplayRecordOptions(string d, string type)
+        public int DisplayReportOptions(string d, string type)
         {
             if (type.Equals("artists"))
             {
@@ -409,7 +409,7 @@ namespace CDOrganiserProjectApp.View
                 Console.WriteLine("\n\t[*]  Enter 2 - Return to homepage\n");
 
 
-                Console.WriteLine("You can't modify this listing. \n");
+                Console.WriteLine("Enter any of the listings above to gain access... \n");
 
             }
 

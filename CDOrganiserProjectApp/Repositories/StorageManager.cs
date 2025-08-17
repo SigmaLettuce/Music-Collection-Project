@@ -18,7 +18,7 @@ namespace CDOrganiserProjectApp
         \*                      */
         
 
-        // A generically shared integer for delays.
+        // A globally shared integer for delays - absolves latency issues.
         int wait = 100; 
 
         // A private connection string that acts as a bridge to the database.
@@ -777,7 +777,7 @@ namespace CDOrganiserProjectApp
             {
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
-                    Console.WriteLine("ID:\tNAME:\tCATEGORY:\tRELEASE DATE:\tFORMAT:\tARTIST:\tTAG:\tROW:\tFAVOURITE:\n");
+                    Console.WriteLine("ID:\tNAME:\tCATEGORY:\tRELEASE DATE:\tFORMAT:\tARTIST:\tTAG:\tROW:\tLOST:\n");
 
                     while (reader.Read())
                     {
@@ -791,7 +791,7 @@ namespace CDOrganiserProjectApp
                         string shelfRow = reader["shelfRow"].ToString();     
                         bool lost = Convert.ToBoolean(reader["lost"]);
 
-                        Console.WriteLine($"{albumId}\t{albumName}\t{genreName}\t{dateOfRelease.ToString("d")}\t{formatName}\t{artistName}\t{shelfTag}\t{shelfRow}\t{lost}\n");
+                        Console.WriteLine(albumId, albumName, genreName}\t{dateOfRelease.ToString("d")}\t{formatName}\t{artistName}\t{shelfTag}\t{shelfRow}\t{lost}\n");
                         Thread.Sleep(wait);
                     }
                 }
@@ -815,9 +815,9 @@ namespace CDOrganiserProjectApp
             }
         }
 
-        public int UpdateArtistAlbumById(int albumId, string albumName, int genreId, DateTime dateOfRelease, int formatId, int artistId, int shelfRowId, bool lost)
+        public int UpdateArtistAlbumById(int albumId, string albumName, int genreId, DateTime dateOfRelease, int formatId, int artistId, int shelfRowId)
         {
-            string sqlStr = $"UPDATE Contents.tblArtistAlbums SET albumName = @albumName, genreID = @genreId, dateOfRelease = @dateOfRelease, formatID = @formatId, artistID = @artistId, shelfRowId = @shelfRowId, lost = @lost WHERE albumID = @albumId";
+            string sqlStr = $"UPDATE Contents.tblArtistAlbums SET albumName = @albumName, genreID = @genreId, dateOfRelease = @dateOfRelease, formatID = @formatId, artistID = @artistId, shelfRowId = @shelfRowId WHERE albumID = @albumId";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
                 cmd.Parameters.AddWithValue("@albumId", albumId);
@@ -827,7 +827,6 @@ namespace CDOrganiserProjectApp
                 cmd.Parameters.AddWithValue("@formatId", formatId);
                 cmd.Parameters.AddWithValue("@artistId", artistId);
                 cmd.Parameters.AddWithValue("@shelfRowId", shelfRowId);
-                cmd.Parameters.AddWithValue("@lost", lost);
 
                 return cmd.ExecuteNonQuery();
             }
@@ -920,7 +919,7 @@ namespace CDOrganiserProjectApp
             {
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
-                    Console.WriteLine("ID:\tNAME:\tCATEGORY:\tRELEASE DATE:\tFORMAT:\tARTIST:\tTAG:\tROW:\tFAVOURITE:\n");
+                    Console.WriteLine("ID:\tNAME:\tCATEGORY:\tRELEASE DATE:\tFORMAT:\tARTIST:\tTAG:\tROW:\tLOST:\n");
 
                     while (reader.Read())
                     {
@@ -958,9 +957,9 @@ namespace CDOrganiserProjectApp
             }
         }
 
-        public int UpdateBandAlbumById(int albumId, string albumName, int genreId, DateTime dateOfRelease, int formatId, int bandId, int shelfRowId, bool lost)
+        public int UpdateBandAlbumById(int albumId, string albumName, int genreId, DateTime dateOfRelease, int formatId, int bandId, int shelfRowId)
         {
-            string sqlStr = $"UPDATE Contents.tblBandAlbums SET albumName = @albumName, genreID = @genreId, dateOfRelease = @dateOfRelease, formatID = @formatId, bandID = @bandId, shelfRowId = @shelfRowId, lost = @lost WHERE albumID = @albumId";
+            string sqlStr = $"UPDATE Contents.tblBandAlbums SET albumName = @albumName, genreID = @genreId, dateOfRelease = @dateOfRelease, formatID = @formatId, bandID = @bandId, shelfRowId = @shelfRowId WHERE albumID = @albumId";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
                 cmd.Parameters.AddWithValue("@albumId", albumId);
@@ -970,7 +969,6 @@ namespace CDOrganiserProjectApp
                 cmd.Parameters.AddWithValue("@formatId", formatId);
                 cmd.Parameters.AddWithValue("@bandId", bandId);
                 cmd.Parameters.AddWithValue("@shelfRowId", shelfRowId);
-                cmd.Parameters.AddWithValue("@lost", lost);
 
                 return cmd.ExecuteNonQuery();
             }
@@ -1101,16 +1099,15 @@ namespace CDOrganiserProjectApp
             }
         }
 
-        public int UpdateArtistReviewById(int reviewId, int albumId, int personId, int tierId, bool favourite)
+        public int UpdateArtistReviewById(int reviewId, int albumId, int personId, int tierId)
         {
-            string sqlStr = $"UPDATE Contents.tblArtistReviews SET albumID = @albumId, tierID = @tierId, personID = @personId, favourite = @favourite WHERE reviewID = @reviewId";
+            string sqlStr = $"UPDATE Contents.tblArtistReviews SET albumID = @albumId, tierID = @tierId, personID = @personId WHERE reviewID = @reviewId";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
                 cmd.Parameters.AddWithValue("@reviewId", reviewId);
                 cmd.Parameters.AddWithValue("@albumId", albumId);
                 cmd.Parameters.AddWithValue("@tierId", tierId);
                 cmd.Parameters.AddWithValue("@personId", personId);
-                cmd.Parameters.AddWithValue("@favourite", favourite);
 
 
                 return cmd.ExecuteNonQuery();
@@ -1218,16 +1215,15 @@ namespace CDOrganiserProjectApp
             }
         }
 
-        public int UpdateBandReviewById(int reviewId, int albumId, int personId, int tierId, bool favourite)
+        public int UpdateBandReviewById(int reviewId, int albumId, int personId, int tierId)
         {
-            string sqlStr = $"UPDATE Contents.tblBandReviews SET albumID = @albumId, tierID = @tierId, personID = @personId, favourite = @favourite WHERE reviewID = @reviewId";
+            string sqlStr = $"UPDATE Contents.tblBandReviews SET albumID = @albumId, tierID = @tierId, personID = @personId WHERE reviewID = @reviewId";
             using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
             {
                 cmd.Parameters.AddWithValue("@reviewId", reviewId);
                 cmd.Parameters.AddWithValue("@albumId", albumId);
                 cmd.Parameters.AddWithValue("@tierId", tierId);
                 cmd.Parameters.AddWithValue("@personId", personId);
-                cmd.Parameters.AddWithValue("@favourite", favourite);
 
 
                 return cmd.ExecuteNonQuery();
@@ -1512,6 +1508,7 @@ namespace CDOrganiserProjectApp
             }
         }
 
+        // These two check for references in another table.
 
         public int FetchArtistAlbumFormatReferences(int fid)
         {
@@ -1647,7 +1644,7 @@ namespace CDOrganiserProjectApp
         
         All functions follow the the format modifiers functions example; 
         All these functions are used as a bridge between the database and the application 
-        to send signals and recieve signals from. The comments left for these functions apply to all else regarding functions here. 
+        to communicate between. The comments left for these functions apply to all else regarding functions here. 
         
         */
 

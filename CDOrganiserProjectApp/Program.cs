@@ -22,7 +22,7 @@ namespace CDOrganiserProjectApp
         
         static bool logStatus;
 
-        static int wait = 1000; 
+        static int wait = 1500; // A globally shared integer for delays - absolves latency issues.
 
         
         static void Main(string[] args)
@@ -699,7 +699,7 @@ namespace CDOrganiserProjectApp
 
 
                         int generatedId = storageManager.InsertBand(newBand);
-                        view.DisplayMessage($"\nThe new bands identification number is: {generatedId}");
+                        view.DisplayMessage($"\nThe new identification number is: {generatedId}");
 
                     break;
 
@@ -991,7 +991,7 @@ namespace CDOrganiserProjectApp
 
 
                         int generatedId = storageManager.InsertGenre(newGenre);
-                        view.DisplayMessage($"\nThe new genres identification number is: {generatedId}");
+                        view.DisplayMessage($"\nThe new identification number is: {generatedId}");
 
                     break;
 
@@ -1228,7 +1228,7 @@ namespace CDOrganiserProjectApp
 
 
                         int generatedId = storageManager.InsertFormat(newFormat);
-                        view.DisplayMessage($"\nThe new formats identification number is: {generatedId}");
+                        view.DisplayMessage($"\nThe new identification number is: {generatedId}");
 
                     break;
 
@@ -1518,7 +1518,7 @@ namespace CDOrganiserProjectApp
 
 
                         int generatedId = storageManager.InsertArtist(newArtist);
-                        view.DisplayMessage($"\nThe new artists identification number is: {generatedId}");
+                        view.DisplayMessage($"\nThe new identification number is: {generatedId}");
 
                     break;
 
@@ -1757,7 +1757,7 @@ namespace CDOrganiserProjectApp
 
 
                         int generatedId = storageManager.InsertRoom(newRoom);
-                        view.DisplayMessage($"\nThe new rooms identification number is: {generatedId}");
+                        view.DisplayMessage($"\nThe new identification number is: {generatedId}");
 
                     break;
 
@@ -1851,7 +1851,7 @@ namespace CDOrganiserProjectApp
 
             try
             {
-                shelfReportSelect = view.DisplayRecordOptions("shelves", "rows~shelves");
+                shelfReportSelect = view.DisplayReportOptions("shelves", "rows~shelves");
 
                 Thread.Sleep(wait);
                 Console.Clear();
@@ -1935,7 +1935,7 @@ namespace CDOrganiserProjectApp
 
             try
             {
-                rowReportSelect = view.DisplayRecordOptions("rows", "rows~shelves");
+                rowReportSelect = view.DisplayReportOptions("rows", "rows~shelves");
 
                 Thread.Sleep(wait);
                 Console.Clear();
@@ -2184,7 +2184,7 @@ namespace CDOrganiserProjectApp
                         Shelves newShelf = new Shelves(shelfTagId, shelfTag, roomId);
 
                         int generatedId = storageManager.InsertShelf(newShelf);
-                        view.DisplayMessage($"\nThe new shelves identification number is: {generatedId}");
+                        view.DisplayMessage($"\nThe new identification number is: {generatedId}");
 
                     break;
 
@@ -2444,7 +2444,7 @@ namespace CDOrganiserProjectApp
                                 Rows newRow = new Rows(shelfRowId, shelfRow, shelfTagId);
 
                                 int generatedId = storageManager.InsertRow(newRow);
-                                view.DisplayMessage($"\nThe new shelves identification number is: {generatedId}");
+                                view.DisplayMessage($"\nThe new identification number is: {generatedId}");
 
                             break;
 
@@ -3112,7 +3112,7 @@ namespace CDOrganiserProjectApp
 
             try
             {
-                aAlbumReportSelect = view.DisplayRecordOptions("artists", "artists");
+                aAlbumReportSelect = view.DisplayReportOptions("artists", "artists");
 
                 Thread.Sleep(wait);
                 Console.Clear();
@@ -3391,7 +3391,7 @@ namespace CDOrganiserProjectApp
 
             try
             {
-                bAlbumReportSelect = view.DisplayRecordOptions("bands", "bands");
+                bAlbumReportSelect = view.DisplayReportOptions("bands", "bands");
 
                 Thread.Sleep(wait);
                 Console.Clear();
@@ -3829,12 +3829,12 @@ namespace CDOrganiserProjectApp
                                                                 int shelfRowId = view.GetIntInput();
                                                                 bool sroid = view.PassBoundary(shelfRowId, rUpper);
 
-                                                                bool lost = false;
+
 
                                                                 switch (sroid)
                                                                 {
                                                                     case true:
-                                                                        int rowsAffected = storageManager.UpdateArtistAlbumById(albumId, albumName, genreId, dateOfRelease, formatId, artistId, shelfRowId, lost);
+                                                                        int rowsAffected = storageManager.UpdateArtistAlbumById(albumId, albumName, genreId, dateOfRelease, formatId, artistId, shelfRowId);
                                                                         view.DisplayMessage($"\nUpdated {rowsAffected} records.");
 
                                                                     break;
@@ -3984,7 +3984,7 @@ namespace CDOrganiserProjectApp
                                                 {
                                                     case true:
                                                         List<Rows> rows = storageManager.GetAllRows();
-                                                        int rUpper = storageManager.GetShelfBoundary();
+                                                        int rUpper = storageManager.GetRowBoundary();
 
                                                         int shelfRowId = view.GetIntInput();
                                                         bool sroid = view.PassBoundary(shelfRowId, rUpper);
@@ -3997,7 +3997,7 @@ namespace CDOrganiserProjectApp
                                                                 ArtistAlbums newAlbum = new ArtistAlbums(albumId, albumName, genreId, dateOfRelease, formatId, artistId, shelfRowId, lost);
 
                                                                 int generatedId = storageManager.InsertArtistAlbum(newAlbum);
-                                                                view.DisplayMessage($"\nThe new albums identification number is: {generatedId}");
+                                                                view.DisplayMessage($"\nThe new identification number is: {generatedId}");
 
                                                             break;
 
@@ -4353,12 +4353,12 @@ namespace CDOrganiserProjectApp
                                                                 int shelfRowId = view.GetIntInput();
                                                                 bool sroid = view.PassBoundary(shelfRowId, rUpper);
 
-                                                                bool lost = false;
+
 
                                                                 switch (sroid)
                                                                 {
                                                                     case true:
-                                                                        int rowsAffected = storageManager.UpdateBandAlbumById(albumId, albumName, genreId, dateOfRelease, formatId, bandId, shelfRowId, lost);
+                                                                        int rowsAffected = storageManager.UpdateBandAlbumById(albumId, albumName, genreId, dateOfRelease, formatId, bandId, shelfRowId);
                                                                         view.DisplayMessage($"\nUpdated {rowsAffected} records.");
 
                                                                     break;
@@ -4510,7 +4510,7 @@ namespace CDOrganiserProjectApp
                                                     case true:
                                                         view.DisplayMessage("\nEnter the shelf rows identification number... ");
                                                         List<Rows> rows = storageManager.GetAllRows();
-                                                        int rUpper = storageManager.GetShelfBoundary();
+                                                        int rUpper = storageManager.GetRowBoundary();
 
                                                         int shelfRowId = view.GetIntInput();
                                                         bool sroid = view.PassBoundary(shelfRowId, rUpper);
@@ -4523,7 +4523,7 @@ namespace CDOrganiserProjectApp
                                                                 BandAlbums newAlbum = new BandAlbums(albumId, albumName, genreId, dateOfRelease, formatId, bandId, shelfRowId, lost);
 
                                                                 int generatedId = storageManager.InsertBandAlbum(newAlbum);
-                                                                view.DisplayMessage($"\nThe new albums identification number is: {generatedId}");
+                                                                view.DisplayMessage($"\nThe new identification number is: {generatedId}");
 
                                                             break;
 
@@ -4777,7 +4777,7 @@ namespace CDOrganiserProjectApp
 
             try
             {
-                aReviewReportSelect = view.DisplayRecordOptions("artists", "reviews");
+                aReviewReportSelect = view.DisplayReportOptions("artists", "reviews");
 
                 Thread.Sleep(wait);
                 Console.Clear();
@@ -4895,7 +4895,7 @@ namespace CDOrganiserProjectApp
 
             try
             {
-                bReviewReportSelect = view.DisplayRecordOptions("bands", "reviews");
+                bReviewReportSelect = view.DisplayReportOptions("bands", "reviews");
 
                 Thread.Sleep(wait);
                 Console.Clear();
@@ -5129,8 +5129,7 @@ namespace CDOrganiserProjectApp
                         bool tid = view.PassBoundary(tierId, tUpper);
 
                         int personId = accountId;
-  
-                        bool favourite = false;
+ 
 
                         switch (tid)
                         {
@@ -5147,7 +5146,7 @@ namespace CDOrganiserProjectApp
 
                                 else
                                 {
-                                    int rowsAffected = storageManager.UpdateArtistReviewById(reviewId, albumId, personId, tierId, favourite);
+                                    int rowsAffected = storageManager.UpdateArtistReviewById(reviewId, albumId, personId, tierId);
                                     view.DisplayMessage($"\nUpdated {rowsAffected} records.");
 
                                 }
@@ -5224,7 +5223,7 @@ namespace CDOrganiserProjectApp
                                 ArtistReviews newReviews = new ArtistReviews(reviewId, albumId, personId, tierId, favourite);
 
                                 int generatedId = storageManager.InsertArtistReview(newReviews);
-                                view.DisplayMessage($"\nThe new albums identification number is: {generatedId}");
+                                view.DisplayMessage($"\nThe new identification number is: {generatedId}");
 
                             break;
 
@@ -5483,8 +5482,7 @@ namespace CDOrganiserProjectApp
                         bool tid = view.PassBoundary(tierId, tUpper);
 
                         int personId = accountId;
-  
-                        bool favourite = false;
+
 
                         switch (tid)
                         {
@@ -5501,7 +5499,7 @@ namespace CDOrganiserProjectApp
 
                                 else
                                 {
-                                    int rowsAffected = storageManager.UpdateBandReviewById(reviewId, albumId, personId, tierId, favourite);
+                                    int rowsAffected = storageManager.UpdateBandReviewById(reviewId, albumId, personId, tierId);
                                     view.DisplayMessage($"\nUpdated {rowsAffected} records.");
 
                                 }
@@ -5578,7 +5576,7 @@ namespace CDOrganiserProjectApp
                                 BandReviews newReviews = new BandReviews(reviewId, albumId, personId, tierId, favourite);
 
                                 int generatedId = storageManager.InsertBandReview(newReviews);
-                                view.DisplayMessage($"\nThe new albums identification number is: {generatedId}");
+                                view.DisplayMessage($"\nThe new identification number is: {generatedId}");
 
                             break;
 
