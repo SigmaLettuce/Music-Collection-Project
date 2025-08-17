@@ -777,7 +777,9 @@ namespace CDOrganiserProjectApp
             {
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
-                    Console.WriteLine("ID:\tNAME:\tCATEGORY:\tRELEASE DATE:\tFORMAT:\tARTIST:\tTAG:\tROW:\tLOST:\n");
+
+                    string[] headers = { "ID:", "NAME:", "CATEGORY:", "RELEASE:", "FORMAT:", "ARTIST:", "TAG:", "ROW:", "LOST:" };
+                    Console.WriteLine("{0}\t{1, -40}{2, -20}{3, -20}{4, -15}{5, -35}{6, -10}{7, -10}{8}", headers[0], headers[1], headers[2], headers[3], headers[4], headers[5], headers[6], headers[7], headers[8], "\n");
 
                     while (reader.Read())
                     {
@@ -791,7 +793,7 @@ namespace CDOrganiserProjectApp
                         string shelfRow = reader["shelfRow"].ToString();     
                         bool lost = Convert.ToBoolean(reader["lost"]);
 
-                        Console.WriteLine(albumId, albumName, genreName}\t{dateOfRelease.ToString("d")}\t{formatName}\t{artistName}\t{shelfTag}\t{shelfRow}\t{lost}\n");
+                        Console.WriteLine("{0}\t{1, -40}{2, -20}{3, -20}{4, -15}{5, -35}{6, -10}{7, -10}{8}", albumId, albumName, genreName, dateOfRelease.ToString("d"), formatName, artistName, shelfTag, shelfRow, lost, "\n");
                         Thread.Sleep(wait);
                     }
                 }
@@ -919,7 +921,8 @@ namespace CDOrganiserProjectApp
             {
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
-                    Console.WriteLine("ID:\tNAME:\tCATEGORY:\tRELEASE DATE:\tFORMAT:\tARTIST:\tTAG:\tROW:\tLOST:\n");
+                    string[] headers = { "ID:", "NAME:", "CATEGORY:", "RELEASE:", "FORMAT:", "ARTIST:", "TAG:", "ROW:", "LOST:" };
+                    Console.WriteLine("{0}\t{1, -40}{2, -20}{3, -20}{4, -15}{5, -35}{6, -10}{7, -10}{8}", headers[0], headers[1], headers[2], headers[3], headers[4], headers[5], headers[6], headers[7], headers[8], "\n");
 
                     while (reader.Read())
                     {
@@ -933,7 +936,7 @@ namespace CDOrganiserProjectApp
                         string shelfRow = reader["shelfRow"].ToString();     
                         bool lost = Convert.ToBoolean(reader["lost"]);
 
-                        Console.WriteLine($"{albumId}\t{albumName}\t{genreName}\t{dateOfRelease.ToString("d")}\t{formatName}\t{bandName}\t{shelfTag}\t{shelfRow}\t{lost}\n");
+                        Console.WriteLine("{0}\t{1, -40}{2, -20}{3, -20}{4, -15}{5, -35}{6, -10}{7, -10}{8}", albumId, albumName, genreName, dateOfRelease.ToString("d"), formatName, bandName, shelfTag, shelfRow, lost, "\n");
                         Thread.Sleep(wait);
                     }
                 }
@@ -1039,7 +1042,8 @@ namespace CDOrganiserProjectApp
             {
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
-                    Console.WriteLine("ID:\tNAME:\tNAME:\tRANK:\tFAVOURITE:\n");
+                    string[] headers = { "ID:", "NAME:", "USER:", "RANK:", "FAVOURITE:" };
+                    Console.WriteLine("{0}\t{1, -40}{2, -20}{3, -20}{4}", headers[0], headers[1], headers[2], headers[3], headers[4], "\n");
 
                     while (reader.Read())
                     {
@@ -1049,7 +1053,7 @@ namespace CDOrganiserProjectApp
                         string fName = reader["fName"].ToString();
                         bool favourite = Convert.ToBoolean(reader["favourite"]);
 
-                        Console.WriteLine($"{reviewId}\t{albumName}\t{tierTag}\t{fName}\t{favourite}\n");
+                        Console.WriteLine("{0}\t{1, -40}{2, -20}{3, -20}{4}", reviewId, albumName, fName, tierTag, favourite, "\n");
                         Thread.Sleep(wait);
                     }
                 }
@@ -1066,7 +1070,8 @@ namespace CDOrganiserProjectApp
 
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
-                    Console.WriteLine("ID:\tNAME:\tRANK:\tFAVOURITE\n");
+                    string[] headers = { "ID:", "NAME:", "RANK:", "FAVOURITE:" };
+                    Console.WriteLine("{0}\t{1, -40}{2, -20}{3, -20}{4}", headers[0], headers[1], headers[2], headers[3], "\n");
 
                     while (reader.Read())
                     {
@@ -1075,7 +1080,7 @@ namespace CDOrganiserProjectApp
                         char tierTag = Convert.ToChar(reader["tierTag"]);
                         bool favourite = Convert.ToBoolean(reader["favourite"]);
 
-                        Console.WriteLine($"{reviewId}\t{albumName}\t{tierTag}\t{favourite}\n");
+                        Console.WriteLine("{0}\t{1, -40}{2, -20}{3, -20}{4}", reviewId, albumName, tierTag, favourite, "\n");
                         Thread.Sleep(wait);
 
                     }
@@ -1155,7 +1160,8 @@ namespace CDOrganiserProjectApp
             {
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
-                    Console.WriteLine("ID:\tNAME:\tRANK:\tFAVOURITE:\n");
+                    string[] headers = { "ID:", "NAME:", "USER:", "RANK:", "FAVOURITE:" };
+                    Console.WriteLine("{0}\t{1, -40}{2, -20}{3, -20}{4}", headers[0], headers[1], headers[2], headers[3], headers[4], "\n");
 
                     while (reader.Read())
                     {
@@ -1165,7 +1171,7 @@ namespace CDOrganiserProjectApp
                         string fName = reader["fName"].ToString();
                         bool favourite = Convert.ToBoolean(reader["favourite"]);
 
-                        Console.WriteLine($"{reviewId}\t{albumName}\t{tierTag}\t{fName}\t{favourite}\n");
+                        Console.WriteLine("{0}\t{1, -40}{2, -20}{3, -20}{4}", reviewId, albumName, fName, tierTag, favourite, "\n");
                         Thread.Sleep(wait);
                     }
                 }
@@ -1182,7 +1188,8 @@ namespace CDOrganiserProjectApp
 
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
-                    Console.WriteLine("ID:\tNAME:\tRANK:\tFAVOURITE\n");
+                    string[] headers = { "ID:", "NAME:", "RANK:", "FAVOURITE:" };
+                    Console.WriteLine("{0}\t{1, -40}{2, -20}{3, -20}{4}", headers[0], headers[1], headers[2], headers[3], "\n");
 
                     while (reader.Read())
                     {
@@ -1191,7 +1198,7 @@ namespace CDOrganiserProjectApp
                         char tierTag = Convert.ToChar(reader["tierTag"]);
                         bool favourite = Convert.ToBoolean(reader["favourite"]);
 
-                        Console.WriteLine($"{reviewId}\t{albumName}\t{tierTag}\t{favourite}\n");
+                        Console.WriteLine("{0}\t{1, -40}{2, -20}{3, -20}{4}", reviewId, albumName, tierTag, favourite, "\n");
                         Thread.Sleep(wait);
 
                     }
