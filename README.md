@@ -1,6 +1,6 @@
 ### CD Manager: Console Application
 
-[!WARNING]
+> [!WARNING]
 > If you pass an invalid input while modifying a record, you __will__ be sent back to the editing options.
 
 The CD Manager is a console-based application which is created to meet the specific needs of a user who owns a CD Collection. It is used as an inventory tracker, capable of containing data which is separated into categories of listings, requiring no setup aside from the insertion of the users own data. Not only does the application track inventory, it also supports reviews that trusted individuals within a community of collectors can leave; though these reviews are based in the application itself that is offline, not an online forum as it is for personal use. These reviews do not support comments; rather the ability to leave ratings based on a tier system. users can navigate through the application by typing in listings provided on-screen.
