@@ -14,12 +14,12 @@ namespace CDOrganiserProjectApp
         /*                      *\  
          
             [STORAGE MANAGER]
-         
+           
         \*                      */
         
 
         // A globally shared integer for delays - absolves latency issues.
-        int wait = 100; 
+        private static readonly int Wait = 100; 
 
         // A private connection string that acts as a bridge to the database.
         private SqlConnection conn; 
@@ -76,7 +76,7 @@ namespace CDOrganiserProjectApp
                 return bandId;
             }
         }
-
+       
         public int GetBandBoundary()
         {
             int max = 0;
@@ -463,7 +463,7 @@ namespace CDOrganiserProjectApp
                         rooms.Add(new Rooms(roomId, roomName));
 
                         Console.WriteLine($"{roomId}\t{roomName}\n");
-                        Thread.Sleep(wait);
+                        Thread.Sleep(Wait);
                     }
                 }
             }
@@ -562,7 +562,7 @@ namespace CDOrganiserProjectApp
                         string roomName = reader["roomName"].ToString();
 
                         Console.WriteLine($"{shelfTagId}\t{shelfTag}\t{roomName}\n");
-                        Thread.Sleep(wait);
+                        Thread.Sleep(Wait);
                     }
                 }
             }
@@ -685,7 +685,7 @@ namespace CDOrganiserProjectApp
                         char shelfTag = Convert.ToChar(reader["shelfTag"]);
 
                         Console.WriteLine($"{shelfRowId}\t{shelfRow}\t{shelfTag}\n");
-                        Thread.Sleep(wait);
+                        Thread.Sleep(Wait);
                     }
                 }
             }
@@ -794,7 +794,7 @@ namespace CDOrganiserProjectApp
                         bool lost = Convert.ToBoolean(reader["lost"]);
 
                         Console.WriteLine("{0}\t{1, -40}{2, -20}{3, -20}{4, -15}{5, -35}{6, -10}{7, -10}{8}", albumId, albumName, genreName, dateOfRelease.ToString("d"), formatName, artistName, shelfTag, shelfRow, lost, "\n");
-                        Thread.Sleep(wait);
+                        Thread.Sleep(Wait);
                     }
                 }
             }
@@ -921,7 +921,7 @@ namespace CDOrganiserProjectApp
             {
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
-                    string[] headers = { "ID:", "NAME:", "CATEGORY:", "RELEASE:", "FORMAT:", "ARTIST:", "TAG:", "ROW:", "LOST:" };
+                    string[] headers = { "ID:", "NAME:", "CATEGORY:", "RELEASE:", "FORMAT:", "BAND:", "TAG:", "ROW:", "LOST:" };
                     Console.WriteLine("{0}\t{1, -40}{2, -20}{3, -20}{4, -15}{5, -35}{6, -10}{7, -10}{8}", headers[0], headers[1], headers[2], headers[3], headers[4], headers[5], headers[6], headers[7], headers[8], "\n");
 
                     while (reader.Read())
@@ -937,7 +937,7 @@ namespace CDOrganiserProjectApp
                         bool lost = Convert.ToBoolean(reader["lost"]);
 
                         Console.WriteLine("{0}\t{1, -40}{2, -20}{3, -20}{4, -15}{5, -35}{6, -10}{7, -10}{8}", albumId, albumName, genreName, dateOfRelease.ToString("d"), formatName, bandName, shelfTag, shelfRow, lost, "\n");
-                        Thread.Sleep(wait);
+                        Thread.Sleep(Wait);
                     }
                 }
             }
@@ -1054,7 +1054,7 @@ namespace CDOrganiserProjectApp
                         bool favourite = Convert.ToBoolean(reader["favourite"]);
 
                         Console.WriteLine("{0}\t{1, -40}{2, -20}{3, -20}{4}", reviewId, albumName, fName, tierTag, favourite, "\n");
-                        Thread.Sleep(wait);
+                        Thread.Sleep(Wait);
                     }
                 }
             }
@@ -1081,7 +1081,7 @@ namespace CDOrganiserProjectApp
                         bool favourite = Convert.ToBoolean(reader["favourite"]);
 
                         Console.WriteLine("{0}\t{1, -40}{2, -20}{3, -20}{4}", reviewId, albumName, tierTag, favourite, "\n");
-                        Thread.Sleep(wait);
+                        Thread.Sleep(Wait);
 
                     }
 
@@ -1172,7 +1172,7 @@ namespace CDOrganiserProjectApp
                         bool favourite = Convert.ToBoolean(reader["favourite"]);
 
                         Console.WriteLine("{0}\t{1, -40}{2, -20}{3, -20}{4}", reviewId, albumName, fName, tierTag, favourite, "\n");
-                        Thread.Sleep(wait);
+                        Thread.Sleep(Wait);
                     }
                 }
             }
@@ -1199,7 +1199,7 @@ namespace CDOrganiserProjectApp
                         bool favourite = Convert.ToBoolean(reader["favourite"]);
 
                         Console.WriteLine("{0}\t{1, -40}{2, -20}{3, -20}{4}", reviewId, albumName, tierTag, favourite, "\n");
-                        Thread.Sleep(wait);
+                        Thread.Sleep(Wait);
 
                     }
 
@@ -1672,7 +1672,7 @@ namespace CDOrganiserProjectApp
                         DateTime dateOfRelease = Convert.ToDateTime(reader["dateOfRelease"]);
 
                         Console.WriteLine($"{albumName}, {dateOfRelease.ToString("d")}\n");
-                        Thread.Sleep(wait);
+                        Thread.Sleep(Wait);
                     }
                 }
 
@@ -1695,7 +1695,7 @@ namespace CDOrganiserProjectApp
                         string genreName = reader["genreName"].ToString();
 
                         Console.WriteLine($"{artistName}, {albumName}, {genreName}\n");
-                        Thread.Sleep(wait);
+                        Thread.Sleep(Wait);
                     }
                 }
 
@@ -1718,7 +1718,7 @@ namespace CDOrganiserProjectApp
                         DateTime dateOfRelease = Convert.ToDateTime(reader["dateOfRelease"]);
 
                         Console.WriteLine($"{albumName}, {artistName}, {dateOfRelease.ToString("d")}\n");
-                        Thread.Sleep(wait);
+                        Thread.Sleep(Wait);
                     }
                 }
 
@@ -1740,7 +1740,7 @@ namespace CDOrganiserProjectApp
                         string genreName = reader["genreName"].ToString();
 
                         Console.WriteLine($"{count}, {genreName}\n");
-                        Thread.Sleep(wait);
+                        Thread.Sleep(Wait);
                     }
                 }
 
@@ -1761,7 +1761,7 @@ namespace CDOrganiserProjectApp
                         string allArtists = reader["All Artists"].ToString();
 
                         Console.WriteLine($"{allArtists}\n");
-                        Thread.Sleep(wait);
+                        Thread.Sleep(Wait);
                     }
                 }
 
@@ -1783,7 +1783,7 @@ namespace CDOrganiserProjectApp
                         string artistName = reader ["artistName"].ToString();
 
                         Console.WriteLine($"{albumId}, {artistName}\n");
-                        Thread.Sleep(wait);
+                        Thread.Sleep(Wait);
                     }
                 }
 
@@ -1805,7 +1805,7 @@ namespace CDOrganiserProjectApp
                         int dateOfRelease = Convert.ToInt32(reader["dateOfRelease"]);
 
                         Console.WriteLine($"{albumId}, {dateOfRelease}\n");
-                        Thread.Sleep(wait);
+                        Thread.Sleep(Wait);
                     }
                 }
 
@@ -1831,7 +1831,7 @@ namespace CDOrganiserProjectApp
                         DateTime dateOfRelease = Convert.ToDateTime(reader["dateOfRelease"]);
 
                         Console.WriteLine($"{albumName}, {dateOfRelease.ToString("d")}\n");
-                        Thread.Sleep(wait);
+                        Thread.Sleep(Wait);
                     }
                 }
 
@@ -1854,7 +1854,7 @@ namespace CDOrganiserProjectApp
                         string genreName = reader["genreName"].ToString();
 
                         Console.WriteLine($"{bandName}, {albumName}, {genreName}\n");
-                        Thread.Sleep(wait);
+                        Thread.Sleep(Wait);
                     }
                 }
 
@@ -1877,7 +1877,7 @@ namespace CDOrganiserProjectApp
                         DateTime dateOfRelease = Convert.ToDateTime(reader["dateOfRelease"]);
 
                         Console.WriteLine($"{albumName}, {bandName}, {dateOfRelease.ToString("d")}\n");
-                        Thread.Sleep(wait);
+                        Thread.Sleep(Wait);
                     }
                 }
 
@@ -1899,7 +1899,7 @@ namespace CDOrganiserProjectApp
                         string genreName = reader["genreName"].ToString();
 
                         Console.WriteLine($"{count}, {genreName}\n");
-                        Thread.Sleep(wait);
+                        Thread.Sleep(Wait);
                     }
                 }
 
@@ -1920,7 +1920,7 @@ namespace CDOrganiserProjectApp
                         string allBands = reader["All Artists"].ToString();
 
                         Console.WriteLine($"{allBands}\n");
-                        Thread.Sleep(wait);
+                        Thread.Sleep(Wait);
                     }
                 }
             }
@@ -1939,7 +1939,7 @@ namespace CDOrganiserProjectApp
                         string bandName = reader ["bandName"].ToString();
 
                         Console.WriteLine($"{albumId}, {bandName}\n");
-                        Thread.Sleep(wait);
+                        Thread.Sleep(Wait);
                     }
                 }
 
@@ -1961,7 +1961,7 @@ namespace CDOrganiserProjectApp
                         int dateOfRelease = Convert.ToInt32(reader["dateOfRelease"]);
 
                         Console.WriteLine($"{albumId}, {dateOfRelease}\n");
-                        Thread.Sleep(wait);
+                        Thread.Sleep(Wait);
                     }
                 }
 
@@ -1986,7 +1986,7 @@ namespace CDOrganiserProjectApp
                         char tierTag = Convert.ToChar(reader["tierTag"]);
 
                         Console.WriteLine($"{albumName}, {tierTag}\n");
-                        Thread.Sleep(wait);
+                        Thread.Sleep(Wait);
                     }
                 }
 
@@ -2008,7 +2008,7 @@ namespace CDOrganiserProjectApp
                         char tierTag = Convert.ToChar(reader["tierTag"]);
 
                         Console.WriteLine($"{albumName}, {tierTag}\n");
-                        Thread.Sleep(wait);
+                        Thread.Sleep(Wait);
                     }
                 }
 
@@ -2030,7 +2030,7 @@ namespace CDOrganiserProjectApp
                         string albumName = reader["albumName"].ToString();
 
                         Console.WriteLine($"{favourite}, {albumName}\n");
-                        Thread.Sleep(wait);
+                        Thread.Sleep(Wait);
                     }
                 }
 
@@ -2052,7 +2052,7 @@ namespace CDOrganiserProjectApp
                         string albumName = reader["albumName"].ToString();
 
                         Console.WriteLine($"{favourite}, {albumName}\n");
-                        Thread.Sleep(wait);
+                        Thread.Sleep(Wait);
                     }
 
                     Console.WriteLine("\n\t[*]  Return to homepage - Press E + Enter\n");
@@ -2076,7 +2076,7 @@ namespace CDOrganiserProjectApp
                         char shelfTag = Convert.ToChar(reader["shelfTag"]);
 
                         Console.WriteLine($"{shelfTag}, {shelfRowId}\n");
-                        Thread.Sleep(wait);
+                        Thread.Sleep(Wait);
                     }
 
                     Console.WriteLine("\n\t[*]  Return to homepage - Press E + Enter\n");

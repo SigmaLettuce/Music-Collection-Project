@@ -1,6 +1,7 @@
 ﻿using CDOrganiserProjectApp.Model;
 using CDOrganiserProjectApp.View;
 using System.Collections;
+using System.Text;
 
 
 namespace CDOrganiserProjectApp
@@ -17,12 +18,12 @@ namespace CDOrganiserProjectApp
         private static StorageManager storageManager; 
         private static ConsoleView view; 
 
-        static int accountId; 
-        static int roleId;
+        private static int accountId; 
+        private static int roleId;
         
-        static bool logStatus;
+        private static bool logStatus;
 
-        static int wait = 1500; // A globally shared integer for delays - absolves latency issues.
+        private static readonly int Wait = 1500; // A globally shared integer for delays - absolves latency issues.
 
         
         static void Main(string[] args)
@@ -77,7 +78,7 @@ namespace CDOrganiserProjectApp
                     break;
 
                     default:
-                        view.DisplayError(wait); // This calls the error prompt. It's parameterized simply to utilise the same threadsleep count as the one used in the main Program, as the ConsoleView already contains a threadsleep.
+                        view.DisplayError(Wait); // This calls the error prompt. It's parameterized simply to utilise the same threadsleep count as the one used in the main Program, as the ConsoleView already contains a threadsleep.
 
                         StartMenuscreenOptions();
 
@@ -95,11 +96,11 @@ namespace CDOrganiserProjectApp
 
         private static void Register() // The Register method. Essentially an insert.
         {
-            Thread.Sleep(wait);
+            Thread.Sleep(Wait);
             Console.Clear();
 
             CreateUser();
-            Thread.Sleep(wait);
+            Thread.Sleep(Wait);
             Console.Clear();
 
 
@@ -107,7 +108,7 @@ namespace CDOrganiserProjectApp
 
         private static void Login() // The Login method. When the username and password are provided, they cross-examine each other and if both are a match you either get logged in as an administrator, user or a true administrator. The accounts identification number is also fetched to tailor 'to query' specific data listings.
         {
-            Thread.Sleep(wait);
+            Thread.Sleep(Wait);
             Console.Clear();
 
             view.DisplayMessage("\nEnter your username... ");
@@ -134,7 +135,7 @@ namespace CDOrganiserProjectApp
                 switch (roleId)
                 {
                     case 1:
-                        Thread.Sleep(wait);
+                        Thread.Sleep(Wait);
                         Console.Clear();
 
                         GuestMenuscreenOptions();
@@ -142,7 +143,7 @@ namespace CDOrganiserProjectApp
                     break;
 
                     case 2:
-                        Thread.Sleep(wait);
+                        Thread.Sleep(Wait);
                         Console.Clear();
 
                         AdminMenuscreenOptions();
@@ -157,7 +158,7 @@ namespace CDOrganiserProjectApp
             else
             {
                 view.DisplayMessage("\nEither your username or password are incorrect. ");
-                Thread.Sleep(wait);
+                Thread.Sleep(Wait);
                 Console.Clear();
 
                 StartMenuscreenOptions();
@@ -169,10 +170,10 @@ namespace CDOrganiserProjectApp
         {
             bool invalid = true;
 
-            string helpInput = view.DisplayHelp(wait);
+            string helpInput = view.DisplayHelp(Wait);
             view.DisplayMessage("");
 
-            Thread.Sleep(wait);
+            Thread.Sleep(Wait);
             Console.Clear();
 
             do
@@ -181,7 +182,7 @@ namespace CDOrganiserProjectApp
                 {
                     case "E":
 
-                        Thread.Sleep(wait);
+                        Thread.Sleep(Wait);
                         Console.Clear();
 
                         switch (logStatus)
@@ -213,7 +214,7 @@ namespace CDOrganiserProjectApp
                     break;
 
                     default:
-                        view.DisplayError(wait);
+                        view.DisplayError(Wait);
 
                         Help();
 
@@ -231,7 +232,7 @@ namespace CDOrganiserProjectApp
             string adminInput = view.DisplayAdminMenu(); // Calls the display.
             view.DisplayMessage(""); 
 
-            Thread.Sleep(wait);
+            Thread.Sleep(Wait);
             Console.Clear();
 
             do
@@ -319,18 +320,18 @@ namespace CDOrganiserProjectApp
                     case "help":
 
                         logStatus = true;
-                        Thread.Sleep(wait);
+                        Thread.Sleep(Wait);
 
                         Help(); // This calls the support page.
 
-                        Thread.Sleep(wait);
+                        Thread.Sleep(Wait);
 
                         invalid = false;
 
                     break;
 
                     case "l":
-                        Thread.Sleep(wait);
+                        Thread.Sleep(Wait);
                         Console.Clear();
 
                         // Resets the accounts credentials.
@@ -339,7 +340,7 @@ namespace CDOrganiserProjectApp
                         accountId = 0;
                         storageManager.CloseConnection(); // Closes the connection upon signing out. 
 
-                        Thread.Sleep(wait);
+                        Thread.Sleep(Wait);
                         Console.Clear();
 
                         StartMenuscreenOptions();
@@ -349,7 +350,7 @@ namespace CDOrganiserProjectApp
                     break;
 
                     default:
-                        view.DisplayError(wait);
+                        view.DisplayError(Wait);
 
                         AdminMenuscreenOptions();
 
@@ -371,7 +372,7 @@ namespace CDOrganiserProjectApp
             string guestSelect = view.DisplayGuestMenu(); // Calls the display.
             view.DisplayMessage(""); 
 
-            Thread.Sleep(wait);
+            Thread.Sleep(Wait);
             Console.Clear();
 
             do
@@ -409,18 +410,18 @@ namespace CDOrganiserProjectApp
 
                     case "help":
                         logStatus = true;
-                        Thread.Sleep(wait);
+                        Thread.Sleep(Wait);
 
                         Help(); // This calls the support page.
 
-                        Thread.Sleep(wait);
+                        Thread.Sleep(Wait);
 
                         invalid = false;
 
                     break;
 
                     case "l":
-                        Thread.Sleep(wait);
+                        Thread.Sleep(Wait);
                         Console.Clear();
 
                         // Resets the accounts credentials.
@@ -429,7 +430,7 @@ namespace CDOrganiserProjectApp
                         accountId = 0;
                         storageManager.CloseConnection(); // Closes the connection upon signing out. 
 
-                        Thread.Sleep(wait);
+                        Thread.Sleep(Wait);
                         Console.Clear();
 
                         StartMenuscreenOptions();
@@ -439,7 +440,7 @@ namespace CDOrganiserProjectApp
                     break;
 
                     default:
-                        view.DisplayError(wait);
+                        view.DisplayError(Wait);
 
                         GuestMenuscreenOptions();
 
@@ -458,7 +459,7 @@ namespace CDOrganiserProjectApp
         {
             // This is the 'go back' function; or method. It passes the role of the account that is currently logged on through a switch; the switch cases then go on to determine which menuscreen the user is booted to depending on their role.
 
-                Thread.Sleep(wait);
+                Thread.Sleep(Wait);
                  Console.Clear();
                
 
@@ -503,7 +504,7 @@ namespace CDOrganiserProjectApp
             string bandCmd;
             bool invalidCmd;
 
-            Thread.Sleep(wait);
+            Thread.Sleep(Wait);
             Console.Clear();
 
             List<Bands> bands = storageManager.GetAllBands();
@@ -512,7 +513,7 @@ namespace CDOrganiserProjectApp
             bandCmd = view.DisplayEditingOptions("bands", "none");
             view.DisplayMessage("");
 
-            Thread.Sleep(wait);
+            Thread.Sleep(Wait);
             Console.Clear();
 
             invalidCmd = false;
@@ -530,7 +531,7 @@ namespace CDOrganiserProjectApp
                     break;
 
                     default:
-                        view.DisplayError(wait);
+                        view.DisplayError(Wait);
 
                         DefaultBandPanel();
 
@@ -548,7 +549,7 @@ namespace CDOrganiserProjectApp
             string bandCmd;
             bool invalidCmd = true;
 
-            Thread.Sleep(wait);
+            Thread.Sleep(Wait);
             Console.Clear();
 
             List<Bands> bands = storageManager.GetAllBands();
@@ -557,7 +558,7 @@ namespace CDOrganiserProjectApp
             bandCmd = view.DisplayEditingOptions("bands", "default~extras~search");
             view.DisplayMessage("");
 
-            Thread.Sleep(wait);
+            Thread.Sleep(Wait);
             Console.Clear();
 
             do
@@ -606,7 +607,7 @@ namespace CDOrganiserProjectApp
                     break;
 
                     default:
-                        view.DisplayError(wait);
+                        view.DisplayError(Wait);
 
                         BandPanel();
 
@@ -747,7 +748,7 @@ namespace CDOrganiserProjectApp
 
                         if (bandId.Equals(bandAlbumReference))
                         {
-                            view.DisplayReferentialError(wait);
+                            view.DisplayReferentialError(Wait);
 
                             BandPanel();
 
@@ -793,7 +794,7 @@ namespace CDOrganiserProjectApp
             string genreCmd;
             bool invalidCmd;
 
-            Thread.Sleep(wait);
+            Thread.Sleep(Wait);
             Console.Clear();
 
             List<Genres> genres = storageManager.GetAllGenres();
@@ -802,7 +803,7 @@ namespace CDOrganiserProjectApp
             genreCmd = view.DisplayEditingOptions("genres", "none");
             view.DisplayMessage("");
 
-            Thread.Sleep(wait);
+            Thread.Sleep(Wait);
             Console.Clear();
 
             invalidCmd = false;
@@ -820,7 +821,7 @@ namespace CDOrganiserProjectApp
                     break;
 
                     default:
-                        view.DisplayError(wait);
+                        view.DisplayError(Wait);
 
                         DefaultGenrePanel();
 
@@ -838,7 +839,7 @@ namespace CDOrganiserProjectApp
             string genreCmd;
             bool invalidCmd = true;
 
-            Thread.Sleep(wait);
+            Thread.Sleep(Wait);
             Console.Clear();
 
             List<Genres> genres = storageManager.GetAllGenres();
@@ -847,7 +848,7 @@ namespace CDOrganiserProjectApp
             genreCmd = view.DisplayEditingOptions("genres", "default~extras~search");
             view.DisplayMessage("");
 
-            Thread.Sleep(wait);
+            Thread.Sleep(Wait);
             Console.Clear();
 
             do
@@ -898,7 +899,7 @@ namespace CDOrganiserProjectApp
                     break;
 
                     default:
-                        view.DisplayError(wait);
+                        view.DisplayError(Wait);
 
                         GenrePanel();
 
@@ -1040,7 +1041,7 @@ namespace CDOrganiserProjectApp
 
                         if (genreId.Equals(genreAAlbumReference) | genreId.Equals(genreBAlbumReference))
                         {
-                            view.DisplayReferentialError(wait);
+                            view.DisplayReferentialError(Wait);
 
                             GenrePanel();
 
@@ -1086,7 +1087,7 @@ namespace CDOrganiserProjectApp
             string formatCmd;
             bool invalidCmd = true;
 
-            Thread.Sleep(wait);
+            Thread.Sleep(Wait);
             Console.Clear();
 
             List<Formats> formats = storageManager.GetAllFormats();
@@ -1094,7 +1095,7 @@ namespace CDOrganiserProjectApp
             formatCmd = view.DisplayEditingOptions("formats", "default");
             view.DisplayMessage("");
 
-            Thread.Sleep(wait);
+            Thread.Sleep(Wait);
             Console.Clear();
 
             do
@@ -1137,7 +1138,7 @@ namespace CDOrganiserProjectApp
                     break;
 
                     default:
-                        view.DisplayError(wait);
+                        view.DisplayError(Wait);
 
                         FormatPanel();
 
@@ -1275,7 +1276,7 @@ namespace CDOrganiserProjectApp
 
                         if (formatId.Equals(formatAAlbumReference) | formatId.Equals(formatBAlbumReference))
                         {
-                            view.DisplayReferentialError(wait);
+                            view.DisplayReferentialError(Wait);
 
                             FormatPanel();
 
@@ -1321,7 +1322,7 @@ namespace CDOrganiserProjectApp
             string artistCmd;
             bool invalidCmd = true;
 
-            Thread.Sleep(wait);
+            Thread.Sleep(Wait);
             Console.Clear();
 
             List<Artists> artists = storageManager.GetAllArtists();
@@ -1330,7 +1331,7 @@ namespace CDOrganiserProjectApp
             artistCmd = view.DisplayEditingOptions("artists", "none");
             view.DisplayMessage("");
 
-            Thread.Sleep(wait);
+            Thread.Sleep(Wait);
             Console.Clear();
 
             invalidCmd = false;
@@ -1348,7 +1349,7 @@ namespace CDOrganiserProjectApp
                     break;
 
                     default:
-                        view.DisplayError(wait);
+                        view.DisplayError(Wait);
 
                         DefaultArtistPanel();
 
@@ -1366,7 +1367,7 @@ namespace CDOrganiserProjectApp
             string artistCmd;
             bool invalidCmd = true;
 
-            Thread.Sleep(wait);
+            Thread.Sleep(Wait);
             Console.Clear();
 
             List<Artists> artists = storageManager.GetAllArtists();
@@ -1375,7 +1376,7 @@ namespace CDOrganiserProjectApp
             artistCmd = view.DisplayEditingOptions("artists", "default~extras~search");
             view.DisplayMessage("");
 
-            Thread.Sleep(wait);
+            Thread.Sleep(Wait);
             Console.Clear();
 
             do
@@ -1425,7 +1426,7 @@ namespace CDOrganiserProjectApp
                     break;
 
                     default:
-                        view.DisplayError(wait);
+                        view.DisplayError(Wait);
 
                         ArtistPanel();
 
@@ -1566,7 +1567,7 @@ namespace CDOrganiserProjectApp
 
                         if (artistId.Equals(artistAlbumReference))
                         {
-                            view.DisplayReferentialError(wait);
+                            view.DisplayReferentialError(Wait);
 
                             ArtistPanel();
 
@@ -1612,7 +1613,7 @@ namespace CDOrganiserProjectApp
             string roomCmd;
             bool invalidCmd = true;
 
-            Thread.Sleep(wait);
+            Thread.Sleep(Wait);
             Console.Clear();
 
             storageManager.GetAllRooms();
@@ -1620,7 +1621,7 @@ namespace CDOrganiserProjectApp
             roomCmd = view.DisplayEditingOptions("rooms", "default");
             view.DisplayMessage("");
 
-            Thread.Sleep(wait);
+            Thread.Sleep(Wait);
             Console.Clear();
 
             invalidCmd = false;
@@ -1665,7 +1666,7 @@ namespace CDOrganiserProjectApp
                     break;
 
                     default:
-                        view.DisplayError(wait);
+                        view.DisplayError(Wait);
 
                         RoomPanel();
 
@@ -1803,7 +1804,7 @@ namespace CDOrganiserProjectApp
 
                         if (roomId.Equals(roomShelfReference))
                         {
-                            view.DisplayReferentialError(wait);
+                            view.DisplayReferentialError(Wait);
 
                             RoomPanel();
 
@@ -1853,7 +1854,7 @@ namespace CDOrganiserProjectApp
             {
                 shelfReportSelect = view.DisplayReportOptions("shelves", "rows~shelves");
 
-                Thread.Sleep(wait);
+                Thread.Sleep(Wait);
                 Console.Clear();
 
                 do
@@ -1877,7 +1878,7 @@ namespace CDOrganiserProjectApp
                                     break;
 
                                     default:
-                                        view.DisplayError(wait);
+                                        view.DisplayError(Wait);
 
                                         ShelfReportPanel();
 
@@ -1900,7 +1901,7 @@ namespace CDOrganiserProjectApp
                         break;
 
                         default:
-                            view.DisplayError(wait);
+                            view.DisplayError(Wait);
 
                             ShelfReportPanel();
 
@@ -1918,7 +1919,7 @@ namespace CDOrganiserProjectApp
                 
                 view.DisplayMessage(e.Message);
 
-                Thread.Sleep(wait);
+                Thread.Sleep(Wait);
                 Console.Clear();
 
                 ShelfReportPanel();
@@ -1937,7 +1938,7 @@ namespace CDOrganiserProjectApp
             {
                 rowReportSelect = view.DisplayReportOptions("rows", "rows~shelves");
 
-                Thread.Sleep(wait);
+                Thread.Sleep(Wait);
                 Console.Clear();
 
                 invalidCmd = false;
@@ -1963,7 +1964,7 @@ namespace CDOrganiserProjectApp
                                     break;
 
                                     default:
-                                        view.DisplayError(wait);
+                                        view.DisplayError(Wait);
 
                                         RowReportPanel();
 
@@ -1986,7 +1987,7 @@ namespace CDOrganiserProjectApp
                         break;
 
                         default:
-                            view.DisplayError(wait);
+                            view.DisplayError(Wait);
 
                             RowReportPanel();
 
@@ -2004,7 +2005,7 @@ namespace CDOrganiserProjectApp
                 
                 view.DisplayMessage(e.Message);
 
-                Thread.Sleep(wait);
+                Thread.Sleep(Wait);
                 Console.Clear();
 
                 RowReportPanel();
@@ -2020,7 +2021,7 @@ namespace CDOrganiserProjectApp
             string shelfCmd;
             bool invalidCmd = true;
 
-            Thread.Sleep(wait);
+            Thread.Sleep(Wait);
             Console.Clear();
 
             storageManager.GetAllShelves();
@@ -2028,7 +2029,7 @@ namespace CDOrganiserProjectApp
             shelfCmd = view.DisplayEditingOptions("shelves", "default~extras~view");
             view.DisplayMessage("");
 
-            Thread.Sleep(wait);
+            Thread.Sleep(Wait);
             Console.Clear();
 
             do
@@ -2080,7 +2081,7 @@ namespace CDOrganiserProjectApp
                     break;
 
                     default:
-                        view.DisplayError(wait);
+                        view.DisplayError(Wait);
 
                         ShelfPanel();
 
@@ -2218,7 +2219,6 @@ namespace CDOrganiserProjectApp
                 List<Shelves> shelves = storageManager.GetAllShelves();
                 int sUpper = storageManager.GetShelfBoundary();
 
-                Console.WriteLine(sUpper);
 
                 view.DisplayMessage("\nEnter the identification number... ");
                 int shelfTagId = view.GetIntInput();
@@ -2232,7 +2232,7 @@ namespace CDOrganiserProjectApp
 
                         if (shelfTagId.Equals(shelfRowReference))
                         {
-                            view.DisplayReferentialError(wait);
+                            view.DisplayReferentialError(Wait);
 
                             ShelfPanel();
 
@@ -2277,7 +2277,7 @@ namespace CDOrganiserProjectApp
             string rowCmd;
             bool invalidCmd = true;
 
-            Thread.Sleep(wait);
+            Thread.Sleep(Wait);
             Console.Clear();
 
             storageManager.GetAllRows();
@@ -2285,7 +2285,7 @@ namespace CDOrganiserProjectApp
             rowCmd = view.DisplayEditingOptions("rows", "default~extras~view");
             view.DisplayMessage("");
 
-            Thread.Sleep(wait);
+            Thread.Sleep(Wait);
             Console.Clear();
 
             invalidCmd = false;
@@ -2337,7 +2337,7 @@ namespace CDOrganiserProjectApp
                     break;
 
                     default:
-                        view.DisplayError(wait);
+                        view.DisplayError(Wait);
 
                         RowPanel();
 
@@ -2490,7 +2490,6 @@ namespace CDOrganiserProjectApp
                 List<Rows> rows = storageManager.GetAllRows();
                 int rUpper = storageManager.GetRowBoundary();
 
-                Console.WriteLine(rUpper);
 
                 view.DisplayMessage("\nEnter the identification number... ");
                 int rowId = view.GetIntInput();
@@ -2505,7 +2504,7 @@ namespace CDOrganiserProjectApp
 
                         if (rowId.Equals(rowAAlbumReference) | rowId.Equals(rowBAlbumReference))
                         {
-                            view.DisplayReferentialError(wait);
+                            view.DisplayReferentialError(Wait);
 
                             RowPanel();
 
@@ -2551,12 +2550,12 @@ namespace CDOrganiserProjectApp
             string accountSelect;
             bool invalidCmd;
 
-            Thread.Sleep(wait);
+            Thread.Sleep(Wait);
             Console.Clear();
 
             accountSelect = view.DisplayEditingOptions("accounts", "df~account~variants");
 
-            Thread.Sleep(wait);
+            Thread.Sleep(Wait);
             Console.Clear();
 
             do
@@ -2580,7 +2579,7 @@ namespace CDOrganiserProjectApp
                     break;
 
                     default:
-                        view.DisplayError(wait);
+                        view.DisplayError(Wait);
 
                         DefaultAccountPanel();
 
@@ -2599,12 +2598,12 @@ namespace CDOrganiserProjectApp
             string accountCmd;
             bool invalidCmd;
 
-            Thread.Sleep(wait);
+            Thread.Sleep(Wait);
             Console.Clear();
 
             accountCmd = view.DisplayEditingOptions("accounts", "account~variants");
 
-            Thread.Sleep(wait);
+            Thread.Sleep(Wait);
             Console.Clear();
 
             do
@@ -2634,7 +2633,7 @@ namespace CDOrganiserProjectApp
                     break;
 
                     default:
-                        view.DisplayError(wait);
+                        view.DisplayError(Wait);
 
                         AccountPanel();
 
@@ -2697,7 +2696,7 @@ namespace CDOrganiserProjectApp
                                                 if (newuser.Equals(storageManager.FetchUsername(newuser)))
                                                 {
                                                     view.DisplayMessage("\nThat username is already taken. Choose a different username. ");
-                                                    Thread.Sleep(wait);
+                                                    Thread.Sleep(Wait);
                                                     Console.Clear();
 
                                                     switch (logStatus)
@@ -2741,7 +2740,7 @@ namespace CDOrganiserProjectApp
                                                     accountId = 0;
                                                     storageManager.CloseConnection(); // Closes the connection upon signing out.
 
-                                                    Thread.Sleep(wait);
+                                                    Thread.Sleep(Wait);
                                                     Console.Clear();
                                                     StartMenuscreenOptions();
 
@@ -2962,7 +2961,7 @@ namespace CDOrganiserProjectApp
                                                 if (newuser.Equals(storageManager.FetchUsername(newuser)))
                                                 {
                                                     view.DisplayMessage("\nThat username is already taken. Choose a different username. ");
-                                                    Thread.Sleep(wait);
+                                                    Thread.Sleep(Wait);
                                                     Console.Clear();
                                                     
                                                     AccountPanel();
@@ -2984,7 +2983,7 @@ namespace CDOrganiserProjectApp
                                                     accountId = 0;
                                                     storageManager.CloseConnection(); // Closes the connection upon signing out.
 
-                                                    Thread.Sleep(wait);
+                                                    Thread.Sleep(Wait);
                                                     Console.Clear();
                                                     StartMenuscreenOptions();
 
@@ -3055,12 +3054,12 @@ namespace CDOrganiserProjectApp
             string albumSelect;
             bool invalidAlbumSelect;
 
-            Thread.Sleep(wait);
+            Thread.Sleep(Wait);
             Console.Clear();
 
             albumSelect = view.DisplayEditingOptions("albums", "album~variants");
 
-            Thread.Sleep(wait);
+            Thread.Sleep(Wait);
             Console.Clear();
 
 
@@ -3090,7 +3089,7 @@ namespace CDOrganiserProjectApp
                     break;
 
                     default:
-                        view.DisplayError(wait);
+                        view.DisplayError(Wait);
 
                         AlbumPanel();
 
@@ -3114,7 +3113,7 @@ namespace CDOrganiserProjectApp
             {
                 aAlbumReportSelect = view.DisplayReportOptions("artists", "artists");
 
-                Thread.Sleep(wait);
+                Thread.Sleep(Wait);
                 Console.Clear();
 
                 invalidCmd = false;
@@ -3140,7 +3139,7 @@ namespace CDOrganiserProjectApp
                                     break;
 
                                     default:
-                                        view.DisplayError(wait);
+                                        view.DisplayError(Wait);
 
                                         ArtistAlbumReportPanel();
 
@@ -3172,7 +3171,7 @@ namespace CDOrganiserProjectApp
                                     break;
 
                                     default:
-                                        view.DisplayError(wait);
+                                        view.DisplayError(Wait);
 
                                         ArtistAlbumReportPanel();
 
@@ -3204,7 +3203,7 @@ namespace CDOrganiserProjectApp
                                     break;
 
                                     default:
-                                        view.DisplayError(wait);
+                                        view.DisplayError(Wait);
 
                                         ArtistAlbumReportPanel();
 
@@ -3236,7 +3235,7 @@ namespace CDOrganiserProjectApp
                                     break;
 
                                     default:
-                                        view.DisplayError(wait);
+                                        view.DisplayError(Wait);
 
                                         ArtistAlbumReportPanel();
 
@@ -3268,7 +3267,7 @@ namespace CDOrganiserProjectApp
                                     break;
 
                                     default:
-                                        view.DisplayError(wait);
+                                        view.DisplayError(Wait);
 
                                         ArtistAlbumReportPanel();
 
@@ -3300,7 +3299,7 @@ namespace CDOrganiserProjectApp
                                     break;
 
                                     default:
-                                        view.DisplayError(wait);
+                                        view.DisplayError(Wait);
 
                                         ArtistAlbumReportPanel();
 
@@ -3332,7 +3331,7 @@ namespace CDOrganiserProjectApp
                                     break;
 
                                     default:
-                                        view.DisplayError(wait);
+                                        view.DisplayError(Wait);
 
                                         ArtistAlbumReportPanel();
 
@@ -3355,7 +3354,7 @@ namespace CDOrganiserProjectApp
                         break;
 
                         default:
-                            view.DisplayError(wait);
+                            view.DisplayError(Wait);
 
                             ArtistAlbumReportPanel();
 
@@ -3374,7 +3373,7 @@ namespace CDOrganiserProjectApp
                 
                 view.DisplayMessage(e.Message);
 
-                Thread.Sleep(wait);
+                Thread.Sleep(Wait);
                 Console.Clear();
 
                 ArtistAlbumReportPanel();
@@ -3393,7 +3392,7 @@ namespace CDOrganiserProjectApp
             {
                 bAlbumReportSelect = view.DisplayReportOptions("bands", "bands");
 
-                Thread.Sleep(wait);
+                Thread.Sleep(Wait);
                 Console.Clear();
 
                 invalidCmd = false;
@@ -3419,7 +3418,7 @@ namespace CDOrganiserProjectApp
                                     break;
 
                                     default:
-                                        view.DisplayError(wait);
+                                        view.DisplayError(Wait);
 
                                         BandAlbumReportPanel();
 
@@ -3451,7 +3450,7 @@ namespace CDOrganiserProjectApp
                                     break;
 
                                     default:
-                                        view.DisplayError(wait);
+                                        view.DisplayError(Wait);
 
                                         BandAlbumReportPanel();
 
@@ -3483,7 +3482,7 @@ namespace CDOrganiserProjectApp
                                     break;
 
                                     default:
-                                        view.DisplayError(wait);
+                                        view.DisplayError(Wait);
 
                                         BandAlbumReportPanel();
 
@@ -3515,7 +3514,7 @@ namespace CDOrganiserProjectApp
                                     break;
 
                                     default:
-                                        view.DisplayError(wait);
+                                        view.DisplayError(Wait);
 
                                         BandAlbumReportPanel();
 
@@ -3547,7 +3546,7 @@ namespace CDOrganiserProjectApp
                                     break;
 
                                     default:
-                                        view.DisplayError(wait);
+                                        view.DisplayError(Wait);
 
                                         BandAlbumReportPanel();
 
@@ -3579,7 +3578,7 @@ namespace CDOrganiserProjectApp
                                     break;
 
                                     default:
-                                        view.DisplayError(wait);
+                                        view.DisplayError(Wait);
 
                                         BandAlbumReportPanel();
 
@@ -3611,7 +3610,7 @@ namespace CDOrganiserProjectApp
                                     break;
 
                                     default:
-                                        view.DisplayError(wait);
+                                        view.DisplayError(Wait);
 
                                         BandAlbumReportPanel();
 
@@ -3634,7 +3633,7 @@ namespace CDOrganiserProjectApp
                         break;
 
                         default:
-                            view.DisplayError(wait);
+                            view.DisplayError(Wait);
 
                             BandAlbumReportPanel();
 
@@ -3653,7 +3652,7 @@ namespace CDOrganiserProjectApp
                 
                 view.DisplayMessage(e.Message);
 
-                Thread.Sleep(wait);
+                Thread.Sleep(Wait);
                 Console.Clear();
 
                 BandAlbumReportPanel();
@@ -3671,7 +3670,7 @@ namespace CDOrganiserProjectApp
             string aAlbumCmd;
             bool invalidCmd = true;
 
-            Thread.Sleep(wait);
+            Thread.Sleep(Wait);
             Console.Clear();
 
             storageManager.GetAllArtistAlbums();
@@ -3679,7 +3678,7 @@ namespace CDOrganiserProjectApp
             aAlbumCmd = view.DisplayEditingOptions("artist-albums", "album~extras");
             view.DisplayMessage("");
 
-            Thread.Sleep(wait);
+            Thread.Sleep(Wait);
             Console.Clear();
 
             do
@@ -3745,7 +3744,7 @@ namespace CDOrganiserProjectApp
                     break;
 
                     default:
-                        view.DisplayError(wait);
+                        view.DisplayError(Wait);
 
                         ArtistAlbumPanel();
 
@@ -4093,7 +4092,7 @@ namespace CDOrganiserProjectApp
 
                         if (albumId.Equals(AAlbumAReviewReference))
                         {
-                            view.DisplayReferentialError(wait);
+                            view.DisplayReferentialError(Wait);
 
                             ArtistAlbumPanel();
 
@@ -4194,7 +4193,7 @@ namespace CDOrganiserProjectApp
             string bAlbumCmd;
             bool invalidCmd = true;
 
-            Thread.Sleep(wait);
+            Thread.Sleep(Wait);
             Console.Clear();
 
             storageManager.GetAllBandAlbums();
@@ -4202,7 +4201,7 @@ namespace CDOrganiserProjectApp
             bAlbumCmd = view.DisplayEditingOptions("band-albums", "album~extras");
             view.DisplayMessage("");
 
-            Thread.Sleep(wait);
+            Thread.Sleep(Wait);
             Console.Clear();
 
             do
@@ -4268,7 +4267,7 @@ namespace CDOrganiserProjectApp
                     break;
 
                     default:
-                        view.DisplayError(wait);
+                        view.DisplayError(Wait);
 
                         BandAlbumPanel();
 
@@ -4618,7 +4617,7 @@ namespace CDOrganiserProjectApp
 
                         if (albumId.Equals(BAlbumBReviewReference))
                         {
-                            view.DisplayReferentialError(wait);
+                            view.DisplayReferentialError(Wait);
 
                             BandAlbumPanel();
 
@@ -4719,12 +4718,12 @@ namespace CDOrganiserProjectApp
             string reviewSelect;
             bool invalidCmd;
 
-            Thread.Sleep(wait);
+            Thread.Sleep(Wait);
             Console.Clear();
 
             reviewSelect = view.DisplayEditingOptions("reviews", "album~variants");
 
-            Thread.Sleep(wait);
+            Thread.Sleep(Wait);
             Console.Clear();
 
             do
@@ -4753,7 +4752,7 @@ namespace CDOrganiserProjectApp
                     break;
 
                     default:
-                        view.DisplayError(wait);
+                        view.DisplayError(Wait);
 
                         ReviewPanel();
 
@@ -4777,7 +4776,7 @@ namespace CDOrganiserProjectApp
             {
                 aReviewReportSelect = view.DisplayReportOptions("artists", "reviews");
 
-                Thread.Sleep(wait);
+                Thread.Sleep(Wait);
                 Console.Clear();
 
                 invalidCmd = false;
@@ -4803,7 +4802,7 @@ namespace CDOrganiserProjectApp
                                     break;
 
                                     default:
-                                        view.DisplayError(wait);
+                                        view.DisplayError(Wait);
 
                                         ArtistReviewReportPanel();
 
@@ -4835,7 +4834,7 @@ namespace CDOrganiserProjectApp
                                     break;
 
                                     default:
-                                        view.DisplayError(wait);
+                                        view.DisplayError(Wait);
 
                                         ArtistReviewReportPanel();
 
@@ -4858,7 +4857,7 @@ namespace CDOrganiserProjectApp
                         break;
 
                         default:
-                            view.DisplayError(wait);
+                            view.DisplayError(Wait);
 
                             ArtistReviewReportPanel();
 
@@ -4876,7 +4875,7 @@ namespace CDOrganiserProjectApp
                 
                 view.DisplayMessage(e.Message);
 
-                Thread.Sleep(wait);
+                Thread.Sleep(Wait);
                 Console.Clear();
 
                 ArtistReviewReportPanel();
@@ -4895,7 +4894,7 @@ namespace CDOrganiserProjectApp
             {
                 bReviewReportSelect = view.DisplayReportOptions("bands", "reviews");
 
-                Thread.Sleep(wait);
+                Thread.Sleep(Wait);
                 Console.Clear();
 
                 invalidCmd = false;
@@ -4921,7 +4920,7 @@ namespace CDOrganiserProjectApp
                                     break;
 
                                     default:
-                                        view.DisplayError(wait);
+                                        view.DisplayError(Wait);
 
                                         BandReviewReportPanel();
 
@@ -4953,7 +4952,7 @@ namespace CDOrganiserProjectApp
                                     break;
 
                                     default:
-                                        view.DisplayError(wait);
+                                        view.DisplayError(Wait);
 
                                         BandReviewReportPanel();
 
@@ -4976,7 +4975,7 @@ namespace CDOrganiserProjectApp
                         break;
 
                         default:
-                            view.DisplayError(wait);
+                            view.DisplayError(Wait);
 
                             BandReviewReportPanel();
 
@@ -4994,7 +4993,7 @@ namespace CDOrganiserProjectApp
                 
                 view.DisplayMessage(e.Message);
 
-                Thread.Sleep(wait);
+                Thread.Sleep(Wait);
                 Console.Clear();
 
                 BandReviewReportPanel();
@@ -5011,7 +5010,7 @@ namespace CDOrganiserProjectApp
             string aReviewCmd;
             bool invalidCmd = true;
 
-            Thread.Sleep(wait);
+            Thread.Sleep(Wait);
             Console.Clear();
 
             storageManager.GetAllArtistReviews();
@@ -5019,7 +5018,7 @@ namespace CDOrganiserProjectApp
             aReviewCmd = view.DisplayEditingOptions("artist-album-reviews", "review~extras");
             view.DisplayMessage("");
 
-            Thread.Sleep(wait);
+            Thread.Sleep(Wait);
             Console.Clear();
 
             do
@@ -5085,7 +5084,7 @@ namespace CDOrganiserProjectApp
                     break;
 
                     default:
-                        view.DisplayError(wait);
+                        view.DisplayError(Wait);
 
                         ArtistReviewPanel();
 
@@ -5135,7 +5134,7 @@ namespace CDOrganiserProjectApp
                                 if (personId != storageManager.FetchAccountFromArtistReviews(reviewId))
                                 {
                                     view.DisplayMessage("\nYou cannot modify someone elses review.");
-                                    Thread.Sleep(wait);
+                                    Thread.Sleep(Wait);
                                     Console.Clear();
 
                                     ArtistReviewPanel();
@@ -5271,7 +5270,7 @@ namespace CDOrganiserProjectApp
                 if (accountId != storageManager.FetchAccountFromArtistReviews(reviewId))
                 {
                     view.DisplayMessage("\nYou cannot modify someone elses review.");
-                    Thread.Sleep(wait);
+                    Thread.Sleep(Wait);
                     Console.Clear();
 
                     ArtistReviewPanel();
@@ -5313,7 +5312,7 @@ namespace CDOrganiserProjectApp
                 if (accountId != storageManager.FetchAccountFromArtistReviews(reviewId))
                 {
                     view.DisplayMessage("\nYou cannot modify someone elses review. ");
-                    Thread.Sleep(wait);
+                    Thread.Sleep(Wait);
                     Console.Clear();
 
                     ArtistReviewPanel();
@@ -5364,7 +5363,7 @@ namespace CDOrganiserProjectApp
             string bReviewCmd;
             bool invalidCmd = true;
 
-            Thread.Sleep(wait);
+            Thread.Sleep(Wait);
             Console.Clear();
 
             storageManager.GetAllBandReviews();
@@ -5372,7 +5371,7 @@ namespace CDOrganiserProjectApp
             bReviewCmd = view.DisplayEditingOptions("band-album-reviews", "review~extras");
             view.DisplayMessage("");
 
-            Thread.Sleep(wait);
+            Thread.Sleep(Wait);
             Console.Clear();
 
             do
@@ -5438,7 +5437,7 @@ namespace CDOrganiserProjectApp
                     break;
 
                     default:
-                        view.DisplayError(wait);
+                        view.DisplayError(Wait);
 
                         BandReviewPanel();
 
@@ -5488,7 +5487,7 @@ namespace CDOrganiserProjectApp
                                 if (personId != storageManager.FetchAccountFromBandReviews(reviewId))
                                 {
                                     view.DisplayMessage("\nYou cannot modify someone elses review. ");
-                                    Thread.Sleep(wait);
+                                    Thread.Sleep(Wait);
                                     Console.Clear();
 
                                     BandReviewPanel();
@@ -5624,7 +5623,7 @@ namespace CDOrganiserProjectApp
                 if (accountId != storageManager.FetchAccountFromBandReviews(reviewId))
                 {
                     view.DisplayMessage("\nYou cannot modify someone elses review.");
-                    Thread.Sleep(wait);
+                    Thread.Sleep(Wait);
                     Console.Clear();
 
                     BandReviewPanel();
@@ -5666,7 +5665,7 @@ namespace CDOrganiserProjectApp
                 if (accountId != storageManager.FetchAccountFromBandReviews(reviewId)) // If the review id connected to an accounts id does not correspond with the current users account id.
                 {
                     view.DisplayMessage("\nYou cannot modify someone elses review. ");
-                    Thread.Sleep(wait);
+                    Thread.Sleep(Wait);
                     Console.Clear();
 
                      BandReviewPanel();
@@ -5736,7 +5735,7 @@ namespace CDOrganiserProjectApp
             string tierCmd;
             bool invalidCmd;
 
-            Thread.Sleep(wait);
+            Thread.Sleep(Wait);
             Console.Clear();
 
             List<Tiers> tiers = storageManager.GetAllTiers();
@@ -5745,7 +5744,7 @@ namespace CDOrganiserProjectApp
             tierCmd = view.DisplayEditingOptions("tiers", "none");
             view.DisplayMessage("");
 
-            Thread.Sleep(wait);
+            Thread.Sleep(Wait);
             Console.Clear();
 
             invalidCmd = false;
@@ -5764,7 +5763,7 @@ namespace CDOrganiserProjectApp
                     break;
 
                     default:
-                        view.DisplayError(wait);
+                        view.DisplayError(Wait);
 
                         TierPanel();
 
@@ -5795,7 +5794,7 @@ namespace CDOrganiserProjectApp
                 genreCmd = view.GetInput();
                 view.DisplayMessage("");
 
-                Thread.Sleep(wait);
+                Thread.Sleep(Wait);
 
                 do
                 {
@@ -5809,7 +5808,7 @@ namespace CDOrganiserProjectApp
                         break;
 
                         default:
-                            view.DisplayError(wait);
+                            view.DisplayError(Wait);
 
                             SearchGenres();
 
@@ -5848,7 +5847,7 @@ namespace CDOrganiserProjectApp
                 artistCmd = view.GetInput();
                 view.DisplayMessage("");
 
-                Thread.Sleep(wait);
+                Thread.Sleep(Wait);
 
                 do
                 {
@@ -5862,7 +5861,7 @@ namespace CDOrganiserProjectApp
                         break;
 
                         default:
-                            view.DisplayError(wait);
+                            view.DisplayError(Wait);
 
                              SearchArtists();
 
@@ -5901,7 +5900,7 @@ namespace CDOrganiserProjectApp
                 bandCmd = view.GetInput();
                 view.DisplayMessage("");
 
-                Thread.Sleep(wait);
+                Thread.Sleep(Wait);
 
                 do
                 {
@@ -5915,7 +5914,7 @@ namespace CDOrganiserProjectApp
                         break;
 
                         default:
-                            view.DisplayError(wait);
+                            view.DisplayError(Wait);
 
                             SearchBands();
 
@@ -5955,7 +5954,7 @@ namespace CDOrganiserProjectApp
                 bReviewCmd = view.GetInput();
                 view.DisplayMessage("");
 
-                Thread.Sleep(wait);
+                Thread.Sleep(Wait);
 
                 do
                 {
@@ -5969,7 +5968,7 @@ namespace CDOrganiserProjectApp
                         break;
 
                         default:
-                            view.DisplayError(wait);
+                            view.DisplayError(Wait);
 
                             SearchBandReviews();
 
@@ -6010,7 +6009,7 @@ namespace CDOrganiserProjectApp
                 aReviewCmd = view.GetInput();
                 view.DisplayMessage("");
 
-                Thread.Sleep(wait);
+                Thread.Sleep(Wait);
 
                 do
                 {
@@ -6024,7 +6023,7 @@ namespace CDOrganiserProjectApp
                         break;
 
                         default:
-                            view.DisplayError(wait);
+                            view.DisplayError(Wait);
 
                             SearchArtistReviews();
 
@@ -6064,7 +6063,7 @@ namespace CDOrganiserProjectApp
                 aAlbumCmd = view.GetInput();
                 view.DisplayMessage("");
 
-                Thread.Sleep(wait);
+                Thread.Sleep(Wait);
 
                 do
                 {
@@ -6078,7 +6077,7 @@ namespace CDOrganiserProjectApp
                         break;
 
                         default:
-                            view.DisplayError(wait);
+                            view.DisplayError(Wait);
 
                             SearchArtistAlbums();
 
@@ -6118,7 +6117,7 @@ namespace CDOrganiserProjectApp
                 bAlbumCmd = view.GetInput();
                 view.DisplayMessage("");
 
-                Thread.Sleep(wait);
+                Thread.Sleep(Wait);
 
                 do
                 {
@@ -6132,7 +6131,7 @@ namespace CDOrganiserProjectApp
                         break;
 
                         default:
-                            view.DisplayError(wait);
+                            view.DisplayError(Wait);
 
                             SearchBandAlbums();
 

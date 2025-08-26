@@ -49,16 +49,16 @@ SET IDENTITY_INSERT Properties.tblAccounts ON;
 INSERT INTO Properties.tblAccounts(personID, fName, sName, username, pw, roleID)
 VALUES 
 (1, 'John', 'Kramer', 'johnk', 'jigsaw123', 1),
-(2, 'Clarice', 'Starling', 'agstarling', 'securepass456', 1),
-(3, 'Alice', 'Johnson', 'alicej', 'alicepwd789', 1),
-(4, 'Hannibal', 'Lecter', 'hanlecter', 'hansecure321', 1),
-(5, 'Charlie', 'Brown', 'charlieb', 'charliepass654', 1),
-(6, 'Diana', 'Evans', 'dianae', 'dianapass987', 1),
-(7, 'Edward', 'Hall', 'edwardh', 'edwardpass234', 1),
-(8, 'Fiona', 'Clark', 'fionac', 'fionapass567', 1),
-(9, 'George', 'Lewis', 'georgel', 'georgepass890', 1),
-(10, 'Hannah', 'Walker', 'hannahw', 'hannahpass345', 1),
-(11, 'Jack', 'Robinson', 'jackr', 'jackpass901', 1),
+(2, 'Clarice', 'Starling', 'agstarling', 'securepass456', 2),
+(3, 'Alice', 'Johnson', 'alicej', 'alicepwd789', 2),
+(4, 'Hannibal', 'Lecter', 'hanlecter', 'hansecure321', 2),
+(5, 'Charlie', 'Brown', 'charlieb', 'charliepass654', 2),
+(6, 'Diana', 'Evans', 'dianae', 'dianapass987', 2),
+(7, 'Edward', 'Hall', 'edwardh', 'edwardpass234', 2),
+(8, 'Fiona', 'Clark', 'fionac', 'fionapass567', 2),
+(9, 'George', 'Lewis', 'georgel', 'georgepass890', 2),
+(10, 'Hannah', 'Walker', 'hannahw', 'hannahpass345', 2),
+(11, 'Jack', 'Robinson', 'jackr', 'jackpass901', 2),
 (12, 'Isaac', 'White', 'isaacw', 'isaacpass678', 2);
 
 SET IDENTITY_INSERT Properties.tblAccounts OFF;
@@ -235,6 +235,7 @@ VALUES
 
 SET IDENTITY_INSERT Contents.tblBandAlbums OFF;
 
+
 SET IDENTITY_INSERT Contents.tblArtistReviews ON;
 
 INSERT INTO Contents.tblArtistReviews (reviewID, albumID, personID, tierID, favourite) 
@@ -242,7 +243,7 @@ VALUES
 (1, 1, 2, 3, 0),
 (2, 2, 5, 2, 1),
 (3, 3, 8, 1, 0),
-(4, 4, 1, 4, 1),
+(4, 4, 3, 4, 1),
 (5, 5, 12, 2, 0),
 (6, 6, 3, 3, 1),
 (7, 7, 10, 1, 0),
@@ -257,7 +258,7 @@ VALUES
 (16, 2, 6, 1, 1),
 (17, 3, 9, 2, 0),
 (18, 4, 12, 3, 1),
-(19, 5, 1, 4, 0),
+(19, 5, 4, 4, 0),
 (20, 6, 8, 2, 1);
 
 SET IDENTITY_INSERT Contents.tblArtistReviews OFF;
@@ -275,7 +276,7 @@ VALUES
 (6, 6, 5, 2, 0),
 (7, 7, 8, 3, 1),
 (8, 8, 11, 4, 0),
-(9, 9, 1, 1, 1),
+(9, 9, 2, 1, 1),
 (10, 10, 4, 2, 0),
 (11, 11, 7, 3, 1),
 (12, 12, 10, 4, 0),

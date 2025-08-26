@@ -27,7 +27,7 @@ CREATE TABLE Properties.tblAccounts (
 	sName VARCHAR(30) NOT NULL,
 	username VARCHAR(15) NOT NULL,
 	pw VARCHAR(30) NOT NULL,
-	roleID INT NOT NULL
+	roleID INT NOT NULL,
 	FOREIGN KEY (roleID) REFERENCES Properties.tblRole (roleID) 
 );
 
